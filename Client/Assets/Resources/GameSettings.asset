@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd272cf332dad046a54dfc312ceae48, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  logMode: 0
+  updateMode: 0
+  networkMode: 0
+  luaByteMode: 0
+  showFps: 0
+  GameFrameRate: 0
+  aStarDebugMode: 0
+  uiAtlasPath: 
+  uiTexturePath: 
+  texturePackerPath: 
+  selectedAtlasIndex: -1
+  atlasSettings:
+  - assetPath: 
+    iosFormat: 31
+    androidFormat: 32
+    textureSize: 0
+    isDynamic: 0
+  selectedABIndex: -1
+  assetBundlePackSetting: []
+  selectedDatasIndex: -1
+  datasBundlePackSetting: []
