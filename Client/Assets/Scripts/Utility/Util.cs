@@ -17,5 +17,22 @@ namespace Client.Utility
     {
       return Resources.Load<GameSettings>(AppConst.GameSettingName);
     }
+    
+    public static string DataPath
+    {
+      get
+      {
+        if (Application.isMobilePlatform)
+        {
+          return Application.persistentDataPath + "/" + AppConst.AppName + "/";
+        }
+        if (AppConst.DebugMode)
+        {
+          return Application.dataPath + "/res/";
+        }
+        var dataDir = Path.GetDirectoryName(Application.dataPath);
+        return dataDir + "/PersistentData/";
+      }
+    }
   }
 }

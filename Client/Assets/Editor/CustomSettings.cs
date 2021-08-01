@@ -12,7 +12,7 @@ using UnityEngine.Networking;
 
 public static class CustomSettings
 {
-    public static string saveDir = Application.dataPath + "/Source/Generate/";    
+    public static string saveDir = Application.dataPath + "/ToLua/Source/Generate/";    
     public static string toluaBaseType = Application.dataPath + "/ToLua/BaseType/";
     public static string baseLuaDir = Application.dataPath + "/Tolua/Lua/";
     public static string injectionFilesPath = Application.dataPath + "/ToLua/Injection/";
