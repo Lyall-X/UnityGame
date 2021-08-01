@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Client.Utility;
 using Client.Manager;
+using Common.Data;
 
 public abstract class BaseBehaviour
 {
@@ -110,6 +111,28 @@ public abstract class BaseBehaviour
       {
         com.Value.OnUpdate(deltaTime);
       }
+    }
+  }
+  private static ConfigManager _configMgr;
+  public static ConfigManager configMgr
+  {
+    get
+    {
+      if (_configMgr == null)
+      {
+        _configMgr = ConfigManager.Create();
+      }
+      return _configMgr;
+    }
+  }
+  private static TableManager _tableMgr;
+  public static TableManager tableMgr {
+    get {
+      if (_tableMgr == null)
+      {
+        _tableMgr = TableManager.Create();
+      }
+      return _tableMgr;
     }
   }
   
