@@ -1,4 +1,4 @@
-using FirClient.Extensions.Internal;
+using Client.Extensions.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     // We could just add a generic GetAwaiter to YieldInstruction and CustomYieldInstruction
     // but instead we add specific methods to each derived class to allow for return values

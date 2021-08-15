@@ -2,13 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using FirClient.Network;
+using Client.Network;
 using LuaInterface;
 using Google.Protobuf;
-using FirClient.Define;
-using FirClient.Extensions;
+using Client.Define;
+using Client.Extensions;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     struct ConnectParam
     {

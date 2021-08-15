@@ -1,9 +1,9 @@
-using FirClient.Logic.FSM;
+using Client.Logic.FSM;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Data
+namespace Client.Data
 {
     public enum NpcType : byte
     {

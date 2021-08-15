@@ -1,8 +1,8 @@
-using FirClient.Define;
+using Client.Define;
 using System;
 using UnityEngine;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     /// <summary>
     /// 移动相机事件

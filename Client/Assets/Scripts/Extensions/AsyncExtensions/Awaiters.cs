@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     // TODO: Remove the allocs here, use a static memory pool?
     public static class Awaiters

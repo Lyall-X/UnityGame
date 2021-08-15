@@ -1,9 +1,9 @@
-using FirClient.Component.FSM;
+using Client.Component.FSM;
 using UnityEngine;
-using FirClient.Extensions;
-using FirClient.Data;
+using Client.Extensions;
+using Client.Data;
 
-namespace FirClient.Logic.FSM.FreeBattleState
+namespace Client.Logic.FSM.FreeBattleState
 {
     public class FAttackState : FsmState
     {

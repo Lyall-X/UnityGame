@@ -4,7 +4,7 @@ using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     class UnZipInfo
     {

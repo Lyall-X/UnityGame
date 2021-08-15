@@ -1,12 +1,12 @@
 using UnityEngine;
-using FirClient.ObjectPool;
-using FirClient.Utility;
+using Client.ObjectPool;
+using Client.Utility;
 using DG.Tweening;
 using System;
-using FirClient.UI;
+using Client.UI;
 using LuaInterface;
 
-namespace FirClient.Manager 
+namespace Client.Manager 
 {
     public class GameManager : BaseManager 
     {

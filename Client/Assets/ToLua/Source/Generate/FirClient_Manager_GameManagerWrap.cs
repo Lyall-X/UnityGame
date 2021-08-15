@@ -6,7 +6,7 @@ public class FirClient_Manager_GameManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.GameManager), typeof(FirClient.Manager.BaseManager));
+		L.BeginClass(typeof(Client.Manager.GameManager), typeof(Client.Manager.BaseManager));
 		L.RegFunction("ResInitialize", new LuaCSFunction(ResInitialize));
 		L.RegFunction("New", new LuaCSFunction(_CreateFirClient_Manager_GameManager));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
@@ -22,13 +22,13 @@ public class FirClient_Manager_GameManagerWrap
 
 			if (count == 0)
 			{
-				FirClient.Manager.GameManager obj = new FirClient.Manager.GameManager();
+				Client.Manager.GameManager obj = new Client.Manager.GameManager();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Manager.GameManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Manager.GameManager.New");
 			}
 		}
 		catch (Exception e)
@@ -43,7 +43,7 @@ public class FirClient_Manager_GameManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.GameManager obj = (FirClient.Manager.GameManager)ToLua.CheckObject<FirClient.Manager.GameManager>(L, 1);
+			Client.Manager.GameManager obj = (Client.Manager.GameManager)ToLua.CheckObject<Client.Manager.GameManager>(L, 1);
 			obj.ResInitialize();
 			return 0;
 		}

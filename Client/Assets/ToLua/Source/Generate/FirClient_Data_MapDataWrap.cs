@@ -6,7 +6,7 @@ public class FirClient_Data_MapDataWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Data.MapData), typeof(System.Object));
+		L.BeginClass(typeof(Client.Data.MapData), typeof(System.Object));
 		L.RegFunction("New", new LuaCSFunction(_CreateFirClient_Data_MapData));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("id", new LuaCSFunction(get_id), new LuaCSFunction(set_id));
@@ -27,13 +27,13 @@ public class FirClient_Data_MapDataWrap
 
 			if (count == 0)
 			{
-				FirClient.Data.MapData obj = new FirClient.Data.MapData();
+				Client.Data.MapData obj = new Client.Data.MapData();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Data.MapData.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Data.MapData.New");
 			}
 		}
 		catch (Exception e)
@@ -50,7 +50,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			uint ret = obj.id;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -69,7 +69,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			uint ret = obj.type;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -88,7 +88,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			uint ret = obj.eventid;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -107,7 +107,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			string ret = obj.atlas;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -126,7 +126,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			string ret = obj.sound;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -145,8 +145,8 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
-			System.Collections.Generic.List<FirClient.Data.SceneEvent> ret = obj.events;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
+			System.Collections.Generic.List<Client.Data.SceneEvent> ret = obj.events;
 			ToLua.PushSealed(L, ret);
 			return 1;
 		}
@@ -164,7 +164,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			obj.id = arg0;
 			return 0;
@@ -183,7 +183,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			obj.type = arg0;
 			return 0;
@@ -202,7 +202,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			obj.eventid = arg0;
 			return 0;
@@ -221,7 +221,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.atlas = arg0;
 			return 0;
@@ -240,7 +240,7 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
+			Client.Data.MapData obj = (Client.Data.MapData)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.sound = arg0;
 			return 0;
@@ -259,8 +259,8 @@ public class FirClient_Data_MapDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.MapData obj = (FirClient.Data.MapData)o;
-			System.Collections.Generic.List<FirClient.Data.SceneEvent> arg0 = (System.Collections.Generic.List<FirClient.Data.SceneEvent>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<FirClient.Data.SceneEvent>>.type);
+			Client.Data.MapData obj = (Client.Data.MapData)o;
+			System.Collections.Generic.List<Client.Data.SceneEvent> arg0 = (System.Collections.Generic.List<Client.Data.SceneEvent>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<Client.Data.SceneEvent>>.type);
 			obj.events = arg0;
 			return 0;
 		}

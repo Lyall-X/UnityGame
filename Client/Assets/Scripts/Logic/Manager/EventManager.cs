@@ -1,10 +1,10 @@
-using FirClient.Data;
-using FirClient.Logic.Event;
+using Client.Data;
+using Client.Logic.Event;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic.Manager
+namespace Client.Logic.Manager
 {
     public class EventManager : LogicBehaviour
     {

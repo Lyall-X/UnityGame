@@ -2,9 +2,9 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UObject = UnityEngine.Object;
-using FirClient.Data;
+using Client.Data;
 
-namespace FirClient.View
+namespace Client.View
 {
     public class NPCView : BaseBehaviour, INPCView
     {

@@ -65,13 +65,13 @@ _G.Image = UnityEngine.UI.Image
 _G.Text = UnityEngine.UI.Text
 _G.Button = UnityEngine.UI.Button
 
-_G.UILayer = FirClient.Manager.UILayer
-_G.Util = FirClient.Utility.Util
-_G.LuaHelper = FirClient.Utility.LuaHelper
-_G.LevelType = FirClient.Data.LevelType
-_G.ResultCode = FirClient.Define.ResultCode
-_G.EventNames = FirClient.Define.EventNames
-_G.CLuaComponent = FirClient.Component.CLuaComponent
+_G.UILayer = Client.Manager.UILayer
+_G.Util = Client.Utility.Util
+_G.LuaHelper = Client.Utility.LuaHelper
+_G.LevelType = Client.Data.LevelType
+_G.ResultCode = Client.Define.ResultCode
+_G.EventNames = Client.Define.EventNames
+_G.CLuaComponent = Client.Component.CLuaComponent
 
 _G.NpcSex = { Man = 0, Woman = 1 }
 _G.MapType = { Scene = 0, Battle = 1 }

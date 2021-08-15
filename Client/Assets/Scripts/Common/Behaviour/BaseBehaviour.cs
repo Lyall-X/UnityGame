@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FirClient.Manager;
-using FirClient.Component;
-using FirClient.Utility;
+using Client.Manager;
+using Client.Component;
+using Client.Utility;
 using LuaInterface;
 using FirCommon.Data;
 

@@ -6,7 +6,7 @@ public class FirClient_Manager_ResourceManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.ResourceManager), typeof(FirClient.Manager.BaseManager));
+		L.BeginClass(typeof(Client.Manager.ResourceManager), typeof(Client.Manager.BaseManager));
 		L.RegFunction("InitResManifest", new LuaCSFunction(InitResManifest));
 		L.RegFunction("TakeSnapshot", new LuaCSFunction(TakeSnapshot));
 		L.RegFunction("ClearSnapshot", new LuaCSFunction(ClearSnapshot));
@@ -26,13 +26,13 @@ public class FirClient_Manager_ResourceManagerWrap
 
 			if (count == 0)
 			{
-				FirClient.Manager.ResourceManager obj = new FirClient.Manager.ResourceManager();
+				Client.Manager.ResourceManager obj = new Client.Manager.ResourceManager();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Manager.ResourceManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Manager.ResourceManager.New");
 			}
 		}
 		catch (Exception e)
@@ -47,7 +47,7 @@ public class FirClient_Manager_ResourceManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 3);
-			FirClient.Manager.ResourceManager obj = (FirClient.Manager.ResourceManager)ToLua.CheckObject<FirClient.Manager.ResourceManager>(L, 1);
+			Client.Manager.ResourceManager obj = (Client.Manager.ResourceManager)ToLua.CheckObject<Client.Manager.ResourceManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			System.Action arg1 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 3);
 			obj.InitResManifest(arg0, arg1);
@@ -65,7 +65,7 @@ public class FirClient_Manager_ResourceManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.ResourceManager obj = (FirClient.Manager.ResourceManager)ToLua.CheckObject<FirClient.Manager.ResourceManager>(L, 1);
+			Client.Manager.ResourceManager obj = (Client.Manager.ResourceManager)ToLua.CheckObject<Client.Manager.ResourceManager>(L, 1);
 			obj.TakeSnapshot();
 			return 0;
 		}
@@ -81,7 +81,7 @@ public class FirClient_Manager_ResourceManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.ResourceManager obj = (FirClient.Manager.ResourceManager)ToLua.CheckObject<FirClient.Manager.ResourceManager>(L, 1);
+			Client.Manager.ResourceManager obj = (Client.Manager.ResourceManager)ToLua.CheckObject<Client.Manager.ResourceManager>(L, 1);
 			obj.ClearSnapshot();
 			return 0;
 		}
@@ -97,7 +97,7 @@ public class FirClient_Manager_ResourceManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.ResourceManager obj = (FirClient.Manager.ResourceManager)ToLua.CheckObject<FirClient.Manager.ResourceManager>(L, 1);
+			Client.Manager.ResourceManager obj = (Client.Manager.ResourceManager)ToLua.CheckObject<Client.Manager.ResourceManager>(L, 1);
 			obj.DiffSnapshot();
 			return 0;
 		}
@@ -113,7 +113,7 @@ public class FirClient_Manager_ResourceManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 5);
-			FirClient.Manager.ResourceManager obj = (FirClient.Manager.ResourceManager)ToLua.CheckObject<FirClient.Manager.ResourceManager>(L, 1);
+			Client.Manager.ResourceManager obj = (Client.Manager.ResourceManager)ToLua.CheckObject<Client.Manager.ResourceManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			string[] arg1 = ToLua.CheckStringArray(L, 3);
 			System.Type arg2 = ToLua.CheckMonoType(L, 4);

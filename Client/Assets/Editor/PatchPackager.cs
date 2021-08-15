@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using System.IO;
-using FirClient.Utility;
-using FirClient.Component;
-using FirClient.Define;
+using Client.Utility;
+using Client.Component;
+using Client.Define;
 using Debug = UnityEngine.Debug;
 
 class PatchInfo

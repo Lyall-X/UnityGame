@@ -75,7 +75,7 @@ public class ConfigManagerWrap
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			uint arg1 = (uint)LuaDLL.luaL_checkinteger(L, 3);
 			uint arg2 = (uint)LuaDLL.luaL_checkinteger(L, 4);
-			FirClient.Data.DialogData o = obj.GetDialogDataByKey(arg0, arg1, arg2);
+			Client.Data.DialogData o = obj.GetDialogDataByKey(arg0, arg1, arg2);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -92,7 +92,7 @@ public class ConfigManagerWrap
 		{
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
-			FirClient.Data.EmbattleType arg0 = (FirClient.Data.EmbattleType)ToLua.CheckObject(L, 2, TypeTraits<FirClient.Data.EmbattleType>.type);
+			Client.Data.EmbattleType arg0 = (Client.Data.EmbattleType)ToLua.CheckObject(L, 2, TypeTraits<Client.Data.EmbattleType>.type);
 			System.Collections.Generic.Dictionary<uint,UnityEngine.Vector3> o = obj.GetEmbattlePosData(arg0);
 			ToLua.PushSealed(L, o);
 			return 1;
@@ -111,7 +111,7 @@ public class ConfigManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
-			System.Collections.Generic.Dictionary<string,FirClient.Data.SkillData> o = obj.GetSkillData(arg0);
+			System.Collections.Generic.Dictionary<string,Client.Data.SkillData> o = obj.GetSkillData(arg0);
 			ToLua.PushSealed(L, o);
 			return 1;
 		}
@@ -128,7 +128,7 @@ public class ConfigManagerWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
-			System.Collections.Generic.Dictionary<uint,FirClient.Data.ChapterData> o = obj.GetChapterList();
+			System.Collections.Generic.Dictionary<uint,Client.Data.ChapterData> o = obj.GetChapterList();
 			ToLua.PushSealed(L, o);
 			return 1;
 		}
@@ -147,7 +147,7 @@ public class ConfigManagerWrap
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			uint arg1 = (uint)LuaDLL.luaL_checkinteger(L, 3);
-			FirClient.Data.DungeonData o = obj.GetDungeonData(arg0, arg1);
+			Client.Data.DungeonData o = obj.GetDungeonData(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -165,7 +165,7 @@ public class ConfigManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
-			FirClient.Data.TeamData o = obj.GetTeamData(arg0);
+			Client.Data.TeamData o = obj.GetTeamData(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -183,7 +183,7 @@ public class ConfigManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
-			FirClient.Data.MapData o = obj.GetMapData(arg0);
+			Client.Data.MapData o = obj.GetMapData(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -201,7 +201,7 @@ public class ConfigManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
-			FirClient.Data.RoleData o = obj.GetRoleData(arg0);
+			Client.Data.RoleData o = obj.GetRoleData(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -219,7 +219,7 @@ public class ConfigManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
-			FirClient.Data.BulletData o = obj.GetBulletData(arg0);
+			Client.Data.BulletData o = obj.GetBulletData(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -236,7 +236,7 @@ public class ConfigManagerWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
-			System.Collections.Generic.Dictionary<string,FirClient.Data.BulletData> o = obj.GetBulletList();
+			System.Collections.Generic.Dictionary<string,Client.Data.BulletData> o = obj.GetBulletList();
 			ToLua.PushSealed(L, o);
 			return 1;
 		}
@@ -254,7 +254,7 @@ public class ConfigManagerWrap
 			ToLua.CheckArgsCount(L, 2);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
-			FirClient.Data.EffectData o = obj.GetEffectData(arg0);
+			Client.Data.EffectData o = obj.GetEffectData(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -271,7 +271,7 @@ public class ConfigManagerWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			ConfigManager obj = (ConfigManager)ToLua.CheckObject<ConfigManager>(L, 1);
-			System.Collections.Generic.Dictionary<string,FirClient.Data.EffectData> o = obj.GetEffectList();
+			System.Collections.Generic.Dictionary<string,Client.Data.EffectData> o = obj.GetEffectList();
 			ToLua.PushSealed(L, o);
 			return 1;
 		}

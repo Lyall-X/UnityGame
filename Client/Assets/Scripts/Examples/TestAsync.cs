@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using FirClient.Extensions;
+using Client.Extensions;
 
-namespace FirClient.Examples
+namespace Client.Examples
 {
     public class TestAsync : MonoBehaviour
     {

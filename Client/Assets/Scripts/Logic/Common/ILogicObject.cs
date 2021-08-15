@@ -1,4 +1,4 @@
-namespace FirClient.Logic
+namespace Client.Logic
 {
     public interface ILogicObject
     {

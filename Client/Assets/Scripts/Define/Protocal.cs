@@ -1,5 +1,5 @@
 
-namespace FirClient.Define
+namespace Client.Define
 {
     public enum ProtoType : byte
     {

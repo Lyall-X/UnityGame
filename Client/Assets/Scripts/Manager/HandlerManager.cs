@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class HandlerManager : BaseManager
     {

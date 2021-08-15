@@ -1,12 +1,12 @@
-using FirClient.Data;
-using FirClient.Define;
-using FirClient.Logic.Manager;
-using FirClient.Utility;
-using FirClient.View;
+using Client.Data;
+using Client.Define;
+using Client.Logic.Manager;
+using Client.Utility;
+using Client.View;
 using System;
 using UnityEngine;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class BattleViewManager : BaseManager
     {

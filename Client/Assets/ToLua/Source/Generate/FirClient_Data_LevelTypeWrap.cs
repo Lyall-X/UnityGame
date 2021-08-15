@@ -6,7 +6,7 @@ public class FirClient_Data_LevelTypeWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginEnum(typeof(FirClient.Data.LevelType));
+		L.BeginEnum(typeof(Client.Data.LevelType));
 		L.RegVar("Init", new LuaCSFunction(get_Init), null);
 		L.RegVar("Login", new LuaCSFunction(get_Login), null);
 		L.RegVar("Loader", new LuaCSFunction(get_Loader), null);
@@ -14,16 +14,16 @@ public class FirClient_Data_LevelTypeWrap
 		L.RegVar("Battle", new LuaCSFunction(get_Battle), null);
 		L.RegFunction("IntToEnum", new LuaCSFunction(IntToEnum));
 		L.EndEnum();
-		TypeTraits<FirClient.Data.LevelType>.Check = CheckType;
-		StackTraits<FirClient.Data.LevelType>.Push = Push;
+		TypeTraits<Client.Data.LevelType>.Check = CheckType;
+		StackTraits<Client.Data.LevelType>.Push = Push;
 	}
 
-	static void Push(IntPtr L, FirClient.Data.LevelType arg)
+	static void Push(IntPtr L, Client.Data.LevelType arg)
 	{
 		ToLua.Push(L, arg);
 	}
 
-	static Type TypeOf_FirClient_Data_LevelType = typeof(FirClient.Data.LevelType);
+	static Type TypeOf_FirClient_Data_LevelType = typeof(Client.Data.LevelType);
 
 	static bool CheckType(IntPtr L, int pos)
 	{
@@ -33,35 +33,35 @@ public class FirClient_Data_LevelTypeWrap
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Init(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Data.LevelType.Init);
+		ToLua.Push(L, Client.Data.LevelType.Init);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Login(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Data.LevelType.Login);
+		ToLua.Push(L, Client.Data.LevelType.Login);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Loader(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Data.LevelType.Loader);
+		ToLua.Push(L, Client.Data.LevelType.Loader);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Main(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Data.LevelType.Main);
+		ToLua.Push(L, Client.Data.LevelType.Main);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Battle(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Data.LevelType.Battle);
+		ToLua.Push(L, Client.Data.LevelType.Battle);
 		return 1;
 	}
 
@@ -69,7 +69,7 @@ public class FirClient_Data_LevelTypeWrap
 	static int IntToEnum(IntPtr L)
 	{
 		int arg0 = (int)LuaDLL.lua_tointeger(L, 1);
-		FirClient.Data.LevelType o = (FirClient.Data.LevelType)arg0;
+		Client.Data.LevelType o = (Client.Data.LevelType)arg0;
 		ToLua.Push(L, o);
 		return 1;
 	}

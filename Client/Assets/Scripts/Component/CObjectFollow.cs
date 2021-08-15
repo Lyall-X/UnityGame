@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public enum FollowType
     {

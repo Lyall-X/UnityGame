@@ -1,7 +1,7 @@
 using LiteNetLib.Utils;
 using UnityEngine;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     public static class LiteNetLibExtensions
     {

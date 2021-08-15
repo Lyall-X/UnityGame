@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     public static class ImageExtensions
     {

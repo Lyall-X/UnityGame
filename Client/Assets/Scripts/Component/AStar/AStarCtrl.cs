@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class AStarCtrl : BaseBehaviour, IAStar
     {

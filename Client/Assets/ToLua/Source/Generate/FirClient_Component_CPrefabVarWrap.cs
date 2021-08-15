@@ -6,7 +6,7 @@ public class FirClient_Component_CPrefabVarWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Component.CPrefabVar), typeof(UnityEngine.MonoBehaviour));
+		L.BeginClass(typeof(Client.Component.CPrefabVar), typeof(UnityEngine.MonoBehaviour));
 		L.RegFunction("GetVarArray", new LuaCSFunction(GetVarArray));
 		L.RegFunction("GetVarNameByType", new LuaCSFunction(GetVarNameByType));
 		L.RegFunction("__eq", new LuaCSFunction(op_Equality));
@@ -22,8 +22,8 @@ public class FirClient_Component_CPrefabVarWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Component.CPrefabVar obj = (FirClient.Component.CPrefabVar)ToLua.CheckObject<FirClient.Component.CPrefabVar>(L, 1);
-			FirClient.Component.VarData[] o = obj.GetVarArray();
+			Client.Component.CPrefabVar obj = (Client.Component.CPrefabVar)ToLua.CheckObject<Client.Component.CPrefabVar>(L, 1);
+			Client.Component.VarData[] o = obj.GetVarArray();
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -39,8 +39,8 @@ public class FirClient_Component_CPrefabVarWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Component.CPrefabVar obj = (FirClient.Component.CPrefabVar)ToLua.CheckObject<FirClient.Component.CPrefabVar>(L, 1);
-			FirClient.Component.VarType arg0 = (FirClient.Component.VarType)ToLua.CheckObject(L, 2, TypeTraits<FirClient.Component.VarType>.type);
+			Client.Component.CPrefabVar obj = (Client.Component.CPrefabVar)ToLua.CheckObject<Client.Component.CPrefabVar>(L, 1);
+			Client.Component.VarType arg0 = (Client.Component.VarType)ToLua.CheckObject(L, 2, TypeTraits<Client.Component.VarType>.type);
 			string o = obj.GetVarNameByType(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
@@ -77,8 +77,8 @@ public class FirClient_Component_CPrefabVarWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.CPrefabVar obj = (FirClient.Component.CPrefabVar)o;
-			System.Collections.Generic.List<FirClient.Component.VarData> ret = obj.varData;
+			Client.Component.CPrefabVar obj = (Client.Component.CPrefabVar)o;
+			System.Collections.Generic.List<Client.Component.VarData> ret = obj.varData;
 			ToLua.PushSealed(L, ret);
 			return 1;
 		}
@@ -96,7 +96,7 @@ public class FirClient_Component_CPrefabVarWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.CPrefabVar obj = (FirClient.Component.CPrefabVar)o;
+			Client.Component.CPrefabVar obj = (Client.Component.CPrefabVar)o;
 			System.Collections.Generic.List<string> ret = obj.varTypes;
 			ToLua.PushSealed(L, ret);
 			return 1;
@@ -115,8 +115,8 @@ public class FirClient_Component_CPrefabVarWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.CPrefabVar obj = (FirClient.Component.CPrefabVar)o;
-			System.Collections.Generic.List<FirClient.Component.VarData> arg0 = (System.Collections.Generic.List<FirClient.Component.VarData>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<FirClient.Component.VarData>>.type);
+			Client.Component.CPrefabVar obj = (Client.Component.CPrefabVar)o;
+			System.Collections.Generic.List<Client.Component.VarData> arg0 = (System.Collections.Generic.List<Client.Component.VarData>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<Client.Component.VarData>>.type);
 			obj.varData = arg0;
 			return 0;
 		}

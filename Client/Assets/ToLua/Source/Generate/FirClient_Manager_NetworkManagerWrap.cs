@@ -6,7 +6,7 @@ public class FirClient_Manager_NetworkManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.NetworkManager), typeof(FirClient.Manager.BaseManager));
+		L.BeginClass(typeof(Client.Manager.NetworkManager), typeof(Client.Manager.BaseManager));
 		L.RegFunction("Connect", new LuaCSFunction(Connect));
 		L.RegFunction("SendData", new LuaCSFunction(SendData));
 		L.RegFunction("New", new LuaCSFunction(_CreateFirClient_Manager_NetworkManager));
@@ -24,13 +24,13 @@ public class FirClient_Manager_NetworkManagerWrap
 
 			if (count == 0)
 			{
-				FirClient.Manager.NetworkManager obj = new FirClient.Manager.NetworkManager();
+				Client.Manager.NetworkManager obj = new Client.Manager.NetworkManager();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Manager.NetworkManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Manager.NetworkManager.New");
 			}
 		}
 		catch (Exception e)
@@ -45,7 +45,7 @@ public class FirClient_Manager_NetworkManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 6);
-			FirClient.Manager.NetworkManager obj = (FirClient.Manager.NetworkManager)ToLua.CheckObject<FirClient.Manager.NetworkManager>(L, 1);
+			Client.Manager.NetworkManager obj = (Client.Manager.NetworkManager)ToLua.CheckObject<Client.Manager.NetworkManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			int arg1 = (int)LuaDLL.luaL_checkinteger(L, 3);
 			LuaTable arg2 = ToLua.CheckLuaTable(L, 4);
@@ -69,7 +69,7 @@ public class FirClient_Manager_NetworkManagerWrap
 
 			if (count == 3 && TypeChecker.CheckTypes<Google.Protobuf.IMessage>(L, 3))
 			{
-				FirClient.Manager.NetworkManager obj = (FirClient.Manager.NetworkManager)ToLua.CheckObject<FirClient.Manager.NetworkManager>(L, 1);
+				Client.Manager.NetworkManager obj = (Client.Manager.NetworkManager)ToLua.CheckObject<Client.Manager.NetworkManager>(L, 1);
 				string arg0 = ToLua.CheckString(L, 2);
 				Google.Protobuf.IMessage arg1 = (Google.Protobuf.IMessage)ToLua.ToObject(L, 3);
 				obj.SendData(arg0, arg1);
@@ -77,7 +77,7 @@ public class FirClient_Manager_NetworkManagerWrap
 			}
 			else if (count == 3 && TypeChecker.CheckTypes<LuaInterface.LuaByteBuffer>(L, 3))
 			{
-				FirClient.Manager.NetworkManager obj = (FirClient.Manager.NetworkManager)ToLua.CheckObject<FirClient.Manager.NetworkManager>(L, 1);
+				Client.Manager.NetworkManager obj = (Client.Manager.NetworkManager)ToLua.CheckObject<Client.Manager.NetworkManager>(L, 1);
 				string arg0 = ToLua.CheckString(L, 2);
 				LuaByteBuffer arg1 = new LuaByteBuffer(ToLua.CheckByteBuffer(L, 3));
 				obj.SendData(arg0, arg1);
@@ -85,7 +85,7 @@ public class FirClient_Manager_NetworkManagerWrap
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.Manager.NetworkManager.SendData");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.Manager.NetworkManager.SendData");
 			}
 		}
 		catch (Exception e)
@@ -102,7 +102,7 @@ public class FirClient_Manager_NetworkManagerWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Manager.NetworkManager obj = (FirClient.Manager.NetworkManager)o;
+			Client.Manager.NetworkManager obj = (Client.Manager.NetworkManager)o;
 			LiteNetLib.NetManager ret = obj.mClient;
 			ToLua.PushObject(L, ret);
 			return 1;

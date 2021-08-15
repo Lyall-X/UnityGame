@@ -1,5 +1,5 @@
 
-namespace FirClient.Handler
+namespace Client.Handler
 {
     public class DefaultHandler : BaseHandler
     {

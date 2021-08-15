@@ -5,7 +5,7 @@ public enum TargetType {
     Camera,         //摄像头
 }
 
-namespace FirClient.Component
+namespace Client.Component
 {
     [RequireComponent(typeof(CameraCulling))]
     public class SmoothFollow : CameraBase

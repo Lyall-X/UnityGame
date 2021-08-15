@@ -109,7 +109,7 @@ function MapManager:AddVistaFollowCamera()
 	local objFollow = find('/MainGame'):GetComponent('CObjectFollow')
 	if not isnil(objFollow) then
 		local objTarget = self.mapObject.transform:Find("bg_vista")
-		local type = FirClient.Component.FollowType.ObjectFollowCamera
+		local type = Client.Component.FollowType.ObjectFollowCamera
 		objFollow:AddItem('ObjectFollowCamera', type, 0.2, nil, objTarget)
 	end
 end

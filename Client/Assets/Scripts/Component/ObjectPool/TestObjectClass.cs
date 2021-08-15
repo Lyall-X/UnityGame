@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace FirClient.ObjectPool {
+namespace Client.ObjectPool {
 
     public class TestObjectClass {
 

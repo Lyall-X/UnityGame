@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FirClient.View
+namespace Client.View
 {
     public class ObjectView : BaseBehaviour, IObjectView
     {

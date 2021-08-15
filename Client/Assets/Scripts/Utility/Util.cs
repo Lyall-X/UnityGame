@@ -5,15 +5,15 @@ using System.Text;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-using FirClient.Manager;
-using FirClient.Define;
+using Client.Manager;
+using Client.Define;
 using LuaInterface;
-using FirClient.UI;
-using FirClient.HUD;
+using Client.UI;
+using Client.HUD;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-namespace FirClient.Utility
+namespace Client.Utility
 {
     public static class Util
     {

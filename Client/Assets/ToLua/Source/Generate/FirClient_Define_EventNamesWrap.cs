@@ -6,7 +6,7 @@ public class FirClient_Define_EventNamesWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Define.EventNames), typeof(System.Object));
+		L.BeginClass(typeof(Client.Define.EventNames), typeof(System.Object));
 		L.RegFunction("New", new LuaCSFunction(_CreateFirClient_Define_EventNames));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("EvLogicUpdate", new LuaCSFunction(get_EvLogicUpdate), null);
@@ -41,13 +41,13 @@ public class FirClient_Define_EventNamesWrap
 
 			if (count == 0)
 			{
-				FirClient.Define.EventNames obj = new FirClient.Define.EventNames();
+				Client.Define.EventNames obj = new Client.Define.EventNames();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Define.EventNames.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Define.EventNames.New");
 			}
 		}
 		catch (Exception e)
@@ -61,7 +61,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvLogicUpdate);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvLogicUpdate);
 			return 1;
 		}
 		catch (Exception e)
@@ -75,7 +75,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcSpawn);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcSpawn);
 			return 1;
 		}
 		catch (Exception e)
@@ -89,7 +89,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcSpawnOK);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcSpawnOK);
 			return 1;
 		}
 		catch (Exception e)
@@ -103,7 +103,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvEnterScene);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvEnterScene);
 			return 1;
 		}
 		catch (Exception e)
@@ -117,7 +117,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvBeginPlay);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvBeginPlay);
 			return 1;
 		}
 		catch (Exception e)
@@ -131,7 +131,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvMoveCamera);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvMoveCamera);
 			return 1;
 		}
 		catch (Exception e)
@@ -145,7 +145,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcSkillAttack);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcSkillAttack);
 			return 1;
 		}
 		catch (Exception e)
@@ -159,7 +159,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcSkillAttackOK);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcSkillAttackOK);
 			return 1;
 		}
 		catch (Exception e)
@@ -173,7 +173,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcDeath);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcDeath);
 			return 1;
 		}
 		catch (Exception e)
@@ -187,7 +187,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvEnterDungeon);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvEnterDungeon);
 			return 1;
 		}
 		catch (Exception e)
@@ -201,7 +201,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvEnterDungeonOK);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvEnterDungeonOK);
 			return 1;
 		}
 		catch (Exception e)
@@ -215,7 +215,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvBattleStart);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvBattleStart);
 			return 1;
 		}
 		catch (Exception e)
@@ -229,7 +229,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvBattleEnd);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvBattleEnd);
 			return 1;
 		}
 		catch (Exception e)
@@ -243,7 +243,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvChooseNpc);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvChooseNpc);
 			return 1;
 		}
 		catch (Exception e)
@@ -257,7 +257,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcMove);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcMove);
 			return 1;
 		}
 		catch (Exception e)
@@ -271,7 +271,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcMoveOK);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcMoveOK);
 			return 1;
 		}
 		catch (Exception e)
@@ -285,7 +285,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcFaceDir);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcFaceDir);
 			return 1;
 		}
 		catch (Exception e)
@@ -299,7 +299,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcShow);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcShow);
 			return 1;
 		}
 		catch (Exception e)
@@ -313,7 +313,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvNpcShowOK);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvNpcShowOK);
 			return 1;
 		}
 		catch (Exception e)
@@ -327,7 +327,7 @@ public class FirClient_Define_EventNamesWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Define.EventNames.EvShowDialog);
+			LuaDLL.lua_pushstring(L, Client.Define.EventNames.EvShowDialog);
 			return 1;
 		}
 		catch (Exception e)

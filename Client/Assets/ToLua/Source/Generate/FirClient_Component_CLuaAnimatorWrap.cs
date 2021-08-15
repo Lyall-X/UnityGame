@@ -6,7 +6,7 @@ public class FirClient_Component_CLuaAnimatorWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Component.CLuaAnimator), typeof(UnityEngine.MonoBehaviour));
+		L.BeginClass(typeof(Client.Component.CLuaAnimator), typeof(UnityEngine.MonoBehaviour));
 		L.RegFunction("Initialize", new LuaCSFunction(Initialize));
 		L.RegFunction("Play", new LuaCSFunction(Play));
 		L.RegFunction("Dispose", new LuaCSFunction(Dispose));
@@ -21,7 +21,7 @@ public class FirClient_Component_CLuaAnimatorWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 3);
-			FirClient.Component.CLuaAnimator obj = (FirClient.Component.CLuaAnimator)ToLua.CheckObject<FirClient.Component.CLuaAnimator>(L, 1);
+			Client.Component.CLuaAnimator obj = (Client.Component.CLuaAnimator)ToLua.CheckObject<Client.Component.CLuaAnimator>(L, 1);
 			LuaTable arg0 = ToLua.CheckLuaTable(L, 2);
 			LuaFunction arg1 = ToLua.CheckLuaFunction(L, 3);
 			obj.Initialize(arg0, arg1);
@@ -39,7 +39,7 @@ public class FirClient_Component_CLuaAnimatorWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Component.CLuaAnimator obj = (FirClient.Component.CLuaAnimator)ToLua.CheckObject<FirClient.Component.CLuaAnimator>(L, 1);
+			Client.Component.CLuaAnimator obj = (Client.Component.CLuaAnimator)ToLua.CheckObject<Client.Component.CLuaAnimator>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.Play(arg0);
 			return 0;
@@ -56,7 +56,7 @@ public class FirClient_Component_CLuaAnimatorWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Component.CLuaAnimator obj = (FirClient.Component.CLuaAnimator)ToLua.CheckObject<FirClient.Component.CLuaAnimator>(L, 1);
+			Client.Component.CLuaAnimator obj = (Client.Component.CLuaAnimator)ToLua.CheckObject<Client.Component.CLuaAnimator>(L, 1);
 			obj.Dispose();
 			return 0;
 		}

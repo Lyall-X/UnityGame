@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using FirClient.Utility;
+using Client.Utility;
 using LuaInterface;
 using UnityEngine;
 using UObject = UnityEngine.Object;
 
 
-namespace FirClient.Manager {
+namespace Client.Manager {
     public class AssetBundleInfo
     {
         public AssetBundle m_AssetBundle;

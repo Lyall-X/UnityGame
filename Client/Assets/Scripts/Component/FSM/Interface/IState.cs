@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Component.FSM
+namespace Client.Component.FSM
 {
     public interface IState
     {

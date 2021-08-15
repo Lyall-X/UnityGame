@@ -1,6 +1,6 @@
-using FirClient.Data;
+using Client.Data;
 
-namespace FirClient.Logic
+namespace Client.Logic
 {
     public class LogicConst
     {

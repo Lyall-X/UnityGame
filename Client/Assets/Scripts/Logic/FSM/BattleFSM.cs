@@ -1,9 +1,9 @@
-using FirClient.Logic.FSM.TurnBaseState;
-using FirClient.Logic.FSM.FreeBattleState;
+using Client.Logic.FSM.TurnBaseState;
+using Client.Logic.FSM.FreeBattleState;
 using UnityEngine;
-using FirClient.Data;
+using Client.Data;
 
-namespace FirClient.Logic.FSM
+namespace Client.Logic.FSM
 {
     public class BattleFSM : GameFSM
     {

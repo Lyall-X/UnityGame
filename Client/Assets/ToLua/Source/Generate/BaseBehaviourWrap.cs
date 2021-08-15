@@ -117,7 +117,7 @@ public class BaseBehaviourWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			FirClient.Manager.BaseManager o = BaseBehaviour.GetManager(arg0);
+			Client.Manager.BaseManager o = BaseBehaviour.GetManager(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}

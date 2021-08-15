@@ -6,7 +6,7 @@ public class FirClient_Component_CMultiProgressBarWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Component.CMultiProgressBar), typeof(UnityEngine.MonoBehaviour));
+		L.BeginClass(typeof(Client.Component.CMultiProgressBar), typeof(UnityEngine.MonoBehaviour));
 		L.RegFunction("SetColors", new LuaCSFunction(SetColors));
 		L.RegFunction("SetValue", new LuaCSFunction(SetValue));
 		L.RegFunction("Reset", new LuaCSFunction(Reset));
@@ -21,7 +21,7 @@ public class FirClient_Component_CMultiProgressBarWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Component.CMultiProgressBar obj = (FirClient.Component.CMultiProgressBar)ToLua.CheckObject<FirClient.Component.CMultiProgressBar>(L, 1);
+			Client.Component.CMultiProgressBar obj = (Client.Component.CMultiProgressBar)ToLua.CheckObject<Client.Component.CMultiProgressBar>(L, 1);
 			obj.SetColors();
 			return 0;
 		}
@@ -37,7 +37,7 @@ public class FirClient_Component_CMultiProgressBarWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Component.CMultiProgressBar obj = (FirClient.Component.CMultiProgressBar)ToLua.CheckObject<FirClient.Component.CMultiProgressBar>(L, 1);
+			Client.Component.CMultiProgressBar obj = (Client.Component.CMultiProgressBar)ToLua.CheckObject<Client.Component.CMultiProgressBar>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			obj.SetValue(arg0);
 			return 0;
@@ -54,7 +54,7 @@ public class FirClient_Component_CMultiProgressBarWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Component.CMultiProgressBar obj = (FirClient.Component.CMultiProgressBar)ToLua.CheckObject<FirClient.Component.CMultiProgressBar>(L, 1);
+			Client.Component.CMultiProgressBar obj = (Client.Component.CMultiProgressBar)ToLua.CheckObject<Client.Component.CMultiProgressBar>(L, 1);
 			obj.Reset();
 			return 0;
 		}

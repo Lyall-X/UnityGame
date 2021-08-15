@@ -134,7 +134,7 @@ public static class LuaBinder
 		System_IO_PathWrap.Register(L);
 		L.EndModule();
 		L.EndModule();
-		L.BeginModule("FirClient");
+		L.BeginModule("Client");
 		L.BeginModule("Data");
 		FirClient_Data_LevelTypeWrap.Register(L);
 		FirClient_Data_MapDataWrap.Register(L);

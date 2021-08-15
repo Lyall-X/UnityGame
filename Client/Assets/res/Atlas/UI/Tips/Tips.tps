@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.4.0</string>
         <key>fileName</key>
-        <string>E:/Workspace/firsango/FirClient/Assets/res/Atlas/UI/Tips/Tips.tps</string>
+        <string>E:/Workspace/firsango/Client/Assets/res/Atlas/UI/Tips/Tips.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">

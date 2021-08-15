@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace FirClient.Component
+namespace Client.Component
 {
 	public static class ThreadManagement
 	{

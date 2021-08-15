@@ -1,7 +1,7 @@
 
 using System;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     /// <summary>
     /// 开始战斗

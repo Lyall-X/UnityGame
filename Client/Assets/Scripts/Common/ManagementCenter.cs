@@ -1,5 +1,5 @@
 using UnityEngine;
-using FirClient.Manager;
+using Client.Manager;
 using FirCommon.Data;
 
 /// <summary>

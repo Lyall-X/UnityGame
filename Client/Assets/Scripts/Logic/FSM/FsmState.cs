@@ -1,6 +1,6 @@
-using FirClient.Logic;
+using Client.Logic;
 
-namespace FirClient.Component.FSM
+namespace Client.Component.FSM
 {
     public class FsmState : LogicBehaviour, IState
     {

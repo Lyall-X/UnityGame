@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using FirClient.Define;
-using FirClient.Extensions;
-using FirClient.View;
+using Client.Define;
+using Client.Extensions;
+using Client.View;
 using UnityEngine;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class EffectManager : BaseManager
     {

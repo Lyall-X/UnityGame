@@ -1,8 +1,8 @@
-using FirClient.Data;
+using Client.Data;
 using System;
 using UnityEngine;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     /// <summary>
     /// 出生英雄NPC

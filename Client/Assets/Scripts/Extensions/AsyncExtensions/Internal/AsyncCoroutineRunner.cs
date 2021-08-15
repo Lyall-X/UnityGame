@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FirClient.Extensions.Internal
+namespace Client.Extensions.Internal
 {
     public class AsyncCoroutineRunner : MonoBehaviour
     {

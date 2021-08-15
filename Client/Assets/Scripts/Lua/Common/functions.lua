@@ -79,7 +79,7 @@ function _G.addLuaAnimator(gameObj, selfCtrl, endCall)
 		logError("addLuaAnimator faild!!~~~")
 		return nil
 	end
-	local classType = FirClient.Component.CLuaAnimator
+	local classType = Client.Component.CLuaAnimator
     local luaAnim = gameObj:AddComponent(typeof(classType))
     luaAnim:Initialize(selfCtrl, endCall)
     return luaAnim

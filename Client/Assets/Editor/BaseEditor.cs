@@ -7,7 +7,7 @@ using System;
 using Debug = UnityEngine.Debug;
 using static UnityEditorInternal.ReorderableList;
 using UnityEditorInternal;
-using FirClient.Utility;
+using Client.Utility;
 
 public class BaseEditor : Editor
 {

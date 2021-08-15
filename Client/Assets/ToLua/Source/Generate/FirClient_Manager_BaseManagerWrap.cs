@@ -6,7 +6,7 @@ public class FirClient_Manager_BaseManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.BaseManager), typeof(BaseBehaviour));
+		L.BeginClass(typeof(Client.Manager.BaseManager), typeof(BaseBehaviour));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("isOnUpdate", new LuaCSFunction(get_isOnUpdate), new LuaCSFunction(set_isOnUpdate));
 		L.EndClass();
@@ -20,7 +20,7 @@ public class FirClient_Manager_BaseManagerWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Manager.BaseManager obj = (FirClient.Manager.BaseManager)o;
+			Client.Manager.BaseManager obj = (Client.Manager.BaseManager)o;
 			bool ret = obj.isOnUpdate;
 			LuaDLL.lua_pushboolean(L, ret);
 			return 1;
@@ -39,7 +39,7 @@ public class FirClient_Manager_BaseManagerWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Manager.BaseManager obj = (FirClient.Manager.BaseManager)o;
+			Client.Manager.BaseManager obj = (Client.Manager.BaseManager)o;
 			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
 			obj.isOnUpdate = arg0;
 			return 0;

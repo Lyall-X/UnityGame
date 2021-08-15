@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 using LuaInterface;
-using FirClient.Utility;
+using Client.Utility;
 
-namespace FirClient.Behaviour {
+namespace Client.Behaviour {
     /// <summary>
     /// 集成自LuaFileUtils，重写里面的ReadFile，
     /// </summary>

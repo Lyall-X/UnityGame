@@ -6,7 +6,7 @@ public class FirClient_View_NPCViewWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.View.NPCView), typeof(BaseBehaviour));
+		L.BeginClass(typeof(Client.View.NPCView), typeof(BaseBehaviour));
 		L.RegFunction("OnAwake", new LuaCSFunction(OnAwake));
 		L.RegFunction("Initialize", new LuaCSFunction(Initialize));
 		L.RegFunction("OnUpdate", new LuaCSFunction(OnUpdate));
@@ -28,13 +28,13 @@ public class FirClient_View_NPCViewWrap
 
 			if (count == 0)
 			{
-				FirClient.View.NPCView obj = new FirClient.View.NPCView();
+				Client.View.NPCView obj = new Client.View.NPCView();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.View.NPCView.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.View.NPCView.New");
 			}
 		}
 		catch (Exception e)
@@ -49,7 +49,7 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)ToLua.CheckObject<FirClient.View.NPCView>(L, 1);
+			Client.View.NPCView obj = (Client.View.NPCView)ToLua.CheckObject<Client.View.NPCView>(L, 1);
 			obj.OnAwake();
 			return 0;
 		}
@@ -68,16 +68,16 @@ public class FirClient_View_NPCViewWrap
 
 			if (count == 3)
 			{
-				FirClient.View.NPCView obj = (FirClient.View.NPCView)ToLua.CheckObject<FirClient.View.NPCView>(L, 1);
-				FirClient.Data.NPCData arg0 = (FirClient.Data.NPCData)ToLua.CheckObject<FirClient.Data.NPCData>(L, 2);
+				Client.View.NPCView obj = (Client.View.NPCView)ToLua.CheckObject<Client.View.NPCView>(L, 1);
+				Client.Data.NPCData arg0 = (Client.Data.NPCData)ToLua.CheckObject<Client.Data.NPCData>(L, 2);
 				UnityEngine.Vector3 arg1 = ToLua.ToVector3(L, 3);
 				obj.Initialize(arg0, arg1);
 				return 0;
 			}
 			else if (count == 4)
 			{
-				FirClient.View.NPCView obj = (FirClient.View.NPCView)ToLua.CheckObject<FirClient.View.NPCView>(L, 1);
-				FirClient.Data.NPCData arg0 = (FirClient.Data.NPCData)ToLua.CheckObject<FirClient.Data.NPCData>(L, 2);
+				Client.View.NPCView obj = (Client.View.NPCView)ToLua.CheckObject<Client.View.NPCView>(L, 1);
+				Client.Data.NPCData arg0 = (Client.Data.NPCData)ToLua.CheckObject<Client.Data.NPCData>(L, 2);
 				UnityEngine.Vector3 arg1 = ToLua.ToVector3(L, 3);
 				System.Action arg2 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 4);
 				obj.Initialize(arg0, arg1, arg2);
@@ -85,7 +85,7 @@ public class FirClient_View_NPCViewWrap
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.View.NPCView.Initialize");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.View.NPCView.Initialize");
 			}
 		}
 		catch (Exception e)
@@ -100,7 +100,7 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)ToLua.CheckObject<FirClient.View.NPCView>(L, 1);
+			Client.View.NPCView obj = (Client.View.NPCView)ToLua.CheckObject<Client.View.NPCView>(L, 1);
 			obj.OnUpdate();
 			return 0;
 		}
@@ -116,7 +116,7 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)ToLua.CheckObject<FirClient.View.NPCView>(L, 1);
+			Client.View.NPCView obj = (Client.View.NPCView)ToLua.CheckObject<Client.View.NPCView>(L, 1);
 			obj.OnDispose();
 			return 0;
 		}
@@ -134,7 +134,7 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)o;
+			Client.View.NPCView obj = (Client.View.NPCView)o;
 			UnityEngine.GameObject ret = obj.gameObject;
 			ToLua.PushSealed(L, ret);
 			return 1;
@@ -153,8 +153,8 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)o;
-			FirClient.View.ViewObject ret = obj.viewObject;
+			Client.View.NPCView obj = (Client.View.NPCView)o;
+			Client.View.ViewObject ret = obj.viewObject;
 			ToLua.Push(L, ret);
 			return 1;
 		}
@@ -172,8 +172,8 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)o;
-			FirClient.Data.NPCData ret = obj.NpcData;
+			Client.View.NPCView obj = (Client.View.NPCView)o;
+			Client.Data.NPCData ret = obj.NpcData;
 			ToLua.PushObject(L, ret);
 			return 1;
 		}
@@ -191,7 +191,7 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)o;
+			Client.View.NPCView obj = (Client.View.NPCView)o;
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject<UnityEngine.GameObject>(L, 2);
 			obj.gameObject = arg0;
 			return 0;
@@ -210,8 +210,8 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)o;
-			FirClient.View.ViewObject arg0 = (FirClient.View.ViewObject)ToLua.CheckObject<FirClient.View.ViewObject>(L, 2);
+			Client.View.NPCView obj = (Client.View.NPCView)o;
+			Client.View.ViewObject arg0 = (Client.View.ViewObject)ToLua.CheckObject<Client.View.ViewObject>(L, 2);
 			obj.viewObject = arg0;
 			return 0;
 		}
@@ -229,8 +229,8 @@ public class FirClient_View_NPCViewWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.View.NPCView obj = (FirClient.View.NPCView)o;
-			FirClient.Data.NPCData arg0 = (FirClient.Data.NPCData)ToLua.CheckObject<FirClient.Data.NPCData>(L, 2);
+			Client.View.NPCView obj = (Client.View.NPCView)o;
+			Client.Data.NPCData arg0 = (Client.Data.NPCData)ToLua.CheckObject<Client.Data.NPCData>(L, 2);
 			obj.NpcData = arg0;
 			return 0;
 		}

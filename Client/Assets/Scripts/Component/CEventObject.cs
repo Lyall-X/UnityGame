@@ -1,8 +1,8 @@
-using FirClient.Data;
+using Client.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CEventObject : MonoBehaviour
     {

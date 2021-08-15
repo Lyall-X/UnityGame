@@ -9,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using UObject = UnityEngine.Object;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class SimAssetManager
     {

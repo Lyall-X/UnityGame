@@ -2,8 +2,8 @@
 using UnityEditor;
 using System.IO;
 using UnityEditorInternal;
-using FirClient.Component;
-using FirClient.Extensions;
+using Client.Component;
+using Client.Extensions;
 
 [CustomEditor(typeof(MapInfo))]
 public class MapEditor : BaseEditor

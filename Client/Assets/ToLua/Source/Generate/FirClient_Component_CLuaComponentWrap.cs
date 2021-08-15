@@ -6,7 +6,7 @@ public class FirClient_Component_CLuaComponentWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Component.CLuaComponent), typeof(UnityEngine.MonoBehaviour));
+		L.BeginClass(typeof(Client.Component.CLuaComponent), typeof(UnityEngine.MonoBehaviour));
 		L.RegFunction("__eq", new LuaCSFunction(op_Equality));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.EndClass();

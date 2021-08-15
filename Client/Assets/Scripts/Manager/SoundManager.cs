@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using FirClient.Utility;
+using Client.Utility;
 using System;
 using System.IO;
 using LuaInterface;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class SoundManager : BaseManager
     {

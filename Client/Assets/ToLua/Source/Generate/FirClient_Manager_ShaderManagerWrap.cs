@@ -6,7 +6,7 @@ public class FirClient_Manager_ShaderManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.ShaderManager), typeof(FirClient.Manager.BaseManager));
+		L.BeginClass(typeof(Client.Manager.ShaderManager), typeof(Client.Manager.BaseManager));
 		L.RegFunction("LoadShaders", new LuaCSFunction(LoadShaders));
 		L.RegFunction("AddShader", new LuaCSFunction(AddShader));
 		L.RegFunction("GetShader", new LuaCSFunction(GetShader));
@@ -24,13 +24,13 @@ public class FirClient_Manager_ShaderManagerWrap
 
 			if (count == 0)
 			{
-				FirClient.Manager.ShaderManager obj = new FirClient.Manager.ShaderManager();
+				Client.Manager.ShaderManager obj = new Client.Manager.ShaderManager();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Manager.ShaderManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Manager.ShaderManager.New");
 			}
 		}
 		catch (Exception e)
@@ -48,20 +48,20 @@ public class FirClient_Manager_ShaderManagerWrap
 
 			if (count == 1)
 			{
-				FirClient.Manager.ShaderManager obj = (FirClient.Manager.ShaderManager)ToLua.CheckObject<FirClient.Manager.ShaderManager>(L, 1);
+				Client.Manager.ShaderManager obj = (Client.Manager.ShaderManager)ToLua.CheckObject<Client.Manager.ShaderManager>(L, 1);
 				obj.LoadShaders();
 				return 0;
 			}
 			else if (count == 2)
 			{
-				FirClient.Manager.ShaderManager obj = (FirClient.Manager.ShaderManager)ToLua.CheckObject<FirClient.Manager.ShaderManager>(L, 1);
+				Client.Manager.ShaderManager obj = (Client.Manager.ShaderManager)ToLua.CheckObject<Client.Manager.ShaderManager>(L, 1);
 				System.Action arg0 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 2);
 				obj.LoadShaders(arg0);
 				return 0;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.Manager.ShaderManager.LoadShaders");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.Manager.ShaderManager.LoadShaders");
 			}
 		}
 		catch (Exception e)
@@ -76,7 +76,7 @@ public class FirClient_Manager_ShaderManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 3);
-			FirClient.Manager.ShaderManager obj = (FirClient.Manager.ShaderManager)ToLua.CheckObject<FirClient.Manager.ShaderManager>(L, 1);
+			Client.Manager.ShaderManager obj = (Client.Manager.ShaderManager)ToLua.CheckObject<Client.Manager.ShaderManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			UnityEngine.Shader arg1 = (UnityEngine.Shader)ToLua.CheckObject<UnityEngine.Shader>(L, 3);
 			obj.AddShader(arg0, arg1);
@@ -94,7 +94,7 @@ public class FirClient_Manager_ShaderManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Manager.ShaderManager obj = (FirClient.Manager.ShaderManager)ToLua.CheckObject<FirClient.Manager.ShaderManager>(L, 1);
+			Client.Manager.ShaderManager obj = (Client.Manager.ShaderManager)ToLua.CheckObject<Client.Manager.ShaderManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			UnityEngine.Shader o = obj.GetShader(arg0);
 			ToLua.PushSealed(L, o);

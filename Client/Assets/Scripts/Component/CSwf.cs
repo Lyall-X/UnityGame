@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using static FTRuntime.SwfClipController;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class AnimNames
     {

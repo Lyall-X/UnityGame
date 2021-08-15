@@ -6,7 +6,7 @@ public class FirClient_Component_VarDataWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Component.VarData), typeof(System.Object));
+		L.BeginClass(typeof(Client.Component.VarData), typeof(System.Object));
 		L.RegFunction("New", new LuaCSFunction(_CreateFirClient_Component_VarData));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("name", new LuaCSFunction(get_name), new LuaCSFunction(set_name));
@@ -33,13 +33,13 @@ public class FirClient_Component_VarDataWrap
 
 			if (count == 0)
 			{
-				FirClient.Component.VarData obj = new FirClient.Component.VarData();
+				Client.Component.VarData obj = new Client.Component.VarData();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Component.VarData.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Component.VarData.New");
 			}
 		}
 		catch (Exception e)
@@ -56,7 +56,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			string ret = obj.name;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -75,8 +75,8 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
-			FirClient.Component.VarType ret = obj.type;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
+			Client.Component.VarType ret = obj.type;
 			ToLua.Push(L, ret);
 			return 1;
 		}
@@ -94,8 +94,8 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
-			FirClient.Component.VarType ret = obj.lastType;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
+			Client.Component.VarType ret = obj.lastType;
 			ToLua.Push(L, ret);
 			return 1;
 		}
@@ -113,7 +113,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.GameObject ret = obj.objValue;
 			ToLua.PushSealed(L, ret);
 			return 1;
@@ -132,7 +132,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.Transform ret = obj.tranValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -151,7 +151,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Image ret = obj.imgValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -170,7 +170,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Text ret = obj.txtValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -189,7 +189,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Button ret = obj.btnValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -208,7 +208,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			TMPro.TMP_InputField ret = obj.inputValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -227,7 +227,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Toggle ret = obj.toggleValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -246,7 +246,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Slider ret = obj.sliderValue;
 			ToLua.Push(L, ret);
 			return 1;
@@ -265,8 +265,8 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
-			FirClient.Component.CMultiProgressBar ret = obj.multiProgreValue;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
+			Client.Component.CMultiProgressBar ret = obj.multiProgreValue;
 			ToLua.Push(L, ret);
 			return 1;
 		}
@@ -284,7 +284,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.name = arg0;
 			return 0;
@@ -303,8 +303,8 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
-			FirClient.Component.VarType arg0 = (FirClient.Component.VarType)ToLua.CheckObject(L, 2, TypeTraits<FirClient.Component.VarType>.type);
+			Client.Component.VarData obj = (Client.Component.VarData)o;
+			Client.Component.VarType arg0 = (Client.Component.VarType)ToLua.CheckObject(L, 2, TypeTraits<Client.Component.VarType>.type);
 			obj.type = arg0;
 			return 0;
 		}
@@ -322,8 +322,8 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
-			FirClient.Component.VarType arg0 = (FirClient.Component.VarType)ToLua.CheckObject(L, 2, TypeTraits<FirClient.Component.VarType>.type);
+			Client.Component.VarData obj = (Client.Component.VarData)o;
+			Client.Component.VarType arg0 = (Client.Component.VarType)ToLua.CheckObject(L, 2, TypeTraits<Client.Component.VarType>.type);
 			obj.lastType = arg0;
 			return 0;
 		}
@@ -341,7 +341,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject<UnityEngine.GameObject>(L, 2);
 			obj.objValue = arg0;
 			return 0;
@@ -360,7 +360,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.Transform arg0 = (UnityEngine.Transform)ToLua.CheckObject<UnityEngine.Transform>(L, 2);
 			obj.tranValue = arg0;
 			return 0;
@@ -379,7 +379,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Image arg0 = (UnityEngine.UI.Image)ToLua.CheckObject<UnityEngine.UI.Image>(L, 2);
 			obj.imgValue = arg0;
 			return 0;
@@ -398,7 +398,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Text arg0 = (UnityEngine.UI.Text)ToLua.CheckObject<UnityEngine.UI.Text>(L, 2);
 			obj.txtValue = arg0;
 			return 0;
@@ -417,7 +417,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Button arg0 = (UnityEngine.UI.Button)ToLua.CheckObject<UnityEngine.UI.Button>(L, 2);
 			obj.btnValue = arg0;
 			return 0;
@@ -436,7 +436,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			TMPro.TMP_InputField arg0 = (TMPro.TMP_InputField)ToLua.CheckObject<TMPro.TMP_InputField>(L, 2);
 			obj.inputValue = arg0;
 			return 0;
@@ -455,7 +455,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Toggle arg0 = (UnityEngine.UI.Toggle)ToLua.CheckObject<UnityEngine.UI.Toggle>(L, 2);
 			obj.toggleValue = arg0;
 			return 0;
@@ -474,7 +474,7 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
+			Client.Component.VarData obj = (Client.Component.VarData)o;
 			UnityEngine.UI.Slider arg0 = (UnityEngine.UI.Slider)ToLua.CheckObject<UnityEngine.UI.Slider>(L, 2);
 			obj.sliderValue = arg0;
 			return 0;
@@ -493,8 +493,8 @@ public class FirClient_Component_VarDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Component.VarData obj = (FirClient.Component.VarData)o;
-			FirClient.Component.CMultiProgressBar arg0 = (FirClient.Component.CMultiProgressBar)ToLua.CheckObject<FirClient.Component.CMultiProgressBar>(L, 2);
+			Client.Component.VarData obj = (Client.Component.VarData)o;
+			Client.Component.CMultiProgressBar arg0 = (Client.Component.CMultiProgressBar)ToLua.CheckObject<Client.Component.CMultiProgressBar>(L, 2);
 			obj.multiProgreValue = arg0;
 			return 0;
 		}

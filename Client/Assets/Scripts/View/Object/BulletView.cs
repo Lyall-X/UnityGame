@@ -1,8 +1,8 @@
 using UnityEngine;
-using FirClient.Data;
+using Client.Data;
 using DG.Tweening;
 
-namespace FirClient.View
+namespace Client.View
 {
     public class BulletView : ObjectView
     {

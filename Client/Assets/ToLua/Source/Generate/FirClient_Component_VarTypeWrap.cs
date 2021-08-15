@@ -6,7 +6,7 @@ public class FirClient_Component_VarTypeWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginEnum(typeof(FirClient.Component.VarType));
+		L.BeginEnum(typeof(Client.Component.VarType));
 		L.RegVar("GameObject", new LuaCSFunction(get_GameObject), null);
 		L.RegVar("Transform", new LuaCSFunction(get_Transform), null);
 		L.RegVar("Image", new LuaCSFunction(get_Image), null);
@@ -18,16 +18,16 @@ public class FirClient_Component_VarTypeWrap
 		L.RegVar("CMultiProgressBar", new LuaCSFunction(get_CMultiProgressBar), null);
 		L.RegFunction("IntToEnum", new LuaCSFunction(IntToEnum));
 		L.EndEnum();
-		TypeTraits<FirClient.Component.VarType>.Check = CheckType;
-		StackTraits<FirClient.Component.VarType>.Push = Push;
+		TypeTraits<Client.Component.VarType>.Check = CheckType;
+		StackTraits<Client.Component.VarType>.Push = Push;
 	}
 
-	static void Push(IntPtr L, FirClient.Component.VarType arg)
+	static void Push(IntPtr L, Client.Component.VarType arg)
 	{
 		ToLua.Push(L, arg);
 	}
 
-	static Type TypeOf_FirClient_Component_VarType = typeof(FirClient.Component.VarType);
+	static Type TypeOf_FirClient_Component_VarType = typeof(Client.Component.VarType);
 
 	static bool CheckType(IntPtr L, int pos)
 	{
@@ -37,63 +37,63 @@ public class FirClient_Component_VarTypeWrap
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_GameObject(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.GameObject);
+		ToLua.Push(L, Client.Component.VarType.GameObject);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Transform(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.Transform);
+		ToLua.Push(L, Client.Component.VarType.Transform);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Image(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.Image);
+		ToLua.Push(L, Client.Component.VarType.Image);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Text(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.Text);
+		ToLua.Push(L, Client.Component.VarType.Text);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Button(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.Button);
+		ToLua.Push(L, Client.Component.VarType.Button);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_TMP_InputField(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.TMP_InputField);
+		ToLua.Push(L, Client.Component.VarType.TMP_InputField);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Toggle(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.Toggle);
+		ToLua.Push(L, Client.Component.VarType.Toggle);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Slider(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.Slider);
+		ToLua.Push(L, Client.Component.VarType.Slider);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_CMultiProgressBar(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Component.VarType.CMultiProgressBar);
+		ToLua.Push(L, Client.Component.VarType.CMultiProgressBar);
 		return 1;
 	}
 
@@ -101,7 +101,7 @@ public class FirClient_Component_VarTypeWrap
 	static int IntToEnum(IntPtr L)
 	{
 		int arg0 = (int)LuaDLL.lua_tointeger(L, 1);
-		FirClient.Component.VarType o = (FirClient.Component.VarType)arg0;
+		Client.Component.VarType o = (Client.Component.VarType)arg0;
 		ToLua.Push(L, o);
 		return 1;
 	}

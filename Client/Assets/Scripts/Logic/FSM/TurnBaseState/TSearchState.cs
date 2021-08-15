@@ -1,9 +1,9 @@
-using FirClient.Component.FSM;
-using FirClient.Data;
+using Client.Component.FSM;
+using Client.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic.FSM.TurnBaseState
+namespace Client.Logic.FSM.TurnBaseState
 {
     public class TSearchState : FsmState
     {

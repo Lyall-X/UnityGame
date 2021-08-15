@@ -1,10 +1,10 @@
 using System.Net;
 using System.Net.Sockets;
-using FirClient.Manager;
+using Client.Manager;
 using LiteNetLib;
 using UnityEngine;
 
-namespace FirClient.Network
+namespace Client.Network
 {
     public class ClientListener : INetEventListener
     {

@@ -53,7 +53,7 @@ function UIBaseCtrl:InitUIBinder()
 		return
 	end
 	self.mPrefabVars = {}
-	local VarType = FirClient.Component.VarType
+	local VarType = Client.Component.VarType
 	local prefabVar = self.gameObject:GetComponent('CPrefabVar')
 	if not isnil(prefabVar) then
 		local varData = prefabVar:GetVarArray()

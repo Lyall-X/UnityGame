@@ -22,7 +22,7 @@ public class FirClient_Utility_LuaHelperWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			string o = FirClient.Utility.LuaHelper.GetVersionInfo();
+			string o = Client.Utility.LuaHelper.GetVersionInfo();
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -40,7 +40,7 @@ public class FirClient_Utility_LuaHelperWrap
 			ToLua.CheckArgsCount(L, 2);
 			UnityEngine.UI.Button arg0 = (UnityEngine.UI.Button)ToLua.CheckObject<UnityEngine.UI.Button>(L, 1);
 			LuaFunction arg1 = ToLua.CheckLuaFunction(L, 2);
-			FirClient.Utility.LuaHelper.AddButtonClick(arg0, arg1);
+			Client.Utility.LuaHelper.AddButtonClick(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -56,7 +56,7 @@ public class FirClient_Utility_LuaHelperWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			UnityEngine.UI.Button arg0 = (UnityEngine.UI.Button)ToLua.CheckObject<UnityEngine.UI.Button>(L, 1);
-			FirClient.Utility.LuaHelper.RemoveButtonClick(arg0);
+			Client.Utility.LuaHelper.RemoveButtonClick(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -71,11 +71,11 @@ public class FirClient_Utility_LuaHelperWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 4);
-			FirClient.Data.LevelType arg0 = (FirClient.Data.LevelType)ToLua.CheckObject(L, 1, TypeTraits<FirClient.Data.LevelType>.type);
+			Client.Data.LevelType arg0 = (Client.Data.LevelType)ToLua.CheckObject(L, 1, TypeTraits<Client.Data.LevelType>.type);
 			LuaTable arg1 = ToLua.CheckLuaTable(L, 2);
 			LuaFunction arg2 = ToLua.CheckLuaFunction(L, 3);
 			LuaFunction arg3 = ToLua.CheckLuaFunction(L, 4);
-			FirClient.Utility.LuaHelper.LoadLevel(arg0, arg1, arg2, arg3);
+			Client.Utility.LuaHelper.LoadLevel(arg0, arg1, arg2, arg3);
 			return 0;
 		}
 		catch (Exception e)
@@ -91,7 +91,7 @@ public class FirClient_Utility_LuaHelperWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			System.Action arg0 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 1);
-			FirClient.Utility.LuaHelper.CallAction(arg0);
+			Client.Utility.LuaHelper.CallAction(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -107,7 +107,7 @@ public class FirClient_Utility_LuaHelperWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 1);
-			FirClient.Utility.LuaHelper.InitBeginPlay(arg0);
+			Client.Utility.LuaHelper.InitBeginPlay(arg0);
 			return 0;
 		}
 		catch (Exception e)

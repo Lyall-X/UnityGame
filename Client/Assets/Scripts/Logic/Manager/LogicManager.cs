@@ -1,8 +1,8 @@
-using FirClient.Define;
-using FirClient.Logic.FSM;
-using FirClient.Extensions;
+using Client.Define;
+using Client.Logic.FSM;
+using Client.Extensions;
 
-namespace FirClient.Logic.Manager
+namespace Client.Logic.Manager
 {
     public class LogicManager : LogicBehaviour
     {

@@ -1,9 +1,9 @@
 using UnityEngine;
 using LuaInterface;
-using FirClient.Behaviour;
-using FirClient.Utility;
+using Client.Behaviour;
+using Client.Utility;
 
-namespace FirClient.Manager {
+namespace Client.Manager {
     public class LuaManager : BaseManager {
         private LuaState lua;
         private LuaLoader loader;

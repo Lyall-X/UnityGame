@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using FirClient.Utility;
+using Client.Utility;
 using System.IO;
-using FirClient.Define;
+using Client.Define;
 
 public class VersionEditor : EditorWindow
 {

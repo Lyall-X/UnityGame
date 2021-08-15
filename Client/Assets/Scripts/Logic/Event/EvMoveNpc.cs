@@ -1,9 +1,9 @@
-using FirClient.Data;
+using Client.Data;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     /// <summary>
     /// 移动NPC

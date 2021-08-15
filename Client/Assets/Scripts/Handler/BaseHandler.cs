@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace FirClient.Handler
+namespace Client.Handler
 {
     public abstract class BaseHandler : BaseBehaviour
     {

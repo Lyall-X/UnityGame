@@ -2,7 +2,7 @@ using LuaInterface;
 using System;
 using System.Collections.Generic;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class TimerInfo
     {

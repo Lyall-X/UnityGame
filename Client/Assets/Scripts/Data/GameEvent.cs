@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace FirClient.Data
+namespace Client.Data
 {
     public enum GameEventType : byte
     {

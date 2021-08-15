@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-namespace FirClient.Extensions.Internal
+namespace Client.Extensions.Internal
 {
     public static class SyncContextUtil
     {

@@ -1,6 +1,6 @@
-using FirClient.Data;
-using FirClient.Define;
-using FirClient.Extensions;
+using Client.Data;
+using Client.Define;
+using Client.Extensions;
 using LuaInterface;
 using System;
 using System.Collections;
@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace FirClient.Utility 
+namespace Client.Utility 
 {
     public static class LuaHelper
     {

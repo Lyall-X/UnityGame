@@ -1,9 +1,9 @@
-using FirClient.Extensions;
+using Client.Extensions;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
 
-namespace FirClient.HUD
+namespace Client.HUD
 {
     public class FloatingText : GameBehaviour
     {

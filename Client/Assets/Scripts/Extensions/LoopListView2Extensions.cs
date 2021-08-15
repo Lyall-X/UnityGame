@@ -1,7 +1,7 @@
 using LuaInterface;
 using SuperScrollView;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     public static class LoopListView2Extensions
     {

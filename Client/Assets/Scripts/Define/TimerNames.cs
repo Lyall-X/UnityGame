@@ -1,4 +1,4 @@
-namespace FirClient.Define
+namespace Client.Define
 {
     public class TimerNames
     {

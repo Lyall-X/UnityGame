@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FirClient.Component.FSM
+namespace Client.Component.FSM
 {
     public class BaseFSM : IFSM
     {

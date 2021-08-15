@@ -1,6 +1,6 @@
-using FirClient.Component.FSM;
+using Client.Component.FSM;
 
-namespace FirClient.Logic.FSM.TurnBaseState
+namespace Client.Logic.FSM.TurnBaseState
 {
     public class TIdleState : FsmState
     {

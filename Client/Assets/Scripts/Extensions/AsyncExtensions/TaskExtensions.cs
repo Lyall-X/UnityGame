@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     public static class TaskExtensions
     {

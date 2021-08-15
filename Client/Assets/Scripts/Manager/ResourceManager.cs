@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.IO;
 using LuaInterface;
-using FirClient.Utility;
+using Client.Utility;
 using System;
 using UObject = UnityEngine.Object;
 using System.Collections.Generic;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class ResourceManager : BaseManager
     {

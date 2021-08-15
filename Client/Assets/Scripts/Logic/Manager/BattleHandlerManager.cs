@@ -1,12 +1,12 @@
-using FirClient.Data;
-using FirClient.Extensions;
-using FirClient.Logic.FSM;
-using FirClient.Logic.Handler;
+using Client.Data;
+using Client.Extensions;
+using Client.Logic.FSM;
+using Client.Logic.Handler;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic.Manager
+namespace Client.Logic.Manager
 {
     public class BattleHandlerManager : LogicBehaviour
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using FirClient.Define;
-using FirClient.View;
+using Client.Define;
+using Client.View;
 using UnityEngine;
-using FirClient.Extensions;
+using Client.Extensions;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class BulletManager : BaseManager
     {

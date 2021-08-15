@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FirClient.ObjectPool
+namespace Client.ObjectPool
 {
     public class PoolObject : GameBehaviour
     {

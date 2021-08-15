@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using FirClient.Component;
+using Client.Component;
 
 [CustomEditor(typeof(CText))]
 public class CTextEditor : BaseEditor

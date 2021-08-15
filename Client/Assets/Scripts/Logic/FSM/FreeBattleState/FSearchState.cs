@@ -1,10 +1,10 @@
-using FirClient.Component.FSM;
-using FirClient.Data;
+using Client.Component.FSM;
+using Client.Data;
 using UnityEngine;
-using FirClient.Extensions;
+using Client.Extensions;
 using System;
 
-namespace FirClient.Logic.FSM.FreeBattleState
+namespace Client.Logic.FSM.FreeBattleState
 {
     public class FSearchState : FsmState
     {

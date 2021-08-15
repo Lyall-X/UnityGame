@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace FirClient.ObjectPool
+namespace Client.ObjectPool
 {
     public class ObjectPool<T> where T : class
     {

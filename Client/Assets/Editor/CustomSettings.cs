@@ -8,17 +8,17 @@ using UnityEditor;
 
 using BindType = ToLuaMenu.BindType;
 using UnityEngine.UI;
-using FirClient.Utility;
-using FirClient.Behaviour;
-using FirClient.Manager;
-using FirClient.Component;
-using FirClient.Data;
-using FirClient.Define;
+using Client.Utility;
+using Client.Behaviour;
+using Client.Manager;
+using Client.Component;
+using Client.Data;
+using Client.Define;
 
 using SuperScrollView;
 using System.IO;
-using FirClient.View;
-using FirClient.Extensions;
+using Client.View;
+using Client.Extensions;
 using TMPro;
 using FirCommon.Data;
 

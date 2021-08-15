@@ -1,15 +1,15 @@
 using System;
 using DG.Tweening;
-using FirClient.Component;
-using FirClient.HUD;
+using Client.Component;
+using Client.HUD;
 using UnityEngine;
 using FTRuntime;
-using FirClient.Data;
-using FirClient.Utility;
-using FirClient.Extensions;
+using Client.Data;
+using Client.Utility;
+using Client.Extensions;
 using LuaInterface;
 
-namespace FirClient.View
+namespace Client.View
 {
     public class RoleView : NPCView
     {

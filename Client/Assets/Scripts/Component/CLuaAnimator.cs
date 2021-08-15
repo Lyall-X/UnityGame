@@ -1,7 +1,7 @@
 using LuaInterface;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CLuaAnimator : MonoBehaviour
     {

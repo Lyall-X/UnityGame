@@ -1,6 +1,6 @@
-using FirClient.Component.FSM;
+using Client.Component.FSM;
 
-namespace FirClient.Logic.FSM.FreeBattleState
+namespace Client.Logic.FSM.FreeBattleState
 {
     public class FDispatchState : FsmState
     {

@@ -1,10 +1,10 @@
 using LuaInterface;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using FirClient.Utility;
+using Client.Utility;
 using TMPro;
 
-namespace FirClient.Behaviour
+namespace Client.Behaviour
 {
     class LuaEventData
     {

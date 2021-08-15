@@ -1,8 +1,8 @@
-using FirClient.Data;
+using Client.Data;
 using System;
 using UnityEngine;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     public class BaseSceneEvent : LogicBehaviour, ISceneEvent
     {

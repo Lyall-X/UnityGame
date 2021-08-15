@@ -1,7 +1,7 @@
-using FirClient.Utility;
+using Client.Utility;
 using LuaInterface;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     internal class LuaMsgDispatcher : BaseDispatcher
     {

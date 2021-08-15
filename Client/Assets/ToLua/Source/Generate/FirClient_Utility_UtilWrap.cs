@@ -57,7 +57,7 @@ public class FirClient_Utility_UtilWrap
 			ToLua.CheckArgsCount(L, 2);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
-			float o = FirClient.Utility.Util.Random(arg0, arg1);
+			float o = Client.Utility.Util.Random(arg0, arg1);
 			LuaDLL.lua_pushnumber(L, o);
 			return 1;
 		}
@@ -73,7 +73,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			long o = FirClient.Utility.Util.GetTime();
+			long o = Client.Utility.Util.GetTime();
 			LuaDLL.tolua_pushint64(L, o);
 			return 1;
 		}
@@ -89,7 +89,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			string o = FirClient.Utility.Util.RandomTime();
+			string o = Client.Utility.Util.RandomTime();
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -105,7 +105,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			FirClient.Utility.Util.Vibrate();
+			Client.Utility.Util.Vibrate();
 			return 0;
 		}
 		catch (Exception e)
@@ -121,7 +121,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.Encode(arg0);
+			string o = Client.Utility.Util.Encode(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -138,7 +138,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.Decode(arg0);
+			string o = Client.Utility.Util.Decode(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -155,7 +155,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			bool o = FirClient.Utility.Util.IsNumeric(arg0);
+			bool o = Client.Utility.Util.IsNumeric(arg0);
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
@@ -172,7 +172,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.HashToMD5Hex(arg0);
+			string o = Client.Utility.Util.HashToMD5Hex(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -189,7 +189,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.md5(arg0);
+			string o = Client.Utility.Util.md5(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -206,7 +206,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.md5file(arg0);
+			string o = Client.Utility.Util.md5file(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -223,7 +223,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			bool arg0 = LuaDLL.luaL_checkboolean(L, 1);
-			FirClient.Utility.Util.SetDebugState(arg0);
+			Client.Utility.Util.SetDebugState(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -239,7 +239,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.GetKey(arg0);
+			string o = Client.Utility.Util.GetKey(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -256,7 +256,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			int o = FirClient.Utility.Util.GetInt(arg0);
+			int o = Client.Utility.Util.GetInt(arg0);
 			LuaDLL.lua_pushinteger(L, o);
 			return 1;
 		}
@@ -273,7 +273,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			bool o = FirClient.Utility.Util.HasKey(arg0);
+			bool o = Client.Utility.Util.HasKey(arg0);
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
@@ -291,7 +291,7 @@ public class FirClient_Utility_UtilWrap
 			ToLua.CheckArgsCount(L, 2);
 			string arg0 = ToLua.CheckString(L, 1);
 			int arg1 = (int)LuaDLL.luaL_checkinteger(L, 2);
-			FirClient.Utility.Util.SetInt(arg0, arg1);
+			Client.Utility.Util.SetInt(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -307,7 +307,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.GetString(arg0);
+			string o = Client.Utility.Util.GetString(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -325,7 +325,7 @@ public class FirClient_Utility_UtilWrap
 			ToLua.CheckArgsCount(L, 2);
 			string arg0 = ToLua.CheckString(L, 1);
 			string arg1 = ToLua.CheckString(L, 2);
-			FirClient.Utility.Util.SetString(arg0, arg1);
+			Client.Utility.Util.SetString(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -341,7 +341,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			FirClient.Utility.Util.RemoveData(arg0);
+			Client.Utility.Util.RemoveData(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -356,7 +356,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			FirClient.Utility.Util.ClearMemory();
+			Client.Utility.Util.ClearMemory();
 			return 0;
 		}
 		catch (Exception e)
@@ -372,7 +372,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			bool o = FirClient.Utility.Util.IsNumber(arg0);
+			bool o = Client.Utility.Util.IsNumber(arg0);
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
@@ -389,7 +389,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			string o = FirClient.Utility.Util.GetFileText(arg0);
+			string o = Client.Utility.Util.GetFileText(arg0);
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -405,7 +405,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			string o = FirClient.Utility.Util.AppContentPath();
+			string o = Client.Utility.Util.AppContentPath();
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
@@ -424,20 +424,20 @@ public class FirClient_Utility_UtilWrap
 
 			if (count == 0)
 			{
-				string o = FirClient.Utility.Util.LuaPath();
+				string o = Client.Utility.Util.LuaPath();
 				LuaDLL.lua_pushstring(L, o);
 				return 1;
 			}
 			else if (count == 1)
 			{
 				string arg0 = ToLua.CheckString(L, 1);
-				string o = FirClient.Utility.Util.LuaPath(arg0);
+				string o = Client.Utility.Util.LuaPath(arg0);
 				LuaDLL.lua_pushstring(L, o);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.Utility.Util.LuaPath");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.Utility.Util.LuaPath");
 			}
 		}
 		catch (Exception e)
@@ -455,7 +455,7 @@ public class FirClient_Utility_UtilWrap
 			string arg0 = ToLua.CheckString(L, 1);
 			string arg1 = ToLua.CheckString(L, 2);
 			object[] arg2 = ToLua.ToParamsObject(L, 3, count - 2);
-			object[] o = FirClient.Utility.Util.CallMethod(arg0, arg1, arg2);
+			object[] o = Client.Utility.Util.CallMethod(arg0, arg1, arg2);
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -473,7 +473,7 @@ public class FirClient_Utility_UtilWrap
 			int count = LuaDLL.lua_gettop(L);
 			string arg0 = ToLua.CheckString(L, 1);
 			object[] arg1 = ToLua.ToParamsObject(L, 2, count - 1);
-			object[] o = FirClient.Utility.Util.CallLuaMethod(arg0, arg1);
+			object[] o = Client.Utility.Util.CallLuaMethod(arg0, arg1);
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -492,7 +492,7 @@ public class FirClient_Utility_UtilWrap
 			string arg0 = ToLua.CheckString(L, 1);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
-			FirClient.Utility.Util.UpdateLoadingProgress(arg0, arg1, arg2);
+			Client.Utility.Util.UpdateLoadingProgress(arg0, arg1, arg2);
 			return 0;
 		}
 		catch (Exception e)
@@ -508,7 +508,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			FirClient.Define.VersionInfo o = FirClient.Utility.Util.GetVersionInfo(arg0);
+			Client.Define.VersionInfo o = Client.Utility.Util.GetVersionInfo(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -525,7 +525,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			FirClient.Define.VersionInfo o = FirClient.Utility.Util.InitVersionInfo(arg0);
+			Client.Define.VersionInfo o = Client.Utility.Util.InitVersionInfo(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -546,7 +546,7 @@ public class FirClient_Utility_UtilWrap
 			{
 				string arg0 = ToLua.CheckString(L, 1);
 				string arg1 = ToLua.CheckString(L, 2);
-				FirClient.Utility.Util.CopyDir(arg0, arg1);
+				Client.Utility.Util.CopyDir(arg0, arg1);
 				return 0;
 			}
 			else if (count == 3)
@@ -554,12 +554,12 @@ public class FirClient_Utility_UtilWrap
 				string arg0 = ToLua.CheckString(L, 1);
 				string arg1 = ToLua.CheckString(L, 2);
 				string arg2 = ToLua.CheckString(L, 3);
-				FirClient.Utility.Util.CopyDir(arg0, arg1, arg2);
+				Client.Utility.Util.CopyDir(arg0, arg1, arg2);
 				return 0;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.Utility.Util.CopyDir");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.Utility.Util.CopyDir");
 			}
 		}
 		catch (Exception e)
@@ -575,7 +575,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			System.Collections.IEnumerator arg0 = ToLua.CheckIter(L, 1);
-			FirClient.Utility.Util.StartCoroutine(arg0);
+			Client.Utility.Util.StartCoroutine(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -590,7 +590,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			GameSettings o = FirClient.Utility.Util.LoadGameSettings();
+			GameSettings o = Client.Utility.Util.LoadGameSettings();
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -607,7 +607,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject<UnityEngine.GameObject>(L, 1);
-			FirClient.HUD.HUDObject o = FirClient.Utility.Util.AddHudObject(arg0);
+			Client.HUD.HUDObject o = Client.Utility.Util.AddHudObject(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -624,7 +624,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
-			FirClient.Utility.Util.RemoveHudObject(arg0);
+			Client.Utility.Util.RemoveHudObject(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -639,7 +639,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			UnityEngine.GameObject o = FirClient.Utility.Util.GetFloatingTextPrefab();
+			UnityEngine.GameObject o = Client.Utility.Util.GetFloatingTextPrefab();
 			ToLua.PushSealed(L, o);
 			return 1;
 		}
@@ -656,7 +656,7 @@ public class FirClient_Utility_UtilWrap
 		{
 			ToLua.CheckArgsCount(L, 1);
 			UnityEngine.GameObject arg0 = (UnityEngine.GameObject)ToLua.CheckObject<UnityEngine.GameObject>(L, 1);
-			FirClient.Utility.Util.UnloadAsset(arg0);
+			Client.Utility.Util.UnloadAsset(arg0);
 			return 0;
 		}
 		catch (Exception e)
@@ -671,7 +671,7 @@ public class FirClient_Utility_UtilWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 0);
-			float o = FirClient.Utility.Util.CameraHalfWidth();
+			float o = Client.Utility.Util.CameraHalfWidth();
 			LuaDLL.lua_pushnumber(L, o);
 			return 1;
 		}
@@ -686,7 +686,7 @@ public class FirClient_Utility_UtilWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushboolean(L, FirClient.Utility.Util.NetAvailable);
+			LuaDLL.lua_pushboolean(L, Client.Utility.Util.NetAvailable);
 			return 1;
 		}
 		catch (Exception e)
@@ -700,7 +700,7 @@ public class FirClient_Utility_UtilWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushboolean(L, FirClient.Utility.Util.IsWifi);
+			LuaDLL.lua_pushboolean(L, Client.Utility.Util.IsWifi);
 			return 1;
 		}
 		catch (Exception e)
@@ -714,7 +714,7 @@ public class FirClient_Utility_UtilWrap
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, FirClient.Utility.Util.DataPath);
+			LuaDLL.lua_pushstring(L, Client.Utility.Util.DataPath);
 			return 1;
 		}
 		catch (Exception e)

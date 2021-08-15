@@ -6,22 +6,22 @@ public class FirClient_Define_ResultCodeWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginEnum(typeof(FirClient.Define.ResultCode));
+		L.BeginEnum(typeof(Client.Define.ResultCode));
 		L.RegVar("Success", new LuaCSFunction(get_Success), null);
 		L.RegVar("Failed", new LuaCSFunction(get_Failed), null);
 		L.RegVar("ExistUser", new LuaCSFunction(get_ExistUser), null);
 		L.RegFunction("IntToEnum", new LuaCSFunction(IntToEnum));
 		L.EndEnum();
-		TypeTraits<FirClient.Define.ResultCode>.Check = CheckType;
-		StackTraits<FirClient.Define.ResultCode>.Push = Push;
+		TypeTraits<Client.Define.ResultCode>.Check = CheckType;
+		StackTraits<Client.Define.ResultCode>.Push = Push;
 	}
 
-	static void Push(IntPtr L, FirClient.Define.ResultCode arg)
+	static void Push(IntPtr L, Client.Define.ResultCode arg)
 	{
 		ToLua.Push(L, arg);
 	}
 
-	static Type TypeOf_FirClient_Define_ResultCode = typeof(FirClient.Define.ResultCode);
+	static Type TypeOf_FirClient_Define_ResultCode = typeof(Client.Define.ResultCode);
 
 	static bool CheckType(IntPtr L, int pos)
 	{
@@ -31,21 +31,21 @@ public class FirClient_Define_ResultCodeWrap
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Success(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Define.ResultCode.Success);
+		ToLua.Push(L, Client.Define.ResultCode.Success);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Failed(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Define.ResultCode.Failed);
+		ToLua.Push(L, Client.Define.ResultCode.Failed);
 		return 1;
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_ExistUser(IntPtr L)
 	{
-		ToLua.Push(L, FirClient.Define.ResultCode.ExistUser);
+		ToLua.Push(L, Client.Define.ResultCode.ExistUser);
 		return 1;
 	}
 
@@ -53,7 +53,7 @@ public class FirClient_Define_ResultCodeWrap
 	static int IntToEnum(IntPtr L)
 	{
 		int arg0 = (int)LuaDLL.lua_tointeger(L, 1);
-		FirClient.Define.ResultCode o = (FirClient.Define.ResultCode)arg0;
+		Client.Define.ResultCode o = (Client.Define.ResultCode)arg0;
 		ToLua.Push(L, o);
 		return 1;
 	}

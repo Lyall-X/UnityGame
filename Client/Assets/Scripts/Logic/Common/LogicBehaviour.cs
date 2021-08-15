@@ -1,10 +1,10 @@
-using FirClient.Component;
-using FirClient.Logic.FSM;
-using FirClient.Logic.Manager;
+using Client.Component;
+using Client.Logic.FSM;
+using Client.Logic.Manager;
 using FirCommon.Data;
 using System.Collections.Generic;
 
-namespace FirClient.Logic
+namespace Client.Logic
 {
     public class LogicBehaviour : ILogicObject
     {

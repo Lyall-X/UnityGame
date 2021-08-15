@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class FontManager : BaseManager
     {

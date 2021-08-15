@@ -1,6 +1,6 @@
 using LuaInterface;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public abstract class BaseManager : BaseBehaviour
     {

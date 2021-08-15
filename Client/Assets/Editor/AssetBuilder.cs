@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using FirClient.Component;
+using Client.Component;
 using FTRuntime;
 using UnityEditor;
 using UnityEngine;

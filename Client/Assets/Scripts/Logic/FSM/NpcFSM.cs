@@ -1,8 +1,8 @@
-using FirClient.Logic.FSM.TurnBaseState;
-using FirClient.Logic.FSM.FreeBattleState;
-using FirClient.Data;
+using Client.Logic.FSM.TurnBaseState;
+using Client.Logic.FSM.FreeBattleState;
+using Client.Data;
 
-namespace FirClient.Logic.FSM
+namespace Client.Logic.FSM
 {
     public class NpcFSM : GameFSM
     {

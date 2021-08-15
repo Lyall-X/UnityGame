@@ -1,9 +1,9 @@
-using FirClient.Data;
-using FirClient.Define;
+using Client.Data;
+using Client.Define;
 using System;
 using UnityEngine;
 
-namespace FirClient.Logic.Manager
+namespace Client.Logic.Manager
 {
     public class BattleLogicManager : LogicBehaviour
     {

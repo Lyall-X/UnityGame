@@ -1,11 +1,11 @@
 ﻿//File creation in [TIME]
 using System.Collections;
 using System.Collections.Generic;
-using FirClient.Handler;
+using Client.Handler;
 using LiteNetLib;
 using LiteNetLib.Utils;
 
-namespace FirClient.Handler
+namespace Client.Handler
 {
     public class [NAME] : BaseHandler
     {

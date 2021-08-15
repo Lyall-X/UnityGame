@@ -1,10 +1,10 @@
-using FirClient.Component;
-using FirClient.Utility;
+using Client.Component;
+using Client.Utility;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FirClient.UI
+namespace Client.UI
 {
     public class LoadingUI : BaseBehaviour
     {

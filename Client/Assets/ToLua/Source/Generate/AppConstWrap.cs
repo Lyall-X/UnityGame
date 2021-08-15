@@ -488,7 +488,7 @@ public class AppConstWrap
 	{
 		try
 		{
-			FirClient.Define.AppState arg0 = (FirClient.Define.AppState)ToLua.CheckObject(L, 2, TypeTraits<FirClient.Define.AppState>.type);
+			Client.Define.AppState arg0 = (Client.Define.AppState)ToLua.CheckObject(L, 2, TypeTraits<Client.Define.AppState>.type);
 			AppConst.AppState = arg0;
 			AppConst.AppState = arg0;
 			return 0;

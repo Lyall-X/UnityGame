@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CameraBase : GameBehaviour {
         protected override void OnAwake()

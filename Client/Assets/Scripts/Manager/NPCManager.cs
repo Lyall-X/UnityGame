@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
-using FirClient.View;
-using FirClient.Define;
-using FirClient.Data;
+using Client.View;
+using Client.Define;
+using Client.Data;
 using LuaInterface;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class NPCManager : BaseManager
     {

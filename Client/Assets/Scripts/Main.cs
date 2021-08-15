@@ -1,6 +1,6 @@
 using UnityEngine;
-using FirClient.Manager;
-using FirClient.Define;
+using Client.Manager;
+using Client.Define;
 
 public class Main : GameBehaviour
 {

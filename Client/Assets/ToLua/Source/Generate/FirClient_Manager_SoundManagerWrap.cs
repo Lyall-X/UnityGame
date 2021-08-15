@@ -6,7 +6,7 @@ public class FirClient_Manager_SoundManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.SoundManager), typeof(FirClient.Manager.BaseManager));
+		L.BeginClass(typeof(Client.Manager.SoundManager), typeof(Client.Manager.BaseManager));
 		L.RegFunction("CanPlayBackSound", new LuaCSFunction(CanPlayBackSound));
 		L.RegFunction("PlayBacksound", new LuaCSFunction(PlayBacksound));
 		L.RegFunction("CanPlaySoundEffect", new LuaCSFunction(CanPlaySoundEffect));
@@ -25,13 +25,13 @@ public class FirClient_Manager_SoundManagerWrap
 
 			if (count == 0)
 			{
-				FirClient.Manager.SoundManager obj = new FirClient.Manager.SoundManager();
+				Client.Manager.SoundManager obj = new Client.Manager.SoundManager();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Manager.SoundManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Manager.SoundManager.New");
 			}
 		}
 		catch (Exception e)
@@ -46,7 +46,7 @@ public class FirClient_Manager_SoundManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.SoundManager obj = (FirClient.Manager.SoundManager)ToLua.CheckObject<FirClient.Manager.SoundManager>(L, 1);
+			Client.Manager.SoundManager obj = (Client.Manager.SoundManager)ToLua.CheckObject<Client.Manager.SoundManager>(L, 1);
 			bool o = obj.CanPlayBackSound();
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
@@ -63,7 +63,7 @@ public class FirClient_Manager_SoundManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 3);
-			FirClient.Manager.SoundManager obj = (FirClient.Manager.SoundManager)ToLua.CheckObject<FirClient.Manager.SoundManager>(L, 1);
+			Client.Manager.SoundManager obj = (Client.Manager.SoundManager)ToLua.CheckObject<Client.Manager.SoundManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
 			obj.PlayBacksound(arg0, arg1);
@@ -81,7 +81,7 @@ public class FirClient_Manager_SoundManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.SoundManager obj = (FirClient.Manager.SoundManager)ToLua.CheckObject<FirClient.Manager.SoundManager>(L, 1);
+			Client.Manager.SoundManager obj = (Client.Manager.SoundManager)ToLua.CheckObject<Client.Manager.SoundManager>(L, 1);
 			bool o = obj.CanPlaySoundEffect();
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
@@ -98,7 +98,7 @@ public class FirClient_Manager_SoundManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Manager.SoundManager obj = (FirClient.Manager.SoundManager)ToLua.CheckObject<FirClient.Manager.SoundManager>(L, 1);
+			Client.Manager.SoundManager obj = (Client.Manager.SoundManager)ToLua.CheckObject<Client.Manager.SoundManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.Play(arg0);
 			return 0;

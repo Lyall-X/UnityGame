@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FirClient.Component.FSM
+namespace Client.Component.FSM
 {
     public interface IFSM
     {

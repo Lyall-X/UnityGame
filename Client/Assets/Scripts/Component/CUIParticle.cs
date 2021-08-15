@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(CanvasRenderer))]

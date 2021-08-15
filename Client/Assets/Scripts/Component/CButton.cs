@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using FirClient.Manager;
+using Client.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace  FirClient.Component
+namespace  Client.Component
 {
     public enum SoundType
     {

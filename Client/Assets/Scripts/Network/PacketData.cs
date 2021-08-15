@@ -1,7 +1,7 @@
-using FirClient.Define;
+using Client.Define;
 using LiteNetLib.Utils;
 
-namespace FirClient.Network
+namespace Client.Network
 {
     public class PacketData
     {

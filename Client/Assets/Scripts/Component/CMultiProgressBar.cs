@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using FirClient.Extensions;
+using Client.Extensions;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CMultiProgressBar : MonoBehaviour
     {

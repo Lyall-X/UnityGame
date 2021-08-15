@@ -1,4 +1,4 @@
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public abstract class BaseDispatcher : BaseBehaviour
     {

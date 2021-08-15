@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class CAnimActor : MonoBehaviour

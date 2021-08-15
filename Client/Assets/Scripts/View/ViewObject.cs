@@ -1,6 +1,6 @@
 using System;
 
-namespace FirClient.View
+namespace Client.View
 {
     public enum ViewType
     {

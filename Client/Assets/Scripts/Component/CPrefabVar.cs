@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public enum VarType : byte
     {

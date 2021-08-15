@@ -6,7 +6,7 @@ public class FirClient_Data_DungeonDataWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Data.DungeonData), typeof(System.Object));
+		L.BeginClass(typeof(Client.Data.DungeonData), typeof(System.Object));
 		L.RegFunction("New", new LuaCSFunction(_CreateFirClient_Data_DungeonData));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("id", new LuaCSFunction(get_id), new LuaCSFunction(set_id));
@@ -28,13 +28,13 @@ public class FirClient_Data_DungeonDataWrap
 
 			if (count == 0)
 			{
-				FirClient.Data.DungeonData obj = new FirClient.Data.DungeonData();
+				Client.Data.DungeonData obj = new Client.Data.DungeonData();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Data.DungeonData.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Data.DungeonData.New");
 			}
 		}
 		catch (Exception e)
@@ -51,7 +51,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			uint ret = obj.id;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -70,7 +70,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			string ret = obj.name;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -89,7 +89,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			string ret = obj.atlas;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -108,7 +108,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			uint ret = obj.star;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -127,7 +127,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			uint ret = obj.eventid;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -146,7 +146,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			System.Collections.Generic.List<uint> ret = obj.drop;
 			ToLua.PushSealed(L, ret);
 			return 1;
@@ -165,8 +165,8 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
-			System.Collections.Generic.List<FirClient.Data.SceneEvent> ret = obj.events;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
+			System.Collections.Generic.List<Client.Data.SceneEvent> ret = obj.events;
 			ToLua.PushSealed(L, ret);
 			return 1;
 		}
@@ -184,7 +184,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			obj.id = arg0;
 			return 0;
@@ -203,7 +203,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.name = arg0;
 			return 0;
@@ -222,7 +222,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.atlas = arg0;
 			return 0;
@@ -241,7 +241,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			obj.star = arg0;
 			return 0;
@@ -260,7 +260,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			uint arg0 = (uint)LuaDLL.luaL_checkinteger(L, 2);
 			obj.eventid = arg0;
 			return 0;
@@ -279,7 +279,7 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
 			System.Collections.Generic.List<uint> arg0 = (System.Collections.Generic.List<uint>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<uint>>.type);
 			obj.drop = arg0;
 			return 0;
@@ -298,8 +298,8 @@ public class FirClient_Data_DungeonDataWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Data.DungeonData obj = (FirClient.Data.DungeonData)o;
-			System.Collections.Generic.List<FirClient.Data.SceneEvent> arg0 = (System.Collections.Generic.List<FirClient.Data.SceneEvent>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<FirClient.Data.SceneEvent>>.type);
+			Client.Data.DungeonData obj = (Client.Data.DungeonData)o;
+			System.Collections.Generic.List<Client.Data.SceneEvent> arg0 = (System.Collections.Generic.List<Client.Data.SceneEvent>)ToLua.CheckObject(L, 2, TypeTraits<System.Collections.Generic.List<Client.Data.SceneEvent>>.type);
 			obj.events = arg0;
 			return 0;
 		}

@@ -1,5 +1,5 @@
-using FirClient.Component;
-using FirClient.Extensions;
+using Client.Component;
+using Client.Extensions;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;

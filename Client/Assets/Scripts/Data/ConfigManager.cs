@@ -1,5 +1,5 @@
-using FirClient.Data;
-using FirClient.Extensions;
+using Client.Data;
+using Client.Extensions;
 using LuaInterface;
 using System.Collections.Generic;
 using System.Security;

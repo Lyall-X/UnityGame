@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class AStar
     {

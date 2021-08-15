@@ -1,8 +1,8 @@
-using FirClient.Component.FSM;
-using FirClient.Data;
+using Client.Component.FSM;
+using Client.Data;
 using UnityEngine;
 
-namespace FirClient.Logic.FSM.FreeBattleState
+namespace Client.Logic.FSM.FreeBattleState
 {
     public class FDeathState : FsmState
     {

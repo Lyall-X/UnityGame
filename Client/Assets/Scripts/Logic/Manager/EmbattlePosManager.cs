@@ -1,8 +1,8 @@
-using FirClient.Data;
+using Client.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic.Manager
+namespace Client.Logic.Manager
 {
     public class EmbattlePosManager : LogicBehaviour
     {

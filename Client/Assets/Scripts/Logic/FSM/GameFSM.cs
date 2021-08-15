@@ -1,7 +1,7 @@
-using FirClient.Component.FSM;
-using FirClient.Logic.Manager;
+using Client.Component.FSM;
+using Client.Logic.Manager;
 
-namespace FirClient.Logic.FSM
+namespace Client.Logic.FSM
 {
     public class GameFSM : BaseFSM
     {

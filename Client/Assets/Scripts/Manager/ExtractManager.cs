@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using FirClient.Component;
-using FirClient.Define;
-using FirClient.Utility;
+using Client.Component;
+using Client.Define;
+using Client.Utility;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class ExtractManager : BaseManager
     {

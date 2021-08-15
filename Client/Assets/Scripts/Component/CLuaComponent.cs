@@ -1,7 +1,7 @@
-using FirClient.Utility;
+using Client.Utility;
 using UnityEngine;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CLuaComponent : MonoBehaviour
     {

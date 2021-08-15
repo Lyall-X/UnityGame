@@ -1,10 +1,10 @@
-using FirClient.Data;
-using FirClient.Extensions;
+using Client.Data;
+using Client.Extensions;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     /// <summary>
     /// 出生敌人，

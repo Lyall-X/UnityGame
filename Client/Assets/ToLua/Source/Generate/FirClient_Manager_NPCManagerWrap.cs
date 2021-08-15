@@ -6,7 +6,7 @@ public class FirClient_Manager_NPCManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Manager.NPCManager), typeof(FirClient.Manager.BaseManager));
+		L.BeginClass(typeof(Client.Manager.NPCManager), typeof(Client.Manager.BaseManager));
 		L.RegFunction("AddNpc", new LuaCSFunction(AddNpc));
 		L.RegFunction("GetNpc", new LuaCSFunction(GetNpc));
 		L.RegFunction("RemoveNpc", new LuaCSFunction(RemoveNpc));
@@ -27,13 +27,13 @@ public class FirClient_Manager_NPCManagerWrap
 
 			if (count == 0)
 			{
-				FirClient.Manager.NPCManager obj = new FirClient.Manager.NPCManager();
+				Client.Manager.NPCManager obj = new Client.Manager.NPCManager();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.Manager.NPCManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.Manager.NPCManager.New");
 			}
 		}
 		catch (Exception e)
@@ -48,7 +48,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 3);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)ToLua.CheckObject<FirClient.Manager.NPCManager>(L, 1);
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)ToLua.CheckObject<Client.Manager.NPCManager>(L, 1);
 			long arg0 = LuaDLL.tolua_checkint64(L, 2);
 			INPCView arg1 = (INPCView)ToLua.CheckObject<INPCView>(L, 3);
 			obj.AddNpc(arg0, arg1);
@@ -66,7 +66,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)ToLua.CheckObject<FirClient.Manager.NPCManager>(L, 1);
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)ToLua.CheckObject<Client.Manager.NPCManager>(L, 1);
 			long arg0 = LuaDLL.tolua_checkint64(L, 2);
 			INPCView o = obj.GetNpc(arg0);
 			ToLua.PushObject(L, o);
@@ -84,7 +84,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)ToLua.CheckObject<FirClient.Manager.NPCManager>(L, 1);
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)ToLua.CheckObject<Client.Manager.NPCManager>(L, 1);
 			long arg0 = LuaDLL.tolua_checkint64(L, 2);
 			obj.RemoveNpc(arg0);
 			return 0;
@@ -101,7 +101,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)ToLua.CheckObject<FirClient.Manager.NPCManager>(L, 1);
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)ToLua.CheckObject<Client.Manager.NPCManager>(L, 1);
 			INPCView o = obj.GetCurrentNpc();
 			ToLua.PushObject(L, o);
 			return 1;
@@ -120,7 +120,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)o;
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)o;
 			long ret = obj.Current;
 			LuaDLL.tolua_pushint64(L, ret);
 			return 1;
@@ -139,7 +139,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)o;
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)o;
 			System.Collections.Generic.Dictionary<long,INPCView> ret = obj.Npcs;
 			ToLua.PushSealed(L, ret);
 			return 1;
@@ -158,7 +158,7 @@ public class FirClient_Manager_NPCManagerWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirClient.Manager.NPCManager obj = (FirClient.Manager.NPCManager)o;
+			Client.Manager.NPCManager obj = (Client.Manager.NPCManager)o;
 			long arg0 = LuaDLL.tolua_checkint64(L, 2);
 			obj.Current = arg0;
 			return 0;

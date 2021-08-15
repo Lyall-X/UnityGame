@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Logic
+namespace Client.Logic
 {
     public static class LogicUtil
     {

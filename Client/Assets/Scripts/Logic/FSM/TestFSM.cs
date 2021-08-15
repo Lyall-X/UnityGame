@@ -1,8 +1,8 @@
-using FirClient.Logic.FSM.TurnBaseState;
+using Client.Logic.FSM.TurnBaseState;
 using System.Collections;
 using UnityEngine;
 
-namespace FirClient.Component.FSM
+namespace Client.Component.FSM
 {
     public class TestFSM : MonoBehaviour
     {

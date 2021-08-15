@@ -1,9 +1,9 @@
-using FirClient.Data;
-using FirClient.Extensions;
-using FirClient.Logic.FSM.FreeBattleState;
+using Client.Data;
+using Client.Extensions;
+using Client.Logic.FSM.FreeBattleState;
 using System.Collections.Generic;
 
-namespace FirClient.Logic.Handler
+namespace Client.Logic.Handler
 {
     public class FreeBattleHandler : BaseBattleHandler
     {

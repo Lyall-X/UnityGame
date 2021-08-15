@@ -1,4 +1,4 @@
-using FirClient.Define;
+using Client.Define;
 using UnityEngine;
 
 public class AppConst

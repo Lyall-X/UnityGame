@@ -3,10 +3,10 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
-using FirClient.Utility;
+using Client.Utility;
 using System.Linq;
-using FirClient.Component;
-using FirClient.Define;
+using Client.Component;
+using Client.Define;
 using Debug = UnityEngine.Debug;
 
 public class ResPackager : BaseEditor

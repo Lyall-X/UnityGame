@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CullingRegister : GameBehaviour
     {

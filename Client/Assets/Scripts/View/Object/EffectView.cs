@@ -1,9 +1,9 @@
-using FirClient.Component;
-using FirClient.Data;
+using Client.Component;
+using Client.Data;
 using UnityEngine;
-using FirClient.Extensions;
+using Client.Extensions;
 
-namespace FirClient.View 
+namespace Client.View 
 {
     public class EffectView : ObjectView 
     {

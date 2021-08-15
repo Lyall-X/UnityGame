@@ -6,7 +6,7 @@ public class FirClient_View_RoleViewWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.View.RoleView), typeof(FirClient.View.NPCView));
+		L.BeginClass(typeof(Client.View.RoleView), typeof(Client.View.NPCView));
 		L.RegFunction("ShowNpc", new LuaCSFunction(ShowNpc));
 		L.RegFunction("PlayRoleAnim", new LuaCSFunction(PlayRoleAnim));
 		L.RegFunction("LookAt", new LuaCSFunction(LookAt));
@@ -27,13 +27,13 @@ public class FirClient_View_RoleViewWrap
 
 			if (count == 0)
 			{
-				FirClient.View.RoleView obj = new FirClient.View.RoleView();
+				Client.View.RoleView obj = new Client.View.RoleView();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirClient.View.RoleView.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Client.View.RoleView.New");
 			}
 		}
 		catch (Exception e)
@@ -51,14 +51,14 @@ public class FirClient_View_RoleViewWrap
 
 			if (count == 2)
 			{
-				FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
+				Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
 				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 				obj.ShowNpc(arg0);
 				return 0;
 			}
 			else if (count == 3)
 			{
-				FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
+				Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
 				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 				System.Action arg1 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 3);
 				obj.ShowNpc(arg0, arg1);
@@ -66,7 +66,7 @@ public class FirClient_View_RoleViewWrap
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.View.RoleView.ShowNpc");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.View.RoleView.ShowNpc");
 			}
 		}
 		catch (Exception e)
@@ -84,14 +84,14 @@ public class FirClient_View_RoleViewWrap
 
 			if (count == 2)
 			{
-				FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
+				Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
 				string arg0 = ToLua.CheckString(L, 2);
 				obj.PlayRoleAnim(arg0);
 				return 0;
 			}
 			else if (count == 3)
 			{
-				FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
+				Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
 				string arg0 = ToLua.CheckString(L, 2);
 				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
 				obj.PlayRoleAnim(arg0, arg1);
@@ -99,7 +99,7 @@ public class FirClient_View_RoleViewWrap
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: FirClient.View.RoleView.PlayRoleAnim");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Client.View.RoleView.PlayRoleAnim");
 			}
 		}
 		catch (Exception e)
@@ -114,7 +114,7 @@ public class FirClient_View_RoleViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
+			Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
 			UnityEngine.Vector3Int arg0 = StackTraits<UnityEngine.Vector3Int>.Check(L, 2);
 			obj.LookAt(arg0);
 			return 0;
@@ -131,8 +131,8 @@ public class FirClient_View_RoleViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
-			FirClient.Data.FaceDir arg0 = (FirClient.Data.FaceDir)ToLua.CheckObject(L, 2, TypeTraits<FirClient.Data.FaceDir>.type);
+			Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
+			Client.Data.FaceDir arg0 = (Client.Data.FaceDir)ToLua.CheckObject(L, 2, TypeTraits<Client.Data.FaceDir>.type);
 			obj.SetFaceDir(arg0);
 			return 0;
 		}
@@ -148,9 +148,9 @@ public class FirClient_View_RoleViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 4);
-			FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
-			FirClient.View.RoleView arg0 = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 2);
-			FirClient.Data.NpcSkillAttackEvent arg1 = (FirClient.Data.NpcSkillAttackEvent)ToLua.CheckObject<FirClient.Data.NpcSkillAttackEvent>(L, 3);
+			Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
+			Client.View.RoleView arg0 = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 2);
+			Client.Data.NpcSkillAttackEvent arg1 = (Client.Data.NpcSkillAttackEvent)ToLua.CheckObject<Client.Data.NpcSkillAttackEvent>(L, 3);
 			System.Action arg2 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 4);
 			obj.NpcSkillAttack(arg0, arg1, arg2);
 			return 0;
@@ -167,7 +167,7 @@ public class FirClient_View_RoleViewWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.View.RoleView obj = (FirClient.View.RoleView)ToLua.CheckObject<FirClient.View.RoleView>(L, 1);
+			Client.View.RoleView obj = (Client.View.RoleView)ToLua.CheckObject<Client.View.RoleView>(L, 1);
 			System.Action arg0 = (System.Action)ToLua.CheckDelegate<System.Action>(L, 2);
 			obj.OnNpcDeath(arg0);
 			return 0;

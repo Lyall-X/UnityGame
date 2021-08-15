@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-namespace FirClient.Component 
+namespace Client.Component 
 {
     public class CText : Text 
     {

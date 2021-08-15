@@ -1,9 +1,9 @@
-using FirClient.Data;
-using FirClient.Extensions;
+using Client.Data;
+using Client.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FirClient.HUD
+namespace Client.HUD
 {
     public class HUDObject : GameBehaviour
     {

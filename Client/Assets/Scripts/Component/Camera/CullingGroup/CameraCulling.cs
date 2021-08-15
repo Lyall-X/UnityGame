@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class CameraCulling : GameBehaviour
     {

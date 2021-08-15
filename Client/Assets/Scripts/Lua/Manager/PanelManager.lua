@@ -46,7 +46,7 @@ function PanelManager:CreatePanelInternal(ctrl, panelName, prefab, parent, creat
 	gameObj.transform.localScale = Vector3.one;
 	gameObj.transform.localPosition = Vector3.zero;
 
-	local behaviour = gameObj:AddComponent(typeof(FirClient.Behaviour.LuaBehaviour))
+	local behaviour = gameObj:AddComponent(typeof(Client.Behaviour.LuaBehaviour))
 	ctrl:InitUI(behaviour)
 	if createOK ~= nil then
 		createOK(ctrl)

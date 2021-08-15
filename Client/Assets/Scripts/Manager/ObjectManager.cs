@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
-using FirClient.ObjectPool;
+using Client.ObjectPool;
 using UnityEngine.Events;
-using FirClient.Network;
-using FirClient.Define;
+using Client.Network;
+using Client.Define;
 
-namespace FirClient.Manager
+namespace Client.Manager
 {
     public class ObjectManager : BaseManager
     {

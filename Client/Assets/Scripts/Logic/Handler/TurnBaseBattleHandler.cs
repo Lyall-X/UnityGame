@@ -1,9 +1,9 @@
-using FirClient.Data;
-using FirClient.Extensions;
-using FirClient.Logic.FSM.TurnBaseState;
+using Client.Data;
+using Client.Extensions;
+using Client.Logic.FSM.TurnBaseState;
 using System.Collections.Generic;
 
-namespace FirClient.Logic.Handler
+namespace Client.Logic.Handler
 {
     public class TurnBaseBattleHandler : BaseBattleHandler
     {

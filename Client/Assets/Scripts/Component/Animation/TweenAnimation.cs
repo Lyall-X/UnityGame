@@ -10,7 +10,7 @@ public enum TweenType {
     AnchPos,
 }
 
-namespace FirClient.Component
+namespace Client.Component
 {
     public class TweenAnimation : GameBehaviour
     {

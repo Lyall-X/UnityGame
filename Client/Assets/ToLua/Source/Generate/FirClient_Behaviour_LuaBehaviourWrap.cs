@@ -6,7 +6,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirClient.Behaviour.LuaBehaviour), typeof(GameBehaviour));
+		L.BeginClass(typeof(Client.Behaviour.LuaBehaviour), typeof(GameBehaviour));
 		L.RegFunction("AddClick", new LuaCSFunction(AddClick));
 		L.RegFunction("RemoveClick", new LuaCSFunction(RemoveClick));
 		L.RegFunction("AddToggleClick", new LuaCSFunction(AddToggleClick));
@@ -25,7 +25,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 4);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			UnityEngine.UI.Button arg0 = (UnityEngine.UI.Button)ToLua.CheckObject<UnityEngine.UI.Button>(L, 2);
 			LuaTable arg1 = ToLua.CheckLuaTable(L, 3);
 			LuaFunction arg2 = ToLua.CheckLuaFunction(L, 4);
@@ -44,7 +44,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			UnityEngine.UI.Button arg0 = (UnityEngine.UI.Button)ToLua.CheckObject<UnityEngine.UI.Button>(L, 2);
 			obj.RemoveClick(arg0);
 			return 0;
@@ -61,7 +61,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 4);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			UnityEngine.UI.Toggle arg0 = (UnityEngine.UI.Toggle)ToLua.CheckObject<UnityEngine.UI.Toggle>(L, 2);
 			LuaTable arg1 = ToLua.CheckLuaTable(L, 3);
 			LuaFunction arg2 = ToLua.CheckLuaFunction(L, 4);
@@ -80,7 +80,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			UnityEngine.UI.Toggle arg0 = (UnityEngine.UI.Toggle)ToLua.CheckObject<UnityEngine.UI.Toggle>(L, 2);
 			obj.RemoveToggleClick(arg0);
 			return 0;
@@ -97,7 +97,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 4);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			TMPro.TMP_InputField arg0 = (TMPro.TMP_InputField)ToLua.CheckObject<TMPro.TMP_InputField>(L, 2);
 			LuaTable arg1 = ToLua.CheckLuaTable(L, 3);
 			LuaFunction arg2 = ToLua.CheckLuaFunction(L, 4);
@@ -116,7 +116,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			TMPro.TMP_InputField arg0 = (TMPro.TMP_InputField)ToLua.CheckObject<TMPro.TMP_InputField>(L, 2);
 			obj.RemoveEndEdit(arg0);
 			return 0;
@@ -133,7 +133,7 @@ public class FirClient_Behaviour_LuaBehaviourWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirClient.Behaviour.LuaBehaviour obj = (FirClient.Behaviour.LuaBehaviour)ToLua.CheckObject<FirClient.Behaviour.LuaBehaviour>(L, 1);
+			Client.Behaviour.LuaBehaviour obj = (Client.Behaviour.LuaBehaviour)ToLua.CheckObject<Client.Behaviour.LuaBehaviour>(L, 1);
 			obj.ClearLuaEvent();
 			return 0;
 		}

@@ -1,4 +1,4 @@
-﻿using FirClient.Component;
+﻿using Client.Component;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;

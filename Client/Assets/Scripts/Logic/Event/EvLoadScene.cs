@@ -1,6 +1,6 @@
 using System;
 
-namespace FirClient.Logic.Event
+namespace Client.Logic.Event
 {
     /// <summary>
     /// 进入场景

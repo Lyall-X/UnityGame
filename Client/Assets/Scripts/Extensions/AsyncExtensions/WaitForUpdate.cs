@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     // This can be used as a way to return to the main unity thread when using multiple threads
     // with async methods

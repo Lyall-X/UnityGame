@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirClient.Extensions
+namespace Client.Extensions
 {
     public static class TransformExtensions
     {
