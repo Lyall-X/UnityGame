@@ -1,19 +1,19 @@
 using LuaInterface;
 
-namespace Client.Manager
+namespace FirClient.Manager
 {
-  public abstract class BaseManager
-  {
-    public bool isOnUpdate = false;
+    public abstract class BaseManager : BaseBehaviour
+    {
+        public bool isOnUpdate = false;
 
-    [NoToLua]
-    public abstract void Initialize();
+        [NoToLua]
+        public abstract void Initialize();
 
-    [NoToLua]
-    public abstract void OnUpdate(float deltaTime);
+        [NoToLua]
+        public abstract void OnUpdate(float deltaTime);
 
-    [NoToLua]
-    public abstract void OnDispose();
-  }
+        [NoToLua]
+        public abstract void OnDispose();
+    }
 }
 

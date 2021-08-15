@@ -18,7 +18,7 @@ MonoBehaviour:
     PixelsPerUnit: 100
     BitmapTrimming: 1
     GenerateMipMaps: 0
-    AtlasPowerOfTwo: 0
+    AtlasPowerOfTwo: 1
     AtlasForceSquare: 1
     AtlasTextureFilter: 1
     AtlasTextureFormat: 2

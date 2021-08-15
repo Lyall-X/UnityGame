@@ -223,7 +223,12 @@ namespace LuaInterface
 #else
         const string LUADLL = "tolua";
 #endif
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int luaopen_sproto_core(IntPtr L);
 
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int luaopen_protobuf_c(IntPtr L);
 		/*
          ** pseudo-indices
          */

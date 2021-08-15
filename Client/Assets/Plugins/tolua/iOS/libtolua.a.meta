@@ -1,61 +1,32 @@
 fileFormatVersion: 2
-guid: 8709a3474f4289041b2bf8622c944957
+guid: 8492849dccfbfce4485d383c0ce84651
 PluginImporter:
-  serializedVersion: 1
+  externalObjects: {}
+  serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
+  isOverridable: 0
+  isExplicitlyReferenced: 0
   platformData:
-    Android:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-    Any:
+  - first:
+      Any: 
+    second:
       enabled: 0
       settings: {}
-    Editor:
+  - first:
+      Editor: Editor
+    second:
       enabled: 0
       settings:
-        CPU: AnyCPU
         DefaultValueInitialized: true
-        OS: OSX
-    Linux:
-      enabled: 0
-      settings:
-        CPU: x86
-    Linux64:
-      enabled: 0
-      settings:
-        CPU: x86_64
-    LinuxUniversal:
-      enabled: 0
-      settings:
-        CPU: None
-    OSXIntel:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-    OSXIntel64:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-    OSXUniversal:
-      enabled: 0
-      settings:
-        CPU: None
-    Win:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-    Win64:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-    iOS:
+  - first:
+      iPhone: iOS
+    second:
       enabled: 1
       settings:
-        CompileFlags: 
-        FrameworkDependencies: 
+        AddToEmbeddedBinaries: false
   userData: 
   assetBundleName: 
   assetBundleVariant: 

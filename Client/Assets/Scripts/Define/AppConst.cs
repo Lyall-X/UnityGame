@@ -1,4 +1,4 @@
-using Client.Define;
+using FirClient.Define;
 using UnityEngine;
 
 public class AppConst
@@ -19,7 +19,7 @@ public class AppConst
     public const int RoleSortLayer = 3;                         //角色层渲染排序值
     public const int BattleTempSortingOrder = 100;              //战斗时临时排序
 
-    public const string AppName = "Client";                   //应用程序名称
+    public const string AppName = "FirSango";                   //应用程序名称
     public const string AppPrefix = AppName + "_";              //应用程序前缀
     public const string ExtName = ".unity3d";                   //素材扩展名
     public const string LuaTempDir = "LuaTemp/";                //临时目录
@@ -36,6 +36,6 @@ public class AppConst
     public static string[] DataPrefixs = {"datas_", "scripts_", "tables_"};
     public static string[] AssetPaths = { "/res/Datas/", "/res/Tables/", "/StreamingAssets/res/" };
 
-    public static readonly WaitForSeconds WaitForSeconds_01 = new WaitForSeconds(0.1f);  //延迟处理
-    public static readonly WaitForEndOfFrame WaitForEndOfFrame = new WaitForEndOfFrame(); //本帧的帧末进行在进行处理
+    public static readonly WaitForSeconds WaitForSeconds_01 = new WaitForSeconds(0.1f);
+    public static readonly WaitForEndOfFrame WaitForEndOfFrame = new WaitForEndOfFrame();
 }

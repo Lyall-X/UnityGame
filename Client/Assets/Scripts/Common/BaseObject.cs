@@ -1,18 +1,18 @@
-using Client.Utility;
+using FirClient.Utility;
 
 public abstract class BaseObject
 {
-  public bool isOnUpdate = false;
+    public bool isOnUpdate = false;
 
-  protected string DataPath
-  {
-    get
+    protected string DataPath
     {
-      return Util.DataPath;
+        get
+        {
+            return Util.DataPath;
+        }
     }
-  }
 
-  public abstract void Initialize();
-  public abstract void OnUpdate(float deltaTime);
-  public abstract void OnDispose();
+    public abstract void Initialize();
+    public abstract void OnUpdate(float deltaTime);
+    public abstract void OnDispose();
 }

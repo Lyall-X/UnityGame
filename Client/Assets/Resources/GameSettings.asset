@@ -9,28 +9,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd272cf332dad046a54dfc312ceae48, type: 3}
+  m_Script: {fileID: 11500000, guid: 24ebf414c24c3414182f07e675b2ae44, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  debugMode: 0
-  logMode: 0
+  debugMode: 1
+  logMode: 1
   updateMode: 0
   networkMode: 0
   luaByteMode: 0
   showFps: 0
-  GameFrameRate: 0
+  GameFrameRate: 30
   aStarDebugMode: 0
-  uiAtlasPath: 
-  uiTexturePath: 
-  texturePackerPath: 
-  selectedAtlasIndex: -1
+  uiAtlasPath: Assets/res/Atlas/UI
+  uiTexturePath: Assets/Textures/UI
+  texturePackerPath: D:\TexturePacker\bin
+  selectedAtlasIndex: 1
   atlasSettings:
-  - assetPath: 
-    iosFormat: 31
-    androidFormat: 32
+  - assetPath: res/Atlas/UI/Shared
+    iosFormat: 50
+    androidFormat: 47
+    textureSize: 0
+    isDynamic: 1
+  - assetPath: res/Atlas/UI/ItemIcon
+    iosFormat: 50
+    androidFormat: 47
     textureSize: 0
     isDynamic: 0
-  selectedABIndex: -1
-  assetBundlePackSetting: []
+  selectedABIndex: 3
+  assetBundlePackSetting:
+  - assetPath: res/Shaders
+    packType: 0
+    fileExtName: '*.shader'
+  - assetPath: res/Fonts
+    packType: 0
+    fileExtName: '*.*'
+  - assetPath: res/Audios
+    packType: 1
+    fileExtName: '*.mp3'
+  - assetPath: res/Prefabs
+    packType: 1
+    fileExtName: '*.prefab'
+  - assetPath: res/Atlas
+    packType: 1
+    fileExtName: '*.png|*.tpsheet|*.mat'
+  - assetPath: res/Dungeons
+    packType: 2
+    fileExtName: '*.png'
+  - assetPath: res/Textures/MainRole
+    packType: 1
+    fileExtName: '*.png'
+  - assetPath: res/Maps
+    packType: 2
+    fileExtName: '*.png'
   selectedDatasIndex: -1
-  datasBundlePackSetting: []
+  datasBundlePackSetting:
+  - dataPath: res/Datas
+    packType: 0
+    fileExtName: '*.xml|*.dat|*.pb'
+  - dataPath: res/Tables
+    packType: 0
+    fileExtName: '*.bytes'
