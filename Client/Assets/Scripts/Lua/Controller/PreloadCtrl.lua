@@ -5,7 +5,7 @@ local PreloadCtrl = class("PreloadCtrl")
 local mAtlasList = {
 	"Atlas/UI/Shared/Shared", 
 	"Atlas/UI/Quality/Quality",
-    "Atlas/UI/HeadIcon/HeadIcon", 
+  "Atlas/UI/HeadIcon/HeadIcon", 
 }
 
 local mActions = nil

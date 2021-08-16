@@ -9,11 +9,17 @@ local adapterMgr = nil
 local uiMgr = nil
 
 function Main.Initialize(initOK)
-    Main.InitUiCtrl()
+	-- 加载 UI Ctril 文件
+  Main.InitUiCtrl()
+	-- 加载 UI Manager 文件
 	Main.InitManager()
+	-- 加载 HUD 文字 界面
 	Main.InitHudRes()
+	-- 加载 Tips 界面到Top层
 	Main.InitPreloadUI()
+	-- 预加载 Atlas/UI 下的资源
 	Main.InitPreloadAsset(initOK)
+	-- 初始化 红点 事件
 	Main.InitRedDotCtrl()
 	
 end
