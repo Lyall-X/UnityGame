@@ -13,19 +13,19 @@ function ManagerCenter:Initialize()
 	self:AddManager(ManagerNames.Config, self:GetExtManager("ConfigManager"))
 
 	--Lua Manager--
-	self:AddManager(ManagerNames.Ctrl, require "Manager.CtrlManager", true)
-	self:AddManager(ManagerNames.Adapter, require "Manager.AdapterManager", true)
+	self:AddManager(ManagerNames.Ctrl, require "Manager.CtrlManager", true) -- 控制器管理器, 所有panel的ctrl管理
+	self:AddManager(ManagerNames.Adapter, require "Manager.AdapterManager", true) -- 管理所有Adapter, 有所关卡Level都含有一个，数据相关
 	self:AddManager(ManagerNames.Map, require "Manager.MapManager", true)
-	self:AddManager(ManagerNames.Level, require "Manager.LevelManager", true)
+	self:AddManager(ManagerNames.Level, require "Manager.LevelManager", true) -- 关卡管理器,异步切换场景,加载和释放时函数调用
 	self:AddManager(ManagerNames.Network, require "Manager.NetworkManager", true)
 	self:AddManager(ManagerNames.Table, require "Data.TableManager", true)
-	self:AddManager(ManagerNames.UI, require "Manager.UIManager", true)
-	self:AddManager(ManagerNames.Panel, require "Manager.PanelManager", true)
+	self:AddManager(ManagerNames.UI, require "Manager.UIManager", true) -- HUD控制器 和 Layer层级控制器
+	self:AddManager(ManagerNames.Panel, require "Manager.PanelManager", true) -- 创建/销毁/显隐 panel到指定的layer
 	self:AddManager(ManagerNames.Component, require "Manager.ComponentManager", true)
 	self:AddManager(ManagerNames.Module, require "Manager.ModuleManager", true)
 	self:AddManager(ManagerNames.Handler, require "Manager.HandlerManager", true)
 	self:AddManager(ManagerNames.RedDot, require "Manager.RedDotManager", true)
-	self:AddManager(ManagerNames.Event, require "Manager.EventManager")
+	self:AddManager(ManagerNames.Event, require "Manager.EventManager") -- 事件管理器,事件注册与广播
 
 	logWarn('ManagerCenter:InitializeOK...')
 end

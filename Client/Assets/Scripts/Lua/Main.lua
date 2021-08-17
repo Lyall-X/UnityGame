@@ -8,6 +8,11 @@ local ctrlMgr = nil
 local adapterMgr = nil
 local uiMgr = nil
 
+--[[
+	一个panel 一个 UIxxCtrl.lua 控制
+	一个scene 一个 xxAdapter.lua 控制
+]]--
+
 function Main.Initialize(initOK)
 	-- 加载 UI Ctril 文件
   Main.InitUiCtrl()
