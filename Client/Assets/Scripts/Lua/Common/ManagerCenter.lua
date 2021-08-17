@@ -22,7 +22,7 @@ function ManagerCenter:Initialize()
 	self:AddManager(ManagerNames.UI, require "Manager.UIManager", true) -- HUD控制器 和 Layer层级控制器
 	self:AddManager(ManagerNames.Panel, require "Manager.PanelManager", true) -- 创建/销毁/显隐 panel到指定的layer
 	self:AddManager(ManagerNames.Component, require "Manager.ComponentManager", true) -- 组件控制器,默认添加BatchTask组件,new函数会调用initialize方法
-	self:AddManager(ManagerNames.Module, require "Manager.ModuleManager", true)
+	self:AddManager(ManagerNames.Module, require "Manager.ModuleManager", true) -- Main界面, 子页签下MVC中的Moudle
 	self:AddManager(ManagerNames.Handler, require "Manager.HandlerManager", true)
 	self:AddManager(ManagerNames.RedDot, require "Manager.RedDotManager", true)
 	self:AddManager(ManagerNames.Event, require "Manager.EventManager") -- 事件管理器,事件注册与广播
