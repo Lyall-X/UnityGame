@@ -15,13 +15,13 @@ function ManagerCenter:Initialize()
 	--Lua Manager--
 	self:AddManager(ManagerNames.Ctrl, require "Manager.CtrlManager", true) -- 控制器管理器, 所有panel的ctrl管理
 	self:AddManager(ManagerNames.Adapter, require "Manager.AdapterManager", true) -- 管理所有Adapter, 有所关卡Level都含有一个，数据相关
-	self:AddManager(ManagerNames.Map, require "Manager.MapManager", true)
+	self:AddManager(ManagerNames.Map, require "Manager.MapManager", true) -- 地图控制器,管理地图预制体和背景的加载
 	self:AddManager(ManagerNames.Level, require "Manager.LevelManager", true) -- 关卡管理器,异步切换场景,加载和释放时函数调用
 	self:AddManager(ManagerNames.Network, require "Manager.NetworkManager", true)
 	self:AddManager(ManagerNames.Table, require "Data.TableManager", true)
 	self:AddManager(ManagerNames.UI, require "Manager.UIManager", true) -- HUD控制器 和 Layer层级控制器
 	self:AddManager(ManagerNames.Panel, require "Manager.PanelManager", true) -- 创建/销毁/显隐 panel到指定的layer
-	self:AddManager(ManagerNames.Component, require "Manager.ComponentManager", true)
+	self:AddManager(ManagerNames.Component, require "Manager.ComponentManager", true) -- 组件控制器,默认添加BatchTask组件,new函数会调用initialize方法
 	self:AddManager(ManagerNames.Module, require "Manager.ModuleManager", true)
 	self:AddManager(ManagerNames.Handler, require "Manager.HandlerManager", true)
 	self:AddManager(ManagerNames.RedDot, require "Manager.RedDotManager", true)
