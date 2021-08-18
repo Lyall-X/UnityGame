@@ -64,19 +64,30 @@ namespace Client.Manager
 
         void OnInitializeOK() 
         {
-            networkMgr.Initialize();    //初始化网络
-            luaMgr.Initialize();        //LUA管理器
+            // 初始化网络,绑定c#和lua recive函数
+            networkMgr.Initialize();
+            //LUA管理器, Main.lua
+            luaMgr.Initialize();
 
-            tableMgr.Initialize(); 
+            //Tables文件夹, NpcTable与ObjectPoolTable 配置表
+            tableMgr.Initialize();
+            // Datas 文件夹
             configMgr.Initialize();
+            // Fonts 文件夹
             fontMgr.LoadFonts();
+            // Shaders 文件夹
             shaderMgr.LoadShaders();
 
+            // Prefabs/Object 预制体
             objMgr.Initialize();
+            // Prefabs/Bullet 预制体
             bulletMgr.Initialize();
-            effectMgr.Initialize();
+            // Prefabs/Effect 预制体
+            effectMgr.Initialize(); 
 
-            timerMgr.Initialize();
+            // 定时器
+            timerMgr.Initialize(); 
+            //战斗事件与管理类添加
             battleViewMgr.Initialize();
 
             Util.CallLuaMethod("Initialize", (Action)delegate ()
