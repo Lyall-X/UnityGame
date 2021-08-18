@@ -9,8 +9,10 @@ local adapterMgr = nil
 local uiMgr = nil
 
 --[[
-	一个panel 一个 UIxxCtrl.lua 控制
-	一个scene 一个 xxAdapter.lua 控制
+	一个panel 一个 UIxxCtrl.lua 控制 面板
+	一个复杂panel 一个 xxModule.lua 控制 数据
+	一个scene 一个 xxAdapter.lua 控制,场景的切换,panel的展示
+	Component 文件夹为组件,可添加到go
 ]]--
 
 function Main.Initialize(initOK)
