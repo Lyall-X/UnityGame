@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Client.Logic.Manager
 {
+    // 对应 res\Datas\Events 中的事件
     public class EventManager : LogicBehaviour
     {
         private int evPosIndex = 0;

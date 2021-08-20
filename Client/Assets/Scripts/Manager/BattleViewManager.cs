@@ -18,7 +18,7 @@ namespace Client.Manager
             (
                 Util.CameraHalfWidth()          //视口边距      
             );
-            logicMgr.Initialize();              //启动逻辑层管理器
+            logicMgr.Initialize();              //启动逻辑层管理器,包含BattleLogicManager部分EventNames，与EventManager的EventsType
 
             isOnUpdate = true;
             Messenger.AddListener<GameEventData>(EventNames.EvNpcSpawn, OnNpcSpawn);
