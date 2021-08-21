@@ -1,4 +1,4 @@
-﻿namespace FirCommon.Data
+﻿namespace Common.Data
 {
     public enum CountryType : byte
     {

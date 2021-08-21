@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public class HttpHelper
     {

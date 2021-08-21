@@ -1,4 +1,4 @@
-﻿namespace FirCommon.Define
+﻿namespace Common.Define
 {
     public enum ProtoType : byte
     {

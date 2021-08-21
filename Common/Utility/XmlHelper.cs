@@ -2,7 +2,7 @@
 using System.Security;
 using System.IO;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public class XmlHelper
     {

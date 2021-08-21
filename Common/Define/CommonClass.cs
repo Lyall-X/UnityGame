@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace FirCommon.Data
+namespace Common.Data
 {
     public sealed class Vector2SerializationSurrogate : ISerializationSurrogate
     {

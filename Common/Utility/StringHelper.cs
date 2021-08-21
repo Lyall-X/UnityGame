@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public static class StringHelper
     {

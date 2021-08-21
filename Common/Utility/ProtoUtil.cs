@@ -1,7 +1,7 @@
 ﻿using Google.Protobuf;
 using System.IO;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public static class ProtoUtil
     {

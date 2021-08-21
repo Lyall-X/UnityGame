@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public static class ObjectHelper
     {

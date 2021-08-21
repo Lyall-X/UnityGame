@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
 	// A simple dummy class for parsing the string arguments of a generic program, including flags
 	public static class ArgumentParser

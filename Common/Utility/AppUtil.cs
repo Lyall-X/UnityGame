@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public static class AppUtil
     {

@@ -2,7 +2,7 @@
 using System.Runtime.Serialization.Json;
 using System.Text;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public static class JsonHelper
     {
