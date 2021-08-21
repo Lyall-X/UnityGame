@@ -2,12 +2,12 @@
 using System;
 using LuaInterface;
 
-public class FirCommon_Data_NpcTableItemWrap
+public class Common_Data_NpcTableItemWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirCommon.Data.NpcTableItem), typeof(System.Object));
-		L.RegFunction("New", new LuaCSFunction(_CreateFirCommon_Data_NpcTableItem));
+		L.BeginClass(typeof(Common.Data.NpcTableItem), typeof(System.Object));
+		L.RegFunction("New", new LuaCSFunction(_CreateCommon_Data_NpcTableItem));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("id", new LuaCSFunction(get_id), new LuaCSFunction(set_id));
 		L.RegVar("name", new LuaCSFunction(get_name), new LuaCSFunction(set_name));
@@ -20,7 +20,7 @@ public class FirCommon_Data_NpcTableItemWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int _CreateFirCommon_Data_NpcTableItem(IntPtr L)
+	static int _CreateCommon_Data_NpcTableItem(IntPtr L)
 	{
 		try
 		{
@@ -28,13 +28,13 @@ public class FirCommon_Data_NpcTableItemWrap
 
 			if (count == 0)
 			{
-				FirCommon.Data.NpcTableItem obj = new FirCommon.Data.NpcTableItem();
+				Common.Data.NpcTableItem obj = new Common.Data.NpcTableItem();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirCommon.Data.NpcTableItem.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Common.Data.NpcTableItem.New");
 			}
 		}
 		catch (Exception e)
@@ -51,7 +51,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			int ret = obj.id;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -70,7 +70,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			string ret = obj.name;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -89,7 +89,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			bool ret = obj.isMainCharacter;
 			LuaDLL.lua_pushboolean(L, ret);
 			return 1;
@@ -108,7 +108,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			int ret = obj.sex;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -127,8 +127,8 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
-			FirCommon.Data.CountryType ret = obj.country;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
+			Common.Data.CountryType ret = obj.country;
 			ToLua.Push(L, ret);
 			return 1;
 		}
@@ -146,7 +146,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			UnityEngine.Vector3 ret = obj.scale;
 			ToLua.Push(L, ret);
 			return 1;
@@ -165,7 +165,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			int ret = obj.itemid;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
@@ -184,7 +184,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			int arg0 = (int)LuaDLL.luaL_checkinteger(L, 2);
 			obj.id = arg0;
 			return 0;
@@ -203,7 +203,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.name = arg0;
 			return 0;
@@ -222,7 +222,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
 			obj.isMainCharacter = arg0;
 			return 0;
@@ -241,7 +241,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			int arg0 = (int)LuaDLL.luaL_checkinteger(L, 2);
 			obj.sex = arg0;
 			return 0;
@@ -260,8 +260,8 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
-			FirCommon.Data.CountryType arg0 = (FirCommon.Data.CountryType)ToLua.CheckObject(L, 2, TypeTraits<FirCommon.Data.CountryType>.type);
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
+			Common.Data.CountryType arg0 = (Common.Data.CountryType)ToLua.CheckObject(L, 2, TypeTraits<Common.Data.CountryType>.type);
 			obj.country = arg0;
 			return 0;
 		}
@@ -279,7 +279,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			UnityEngine.Vector3 arg0 = ToLua.ToVector3(L, 2);
 			obj.scale = arg0;
 			return 0;
@@ -298,7 +298,7 @@ public class FirCommon_Data_NpcTableItemWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTableItem obj = (FirCommon.Data.NpcTableItem)o;
+			Common.Data.NpcTableItem obj = (Common.Data.NpcTableItem)o;
 			int arg0 = (int)LuaDLL.luaL_checkinteger(L, 2);
 			obj.itemid = arg0;
 			return 0;

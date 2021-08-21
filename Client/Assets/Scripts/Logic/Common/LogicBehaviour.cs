@@ -1,7 +1,7 @@
 using Client.Component;
 using Client.Logic.FSM;
 using Client.Logic.Manager;
-using FirCommon.Data;
+using Common.Data;
 using System.Collections.Generic;
 
 namespace Client.Logic

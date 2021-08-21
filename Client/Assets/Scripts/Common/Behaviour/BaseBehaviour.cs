@@ -5,7 +5,7 @@ using Client.Manager;
 using Client.Component;
 using Client.Utility;
 using LuaInterface;
-using FirCommon.Data;
+using Common.Data;
 
 public abstract class BaseBehaviour
 {

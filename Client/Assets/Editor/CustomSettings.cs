@@ -20,7 +20,7 @@ using System.IO;
 using Client.View;
 using Client.Extensions;
 using TMPro;
-using FirCommon.Data;
+using Common.Data;
 
 public static class CustomSettings
 {

@@ -1,6 +1,6 @@
 using UnityEngine;
 using Client.Manager;
-using FirCommon.Data;
+using Common.Data;
 
 /// <summary>
 /// Interface Manager Object 

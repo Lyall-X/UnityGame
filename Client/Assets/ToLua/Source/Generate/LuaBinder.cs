@@ -178,11 +178,11 @@ public static class LuaBinder
 		Client_Manager_BaseManagerWrap.Register(L);
 		L.EndModule();
 		L.EndModule();
-		L.BeginModule("FirCommon");
+		L.BeginModule("Common");
 		L.BeginModule("Data");
-		FirCommon_Data_NpcTableWrap.Register(L);
-		FirCommon_Data_NpcTableItemWrap.Register(L);
-		FirCommon_Data_TableManagerWrap.Register(L);
+		Common_Data_NpcTableWrap.Register(L);
+		Common_Data_NpcTableItemWrap.Register(L);
+		Common_Data_TableManagerWrap.Register(L);
 		L.EndModule();
 		L.EndModule();
 		L.BeginModule("SuperScrollView");

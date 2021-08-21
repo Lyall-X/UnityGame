@@ -2,16 +2,16 @@
 using System;
 using LuaInterface;
 
-public class FirCommon_Data_NpcTableWrap
+public class Common_Data_NpcTableWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(FirCommon.Data.NpcTable), typeof(System.Object));
+		L.BeginClass(typeof(Common.Data.NpcTable), typeof(System.Object));
 		L.RegFunction("Initialize", new LuaCSFunction(Initialize));
 		L.RegFunction("GetItems", new LuaCSFunction(GetItems));
 		L.RegFunction("AddItem", new LuaCSFunction(AddItem));
 		L.RegFunction("GetItemByKey", new LuaCSFunction(GetItemByKey));
-		L.RegFunction("New", new LuaCSFunction(_CreateFirCommon_Data_NpcTable));
+		L.RegFunction("New", new LuaCSFunction(_CreateCommon_Data_NpcTable));
 		L.RegFunction("__tostring", new LuaCSFunction(ToLua.op_ToString));
 		L.RegVar("name", new LuaCSFunction(get_name), new LuaCSFunction(set_name));
 		L.RegVar("Items", new LuaCSFunction(get_Items), null);
@@ -19,7 +19,7 @@ public class FirCommon_Data_NpcTableWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int _CreateFirCommon_Data_NpcTable(IntPtr L)
+	static int _CreateCommon_Data_NpcTable(IntPtr L)
 	{
 		try
 		{
@@ -27,13 +27,13 @@ public class FirCommon_Data_NpcTableWrap
 
 			if (count == 0)
 			{
-				FirCommon.Data.NpcTable obj = new FirCommon.Data.NpcTable();
+				Common.Data.NpcTable obj = new Common.Data.NpcTable();
 				ToLua.PushObject(L, obj);
 				return 1;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FirCommon.Data.NpcTable.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Common.Data.NpcTable.New");
 			}
 		}
 		catch (Exception e)
@@ -48,7 +48,7 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)ToLua.CheckObject<FirCommon.Data.NpcTable>(L, 1);
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)ToLua.CheckObject<Common.Data.NpcTable>(L, 1);
 			obj.Initialize();
 			return 0;
 		}
@@ -64,8 +64,8 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)ToLua.CheckObject<FirCommon.Data.NpcTable>(L, 1);
-			System.Collections.Generic.List<FirCommon.Data.NpcTableItem> o = obj.GetItems();
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)ToLua.CheckObject<Common.Data.NpcTable>(L, 1);
+			System.Collections.Generic.List<Common.Data.NpcTableItem> o = obj.GetItems();
 			ToLua.PushSealed(L, o);
 			return 1;
 		}
@@ -81,8 +81,8 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)ToLua.CheckObject<FirCommon.Data.NpcTable>(L, 1);
-			FirCommon.Data.NpcTableItem arg0 = (FirCommon.Data.NpcTableItem)ToLua.CheckObject<FirCommon.Data.NpcTableItem>(L, 2);
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)ToLua.CheckObject<Common.Data.NpcTable>(L, 1);
+			Common.Data.NpcTableItem arg0 = (Common.Data.NpcTableItem)ToLua.CheckObject<Common.Data.NpcTableItem>(L, 2);
 			obj.AddItem(arg0);
 			return 0;
 		}
@@ -98,9 +98,9 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)ToLua.CheckObject<FirCommon.Data.NpcTable>(L, 1);
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)ToLua.CheckObject<Common.Data.NpcTable>(L, 1);
 			int arg0 = (int)LuaDLL.luaL_checkinteger(L, 2);
-			FirCommon.Data.NpcTableItem o = obj.GetItemByKey(arg0);
+			Common.Data.NpcTableItem o = obj.GetItemByKey(arg0);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -118,7 +118,7 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)o;
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)o;
 			string ret = obj.name;
 			LuaDLL.lua_pushstring(L, ret);
 			return 1;
@@ -137,8 +137,8 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)o;
-			System.Collections.Generic.List<FirCommon.Data.NpcTableItem> ret = obj.Items;
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)o;
+			System.Collections.Generic.List<Common.Data.NpcTableItem> ret = obj.Items;
 			ToLua.PushSealed(L, ret);
 			return 1;
 		}
@@ -156,7 +156,7 @@ public class FirCommon_Data_NpcTableWrap
 		try
 		{
 			o = ToLua.ToObject(L, 1);
-			FirCommon.Data.NpcTable obj = (FirCommon.Data.NpcTable)o;
+			Common.Data.NpcTable obj = (Common.Data.NpcTable)o;
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.name = arg0;
 			return 0;
