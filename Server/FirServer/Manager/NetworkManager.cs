@@ -1,6 +1,6 @@
-﻿using FirCommon.Data;
-using FirCommon.Define;
-using FirCommon.Utility;
+﻿using Common.Data;
+using Common.Define;
+using Common.Utility;
 using Google.Protobuf;
 using LiteNetLib;
 using LiteNetLib.Utils;

@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace FirCommon.Utility
+namespace Common.Utility
 {
     public static class Builder
     {

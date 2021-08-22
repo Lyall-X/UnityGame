@@ -7,7 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
-namespace FirCommon.DataBase
+namespace Common.DataBase
 {
     public class MongoHelper : IDisposable
     {

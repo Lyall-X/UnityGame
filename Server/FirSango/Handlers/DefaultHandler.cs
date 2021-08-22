@@ -1,4 +1,4 @@
-﻿using FirCommon.Data;
+﻿using Common.Data;
 using FirServer;
 using FirServer.Handler;
 using log4net;

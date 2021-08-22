@@ -1,5 +1,5 @@
-using FirCommon.Define;
-using FirCommon.Utility;
+using Common.Define;
+using Common.Utility;
 using FirServer;
 using FirServer.Interface;
 using GameLibs.FirSango.Defines;

@@ -1,4 +1,4 @@
-﻿using FirCommon.Utility;
+﻿using Common.Utility;
 using System;
 
 public abstract class BaseObject

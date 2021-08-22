@@ -3,7 +3,7 @@ using log4net;
 using FirServer.Interface;
 using LiteNetLib;
 using System;
-using FirCommon.Define;
+using Common.Define;
 
 namespace FirServer.Manager
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FirCommon.Data
+namespace Common.Data
 {
 	[Serializable]
 	public class ObjectPoolTable

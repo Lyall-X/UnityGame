@@ -3,7 +3,7 @@ using log4net;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 using System;
-using FirCommon.DataBase;
+using Common.DataBase;
 
 namespace FirServer.Manager
 {

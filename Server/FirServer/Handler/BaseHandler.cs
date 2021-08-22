@@ -1,4 +1,4 @@
-﻿using FirCommon.Data;
+﻿using Common.Data;
 using FirServer.Interface;
 
 namespace FirServer.Handler

@@ -4,9 +4,9 @@ using FirServer;
 using GameLibs.FirSango.Defines;
 using GameLibs.FirSango.Model;
 using PbUser;
-using FirCommon.Utility;
-using FirCommon.Define;
-using FirCommon.Data;
+using Common.Utility;
+using Common.Define;
+using Common.Data;
 
 namespace GameLibs.FirSango.Handlers
 {
