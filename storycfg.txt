@@ -1,0 +1,7 @@
+xmlcfg=Client/Assets/res/Datas/Storys.xml
+npccfg=Client/Assets/res/Datas/Npcs.xml
+relativexml=1
+relativenpc=1
+expandall=1
+role_阿斗=11000
+role_猪头战士=13064

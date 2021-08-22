@@ -1,4 +1,4 @@
-﻿using FirCommon.Data;
+﻿using Common.Data;
 using OfficeOpenXml;
 using System;
 using System.CodeDom.Compiler;
@@ -221,7 +221,7 @@ namespace TableTool
         /// </summary>
         static object CreateDll(string code, string tbName, int rowNum, Dictionary<string, string> valueType, ExcelWorksheet sheet, string assemblyPath)
         {
-            var nameTbName = "FirCommon.Data." + tbName;
+            var nameTbName = "Common.Data." + tbName;
             var assembly = CompileCodeAssembly(code, assemblyPath);
             var instance = assembly.CreateInstance(nameTbName);
 
@@ -360,7 +360,7 @@ namespace TableTool
             parameters.OutputAssembly = assemblyPath;
 
             string depCode = null;
-            var fullPath = Environment.CurrentDirectory + "/FirCommon/Define/CommonEnum.cs";
+            var fullPath = Environment.CurrentDirectory + "/Common/Define/CommonEnum.cs";
             if (File.Exists(fullPath))
             {
                 depCode = File.ReadAllText(fullPath);

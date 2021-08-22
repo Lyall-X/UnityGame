@@ -1,0 +1,14 @@
+ExcelPath=Cehua/DataTable
+ClientData=Client/Assets/res/Tables
+ClientCodePath=Client/Assets/Scripts/Data
+ServerData=Server/Tables
+ServerCodePath=Server/FirSango/Data
+TemplatePath=Resource/Templates
+ClientDLL=Assembly-CSharp.dll
+ServerDLL=FirSango.dll
+LuaPath=Client/Assets/Scripts/Lua/Data
+GlobalConfig=Cehua/DataTable/GlobalConfig.xlsx||1|1
+Item=Cehua/DataTable/Item.xlsx||1|1
+Npc=Cehua/DataTable/Npc.xlsx||0|1
+ObjectPool=Cehua/DataTable/ObjectPool.xlsx||0|1
+Quality=Cehua/DataTable/Quality.xlsx||1|1
