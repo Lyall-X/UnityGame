@@ -22,7 +22,7 @@ MonoBehaviour:
   aStarDebugMode: 0
   uiAtlasPath: Assets/res/Atlas/UI
   uiTexturePath: Assets/Textures/UI
-  texturePackerPath: D:\TexturePacker\bin
+  texturePackerPath: D:\WorkApp\TexturePacker\bin
   selectedAtlasIndex: 1
   atlasSettings:
   - assetPath: res/Atlas/UI/Shared
