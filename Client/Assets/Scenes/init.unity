@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11472948, guid: d0a9132987f842443bf46c212619d1bd, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11472950, guid: d0a9132987f842443bf46c212619d1bd, type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 311
