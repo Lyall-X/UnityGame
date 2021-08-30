@@ -7,17 +7,18 @@ public class System_EnumWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(System.Enum), null);
-		L.RegFunction("GetTypeCode", new LuaCSFunction(GetTypeCode));
-		L.RegFunction("GetValues", new LuaCSFunction(GetValues));
-		L.RegFunction("GetNames", new LuaCSFunction(GetNames));
-		L.RegFunction("GetName", new LuaCSFunction(GetName));
-		L.RegFunction("IsDefined", new LuaCSFunction(IsDefined));
 		L.RegFunction("GetUnderlyingType", new LuaCSFunction(GetUnderlyingType));
-		L.RegFunction("CompareTo", new LuaCSFunction(CompareTo));
-		L.RegFunction("ToString", new LuaCSFunction(ToString));
+		L.RegFunction("GetValues", new LuaCSFunction(GetValues));
+		L.RegFunction("GetName", new LuaCSFunction(GetName));
+		L.RegFunction("GetNames", new LuaCSFunction(GetNames));
+		L.RegFunction("IsDefined", new LuaCSFunction(IsDefined));
+		L.RegFunction("Format", new LuaCSFunction(Format));
 		L.RegFunction("Equals", new LuaCSFunction(Equals));
 		L.RegFunction("GetHashCode", new LuaCSFunction(GetHashCode));
-		L.RegFunction("Format", new LuaCSFunction(Format));
+		L.RegFunction("ToString", new LuaCSFunction(ToString));
+		L.RegFunction("CompareTo", new LuaCSFunction(CompareTo));
+		L.RegFunction("HasFlag", new LuaCSFunction(HasFlag));
+		L.RegFunction("GetTypeCode", new LuaCSFunction(GetTypeCode));
 		L.RegFunction("Parse", new LuaCSFunction(Parse));
 		L.RegFunction("ToObject", new LuaCSFunction(ToObject));
 		L.RegFunction("ToInt", new LuaCSFunction(ToInt));
@@ -26,13 +27,13 @@ public class System_EnumWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int GetTypeCode(IntPtr L)
+	static int GetUnderlyingType(IntPtr L)
 	{
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
-			System.TypeCode o = obj.GetTypeCode();
+			System.Type arg0 = ToLua.CheckMonoType(L, 1);
+			System.Type o = System.Enum.GetUnderlyingType(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -50,23 +51,6 @@ public class System_EnumWrap
 			ToLua.CheckArgsCount(L, 1);
 			System.Type arg0 = ToLua.CheckMonoType(L, 1);
 			System.Array o = System.Enum.GetValues(arg0);
-			ToLua.Push(L, o);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int GetNames(IntPtr L)
-	{
-		try
-		{
-			ToLua.CheckArgsCount(L, 1);
-			System.Type arg0 = ToLua.CheckMonoType(L, 1);
-			string[] o = System.Enum.GetNames(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -95,6 +79,23 @@ public class System_EnumWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetNames(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			System.Type arg0 = ToLua.CheckMonoType(L, 1);
+			string[] o = System.Enum.GetNames(arg0);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int IsDefined(IntPtr L)
 	{
 		try
@@ -113,66 +114,17 @@ public class System_EnumWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int GetUnderlyingType(IntPtr L)
+	static int Format(IntPtr L)
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
+			ToLua.CheckArgsCount(L, 3);
 			System.Type arg0 = ToLua.CheckMonoType(L, 1);
-			System.Type o = System.Enum.GetUnderlyingType(arg0);
-			ToLua.Push(L, o);
+			object arg1 = ToLua.ToVarObject(L, 2);
+			string arg2 = ToLua.CheckString(L, 3);
+			string o = System.Enum.Format(arg0, arg1, arg2);
+			LuaDLL.lua_pushstring(L, o);
 			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int CompareTo(IntPtr L)
-	{
-		try
-		{
-			ToLua.CheckArgsCount(L, 2);
-			System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
-			object arg0 = ToLua.ToVarObject(L, 2);
-			int o = obj.CompareTo(arg0);
-			LuaDLL.lua_pushinteger(L, o);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int ToString(IntPtr L)
-	{
-		try
-		{
-			int count = LuaDLL.lua_gettop(L);
-
-			if (count == 1)
-			{
-				System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
-				string o = obj.ToString();
-				LuaDLL.lua_pushstring(L, o);
-				return 1;
-			}
-			else if (count == 2)
-			{
-				System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
-				string arg0 = ToLua.CheckString(L, 2);
-				string o = obj.ToString(arg0);
-				LuaDLL.lua_pushstring(L, o);
-				return 1;
-			}
-			else
-			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: System.Enum.ToString");
-			}
 		}
 		catch (Exception e)
 		{
@@ -216,16 +168,83 @@ public class System_EnumWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int Format(IntPtr L)
+	static int ToString(IntPtr L)
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 3);
-			System.Type arg0 = ToLua.CheckMonoType(L, 1);
-			object arg1 = ToLua.ToVarObject(L, 2);
-			string arg2 = ToLua.CheckString(L, 3);
-			string o = System.Enum.Format(arg0, arg1, arg2);
-			LuaDLL.lua_pushstring(L, o);
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
+				string o = obj.ToString();
+				LuaDLL.lua_pushstring(L, o);
+				return 1;
+			}
+			else if (count == 2)
+			{
+				System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				string o = obj.ToString(arg0);
+				LuaDLL.lua_pushstring(L, o);
+				return 1;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: System.Enum.ToString");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int CompareTo(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
+			object arg0 = ToLua.ToVarObject(L, 2);
+			int o = obj.CompareTo(arg0);
+			LuaDLL.lua_pushinteger(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int HasFlag(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
+			System.Enum arg0 = (System.Enum)ToLua.CheckObject<System.Enum>(L, 2);
+			bool o = obj.HasFlag(arg0);
+			LuaDLL.lua_pushboolean(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetTypeCode(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			System.Enum obj = (System.Enum)ToLua.CheckObject<System.Enum>(L, 1);
+			System.TypeCode o = obj.GetTypeCode();
+			ToLua.Push(L, o);
 			return 1;
 		}
 		catch (Exception e)

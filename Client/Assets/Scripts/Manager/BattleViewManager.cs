@@ -231,7 +231,7 @@ namespace Client.Manager
                     npcMgr.RemoveNpc<RoleView>(deathNpcId);
                 });
             }
-            Debug.LogWarning("OnNpcDeath:>>" + npcid);
+            // Debug.LogWarning("OnNpcDeath:>>" + npcid);
         }
 
         public override void OnDispose()
