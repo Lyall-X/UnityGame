@@ -8,16 +8,16 @@ local panelMgr = nil
 function UIMainCtrl:InitBottomUI()
 	local ctrlMgr = MgrCenter:GetManager(ManagerNames.Ctrl)
 	bottomUI = {
-		{ name = 'MainRole', button = 'Button1', ctrl = ctrlMgr:GetCtrl(UiNames.MainRole) },
-		{ name = 'Bag', button = 'Button2', ctrl = ctrlMgr:GetCtrl(UiNames.Bag) },
-		{ name = 'Battle', button = 'Button3', ctrl = ctrlMgr:GetCtrl(UiNames.Battle) },
-		{ name = 'Hero', button = 'Button4', ctrl = ctrlMgr:GetCtrl(UiNames.Hero) },
-		{ name = 'Dungeon', button = 'Button5', ctrl = ctrlMgr:GetCtrl(UiNames.Dungeon) },
+		{ button = self.btn_fight , ctrl = ctrlMgr:GetCtrl(UiNames.Battle), aa = nil },
+		{ button = self.btn_city , ctrl = ctrlMgr:GetCtrl(UiNames.Dungeon) },
+		{ button = self.btn_role , ctrl = ctrlMgr:GetCtrl(UiNames.MainRole) },
+		{ button = self.btn_forging , ctrl = ctrlMgr:GetCtrl(UiNames.Bag) },
+		{ button = self.btn_xiannv , ctrl = ctrlMgr:GetCtrl(UiNames.Hero) },
+		{ button = self.btn_pet , ctrl = ctrlMgr:GetCtrl(UiNames.Hero) },
 	}
 end
 
 function UIMainCtrl:Awake()
-	self.InitBottomUI()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Fixed, UiNames.Main, self.OnCreateOK)
 	logWarn("UIMainCtrl.Awake--->>")
@@ -25,17 +25,10 @@ end
 
 --启动事件--
 function UIMainCtrl:OnCreateOK()
-	local bottom = self.gameObject.transform:Find("Bottom")
-	for i = 0, bottom.childCount - 1 do 
-		local button = bottom:GetChild(i):GetComponent("Button")
-		self.behaviour:AddClick(button, self, self.OnClick)
-	end
-
-	local rect = self.gameObject:GetComponent('RectTransform')
-	if rect ~= nil then
-		rect.offsetMin = Vector2.zero
-		rect.offsetMax = Vector2.zero
-	end
+  self:InitBottomUI()
+  for _, v in ipairs(bottomUI) do
+		self.behaviour:AddClick(v.button, self, self.OnClick)
+  end
 	Main.ShowUI(UiNames.Battle)
 	logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
@@ -60,7 +53,7 @@ end
 function UIMainCtrl:ShowSelectUI(go)
 	for i = 1, #bottomUI do
 		local item = bottomUI[i]
-		if item.button == go.name then
+		if item.button == go then
 			item.ctrl:Show()
 		else
 			item.ctrl:Show(false)

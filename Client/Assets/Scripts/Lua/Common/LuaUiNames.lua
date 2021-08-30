@@ -1,7 +1,5 @@
 
 local uiNames = {
-  -- MainPanel
-	-- MainPanel = 'MainPanel/Main',
 	Main = 'Main',
 	Loader = 'Loader',
 	Login = 'Login',

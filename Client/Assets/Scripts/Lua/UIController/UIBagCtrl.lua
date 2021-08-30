@@ -55,8 +55,4 @@ function UIBagCtrl:Close()
 	panelMgr:ClosePanel(UiNames.Bag)
 end
 
-function UIBagCtrl:Show(isShow)
-	self:ShowBottomUI(isShow)
-end
-
 return UIBagCtrl

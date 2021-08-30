@@ -165,8 +165,4 @@ function UIBattleCtrl:Close()
 	panelMgr:ClosePanel(UiNames.Battle)
 end
 
-function UIBattleCtrl:Show(isShow)
-	self:ShowBottomUI(isShow)
-end
-
 return UIBattleCtrl

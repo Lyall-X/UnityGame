@@ -10,7 +10,7 @@ function UIBaseCtrl:InitUI(behaviour)
 	self:InitUIBinder()
 end
 
-function UIBaseCtrl:ShowBottomUI(isShow)
+function UIBaseCtrl:Show(isShow)
 	if isShow == nil or isShow == true then
 		if isnil(self.gameObject) then
 			self:Awake()

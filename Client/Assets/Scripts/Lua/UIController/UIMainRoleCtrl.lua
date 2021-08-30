@@ -100,8 +100,4 @@ function UIMainRoleCtrl:Close()
 	panelMgr:ClosePanel(UiNames.MainRole)
 end
 
-function UIMainRoleCtrl:Show(isShow)
-	self:ShowBottomUI(isShow)
-end
-
 return UIMainRoleCtrl

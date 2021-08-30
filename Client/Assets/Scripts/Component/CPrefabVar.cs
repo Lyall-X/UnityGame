@@ -170,7 +170,7 @@ namespace Client.Component
                 }
             },
             {
-                "multiProgre", go =>
+                "mprogressbar", go =>
                 {
                     var value = go.GetComponent<CMultiProgressBar>();
                     if (value)

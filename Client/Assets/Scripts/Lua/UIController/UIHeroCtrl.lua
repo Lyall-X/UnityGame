@@ -54,8 +54,4 @@ function UIHeroCtrl:Close()
 	self.panelMgr:ClosePanel(UiNames.Skill)
 end
 
-function UIHeroCtrl:Show(isShow)
-	self:ShowBottomUI(isShow)
-end
-
 return UIHeroCtrl

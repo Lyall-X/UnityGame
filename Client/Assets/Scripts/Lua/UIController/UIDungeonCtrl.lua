@@ -105,8 +105,5 @@ function UIDungeonCtrl:Close()
 	panelMgr:ClosePanel(UiNames.Dungeon)
 end
 
-function UIDungeonCtrl:Show(isShow)
-	self:ShowBottomUI(isShow)
-end
 
 return UIDungeonCtrl
