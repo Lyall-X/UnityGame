@@ -48,7 +48,9 @@ function Main.InitManager()
 end
 
 function Main.OnInitOK()
-	levelMgr:LoadLevel(LevelType.Login)
+  -- 测试初始化场景为Main
+	-- levelMgr:LoadLevel(LevelType.Login)
+	levelMgr:LoadLevel(LevelType.Main)
 
 	local colorItem = getGlobalItemByKey("CommonWhite")
     logWarn('Main.OnInitOK--->>>'..colorItem.value)
