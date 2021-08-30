@@ -51,22 +51,15 @@ function UIMainCtrl:SelectImage(go)
 end
 
 function UIMainCtrl:ShowSelectUI(go)
+  
   for _, item in ipairs(bottomUI) do
-    if item.button == go then
+    if item.button.name == go.name then
+      log(item.button.name)
 			item.ctrl:Show()
 		else
 			item.ctrl:Show(false)
 		end
   end
-
-	for i = 1, #bottomUI do
-		local item = bottomUI[i]
-		if item.button == go then
-			item.ctrl:Show()
-		else
-			item.ctrl:Show(false)
-		end
-	end
 end
 
 --关闭事件--
