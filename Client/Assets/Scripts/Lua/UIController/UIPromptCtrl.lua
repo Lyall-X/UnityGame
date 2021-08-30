@@ -14,7 +14,7 @@ local gameObject
 local prefabItem
 
 function UIPromptCtrl.Awake()
-	logWarn("UIPromptCtrl.Awake--->>")
+	-- logWarn("UIPromptCtrl.Awake--->>")
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Prompt, this.OnCreateOK)
 end
 
@@ -29,7 +29,7 @@ function UIPromptCtrl.OnCreateOK(obj)
     
     this.InitPanel()
 
-	logWarn("Start lua--->>"..gameObject.name)
+	-- logWarn("Start lua--->>"..gameObject.name)
 end
 
 --初始化面板--
@@ -54,7 +54,7 @@ end
 
 --滚动项单击--
 function UIPromptCtrl.OnItemClick(go)
-    log(go.name)
+    -- log(go.name)
 end
 
 --单击事件--
@@ -75,7 +75,7 @@ function UIPromptCtrl.OnClick(go)
     end
     ]]
     panelMgr:ClosePanel('Prompt')
-	logWarn("OnClick---->>>"..go.name)
+	-- logWarn("OnClick---->>>"..go.name)
 end
 
 --测试发送SPROTO--

@@ -7,7 +7,7 @@ function UIManager:Initialize()
 	self.floatingTextPrefab = nil
 
 	self:InitUILayers()
-	logWarn('UIManager:InitializeOK...')
+	-- logWarn('UIManager:InitializeOK...')
 end
 
 function UIManager:InitUILayers()

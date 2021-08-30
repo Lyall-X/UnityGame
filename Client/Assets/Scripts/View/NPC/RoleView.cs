@@ -66,7 +66,7 @@ namespace Client.View
                     }
                     break;
             }
-            GLogger.Log("OnPlayingClipOK::>>" + gameObject.name + " " + clip);
+            // // GLogger.Log("OnPlayingClipOK::>>" + gameObject.name + " " + clip);
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Client.View
             }
             else
             {
-                GLogger.Red("!!!NpcSkillAttackInternal:>>" + evData.attackerid + " " + evData.defenderid + " " + evData.bUseSkill);
+                // GLogger.Red("!!!NpcSkillAttackInternal:>>" + evData.attackerid + " " + evData.defenderid + " " + evData.bUseSkill);
             }
         }
 

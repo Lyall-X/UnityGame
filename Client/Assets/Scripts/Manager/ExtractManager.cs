@@ -37,7 +37,7 @@ namespace Client.Manager
 
             string infile = streamPath + fileName;
             string outfile = dataPath + fileName;
-            Debug.Log("正在解包文件:>" + infile);
+            // Debug.Log("正在解包文件:>" + infile);
             if (File.Exists(outfile)) File.Delete(outfile);
 
             if (Application.platform == RuntimePlatform.Android) 

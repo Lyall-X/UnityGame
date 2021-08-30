@@ -9,7 +9,7 @@ local panelMgr = nil
 function UIChooseActorCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.ChooseActor, self.OnCreateOK)
-	logWarn("UIChooseActorCtrl.Awake--->>")
+	-- logWarn("UIChooseActorCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -23,7 +23,7 @@ function UIChooseActorCtrl:OnCreateOK()
 	self.behaviour:AddToggleClick(self.toggle_women, self, self.OnSexWoman)
 
 	self:ShowSelectedRole('warrior')
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --单击事件--

@@ -35,33 +35,31 @@ end
 
 function MainAdapter:CreateMapObject(action)
 	mapMgr:CreateMap(function ()
-		log('Map Object Created!~')
+		-- log('Map Object Created!~')
 		if action ~= nil then action(self) end
 	end)
 end
 
 function MainAdapter:LoadSceneMap(action)
 	mapMgr:LoadSceneMap(enterMapId, function ()
-		log('LoadSceneMap:>'..enterMapId..' OK!!~')
+		-- log('LoadSceneMap:>'..enterMapId..' OK!!~')
 		if action ~= nil then action(self) end
 	end)
 end
 
 function MainAdapter:OnProgressText(text)
 	LuaUtil.ShowLoaderProgressText(text)
-	log("OnProgressText--->>"..text)
+	-- log("OnProgressText--->>"..text)
 end
 
 function MainAdapter:OnProgressValue(curr, total)
 	LuaUtil.UpdateLoaderProgress(curr, total)
-	log("OnProgressValue curr:"..curr.." total:"..total)
+	-- log("OnProgressValue curr:"..curr.." total:"..total)
 end
 
 --进入场景关卡完成--
 function MainAdapter:OnEnterLevelOK()
 	local co = coroutine.start(function ()
-		print('OnEnterLevelOK Coroutine start...')  
-
 		coroutine.wait(0.1)
 		Main.CloseUI(UiNames.Loader)
 		if enterOK ~= nil then
@@ -71,7 +69,6 @@ function MainAdapter:OnEnterLevelOK()
 		enterMapId = nil
 
 		Main.ShowTips("初始化完成啦~~~")
-		print('OnEnterLevelOK Coroutine end...')
 	end)
 end
 

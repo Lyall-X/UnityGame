@@ -3,7 +3,7 @@ local MapManager = class("MapManager")
 function MapManager:Initialize()
 	self.mapObject = nil
 	self.sceneMapData = nil
-	logWarn('MapManager:InitializeOK...')
+	-- logWarn('MapManager:InitializeOK...')
 end
 
 function MapManager:GetCurrMapData()
@@ -38,14 +38,14 @@ function MapManager:CreateMap(createOK)
 end
 
 function MapManager:LoadSceneMap(mapid, createOK)
-	log('mapid:'..mapid)
+	-- log('mapid:'..mapid)
 	local configMgr = MgrCenter:GetManager(ManagerNames.Config)
 	self.sceneMapdata = configMgr:GetMapData(mapid)
 	if self.sceneMapdata ~= nil then
 		local atlasName = self.sceneMapdata.atlas
 		local atlasPath = "Maps/"..atlasName
-		log('atlasName:'..atlasName)
-		log('atlasPath:'..atlasPath)
+		-- log('atlasName:'..atlasName)
+		-- log('atlasPath:'..atlasPath)
 		self:LoadMapAtlas(MapType.Scene, atlasName, atlasPath, createOK)
 	end
 end

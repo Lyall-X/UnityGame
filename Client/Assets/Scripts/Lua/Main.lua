@@ -53,10 +53,10 @@ function Main.OnInitOK()
 	levelMgr:LoadLevel(LevelType.Main)
 
 	local colorItem = getGlobalItemByKey("CommonWhite")
-    logWarn('Main.OnInitOK--->>>'..colorItem.value)
+    -- logWarn('Main.OnInitOK--->>>'..colorItem.value)
 
 	AddEvent('main.eventtest', function (...)
-		logWarn(...)
+		-- logWarn(...)
 	end)
 	FireEvent('main.eventtest', 100, 'testEvent')
 	RemoveEvent('main.eventtest')
@@ -67,10 +67,10 @@ function Main.InitUiCtrl()
     for k,v in pairs(UiNames) do
         local ctrlPath = "UIController/UI"..v..'Ctrl'
         require (ctrlPath)
-        logWarn('Loading :>'..ctrlPath..' OK!')
+        -- logWarn('Loading :>'..ctrlPath..' OK!')
 	end
 	_G.uiCanvas = GameObject.FindWithTag('UICanvas')
-    logWarn('Main.InitUiView--->>>OK')
+    -- logWarn('Main.InitUiView--->>>OK')
 end
 
 --显示UI--
@@ -79,7 +79,7 @@ function Main.ShowUI(uiCtrlName)
 	if ctrl ~= nil then
 		ctrl:Awake()
 	end
-	logWarn('Main.ShowUI:>'..uiCtrlName)
+	-- logWarn('Main.ShowUI:>'..uiCtrlName)
 end
 
 --关闭UI--
@@ -88,7 +88,7 @@ function Main.CloseUI(uiCtrlName)
 	if ctrl ~= nil then
 		ctrl:Close()
 	end
-	logWarn('Main.CloseUI:>'..uiCtrlName)
+	-- logWarn('Main.CloseUI:>'..uiCtrlName)
 end
 
 --显示TIPS--
@@ -217,7 +217,7 @@ end
 
 --销毁--
 function Main.Dispose()
-	logWarn('Main.Dispose--->>>')
+	-- logWarn('Main.Dispose--->>>')
 end
 
 return this

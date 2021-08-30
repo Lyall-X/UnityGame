@@ -4,13 +4,13 @@ local UIBaseMapCtrl = class("UIBaseMapCtrl", UIBaseCtrl)
 function UIBaseMapCtrl:Awake()
 	local panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.BaseMap, self.OnCreateOK)
-	logWarn("UIBaseMapCtrl.Awake--->>")
+	-- logWarn("UIBaseMapCtrl.Awake--->>")
 end
 
 --启动事件--
 function UIBaseMapCtrl:OnCreateOK()
 	self:SetUiLayout()		--设置UI布局--
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --单击事件--

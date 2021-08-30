@@ -8,7 +8,7 @@ local loaderCallback = nil
 function UILoaderCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Top, UiNames.Loader, self.OnCreateOK)
-	logWarn("UILoaderCtrl.Awake--->>")
+	-- logWarn("UILoaderCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -19,7 +19,7 @@ function UILoaderCtrl:OnCreateOK()
 		rect.offsetMax = Vector2.zero
 	end
 	self:TryShowUi()
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 function UILoaderCtrl:InitLoader(func)

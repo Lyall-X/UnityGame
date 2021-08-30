@@ -108,7 +108,7 @@ namespace Client.Logic.Manager
                 MoveNextEvent(currPos);
                 return;
             }
-            GLogger.Yellow("MoveNext evType:" + evData.type);
+            // GLogger.Yellow("MoveNext evType:" + evData.type);
 
             var currEvent = sceneEvents[evData.type];
             if (currEvent != null)
@@ -138,7 +138,7 @@ namespace Client.Logic.Manager
                 this.Initialize(mapData.events);
                 this.NewTurnEvent(delegate (Vector2 pos)
                 {
-                    Debug.Log("OnEnterSceneOK event at " + pos + " execute ok!!!");
+                    // Debug.Log("OnEnterSceneOK event at " + pos + " execute ok!!!");
                 });
             }
         }

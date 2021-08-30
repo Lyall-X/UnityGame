@@ -6,7 +6,7 @@ function CAtlas:initialize(name, objs)
         local sprite = objs[i]
         self.mAtlas[sprite.name] = sprite
     end
-    logWarn("New UIAtlas-------:>"..name)
+    -- logWarn("New UIAtlas-------:>"..name)
 end
 
 function CAtlas:GetSprite(name)

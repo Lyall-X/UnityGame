@@ -50,7 +50,7 @@ namespace Client.Logic.FSM.TurnBaseState
                     myNpcData.mp -= myNpcData.skillConsume;
                 }
                 battleLogicMgr.NpcSkillAttack(attacker, defender, bUseSkill, OnNpcAttackOK);
-                Debug.Log("attackid:>" + attacker + " targetid:>" + defender);
+                // // Debug.Log("attackid:>" + attacker + " targetid:>" + defender);
             }
         }
 

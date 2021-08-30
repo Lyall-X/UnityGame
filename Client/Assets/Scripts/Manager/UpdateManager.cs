@@ -173,7 +173,7 @@ namespace Client.Manager
         /// </summary>
         IEnumerator DownloadFile(string url, string file)
         {
-            Debug.Log("DownloadFile:>" + file);
+            // Debug.Log("DownloadFile:>" + file);
             using (var www = UnityWebRequest.Get(url))
             {
                 yield return www.SendWebRequest();
@@ -185,13 +185,13 @@ namespace Client.Manager
                 while (!www.isDone)
                 {
                     var v = Math.Floor(www.downloadProgress * 100) + "%";
-                    Debug.Log(url + " " + v);
+                    // Debug.Log(url + " " + v);
                     yield return null;
                 }
                 if (www.isDone)
                 {
                     File.WriteAllBytes(file, www.downloadHandler.data);
-                    Debug.Log(url + " " + 100 + "%");
+                    // Debug.Log(url + " " + 100 + "%");
                 }
             }
         }

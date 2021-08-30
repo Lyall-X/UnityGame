@@ -109,7 +109,7 @@ namespace Client.Manager
             objMgr.Release<TestObjectClass>(new TestObjectClass("abcd", 100, 200f));
             var testObj1 = objMgr.Get<TestObjectClass>();
 
-            Debug.Log("TestObjectClass--->>>" + testObj1.ToString());
+            // Debug.Log("TestObjectClass--->>>" + testObj1.ToString());
 
             //游戏对象池测试
             var prefab = Resources.Load("Prefabs/TestGameObjectPrefab", typeof(GameObject)) as GameObject;
@@ -124,7 +124,7 @@ namespace Client.Manager
             var backObj = objMgr.Get("TestGameObject");
             backObj.transform.SetParent(null);
 
-            Debug.Log("TestGameObject--->>>" + backObj);
+            // Debug.Log("TestGameObject--->>>" + backObj);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Client.Manager
         /// <param name="obj"></param>
         void OnPoolGetElement(TestObjectClass obj) 
         {
-            Debug.Log("OnPoolGetElement--->>>" + obj);
+            // Debug.Log("OnPoolGetElement--->>>" + obj);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Client.Manager
         /// <param name="obj"></param>
         void OnPoolPushElement(TestObjectClass obj) 
         {
-            Debug.Log("OnPoolPushElement--->>>" + obj);
+            // Debug.Log("OnPoolPushElement--->>>" + obj);
         }
 
         [NoToLua]
@@ -159,7 +159,7 @@ namespace Client.Manager
             if (luaMgr != null) {
                 luaMgr.Close();
             }
-            Debug.Log("~GameManager was destroyed");
+            // Debug.Log("~GameManager was destroyed");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Client.Logic.FSM.FreeBattleState
             mynpcId = npcFsm.GetVar<long>("mynpcId");
             myNpcData = npcDataMgr.GetNpcData(mynpcId.value);
             myNpcData.npcState = NpcState.Death;
-            GLogger.Red(mynpcId.value + " enter Death...");
+            // GLogger.Red(mynpcId.value + " enter Death...");
 
             DoNpcDeath();
         }

@@ -4,7 +4,7 @@ local EventManager = class("EventManager")
 
 function EventManager:Initialize()
 	self.events = {}
-	logWarn('EventManager:InitializeOK...')
+	-- logWarn('EventManager:InitializeOK...')
 end
 
 function EventManager:AddEvent(eventName, func)

@@ -1,7 +1,7 @@
 local LevelManager = class("LevelManager")
 
 function LevelManager:Initialize()
-	logWarn("LevelManager:Initialize...")
+	-- logWarn("LevelManager:Initialize...")
 end
 
 function LevelManager:LoadLevel(levelType)
@@ -25,7 +25,7 @@ function LevelManager:OnLeaveLevel(levelType, action)
 			execAction(action)
 		end
 	end
-	logWarn("OnLeaveLevel--->>"..tostring(levelType))
+	-- logWarn("OnLeaveLevel--->>"..tostring(levelType))
 end
 
 --进入新场景后，初始化所有数据--
@@ -39,7 +39,7 @@ function LevelManager:OnEnterLevel(levelType, action)
 			execAction(action)
 		end
 	end
-	logWarn("OnEnterLevel--->>"..tostring(levelType))
+	-- logWarn("OnEnterLevel--->>"..tostring(levelType))
 end
 
 return LevelManager

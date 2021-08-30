@@ -11,7 +11,7 @@ namespace Client.Logic.Event
     {
         public override void OnExecute(string param, Action moveNext)
         {
-            Debug.Log("EvShowDialog:>" + param);
+            // // Debug.Log("EvShowDialog:>" + param);
             var dlgData = param.ToList<uint>(',');
             if (dlgData.Count == 3)
             {

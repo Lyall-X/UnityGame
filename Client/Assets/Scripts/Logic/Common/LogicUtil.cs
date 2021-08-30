@@ -39,7 +39,6 @@ namespace Client.Logic
                     {
                         vecNor = vecNor.normalized;
                         float k = vecNor.z / vecNor.x;
-                        //print(vertexs[i + index]);
                         float b = vertexs[i].z - k * vertexs[i].x;
                         if ((point.z - b) / k < point.x)
                         {

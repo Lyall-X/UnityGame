@@ -7,14 +7,14 @@ local panelMgr = nil
 function UIBagCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Bag, self.OnCreateOK)
-	logWarn("UIBagCtrl.Awake--->>")
+	-- logWarn("UIBagCtrl.Awake--->>")
 end
 
 --启动事件--
 function UIBagCtrl:OnCreateOK()
 	self:SetUiLayout()		--设置UI布局--
 	self:InitPanel()
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 function UIBagCtrl:InitPanel()

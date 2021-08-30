@@ -62,7 +62,7 @@ namespace Client.ObjectPool
             {
                 poolSize++;
                 po = NewObjectInstance();
-                Debug.Log(string.Format("Growing pool {0}. New size: {1}", poolName, poolSize));
+                // Debug.Log(string.Format("Growing pool {0}. New size: {1}", poolName, poolSize));
             }
             else if (selfGrowing)
             {

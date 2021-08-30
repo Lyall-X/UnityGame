@@ -11,7 +11,7 @@ namespace Client.Logic.Event
     {
         public override void OnExecute(string param, Action moveNext)
         {
-            Debug.Log("EvSpawnHero..." + param);
+            // // Debug.Log("EvSpawnHero..." + param);
             battleHandlerMgr.SpawnHeros(moveNext);
         }
     }

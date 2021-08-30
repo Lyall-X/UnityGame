@@ -20,7 +20,6 @@ end
 
 function BattleAdapter:OnBattleDungeon(dungeonData, execOK)
 	local co = coroutine.start(function ()
-		print('BattleAdapter Coroutine start...')  
 		self:ShowBattleLoadingUI(true)
 
 		coroutine.wait(0.1)
@@ -41,7 +40,6 @@ function BattleAdapter:OnBattleDungeon(dungeonData, execOK)
 		if execOK ~= nil then 
 			execAction(execOK)
 		end
-		print('BattleAdapter Coroutine end...')  
 	end)
 end
 

@@ -160,7 +160,7 @@ namespace Client.Manager
                 mClient.Stop();
                 mClient = null;
             }
-            Debug.Log("~NetworkManager was destroy");
+            // Debug.Log("~NetworkManager was destroy");
         }
     }
 }

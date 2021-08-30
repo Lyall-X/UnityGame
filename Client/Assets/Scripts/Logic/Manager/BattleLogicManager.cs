@@ -265,7 +265,7 @@ namespace Client.Logic.Manager
                 if (attackEvent != null)
                 {
                     attackEvent.callback(attackEvent.defenderid);
-                    GLogger.Log("OnNpcSkillAttackOK eventid:"+ eventId + " attacker:" + attackEvent.attackerid + " defender:" + attackEvent.defenderid);
+                    // GLogger.Log("OnNpcSkillAttackOK eventid:"+ eventId + " attacker:" + attackEvent.attackerid + " defender:" + attackEvent.defenderid);
                 }
             }
         }

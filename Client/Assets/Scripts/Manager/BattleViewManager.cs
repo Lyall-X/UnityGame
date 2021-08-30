@@ -66,7 +66,7 @@ namespace Client.Manager
                     {
                         Messenger.Broadcast<long>(EventNames.EvNpcMoveOK, eventid);
                     });
-                    Debug.Log("OnNpcMove npcid:" + npcid + " nextPos:" + nextPos);
+                    // Debug.Log("OnNpcMove npcid:" + npcid + " nextPos:" + nextPos);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace Client.Manager
         private void OnBattleStart(GameEventData eventData)
         {
             var battleStartEvent = eventData.evParam as BattleStartEvent;
-            GLogger.Magenta("BattleStart----->>>" + battleStartEvent.type);
+            // GLogger.Magenta("BattleStart----->>>" + battleStartEvent.type);
         }
 
         /// <summary>
@@ -125,12 +125,12 @@ namespace Client.Manager
             {
                 Util.CallLuaMethod("LeaveDungeon", (Action)delegate ()
                 {
-                    GLogger.Red("BattleEnd---->>>" + battleType);
+                    // GLogger.Red("BattleEnd---->>>" + battleType);
                 });
             }
             else
             {
-                GLogger.Red("BattleEnd---->>>" + battleType);
+                // GLogger.Red("BattleEnd---->>>" + battleType);
             }
         }
 
@@ -208,7 +208,7 @@ namespace Client.Manager
                 var defender = npcMgr.GetNpc(defenderid) as RoleView;
                 if (attacker != null && defender != null)
                 {
-                    GLogger.White("OnAttackNpc:>>eventid:" + eventid + " attacker:" + attackerid + " defender:" + defenderid + " currhp:" + evBattle.currHp + " maxhp:" + evBattle.maxHp);
+                    // GLogger.White("OnAttackNpc:>>eventid:" + eventid + " attacker:" + attackerid + " defender:" + defenderid + " currhp:" + evBattle.currHp + " maxhp:" + evBattle.maxHp);
                     attacker.NpcSkillAttack(defender, evBattle, delegate ()
                     {
                         Messenger.Broadcast<long>(EventNames.EvNpcSkillAttackOK, eventid);

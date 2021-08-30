@@ -22,7 +22,7 @@ public class AssetSyncSettings : SerializedScriptableObject
             }
             CopyFile(de.Key, de.Value);
         }
-        Debug.Log("Assets Sync Completed!!!!");
+        // Debug.Log("Assets Sync Completed!!!!");
     }
 
     private void CopyFile(string src, string dest)

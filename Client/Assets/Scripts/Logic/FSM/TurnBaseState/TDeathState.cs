@@ -21,7 +21,7 @@ namespace Client.Logic.FSM.TurnBaseState
             base.Enter();
             mynpcId = npcFsm.GetVar<long>("mynpcId");
             myNpcData = npcDataMgr.GetNpcData(mynpcId.value);
-            GLogger.Red(mynpcId.value + " enter Death...");
+            // GLogger.Red(mynpcId.value + " enter Death...");
 
             DoNpcDeath();
         }
@@ -42,7 +42,7 @@ namespace Client.Logic.FSM.TurnBaseState
         public override void Execute()
         {
             base.Execute();
-            Debug.Log("DeathState.Execute");
+            // Debug.Log("DeathState.Execute");
         }
 
         public override void Exit()

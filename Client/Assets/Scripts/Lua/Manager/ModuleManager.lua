@@ -13,7 +13,7 @@ function ModuleManager:Initialize()
 			module:Initialize()
 		end
 	end
-    logWarn('ModuleManager:InitializeOK...')
+    -- logWarn('ModuleManager:InitializeOK...')
 end
 
 function ModuleManager:AddModule(name, Module)

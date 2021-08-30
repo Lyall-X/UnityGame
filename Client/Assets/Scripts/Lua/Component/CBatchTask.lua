@@ -8,7 +8,7 @@ local loadOk = nil
 local taskState = BatchTaskState.Stoped
 
 function CBatchTask:initialize(name)
-    logWarn("New BatchTask..."..name)
+    -- logWarn("New BatchTask..."..name)
 end
 
 function CBatchTask:InitBatchTask(cbText, cbProgress, execOK)
@@ -45,7 +45,7 @@ function CBatchTask:NextBatchTask()
     end
     local task = table.remove(mTaskList, 1)
     if task ~= nil then
-        log("New Task---->>>"..task.name.." desc:>"..task.desc);
+        -- log("New Task---->>>"..task.name.." desc:>"..task.desc);
         if progressText ~= nil then
             progressText(self, task.desc)
         end

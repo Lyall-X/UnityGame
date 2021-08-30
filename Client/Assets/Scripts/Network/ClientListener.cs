@@ -41,7 +41,7 @@ namespace Client.Network
         {
             if (messageType == UnconnectedMessageType.BasicMessage)
             {
-                Debug.Log("[CLIENT] Received discovery response. Connecting to: " + remoteEndPoint);
+                // Debug.Log("[CLIENT] Received discovery response. Connecting to: " + remoteEndPoint);
                 if (messageType == UnconnectedMessageType.BasicMessage && netMgr.mClient.ConnectedPeersCount == 0 && reader.GetInt() == 1)
                 {
                     netMgr.mClient.Connect(remoteEndPoint, AppConst.AppName);
@@ -63,7 +63,7 @@ namespace Client.Network
             {
                 netMgr.OnDisconnected(peer, disconnectInfo.Reason.ToString());
             }
-            Debug.Log("[CLIENT] We disconnected because " + disconnectInfo.Reason);
+            // Debug.Log("[CLIENT] We disconnected because " + disconnectInfo.Reason);
         }
     }
 

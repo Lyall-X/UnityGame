@@ -62,7 +62,6 @@ function UIBaseCtrl:InitUIBinder()
 			local varObj = iter.Current
 			if not isnil(varObj) then
 				table.insert(self.mPrefabVars, varObj.name)
-				--print(self.gameObject.name, varObj.name, varObj.type)
 				if varObj.type == VarType.GameObject then
 					self[varObj.name] = varObj.objValue
 				elseif varObj.type == VarType.Transform then

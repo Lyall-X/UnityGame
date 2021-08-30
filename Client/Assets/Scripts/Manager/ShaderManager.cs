@@ -53,7 +53,7 @@ namespace Client.Manager
                 if (!shaders.varCols.isWarmedUp)
                 {
                     shaders.varCols.WarmUp();
-                    Debug.Log("Shader WramUp:>" + shaders.shaderName);
+                    // Debug.Log("Shader WramUp:>" + shaders.shaderName);
                     yield return null;
                 }
             }
@@ -61,7 +61,7 @@ namespace Client.Manager
             {
                 initOK();
             }
-            Debug.Log("Init Shader OK!!!");
+            // Debug.Log("Init Shader OK!!!");
         }
 
         /// <summary>

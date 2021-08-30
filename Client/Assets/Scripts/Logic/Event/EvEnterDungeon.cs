@@ -31,7 +31,7 @@ namespace Client.Logic.Event
             var enterEvent = param as EnterDungeonEvent;
             if (enterEvent != null)
             {
-                Debug.Log("OnEnterDungeonOK---->>>chapterid:" + enterEvent.chapterid + " dungeonid:" + enterEvent.dungeonid);
+                // Debug.Log("OnEnterDungeonOK---->>>chapterid:" + enterEvent.chapterid + " dungeonid:" + enterEvent.dungeonid);
 
                 LogicConst.SceneType = SceneType.Dungeon;
                 logicMgr.InitBattleFsm();
@@ -42,7 +42,7 @@ namespace Client.Logic.Event
                     eventMgr.Initialize(dungeonData.events);
                     eventMgr.NewTurnEvent(delegate (Vector2 pos)
                     {
-                        Debug.Log("OnEnterDungeonOK event at " + pos + " execute ok!!!");
+                        // Debug.Log("OnEnterDungeonOK event at " + pos + " execute ok!!!");
                     });
                 }
                 //if (enterEvent.action != null) 

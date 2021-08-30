@@ -8,7 +8,7 @@ function UIHeroCtrl:Awake()
 
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	self.panelMgr:CreatePanel(self, UILayer.Common, UiNames.Hero, self.OnCreateOK)
-	logWarn("UIHeroCtrl.Awake--->>") 
+	-- logWarn("UIHeroCtrl.Awake--->>") 
 end
 
 --启动事件--
@@ -20,7 +20,7 @@ function UIHeroCtrl:OnCreateOK()
 		self.loopView = LuaUtil.GetComponent(scrollView.gameObject, ComponentNames.LoopListBox)
 		self.loopView:InitListView(self, totalCount, self.OnItemUpdate)
 	end
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 function UIHeroCtrl:OnItemUpdate(index)

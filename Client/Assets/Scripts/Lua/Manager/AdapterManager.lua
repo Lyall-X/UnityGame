@@ -12,7 +12,7 @@ function AdapterManager:Initialize()
 	self:AddAdapter(LevelType.Login, LoginAdapter:new())
 	self:AddAdapter(LevelType.Battle, BattleAdapter:new())
 
-	logWarn('AdapterManager:InitializeOK...')
+	-- logWarn('AdapterManager:InitializeOK...')
 end
 
 function AdapterManager:AddAdapter(level, adapter)

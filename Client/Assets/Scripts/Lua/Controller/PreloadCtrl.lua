@@ -38,7 +38,7 @@ function PreloadCtrl:PreloadAtlas(loadOK)
 	for i = 1, count do
 		local atName = mAtlasList[i]
 		resMgr:LoadAssetAsync(atName, nil, typeof(Sprite), function (objs)
-			logWarn('PreloadAtlas!!!:>'..atName)
+			-- logWarn('PreloadAtlas!!!:>'..atName)
 			if objs ~= nil then
 				local assetName = Path.GetFileNameWithoutExtension(atName)
                 componentMgr:AddComponent(ComponentNames.Atlas, assetName, objs)

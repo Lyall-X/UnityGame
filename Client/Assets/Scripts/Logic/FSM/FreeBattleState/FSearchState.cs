@@ -30,13 +30,13 @@ namespace Client.Logic.FSM.FreeBattleState
             myNpcData = npcDataMgr.GetNpcData(mynpcId.value);
             myNpcData.npcState = NpcState.Search;
 
-            GLogger.Log(mynpcId.value + " enter Search...");
+            // GLogger.Log(mynpcId.value + " enter Search...");
         }
 
         Vector3 FindBattlePos()
         {
             Vector3 currPos = embattlePosMgr.GetBattlePos();
-            GLogger.Gray("Find Battle Pos::>" + currPos + " npcid:>" + mynpcId.value);
+            // GLogger.Gray("Find Battle Pos::>" + currPos + " npcid:>" + mynpcId.value);
 
             var viewPortMargin = LogicConst.Viewport_Margin;
             if (myNpcData.npcType == NpcType.Hero)

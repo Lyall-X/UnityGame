@@ -8,12 +8,12 @@ local animatorList = nil
 function UIItemTipsCtrl:Awake()
 	animatorList = {}
 	panelMgr:CreatePanel(self, UILayer.Top, UiNames.ItemTips, self.OnCreateOK)
-	logWarn("UIItemTipsCtrl.Awake--->>")
+	-- logWarn("UIItemTipsCtrl.Awake--->>")
 end
 
 --启动事件--
 function UIItemTipsCtrl:OnCreateOK()
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --关闭事件--

@@ -19,7 +19,7 @@ function CtrlManager:Initialize()
 	self:AddCtrl(UiNames.ItemTips, require "UIController.UIItemTipsCtrl")
 	self:AddCtrl(UiNames.Bag, require "UIController.UIBagCtrl")
 	self:AddCtrl(UiNames.ChooseActor, require "UIController.UIChooseActorCtrl")
-	logWarn('CtrlManager:InitializeOK...')
+	-- logWarn('CtrlManager:InitializeOK...')
 end
 
 function CtrlManager:AddCtrl(name, ctrl)

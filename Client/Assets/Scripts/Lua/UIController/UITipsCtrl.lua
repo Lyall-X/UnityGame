@@ -4,14 +4,14 @@ local UITipsCtrl = class("UITipsCtrl", UIBaseCtrl)
 local panelMgr = nil
 
 function UITipsCtrl:Awake()
-	logWarn("UITipsCtrl:Awake--->>")
+	-- logWarn("UITipsCtrl:Awake--->>")
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Top, UiNames.Tips, self.OnCreateOK)
 end
 
 --启动事件--
 function UITipsCtrl:OnCreateOK()
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 function UITipsCtrl:ShowTips(content)

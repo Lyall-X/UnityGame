@@ -4,7 +4,7 @@ function PanelManager:Initialize()
 	self.mPanels = {}
 	self.mPrefabs = {}
 	self.mCtrls = {}
-	logWarn('PanelManager:InitializeOK...')
+	-- logWarn('PanelManager:InitializeOK...')
 end
 
 function PanelManager:GetPanelCtrl(uiCtrlName)
@@ -16,7 +16,7 @@ function PanelManager:OnUiShow(uiCtrlName)
 	if ctrl ~= nil and ctrl.OnShow ~= nil then
 		ctrl:OnShow()
 	end
-	logWarn("OnUiShow::>>"..uiCtrlName)
+	-- logWarn("OnUiShow::>>"..uiCtrlName)
 end
 
 function PanelManager:CreatePanel(ctrl, layer, abName, createOK)
@@ -35,7 +35,7 @@ function PanelManager:CreatePanel(ctrl, layer, abName, createOK)
 			self:CreatePanelInternal(ctrl, panelName, objs[0], parent, createOK)
 		end
 	end)
-	logWarn("CreatePanel::>>"..abName)
+	-- logWarn("CreatePanel::>>"..abName)
 end
 
 function PanelManager:CreatePanelInternal(ctrl, panelName, prefab, parent, createOK)
@@ -68,7 +68,7 @@ function PanelManager:ClosePanel(abName)
 		ctrl:Dispose()
 	end
 	self:DestroyPanel(abName)
-	logWarn('ClosePanel:>>'..abName)
+	-- logWarn('ClosePanel:>>'..abName)
 end
  
 return PanelManager

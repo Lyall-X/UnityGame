@@ -13,7 +13,7 @@ namespace Client.Logic.Event
     {
         public override void OnExecute(string param, Action moveNext)
         {
-            Debug.Log("EvSpawnEnemy...");
+            // // Debug.Log("EvSpawnEnemy...");
             List<string> teamids = param.ToList<string>(',');
             battleHandlerMgr.InitNpcTeams(teamids, moveNext);
         }

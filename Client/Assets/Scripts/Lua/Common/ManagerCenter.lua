@@ -27,7 +27,7 @@ function ManagerCenter:Initialize()
 	self:AddManager(ManagerNames.RedDot, require "Manager.RedDotManager", true)
 	self:AddManager(ManagerNames.Event, require "Manager.EventManager") -- 事件管理器,事件注册与广播
 
-	logWarn('ManagerCenter:InitializeOK...')
+	-- logWarn('ManagerCenter:InitializeOK...')
 end
 
 function ManagerCenter:AddManager(name, manager, needInit)

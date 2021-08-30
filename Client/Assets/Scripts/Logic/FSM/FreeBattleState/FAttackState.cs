@@ -27,7 +27,7 @@ namespace Client.Logic.FSM.FreeBattleState
             myNpcData = npcDataMgr.GetNpcData(mynpcId.value);
             myNpcData.npcState = NpcState.Attack;
 
-            GLogger.Log(mynpcId.value + " enter Attack...");
+            // GLogger.Log(mynpcId.value + " enter Attack...");
             NpcSkillAttack();
         }
 

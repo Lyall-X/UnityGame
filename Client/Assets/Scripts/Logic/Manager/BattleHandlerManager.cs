@@ -28,7 +28,7 @@ namespace Client.Logic.Manager
         public void Initialize(Vector2 pos)
         {
             currPos = pos;
-            GLogger.Yellow("Initialize Battle Pos====================:>>" + pos);
+            // GLogger.Yellow("Initialize Battle Pos====================:>>" + pos);
             embattlePosMgr.Initialize(pos);
         }
 
@@ -86,7 +86,7 @@ namespace Client.Logic.Manager
         internal void OnNpcSpawnOK(object param)
         {
             var npcId = param.ToLong();
-            Debug.Log("OnNpcSpawnOK:>" + npcId);
+            // Debug.Log("OnNpcSpawnOK:>" + npcId);
             var npcData = npcDataMgr.GetNpcData(npcId);
             if (npcData != null)
             {
@@ -102,7 +102,7 @@ namespace Client.Logic.Manager
                     {
                         npcData.npcState = NpcState.Ready;
                     }
-                    Debug.Log("OnNpcShowOK:>" + obj);
+                    // Debug.Log("OnNpcShowOK:>" + obj);
                 });
                 battleLogicMgr.SetNpcFaceDir(npcId, npcData.faceDir);
             }
@@ -136,7 +136,7 @@ namespace Client.Logic.Manager
         public void MoveNextTurn()
         {
             var teamCount = CurrHandler?.GetTeamCount();
-            GLogger.Gray("MoveNextTurn--------->>>" + teamCount);
+            // GLogger.Gray("MoveNextTurn--------->>>" + teamCount);
             if (teamCount == 0)
             {
                 if (npcDataMgr.IsAllNpcStateOK(NpcType.Hero, NpcState.Attack))

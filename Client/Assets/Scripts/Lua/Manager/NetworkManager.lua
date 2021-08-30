@@ -16,7 +16,7 @@ function NetworkManager:RegProtoPB()
         local buffer = addr:read "*a"
         addr:close()
         protobuf.register(buffer)
-        log("RegProto:>"..path)
+        -- log("RegProto:>"..path)
     end
 end
 
@@ -84,7 +84,7 @@ end
 function NetworkManager:Connect(ip, port, caller, onConnected, onDisconnected)
     if self.socket then
         self.socket:Connect(ip, port, caller, onConnected, onConnected)
-        log("Connect Server [ip]:"..ip.." [port]:"..port)
+        -- log("Connect Server [ip]:"..ip.." [port]:"..port)
     end
 end
 

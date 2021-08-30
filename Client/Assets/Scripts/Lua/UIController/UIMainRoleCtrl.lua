@@ -12,7 +12,7 @@ function UIMainRoleCtrl:Awake()
 
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.MainRole, self.OnCreateOK)
-	logWarn("UIMainRoleCtrl.Awake--->>")
+	-- logWarn("UIMainRoleCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -24,7 +24,7 @@ function UIMainRoleCtrl:OnCreateOK()
 		loopView = LuaUtil.GetComponent(scrollView.gameObject, ComponentNames.LoopListBox)
 		loopView:InitListView(self, count, self.OnItemUpdate)
 	end
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --滚动项更新--

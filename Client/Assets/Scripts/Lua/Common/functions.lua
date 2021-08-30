@@ -141,9 +141,9 @@ end
 --打印table--
 function table.print(t)
 	if t == nil then return end
-	log("========= content of table ===========")
+	-- log("========= content of table ===========")
     for key, value in pairs(t) do
-        log('('..tostring(key)..')=('..tostring(value)..')\n')
+        -- log('('..tostring(key)..')=('..tostring(value)..')\n')
     end
 end
 

@@ -7,7 +7,7 @@ function UILoginCtrl:Awake()
 	self.userModule = self.moduleMgr:GetModule(ModuleNames.User)
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	self.panelMgr:CreatePanel(self, UILayer.Common, UiNames.Login, self.OnCreateOK)
-	logWarn("UILoginCtrl.Awake--->>")
+	-- logWarn("UILoginCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -30,7 +30,7 @@ function UILoginCtrl:OnCreateOK()
 
 	PlayerPrefs.DeleteKey("roleid")
 	self:CheckExistCharacter()
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 function UILoginCtrl:RegEvents()
@@ -45,7 +45,7 @@ function UILoginCtrl:UnregEvents()
 end
 
 function UILoginCtrl:OnRefreshLoginOK(argv)
-	log('OnRefreshLoginOK')
+	-- log('OnRefreshLoginOK')
 end
 
 function UILoginCtrl:CheckExistCharacter()

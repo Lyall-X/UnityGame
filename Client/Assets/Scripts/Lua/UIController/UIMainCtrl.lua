@@ -20,7 +20,7 @@ end
 function UIMainCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Fixed, UiNames.Main, self.OnCreateOK)
-	logWarn("UIMainCtrl.Awake--->>")
+	-- logWarn("UIMainCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -30,7 +30,7 @@ function UIMainCtrl:OnCreateOK()
 		self.behaviour:AddClick(v.button, self, self.OnClick)
   end
 	Main.ShowUI(UiNames.Battle)
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --单击事件--
@@ -40,7 +40,7 @@ function UIMainCtrl:OnClick(go)
 end
 
 function UIMainCtrl:SelectImage(go)
-	local image = go.transform:Find('Image'):GetComponent('Image')
+	local image = go:GetComponent('Image')
 	if image ~= nil then
 		if btnSelectImage ~= nil then
 			btnSelectImage.material = nil
@@ -51,6 +51,14 @@ function UIMainCtrl:SelectImage(go)
 end
 
 function UIMainCtrl:ShowSelectUI(go)
+  for _, item in ipairs(bottomUI) do
+    if item.button == go then
+			item.ctrl:Show()
+		else
+			item.ctrl:Show(false)
+		end
+  end
+
 	for i = 1, #bottomUI do
 		local item = bottomUI[i]
 		if item.button == go then

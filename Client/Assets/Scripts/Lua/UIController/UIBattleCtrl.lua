@@ -18,7 +18,7 @@ function UIBattleCtrl:Awake()
 
 	local panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Battle, self.OnCreateOK)
-	logWarn("UIBattleCtrl.Awake--->>")
+	-- logWarn("UIBattleCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -40,7 +40,7 @@ function UIBattleCtrl:OnCreateOK()
 	end
 	self.behaviour:AddClick(self.btn_send, self, self.OnBtnSendClick)
 	self.behaviour:AddEndEdit(self.input_msg, self, self.OnEndEdit)
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 function UIBattleCtrl:OnEndEdit(inputObj)

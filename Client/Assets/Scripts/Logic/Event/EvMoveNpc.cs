@@ -45,7 +45,7 @@ namespace Client.Logic.Event
         private void OnEvMoveNpcOK(object param)
         {
             var npcid = (long)param;
-            GLogger.Green("OnEvMoveNpcOK:>" + npcid);
+            // GLogger.Green("OnEvMoveNpcOK:>" + npcid);
 
             var npcData = npcDataMgr.GetNpcData(npcid);
             if (npcData != null)
@@ -64,7 +64,7 @@ namespace Client.Logic.Event
             {
                 eventMgr.NewTurnEvent(delegate (Vector2 pos)
                 {
-                    Debug.Log("OnNpcMoveOK event at " + pos + " execute ok!!!");
+                    // Debug.Log("OnNpcMoveOK event at " + pos + " execute ok!!!");
                 });
             }
         }

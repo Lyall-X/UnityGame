@@ -12,7 +12,7 @@ function UIDungeonCtrl:Awake()
 
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Dungeon, self.OnCreateOK)
-	logWarn("UIDungeonCtrl.Awake--->>")
+	-- logWarn("UIDungeonCtrl.Awake--->>")
 end
 
 --启动事件--
@@ -24,7 +24,7 @@ function UIDungeonCtrl:OnCreateOK()
 		loopView = LuaUtil.GetComponent(scrollView.gameObject, ComponentNames.LoopListBox)
 		loopView:InitListView(self, totalCount, self.OnItemUpdate)
 	end
-	logWarn("OnCreateOK--->>"..self.gameObject.name)
+	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --单击事件--
