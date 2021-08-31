@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "SceneServer": {
+      "commandName": "Project"
+    }
+  }
+}

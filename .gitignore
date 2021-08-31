@@ -345,14 +345,14 @@ healthchecksdb
 /Tools/TableTool/.vs
 /Tools/TableTool/TableTool/obj
 /Server/FirLua/obj
-/Server/FirSango/obj
+/Server/SceneServer/obj
 /Server/Server/obj
 /Tools/StoryEditor/StoryEditor/obj
 /Tools/StoryEditor/StoryEditor/obj
 /.vs
 /Client/.vs
 /Server/FirLua/obj
-/Server/FirSango/obj
+/Server/SceneServer/obj
 /Server/Server/obj
 /Server/LibCommon/obj
 /Tools/TableTool/.vs
