@@ -5,7 +5,6 @@ local panelMgr = nil
 
 function UIStartGameCtrl:Awake()
   panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-  LogError("这里打印")
   panelMgr:CreatePanel(self, UILayer.Fixed, UiNames.StartGame, self.OnCreateOK)
 end
 

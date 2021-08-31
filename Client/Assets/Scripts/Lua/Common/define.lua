@@ -73,6 +73,7 @@ _G.ResultCode = Client.Define.ResultCode
 _G.EventNames = Client.Define.EventNames
 _G.CLuaComponent = Client.Component.CLuaComponent
 
+
 _G.NpcSex = { Man = 0, Woman = 1 }
 _G.MapType = { Scene = 0, Battle = 1 }
 _G.UILayer = 

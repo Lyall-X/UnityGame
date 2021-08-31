@@ -8,6 +8,7 @@ function CtrlManager:Initialize()
 	self:AddCtrl(CtrlNames.RedDot, require "Controller.RedDotController")
 	
 	--ui controller--
+	self:AddCtrl(UiNames.StartGame, require "UIController.UIStartGameCtrl")
 	self:AddCtrl(UiNames.Main, require "UIController.UIMainCtrl")
 	self:AddCtrl(UiNames.Loader, require "UIController.UILoaderCtrl")
 	self:AddCtrl(UiNames.Login, require "UIController.UILoginCtrl")

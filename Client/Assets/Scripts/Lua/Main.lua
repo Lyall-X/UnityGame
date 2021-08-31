@@ -50,7 +50,7 @@ end
 function Main.OnInitOK()
   -- 测试初始化场景为Main
 	-- levelMgr:LoadLevel(LevelType.Login)
-	levelMgr:LoadLevel(LevelType.StartGame)
+	levelMgr:LoadLevel(LevelType.Login)
 
 	local colorItem = getGlobalItemByKey("CommonWhite")
     -- logWarn('Main.OnInitOK--->>>'..colorItem.value)
@@ -64,13 +64,7 @@ end
 
 --初始化UI视图--
 function Main.InitUiCtrl()
-    for k,v in pairs(UiNames) do
-        local ctrlPath = "UIController/UI"..v..'Ctrl'
-        require (ctrlPath)
-        -- logWarn('Loading :>'..ctrlPath..' OK!')
-	end
 	_G.uiCanvas = GameObject.FindWithTag('UICanvas')
-    -- logWarn('Main.InitUiView--->>>OK')
 end
 
 --显示UI--
