@@ -4,6 +4,8 @@ tpsheetFileNames:
 - Assets/res/Atlas/UI/Bag/Bag.tpsheet
 - Assets/res/Atlas/UI/Battle/Battle.tpsheet
 - Assets/res/Atlas/UI/ChooseActor/ChooseActor.tpsheet
+- Assets/res/Atlas/UI/Common/Common.tpsheet
+- Assets/res/Atlas/UI/GameStart/GameStart.tpsheet
 - Assets/res/Atlas/UI/HeadIcon/HeadIcon.tpsheet
 - Assets/res/Atlas/UI/Loading/Loading.tpsheet
 - Assets/res/Atlas/UI/Main/Main.tpsheet
@@ -16,6 +18,8 @@ textureFileNames:
 - Assets/res/Atlas/UI/Bag/Bag.png
 - Assets/res/Atlas/UI/Battle/Battle.png
 - Assets/res/Atlas/UI/ChooseActor/ChooseActor.png
+- Assets/res/Atlas/UI/Common/Common.png
+- Assets/res/Atlas/UI/GameStart/GameStart.png
 - Assets/res/Atlas/UI/HeadIcon/HeadIcon.png
 - Assets/res/Atlas/UI/Loading/Loading.png
 - Assets/res/Atlas/UI/Main/Main.png
@@ -25,6 +29,8 @@ textureFileNames:
 - Assets/res/Atlas/UI/Task/Task.png
 - Assets/res/Atlas/UI/Tips/Tips.png
 normalmapFileNames:
+- 
+- 
 - 
 - 
 - 

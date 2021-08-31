@@ -82,7 +82,7 @@ function UIChooseActorCtrl:LoadRoleAsset(spriteName, func)
 		func(sprite)
 		return
 	end
-	local path = "Textures/MainRole/"..spriteName
+	local path = "Textures/StartGame/MainRole/"..spriteName
 	local resMgr = MgrCenter:GetManager(ManagerNames.Resource)
 	resMgr:LoadAssetAsync(path, { spriteName }, typeof(Sprite), function (objs)
 		if objs ~= nil and objs[0] ~= nil then

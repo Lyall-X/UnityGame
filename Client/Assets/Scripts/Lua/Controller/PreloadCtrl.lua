@@ -3,9 +3,9 @@ local CAtlas = require "Component/CAtlas"
 local PreloadCtrl = class("PreloadCtrl")
 
 local mAtlasList = {
-	"Atlas/UI/Shared/Shared", 
+	"Atlas/UI/Shared/Shared",
 	"Atlas/UI/Quality/Quality",
-  "Atlas/UI/HeadIcon/HeadIcon", 
+  "Atlas/UI/HeadIcon/HeadIcon",
 }
 
 local mActions = nil
@@ -38,7 +38,7 @@ function PreloadCtrl:PreloadAtlas(loadOK)
 	for i = 1, count do
 		local atName = mAtlasList[i]
 		resMgr:LoadAssetAsync(atName, nil, typeof(Sprite), function (objs)
-			-- logWarn('PreloadAtlas!!!:>'..atName)
+			logWarn('PreloadAtlas!!!:>'..atName)
 			if objs ~= nil then
 				local assetName = Path.GetFileNameWithoutExtension(atName)
                 componentMgr:AddComponent(ComponentNames.Atlas, assetName, objs)
