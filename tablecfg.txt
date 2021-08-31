@@ -1,8 +1,8 @@
 ExcelPath=Cehua/DataTable
 ClientData=Client/Assets/res/Tables
 ClientCodePath=Client/Assets/Scripts/Data
-ServerData=Server/Tables
-ServerCodePath=Server/SceneServer/Data
+ServerData=GameServer/Tables
+ServerCodePath=GameServer/SceneServer/Data
 TemplatePath=Resource/Templates
 ClientDLL=Assembly-CSharp.dll
 ServerDLL=SceneServer.dll
