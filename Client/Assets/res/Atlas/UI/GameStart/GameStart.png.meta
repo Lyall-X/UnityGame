@@ -86,6 +86,9 @@ TextureImporter:
   - first:
       213: 2346678773579277308
     second: _ui_icon_yiyoujuese
+  - first:
+      213: 1944330132572427894
+    second: _ui_black
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -183,6 +186,27 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: _ui_black
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 143
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 676511e34f5abfa10800000000000000
+      internalID: 1944330132572427894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: _ui_bm_fuwuqimingchengbg@24_0_24_0
       rect:
         serializedVersion: 2
@@ -192,7 +216,7 @@ TextureImporter:
         height: 78
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 17, y: 26, z: 15, w: 28}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -333,7 +357,7 @@ TextureImporter:
       name: _ui_bt_jiantou
       rect:
         serializedVersion: 2
-        x: 457
+        x: 509
         y: 148
         width: 34
         height: 45
@@ -459,8 +483,8 @@ TextureImporter:
       name: _ui_cjjs_bm_renzu
       rect:
         serializedVersion: 2
-        x: 493
-        y: 164
+        x: 517
+        y: 341
         width: 56
         height: 29
       alignment: 0
@@ -502,7 +526,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 517
-        y: 341
+        y: 310
         width: 56
         height: 29
       alignment: 0
@@ -633,7 +657,7 @@ TextureImporter:
         height: 269
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 117, y: 113, z: 115, w: 112}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -654,7 +678,7 @@ TextureImporter:
         height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 11, y: 8, z: 10, w: 8}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -773,7 +797,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ad4866222dd844645a7020b1807b33c5
     internalID: 0
     vertices: []
     indices: 

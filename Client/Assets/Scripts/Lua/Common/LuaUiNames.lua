@@ -1,5 +1,6 @@
 
 local uiNames = {
+	StartGame = 'StartGame',
 	Main = 'Main',
 	Loader = 'Loader',
 	Login = 'Login',

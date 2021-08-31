@@ -4,7 +4,7 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # https://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:56a287a2c9ab20c98502e997c4544f74:35e4d049d514b492009e3ef3dd499032:73f9454b4dd79351f0f7fe4f28dc7aa1$
+# $TexturePacker:SmartUpdate:604d52b857ba670673d4bec821fdea3c:8e4d7904766e99a11fef035786a0b869:73f9454b4dd79351f0f7fe4f28dc7aa1$
 #
 :format=40300
 :texture=GameStart.png
@@ -13,6 +13,7 @@
 :borders=disabled
 :alphahandling=ClearTransparentPixels
 
+_ui_black;457;143;50;50; 0.5;0.5; 0;0;0;0
 _ui_bm_fuwuqimingchengbg@24_0_24_0;464;292;51;78; 0.5;0.5; 0;0;0;0
 _ui_bm_gonggao;47;3;89;42; 0.5;0.5; 0;0;0;0
 _ui_bm_mingzibg@20_19_19_19;138;4;42;41; 0.5;0.5; 0;0;0;0
@@ -20,15 +21,15 @@ _ui_bm_touzi;360;365;63;65; 0.5;0.5; 0;0;0;0
 _ui_bt_007_up;280;257;94;94; 0.5;0.5; 0;0;0;0
 _ui_bt_008_up;280;433;79;78; 0.5;0.5; 0;0;0;0
 _ui_bt_gonggao;376;275;86;88; 0.5;0.5; 0;0;0;0
-_ui_bt_jiantou;457;148;34;45; 0.5;0.5; 0;0;0;0
+_ui_bt_jiantou;509;148;34;45; 0.5;0.5; 0;0;0;0
 _ui_bt_kaishiyouxi;365;29;353;110; 0.5;0.5; 0;0;0;0
 _ui_bt_nan;280;353;78;78; 0.5;0.5; 0;0;0;0
 _ui_bt_nv;457;195;78;78; 0.5;0.5; 0;0;0;0
 _ui_cjjs_bm_gou;1;1;44;44; 0.5;0.5; 0;0;0;0
 _ui_cjjs_bm_mozu;182;16;57;29; 0.5;0.5; 0;0;0;0
-_ui_cjjs_bm_renzu;493;164;56;29; 0.5;0.5; 0;0;0;0
+_ui_cjjs_bm_renzu;517;341;56;29; 0.5;0.5; 0;0;0;0
 _ui_cjjs_bm_wenbenbg;425;372;385;58; 0.5;0.5; 0;0;0;0
-_ui_cjjs_bm_xianzu;517;341;56;29; 0.5;0.5; 0;0;0;0
+_ui_cjjs_bm_xianzu;517;310;56;29; 0.5;0.5; 0;0;0;0
 _ui_cjjs_bm_xuanzhongxiaoguo;1;47;206;193; 0.5;0.5; 0;0;0;0
 _ui_icon_mozhu;209;126;122;114; 0.5;0.5; 0;0;0;0
 _ui_icon_renzhu;241;10;122;114; 0.5;0.5; 0;0;0;0
