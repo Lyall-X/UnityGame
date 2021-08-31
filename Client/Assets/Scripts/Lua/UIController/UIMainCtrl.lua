@@ -25,6 +25,7 @@ end
 
 --启动事件--
 function UIMainCtrl:OnCreateOK()
+	self:SetUiLayout()
   self:InitBottomUI()
   for _, v in ipairs(bottomUI) do
 		self.behaviour:AddClick(v.button, self, self.OnClick)

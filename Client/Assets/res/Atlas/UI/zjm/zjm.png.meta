@@ -330,7 +330,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -402,12 +402,12 @@ TextureImporter:
       name: ui_bm_chongwu
       rect:
         serializedVersion: 2
-        x: 112
-        y: 97
-        width: 109
-        height: 126
-      alignment: 9
-      pivot: {x: 0.5045872, y: 0.48412699}
+        x: 1
+        y: 217
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -423,12 +423,12 @@ TextureImporter:
       name: ui_bm_fuli
       rect:
         serializedVersion: 2
-        x: 264
-        y: 255
-        width: 112
-        height: 112
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5625}
+        x: 1
+        y: 65
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -465,12 +465,12 @@ TextureImporter:
       name: ui_bm_juese
       rect:
         serializedVersion: 2
-        x: 1
-        y: 96
-        width: 109
-        height: 127
-      alignment: 9
-      pivot: {x: 0.51376146, y: 0.48818898}
+        x: 153
+        y: 217
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -528,12 +528,12 @@ TextureImporter:
       name: ui_bm_xianlv
       rect:
         serializedVersion: 2
-        x: 1
-        y: 225
+        x: 153
+        y: 65
         width: 150
-        height: 142
-      alignment: 9
-      pivot: {x: 0.5, y: 0.471831}
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -549,12 +549,12 @@ TextureImporter:
       name: ui_bm_zhandou
       rect:
         serializedVersion: 2
-        x: 153
-        y: 251
-        width: 109
-        height: 116
-      alignment: 9
-      pivot: {x: 0.49541286, y: 0.5344828}
+        x: 305
+        y: 217
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -570,12 +570,12 @@ TextureImporter:
       name: ui_bm_zhucheng
       rect:
         serializedVersion: 2
-        x: 223
-        y: 135
-        width: 108
-        height: 114
-      alignment: 9
-      pivot: {x: 0.5277778, y: 0.5350877}
+        x: 305
+        y: 65
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
