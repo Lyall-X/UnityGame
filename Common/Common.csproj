@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy $(TargetPath) $(SolutionDir)..\Server\Libraries&#xD;&#xA;copy $(TargetPath) $(SolutionDir)..\Client\Assets\Plugins&#xD;&#xA;copy $(TargetPath) $(SolutionDir)..\Toolkit\Libraries&#xD;&#xA;&#xD;&#xA;copy $(ProjectDir)Define\CommonEnum.cs $(SolutionDir)..\Client\Assets\Scripts\Data&#xD;&#xA;copy $(ProjectDir)Define\CommonEnum.cs $(SolutionDir)..\Server\FirSango\Data&#xD;&#xA;" />
+    <Exec Command="copy $(TargetPath) $(SolutionDir)..\Server\Libraries&#xD;&#xA;copy $(TargetPath) $(SolutionDir)..\Client\Assets\Plugins&#xD;&#xA;copy $(TargetPath) $(SolutionDir)..\Toolkit\Libraries&#xD;&#xA;&#xD;&#xA;copy $(ProjectDir)Define\CommonEnum.cs $(SolutionDir)..\Client\Assets\Scripts\Data&#xD;&#xA;copy $(ProjectDir)Define\CommonEnum.cs $(SolutionDir)..\Server\SceneServer\Data&#xD;&#xA;" />
   </Target>
 
 </Project>

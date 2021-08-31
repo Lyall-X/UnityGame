@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/FirServer/bin/Debug/netcoreapp2.1/FirServer.dll",
+            "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp2.1/Server.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/FirServer",
+            "cwd": "${workspaceFolder}/Server",
             "console": "internalConsole",
             "stopAtEntry": false
         },

@@ -1,5 +1,5 @@
 protodir=Protos
 protopb=Client/Assets/res/Datas/LuaPB
-protocs=Client/Assets/Scripts/Network/ProtoCS|Server/FirSango/ProtoCS
+protocs=Client/Assets/Scripts/Network/ProtoCS|Server/SceneServer/ProtoCS
 file=common.proto
 file=pbuser.proto
