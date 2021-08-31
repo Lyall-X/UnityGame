@@ -23,7 +23,7 @@ namespace Server
             IsRunning = false;
 
             repository = LogManager.CreateRepository("NETCoreRepository");
-            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
+            XmlConfigurator.Configure(repository, new FileInfo("config/log4net.config"));
             logger = LogManager.GetLogger(repository.Name, typeof(AppServer));
 
             ManagementCenter.Initialize();
