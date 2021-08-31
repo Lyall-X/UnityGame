@@ -19,7 +19,7 @@ public class AppConst
     public const int RoleSortLayer = 3;                         //角色层渲染排序值
     public const int BattleTempSortingOrder = 100;              //战斗时临时排序
 
-    public const string AppName = "Client";                   //应用程序名称
+    public const string AppName = "UnityGame";                   //应用程序名称
     public const string AppPrefix = AppName + "_";              //应用程序前缀
     public const string ExtName = ".unity3d";                   //素材扩展名
     public const string LuaTempDir = "LuaTemp/";                //临时目录
