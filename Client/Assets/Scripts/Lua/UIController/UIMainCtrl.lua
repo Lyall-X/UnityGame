@@ -8,7 +8,7 @@ local panelMgr = nil
 function UIMainCtrl:InitBottomUI()
 	local ctrlMgr = MgrCenter:GetManager(ManagerNames.Ctrl)
 	bottomUI = {
-		{ button = self.btn_fight , ctrl = ctrlMgr:GetCtrl(UiNames.Battle), aa = nil },
+		{ button = self.btn_fight , ctrl = ctrlMgr:GetCtrl(UiNames.Battle) },
 		{ button = self.btn_city , ctrl = ctrlMgr:GetCtrl(UiNames.Dungeon) },
 		{ button = self.btn_role , ctrl = ctrlMgr:GetCtrl(UiNames.MainRole) },
 		{ button = self.btn_forging , ctrl = ctrlMgr:GetCtrl(UiNames.Bag) },

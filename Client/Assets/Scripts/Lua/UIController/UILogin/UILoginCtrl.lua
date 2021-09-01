@@ -1,6 +1,5 @@
 local UIBaseCtrl = require "UIController/UIBaseCtrl"
 local UILoginCtrl = class("UILoginCtrl", UIBaseCtrl)
-TestFunc = 1
 
 function UILoginCtrl:Initialize()
   self.panelMgr = nil
@@ -79,7 +78,7 @@ end
 
 --创建角色--
 function UILoginCtrl:OnCreateClick(go)
-	Main.ShowUI(UiNames.ChooseActor)
+	Main.ShowUI(UiNames.UILogin.StartGame)
 	self.gameObject:SetActive(false)
 end
 

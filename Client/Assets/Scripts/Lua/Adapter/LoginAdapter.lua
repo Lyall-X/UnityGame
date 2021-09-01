@@ -1,7 +1,7 @@
 local LoginAdapter = class("LoginAdapter")
 
 function LoginAdapter:OnEnterLevel(execOK)
-	Main.ShowUI(UiNames.UILogin.Login)
+	Main.ShowUI(UiNames.UILogin.StartGame)
 	Main.CloseUI(UiNames.Loader)
 	if execOK ~= nil then
 		execAction(execOK)
