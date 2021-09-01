@@ -7,7 +7,7 @@ local loaderCallback = nil
 
 function UILoaderCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Top, UiNames.Loader, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Top, self.OnCreateOK)
 	-- logWarn("UILoaderCtrl.Awake--->>")
 end
 
@@ -57,7 +57,7 @@ end
 
 --关闭事件--
 function UILoaderCtrl:Close()
-	panelMgr:ClosePanel(UiNames.Loader)
+	panelMgr:ClosePanel(self)
 end
 
 return UILoaderCtrl

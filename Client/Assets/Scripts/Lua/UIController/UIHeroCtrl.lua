@@ -7,7 +7,7 @@ function UIHeroCtrl:Awake()
 	self.heroModule:Initialize()
 
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	self.panelMgr:CreatePanel(self, UILayer.Common, UiNames.Hero, self.OnCreateOK)
+	self.panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UIHeroCtrl.Awake--->>") 
 end
 
@@ -51,7 +51,7 @@ end
 
 --关闭事件--
 function UIHeroCtrl:Close()
-	self.panelMgr:ClosePanel(UiNames.Skill)
+	self.panelMgr:ClosePanel(self)
 end
 
 return UIHeroCtrl

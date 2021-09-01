@@ -1,12 +1,16 @@
 local UIBaseCtrl = require "UIController/UIBaseCtrl"
 local UILoginCtrl = class("UILoginCtrl", UIBaseCtrl)
+TestFunc = 1
 
+function UILoginCtrl:Initialize()
+  self.panelMgr = nil
+end
 function UILoginCtrl:Awake()
 	self.loginCtrl = nil
 	self.moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
 	self.userModule = self.moduleMgr:GetModule(ModuleNames.User)
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	self.panelMgr:CreatePanel(self, UILayer.Common, UiNames.UILogin.Login, self.OnCreateOK)
+	self.panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UILoginCtrl.Awake--->>")
 end
 
@@ -98,7 +102,7 @@ end
 
 --关闭事件--
 function UILoginCtrl:Close()
-	self.panelMgr:ClosePanel(UiNames.UILogin.Login)
+	self.panelMgr:ClosePanel(self)
 end
 
 return UILoginCtrl

@@ -6,7 +6,7 @@ local panelMgr = nil
 function UITipsCtrl:Awake()
 	-- logWarn("UITipsCtrl:Awake--->>")
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Top, UiNames.Tips, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Top, self.OnCreateOK)
 end
 
 --启动事件--
@@ -45,7 +45,7 @@ end
 
 --关闭事件--
 function UITipsCtrl:Close()
-	panelMgr:ClosePanel(UiNames.Tips)
+	panelMgr:ClosePanel(self)
 end
 
 return UITipsCtrl

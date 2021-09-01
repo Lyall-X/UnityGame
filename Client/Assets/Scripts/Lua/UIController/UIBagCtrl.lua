@@ -6,7 +6,7 @@ local panelMgr = nil
 
 function UIBagCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Bag, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UIBagCtrl.Awake--->>")
 end
 
@@ -52,7 +52,7 @@ end
 
 --关闭事件--
 function UIBagCtrl:Close()
-	panelMgr:ClosePanel(UiNames.Bag)
+	panelMgr:ClosePanel(self)
 end
 
 return UIBagCtrl

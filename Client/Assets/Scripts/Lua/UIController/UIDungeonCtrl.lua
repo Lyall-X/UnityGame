@@ -11,7 +11,7 @@ function UIDungeonCtrl:Awake()
 	dungeonModule:Initialize()
 
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Dungeon, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UIDungeonCtrl.Awake--->>")
 end
 
@@ -102,7 +102,7 @@ end
 
 --关闭事件--
 function UIDungeonCtrl:Close()
-	panelMgr:ClosePanel(UiNames.Dungeon)
+	panelMgr:ClosePanel(self)
 end
 
 

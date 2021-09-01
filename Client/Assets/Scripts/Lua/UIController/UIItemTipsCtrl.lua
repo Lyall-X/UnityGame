@@ -7,7 +7,7 @@ local animatorList = nil
 
 function UIItemTipsCtrl:Awake()
 	animatorList = {}
-	panelMgr:CreatePanel(self, UILayer.Top, UiNames.ItemTips, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Top, self.OnCreateOK)
 	-- logWarn("UIItemTipsCtrl.Awake--->>")
 end
 
@@ -22,7 +22,7 @@ function UIItemTipsCtrl:Close()
 	animatorList = nil
 	self.gameObject = nil
 
-	panelMgr:ClosePanel(UiNames.ItemTips)
+	panelMgr:ClosePanel(self)
 end
 
 function UIItemTipsCtrl:ShowUI()

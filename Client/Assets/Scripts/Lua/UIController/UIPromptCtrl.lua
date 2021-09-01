@@ -15,7 +15,7 @@ local prefabItem
 
 function UIPromptCtrl.Awake()
 	-- logWarn("UIPromptCtrl.Awake--->>")
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Prompt, this.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, this.OnCreateOK)
 end
 
 --启动事件--
@@ -74,7 +74,7 @@ function UIPromptCtrl.OnClick(go)
 		this.TestSendSproto()
     end
     ]]
-    panelMgr:ClosePanel('Prompt')
+	panelMgr:ClosePanel(self)
 	-- logWarn("OnClick---->>>"..go.name)
 end
 
@@ -190,7 +190,7 @@ end
 
 --关闭事件--
 function UIPromptCtrl.Close()
-	panelMgr:ClosePanel(UiNames.Prompt)
+	panelMgr:ClosePanel(self)
 end
 
 return this

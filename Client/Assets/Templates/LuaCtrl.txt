@@ -5,7 +5,7 @@ local panelMgr = nil
 
 function UI[NAME]Ctrl:Awake()
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.[NAME], self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	logWarn("UI[NAME]Ctrl.Awake--->>")
 end
 
@@ -22,7 +22,7 @@ end
 
 --关闭事件--
 function UI[NAME]Ctrl:Close()
-	self.panelMgr:ClosePanel(UiNames.[NAME])
+	self.panelMgr:ClosePanel(self)
 end
 
 return UI[NAME]Ctrl

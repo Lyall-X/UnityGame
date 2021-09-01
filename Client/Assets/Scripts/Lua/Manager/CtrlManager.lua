@@ -11,10 +11,16 @@ function CtrlManager:Initialize()
   for key,v in pairs(UiNames) do
     if type(v) == "table" then
       for panel,_ in pairs(v) do
-        self:AddCtrl(key.."/"..panel, require("UIController."..key..".UI"..panel.."Ctrl"))
+        local ctrl = require("UIController."..key..".UI"..panel.."Ctrl")
+        ctrl.abName    = "Prefabs/UI/"..key.."/"..panel
+        ctrl.panelName = panel.."Panel"
+        self:AddCtrl(panel, ctrl)
       end
     else
-      self:AddCtrl(key, require("UIController.UI"..key.."Ctrl"))
+      local ctrl = require("UIController.UI"..key.."Ctrl")
+      ctrl.abName    = "Prefabs/UI/"..key
+      ctrl.panelName = key.."Panel"
+      self:AddCtrl(key, ctrl)
     end
   end
 end

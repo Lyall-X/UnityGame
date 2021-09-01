@@ -1,5 +1,7 @@
 local UIBaseCtrl = class("UIBaseCtrl")
 UIBaseCtrl.gameObject = nil
+UIBaseCtrl.abName = nil
+UIBaseCtrl.panelName = nil
 
 function UIBaseCtrl:Awake()
 end

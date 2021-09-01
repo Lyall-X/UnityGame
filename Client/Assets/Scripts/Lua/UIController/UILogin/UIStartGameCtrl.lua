@@ -5,7 +5,7 @@ local panelMgr = nil
 
 function UIStartGameCtrl:Awake()
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.UILogin.StartGame, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	logWarn("UIStartGameCtrl.Awake--->>")
 end
 
@@ -22,7 +22,7 @@ end
 
 --关闭事件--
 function UIStartGameCtrl:Close()
-	self.panelMgr:ClosePanel(UiNames.StartGame)
+	self.panelMgr:ClosePanel(self)
 end
 
 return UIStartGameCtrl

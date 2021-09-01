@@ -17,7 +17,7 @@ function UIBattleCtrl:Awake()
 	gmCmdCtrl = ctrlMgr:GetCtrl(CtrlNames.GMCmd)
 
 	local panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.Battle, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UIBattleCtrl.Awake--->>")
 end
 
@@ -162,7 +162,7 @@ function UIBattleCtrl:Close()
 	if not isnil(loopView) then
 		loopView:Dispose()
 	end
-	panelMgr:ClosePanel(UiNames.Battle)
+	panelMgr:ClosePanel(self)
 end
 
 return UIBattleCtrl

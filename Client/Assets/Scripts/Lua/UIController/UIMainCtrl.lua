@@ -19,7 +19,7 @@ end
 
 function UIMainCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Fixed, UiNames.Main, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Fixed, self.OnCreateOK)
 	-- logWarn("UIMainCtrl.Awake--->>")
 end
 
@@ -65,7 +65,7 @@ end
 
 --关闭事件--
 function UIMainCtrl:Close()
-	panelMgr:ClosePanel(UiNames.Main)
+	panelMgr:ClosePanel(self)
 end
 
 return UIMainCtrl

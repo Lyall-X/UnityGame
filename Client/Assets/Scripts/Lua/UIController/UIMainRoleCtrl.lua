@@ -11,7 +11,7 @@ function UIMainRoleCtrl:Awake()
 	mainRoleModule:Initialize()
 
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.MainRole, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UIMainRoleCtrl.Awake--->>")
 end
 
@@ -97,7 +97,7 @@ end
 
 --关闭事件--
 function UIMainRoleCtrl:Close()
-	panelMgr:ClosePanel(UiNames.MainRole)
+	panelMgr:ClosePanel(self)
 end
 
 return UIMainRoleCtrl

@@ -8,7 +8,7 @@ local panelMgr = nil
 
 function UIChooseActorCtrl:Awake()
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	panelMgr:CreatePanel(self, UILayer.Common, UiNames.ChooseActor, self.OnCreateOK)
+	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
 	-- logWarn("UIChooseActorCtrl.Awake--->>")
 end
 
@@ -95,7 +95,7 @@ end
 
 --关闭事件--
 function UIChooseActorCtrl:Close()
-	panelMgr:ClosePanel(UiNames.ChooseActor)
+	panelMgr:ClosePanel(self)
 	roleSex = nil
 	roleSprites = nil
 	vocation = nil
