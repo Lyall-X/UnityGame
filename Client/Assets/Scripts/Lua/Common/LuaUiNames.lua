@@ -1,9 +1,12 @@
 
 local uiNames = {
-	StartGame = 'StartGame',
+  UILogin = {
+	  StartGame = 'StartGame',
+    Login = 'Login',
+    -- Notice = 'Notice'
+  },
 	Main = 'Main',
 	Loader = 'Loader',
-	Login = 'Login',
 	MainRole = 'MainRole',
 	Battle = 'Battle',
 	Hero = 'Hero',

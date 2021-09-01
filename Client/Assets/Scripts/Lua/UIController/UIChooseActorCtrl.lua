@@ -32,7 +32,7 @@ function UIChooseActorCtrl:OnCreateClick(gameObj)
 	PlayerPrefs.SetInt("roleid", vocationToRoleid(vocation))
 
 	local ctrlMgr = MgrCenter:GetManager(ManagerNames.Ctrl)
-	local loginCtrl = ctrlMgr:GetCtrl(UiNames.Login)
+	local loginCtrl = ctrlMgr:GetCtrl(UiNames.UILogin.Login)
 	if loginCtrl ~= nil then
 		loginCtrl:OnShow()
 	end

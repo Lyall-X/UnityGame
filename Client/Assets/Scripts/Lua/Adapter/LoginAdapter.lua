@@ -1,7 +1,7 @@
 local LoginAdapter = class("LoginAdapter")
 
 function LoginAdapter:OnEnterLevel(execOK)
-	Main.ShowUI(UiNames.Login)
+	Main.ShowUI(UiNames.UILogin.Login)
 	Main.CloseUI(UiNames.Loader)
 	if execOK ~= nil then
 		execAction(execOK)
@@ -25,7 +25,7 @@ function LoginAdapter:StartLogin()
 	if levelMgr ~= nil then
 		levelMgr:LoadLevel(LevelType.Main)
 	end
-	Main.CloseUI(UiNames.Login)
+	Main.CloseUI(UiNames.UILogin.Login)
 end
 
 function LoginAdapter:OnConnectOK(disReason)

@@ -31,12 +31,13 @@ return uiNames;
             string fileName = Path.GetFileNameWithoutExtension(pathName);
             if (resourceFile.EndsWith("LuaCtrl.txt"))
             {
+                fileName = fileName.Replace("UI", string.Empty);
                 fileName = fileName.Replace("Ctrl", string.Empty);
             }
             content = content.Replace("[NAME]", fileName);
             content = content.Replace("[TIME]", System.DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss dddd"));
-
-            var writer = new StreamWriter(fullName, false, System.Text.Encoding.UTF8);
+            System.Text.Encoding outputEnc = new System.Text.UTF8Encoding(false);
+            var writer = new StreamWriter(fullName, false, outputEnc);
             writer.Write(content);
             writer.Close();
 

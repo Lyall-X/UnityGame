@@ -72,8 +72,9 @@ function Main.ShowUI(uiCtrlName)
 	local ctrl = ctrlMgr:GetCtrl(uiCtrlName)
 	if ctrl ~= nil then
 		ctrl:Awake()
+  else
+	  logError('Main.ShowUI, Ctrl不存在:>'..uiCtrlName)
 	end
-	-- logWarn('Main.ShowUI:>'..uiCtrlName)
 end
 
 --关闭UI--

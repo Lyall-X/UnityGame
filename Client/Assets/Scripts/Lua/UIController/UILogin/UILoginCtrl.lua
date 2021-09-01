@@ -6,7 +6,7 @@ function UILoginCtrl:Awake()
 	self.moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
 	self.userModule = self.moduleMgr:GetModule(ModuleNames.User)
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-	self.panelMgr:CreatePanel(self, UILayer.Common, UiNames.Login, self.OnCreateOK)
+	self.panelMgr:CreatePanel(self, UILayer.Common, UiNames.UILogin.Login, self.OnCreateOK)
 	-- logWarn("UILoginCtrl.Awake--->>")
 end
 
@@ -98,7 +98,7 @@ end
 
 --关闭事件--
 function UILoginCtrl:Close()
-	self.panelMgr:ClosePanel(UiNames.Login)
+	self.panelMgr:ClosePanel(UiNames.UILogin.Login)
 end
 
 return UILoginCtrl
