@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.4.0</string>
         <key>fileName</key>
-        <string>E:/Unity/UnityGame/Client/Assets/res/Atlas/UI/GameStart/GameStart.tps</string>
+        <string>E:/Unity/UnityGame/Client/Assets/res/Atlas/UI/Login/Login.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -150,7 +150,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>GameStart.tpsheet</filename>
+                <filename>Login.tpsheet</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -201,7 +201,7 @@
         <map type="IndividualSpriteSettingsMap"/>
         <key>fileList</key>
         <array>
-            <filename>E:/Unity/UnityGame/Client/Assets/Textures/UI/GameStart</filename>
+            <filename>E:/Unity/UnityGame/Client/Assets/Textures/UI/Login</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

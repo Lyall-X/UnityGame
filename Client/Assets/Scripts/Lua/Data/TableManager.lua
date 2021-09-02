@@ -23,6 +23,8 @@ function TableManager.Initialize()
     TableManager.itemTable:Initialize()
     TableManager.qualityTable = require 'Data.Tables.QualityTable'
     TableManager.qualityTable:Initialize()
+    TableManager.noticeTable = require 'Data.Tables.NoticeTable'
+    TableManager.noticeTable:Initialize()
 ---[APPEND_VAR]---
 end
 

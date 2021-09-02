@@ -3,11 +3,6 @@ namespace Common.Data
 	public class TableManager : BaseObject
 	{
 		private static TableManager instance;
-    	public GlobalConfigTable globalConfigTable;
-    	public ItemTable itemTable;
-    	public NpcTable npcTable;
-    	public ObjectPoolTable objectPoolTable;
-    	public QualityTable qualityTable;
 ///[APPEND_VAR]
 
 		public static TableManager Create()
@@ -32,16 +27,6 @@ namespace Common.Data
 
 		public void LoadTables() 
 		{
-        	globalConfigTable = LoadData<GlobalConfigTable>("Tables/GlobalConfigTable.bytes");
-        	globalConfigTable.Initialize();
-        	itemTable = LoadData<ItemTable>("Tables/ItemTable.bytes");
-        	itemTable.Initialize();
-        	npcTable = LoadData<NpcTable>("Tables/NpcTable.bytes");
-        	npcTable.Initialize();
-        	objectPoolTable = LoadData<ObjectPoolTable>("Tables/ObjectPoolTable.bytes");
-        	objectPoolTable.Initialize();
-        	qualityTable = LoadData<QualityTable>("Tables/QualityTable.bytes");
-        	qualityTable.Initialize();
 ///[APPEND_TABLE]
 		}
 

@@ -1,9 +1,6 @@
 local UIBaseCtrl = require "UIController/UIBaseCtrl"
 local UILoginCtrl = class("UILoginCtrl", UIBaseCtrl)
 
-function UILoginCtrl:Initialize()
-  self.panelMgr = nil
-end
 function UILoginCtrl:Awake()
 	self.loginCtrl = nil
 	self.moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
@@ -29,7 +26,6 @@ function UILoginCtrl:OnCreateOK()
 		rect.sizeDelta = Vector2.zero
 		rect.anchoredPosition3D = Vector3.zero
 	end
-	self.txt_version.text = LuaHelper.GetVersionInfo()
 
 	PlayerPrefs.DeleteKey("roleid")
 	self:CheckExistCharacter()

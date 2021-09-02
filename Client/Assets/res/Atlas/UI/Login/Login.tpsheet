@@ -4,10 +4,10 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # https://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:604d52b857ba670673d4bec821fdea3c:8e4d7904766e99a11fef035786a0b869:73f9454b4dd79351f0f7fe4f28dc7aa1$
+# $TexturePacker:SmartUpdate:a096cb9317b21f7c6bb24d81ff3c39fa:8e4d7904766e99a11fef035786a0b869:648569642f8de0dbb7d175d5a02064d4$
 #
 :format=40300
-:texture=GameStart.png
+:texture=Login.png
 :size=1024x512
 :pivotpoints=enabled
 :borders=disabled

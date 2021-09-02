@@ -2,8 +2,8 @@ syntax = "proto3";
 package pb_common;
 
 enum ResultCode {
-	Success = 0;             //操作成功
-	Failed = 1;              //操作失败
+	Success = 0;
+	Failed = 1;
 }
 
 message UserInfo {

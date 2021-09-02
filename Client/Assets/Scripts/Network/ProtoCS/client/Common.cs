@@ -44,13 +44,7 @@ namespace PbCommon {
   }
   #region Enums
   public enum ResultCode {
-    /// <summary>
-    /// 操作成功
-    /// </summary>
     [pbr::OriginalName("Success")] Success = 0,
-    /// <summary>
-    /// 操作失败
-    /// </summary>
     [pbr::OriginalName("Failed")] Failed = 1,
   }
 

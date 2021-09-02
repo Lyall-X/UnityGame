@@ -20,7 +20,7 @@ namespace GameLibs.SceneServer
             InitManager();
             RegHandler();
             TestTable();
-            //TestDBServer();     //需要安装Mongodb
+            TestDBServer();     //需要安装Mongodb
         }
 
         ///初始化管理器

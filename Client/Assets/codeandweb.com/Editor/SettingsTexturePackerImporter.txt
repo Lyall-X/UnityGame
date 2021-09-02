@@ -5,9 +5,9 @@ tpsheetFileNames:
 - Assets/res/Atlas/UI/Battle/Battle.tpsheet
 - Assets/res/Atlas/UI/ChooseActor/ChooseActor.tpsheet
 - Assets/res/Atlas/UI/Common/Common.tpsheet
-- Assets/res/Atlas/UI/GameStart/GameStart.tpsheet
 - Assets/res/Atlas/UI/HeadIcon/HeadIcon.tpsheet
 - Assets/res/Atlas/UI/Loading/Loading.tpsheet
+- Assets/res/Atlas/UI/Login/Login.tpsheet
 - Assets/res/Atlas/UI/Main/Main.tpsheet
 - Assets/res/Atlas/UI/MainPanel/zjm.tpsheet
 - Assets/res/Atlas/UI/Quality/Quality.tpsheet
@@ -19,9 +19,9 @@ textureFileNames:
 - Assets/res/Atlas/UI/Battle/Battle.png
 - Assets/res/Atlas/UI/ChooseActor/ChooseActor.png
 - Assets/res/Atlas/UI/Common/Common.png
-- Assets/res/Atlas/UI/GameStart/GameStart.png
 - Assets/res/Atlas/UI/HeadIcon/HeadIcon.png
 - Assets/res/Atlas/UI/Loading/Loading.png
+- Assets/res/Atlas/UI/Login/Login.png
 - Assets/res/Atlas/UI/Main/Main.png
 - Assets/res/Atlas/UI/MainPanel/zjm.png
 - Assets/res/Atlas/UI/Quality/Quality.png
