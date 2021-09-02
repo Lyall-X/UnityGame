@@ -2,97 +2,109 @@ local UIBaseCtrl = require "UIController/UIBaseCtrl"
 local UILoginCtrl = class("UILoginCtrl", UIBaseCtrl)
 
 function UILoginCtrl:Awake()
-	self.loginCtrl = nil
-	self.moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
-	self.userModule = self.moduleMgr:GetModule(ModuleNames.User)
+	local moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
+	self.userModule = moduleMgr:GetModule(ModuleNames.User)
+	self.mainRoleModule = moduleMgr:GetModule(ModuleNames.MainRole)
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
+	local adapterMgr = MgrCenter:GetManager(ManagerNames.Adapter)
+	self.adapter = adapterMgr:GetAdapter(LevelType.Login)
+  self.roleIndex = NpcRole.Human
+  self.sexIndex = NpcSex.Man
+
 	self.panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
-	-- logWarn("UILoginCtrl.Awake--->>")
 end
 
 --启动事件--
 function UILoginCtrl:OnCreateOK()
-	self:RegEvents()
-	local adapterMgr = MgrCenter:GetManager(ManagerNames.Adapter)
-	self.loginCtrl = adapterMgr:GetAdapter(LevelType.Login)
+	self:SetUiLayout()
+  self:OnShowUI()
 
-	self.behaviour:AddClick(self.btn_Start, self, self.OnStartClick)
-	self.behaviour:AddClick(self.btn_Create, self, self.OnCreateClick)
-
-	local rect = self.gameObject:GetComponent('RectTransform')
-	if rect ~= nil then
-		rect.anchorMin = Vector2.zero
-		rect.anchorMax = Vector2.one
-		rect.sizeDelta = Vector2.zero
-		rect.anchoredPosition3D = Vector3.zero
-	end
-
-	PlayerPrefs.DeleteKey("roleid")
-	self:CheckExistCharacter()
-	-- logWarn("OnCreateOK--->>"..self.gameObject.name)
-end
-
-function UILoginCtrl:RegEvents()
-	AddEvent("login.onRefreshUI", function (...)
-		local argv = {...}
-		self:OnRefreshLoginOK(argv[1]) 
-	end)
-end
-
-function UILoginCtrl:UnregEvents()
-	RemoveEvent("backpack.onRefreshUI")
-end
-
-function UILoginCtrl:OnRefreshLoginOK(argv)
-	-- log('OnRefreshLoginOK')
-end
-
-function UILoginCtrl:CheckExistCharacter()
-	local roleid = PlayerPrefs.GetInt("roleid", -1)
-	local isExistRole = roleid > -1
-	if isExistRole then
-		local roleSex = PlayerPrefs.GetInt("rolesex", -1)
-		local moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
-		local mainRoleModule = moduleMgr:GetModule(ModuleNames.MainRole)
-		mainRoleModule:AssignMainRoleData(roleid, roleSex)
-	end
-
-	local matBtnCreate = nil
-	if isExistRole then
-		matBtnCreate = GrayMat
-	end
-	self.btn_Create.image.material = matBtnCreate
-	self.btn_Create.interactable = not isExistRole
-
-	local matBtnStart = nil
-	if not isExistRole then
-		matBtnStart = GrayMat
-	end
-	self.btn_Start.interactable = isExistRole
-	self.btn_Start.image.material = matBtnStart
+	self.behaviour:AddToggleClick(self.toggle_role_renzu, self, self.OnHumanClienk)
+	self.behaviour:AddToggleClick(self.toggle_role_xainzu, self, self.OnFairyClienk)
+	self.behaviour:AddToggleClick(self.toggle_role_mozu, self, self.OnDevilClienk)
+  
+	self.behaviour:AddToggleClick(self.toggle_sex_nan, self, self.OnManClienk)
+	self.behaviour:AddToggleClick(self.toggle_sex_nv, self, self.OnWomanClienk)
+  
+	self.behaviour:AddClick(self.btn_startgame, self, self.OnCreateClick)
+	self.behaviour:AddClick(self.btn_random, self, self.OnRandomClick)
 end
 
 --创建角色--
-function UILoginCtrl:OnCreateClick(go)
-	Main.ShowUI(UiNames.UILogin.StartGame)
-	self.gameObject:SetActive(false)
+function UILoginCtrl:OnHumanClienk(check)
+  self.roleIndex = NpcRole.Human
+  self:OnRefreshLogin()
 end
 
+function UILoginCtrl:OnFairyClienk(check)
+  self.roleIndex = NpcRole.Fairy
+  self:OnRefreshLogin()
+end
+
+function UILoginCtrl:OnDevilClienk(check)
+  self.roleIndex = NpcRole.Devil
+  self:OnRefreshLogin()
+end
+
+function UILoginCtrl:OnManClienk(check)
+  self.sexIndex = NpcSex.Man
+  self:OnRefreshLogin()
+end
+
+function UILoginCtrl:OnWomanClienk(check)
+  self.sexIndex = NpcSex.Woman
+  self:OnRefreshLogin()
+end
+
+
 function UILoginCtrl:OnShowUI()
-	self:CheckExistCharacter()
-	self.gameObject:SetActive(true)
+  self:OnRefreshLogin()
+end
+
+function UILoginCtrl:OnRefreshLogin()
+  self.mainRoleModule:AssignMainRoleData(self.roleIndex, self.sexIndex)
+  local spriteName = self.roleIndex..'_'..self.sexIndex
+	self:LoadRoleAsset(spriteName, function (sprite)
+		self:ShowImage(self.img_ShowActor, sprite)
+	end)
+end
+
+function UILoginCtrl:LoadRoleAsset(spriteName, func)
+	if self.oleSprites == nil then
+		self.roleSprites = {}
+	end
+	local sprite = self.roleSprites[spriteName]
+	if sprite ~= nil then
+		func(sprite)
+		return
+	end
+	local path = "Textures/Login/MainRole/"..spriteName
+	local resMgr = MgrCenter:GetManager(ManagerNames.Resource)
+	resMgr:LoadAssetAsync(path, { spriteName }, typeof(Sprite), function (objs)
+		if objs ~= nil and objs[0] ~= nil then
+			local spriteObj = objs[0]
+			self.roleSprites[spriteObj.name] = spriteObj
+			func(spriteObj)
+		end
+	end)
 end
 
 --进入游戏--
-function UILoginCtrl:OnStartClick(go)
+function UILoginCtrl:OnCreateClick(go)
 	if AppConst.NetworkMode then
 		self.userModule:ReqLogin('user', 'password', function(userinfo) 
-			self.loginCtrl:StartLogin()
+			self.adapter:StartLogin()
 			logError("login ok!!! userid>>"..userinfo.userid)
 		end)
 	else
-		self.loginCtrl:StartLogin()
+		self.adapter:StartLogin()
 	end
+end
+
+
+--随机姓名--
+function UILoginCtrl:OnRandomClick(go)
+  -- self.obj_InputField:GetComponent("InputField").text = "111"
 end
 
 --关闭事件--

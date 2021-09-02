@@ -118,26 +118,6 @@ function _G.range(min, max)
 	return math.random(min, max)
 end
 
-function _G.vocationToRoleid(vocation)
-	if vocation == 'warrior' then
-		return 0
-	elseif vocation == 'master' then
-		return 1
-	elseif vocation == 'ghost' then
-		return 2
-	end
-end
-
-function _G.roleidToVocation(roleid)
-	if roleid == 0 then
-		return 'warrior'
-	elseif roleid == 1 then
-		return 'master'
-	elseif roleid == 2 then
-		return 'ghost'
-	end
-end
-
 --打印table--
 function table.print(t)
 	if t == nil then return end

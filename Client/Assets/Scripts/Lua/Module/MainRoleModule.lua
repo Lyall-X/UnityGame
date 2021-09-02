@@ -2,7 +2,10 @@ local MainRoleModule = class("MainRoleModule")
 
 function MainRoleModule:Initialize()
 	self.mMainRoleDataList = {}
-	self.mCurrMainRoleData = {}
+	self.mCurrMainRoleData = {
+    roleid = nil,
+    rolesex = nil
+  }
 
 	local i = 1
 	local tableMgr = MgrCenter:GetManager(ManagerNames.Table)
@@ -29,8 +32,8 @@ function MainRoleModule:GetDataByIndex(index)
 end
 
 function MainRoleModule:AssignMainRoleData(roleid, rolesex)
-	self.mCurrMainRoleData['roleid'] = roleid
-	self.mCurrMainRoleData['rolesex'] = rolesex
+	self.mCurrMainRoleData.roleid = roleid or self.mCurrMainRoleData.roleid
+	self.mCurrMainRoleData.rolesex = rolesex or self.mCurrMainRoleData.rolesex
 end
 
 function MainRoleModule:GetMainRoleData()

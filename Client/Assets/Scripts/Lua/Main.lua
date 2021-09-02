@@ -13,6 +13,7 @@ local uiMgr = nil
 	一个复杂panel 一个 xxModule.lua 控制 数据
 	一个scene 一个 xxAdapter.lua 控制,场景的切换,panel的展示
 	Component 文件夹为组件,可添加到go
+  UI之间传递数据 PlayerPrefs.SetInt 或者 AddEvent 或者 callback
 ]]--
 
 function Main.Initialize(initOK)
@@ -56,7 +57,8 @@ function Main.OnInitOK()
     -- logWarn('Main.OnInitOK--->>>'..colorItem.value)
 
 	AddEvent('main.eventtest', function (...)
-		-- logWarn(...)
+		local argv = {...}
+		-- self:OnRefreshLoginOK(argv[1]) 
 	end)
 	FireEvent('main.eventtest', 100, 'testEvent')
 	RemoveEvent('main.eventtest')

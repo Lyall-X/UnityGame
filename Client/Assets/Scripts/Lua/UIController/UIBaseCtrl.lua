@@ -38,6 +38,7 @@ function UIBaseCtrl:ShowImage(img, sprite)
 	if not isnil(img) then
 		local c = img.color
 		img.sprite = sprite
+    -- img:SetNativeSize()
 		img.color = Color.New(c.r, c.g, c.b, 1)
 	end
 end

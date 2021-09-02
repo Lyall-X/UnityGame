@@ -16,32 +16,19 @@ end
 --启动事件--
 function UIStartGameCtrl:OnCreateOK()
 	self:SetUiLayout()
+  self:OnShowUI()
+  
   self.behaviour:AddClick(self.btn_login, self, self.OnLogin)
   self.behaviour:AddClick(self.btn_notice, self, self.OnNotice)
-  self.behaviour:AddClick(self.btn_back, self, self.OnBack)
-  self:OnShowUI()
 end
 
 function UIStartGameCtrl:OnShowUI()
 	self.txt_version.text = LuaHelper.GetVersionInfo()
-  -- 显示富文本
-  local tableMgr = MgrCenter:GetManager(ManagerNames.Table)
-  local notices = tableMgr.noticeTable:GetItems()
-  self.txt_notice.text = ""
-  for i = #notices,1,-1  do
-    self.txt_notice.text = self.txt_notice.text.."<color=green>"..notices[i].title.."</color>\n"..notices[i].content.."\n  <b><i>"..notices[i].time.."</i></b>\n"
-  end
 end
 
 --单击事件--
 function UIStartGameCtrl:OnNotice(go)
-	local Notice = self.gameObject.transform:Find("NoticePanel")
-  if not isnil(Notice) then Notice.gameObject:SetActive(true) end
-end
-
-function UIStartGameCtrl:OnBack(go)
-	local Notice = self.gameObject.transform:Find("NoticePanel")
-  if not isnil(Notice) then Notice.gameObject:SetActive(false) end
+  Main.ShowUI(UiNames.UILogin.Notice)
 end
 
 function UIStartGameCtrl:OnLogin(go)

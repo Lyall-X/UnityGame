@@ -38,7 +38,7 @@ namespace Client.Behaviour
 
         protected void Awake()
         {
-            Util.CallMethod(name, "Awake", gameObject);
+            // Util.CallMethod(name, "Awake", gameObject);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Client.Behaviour
             ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
 #endif
             Util.ClearMemory();
-            Debugger.Log("~" + name + " was destroy!");
+            // Debugger.Log("~" + name + " was destroy!");
         }
     }
 }

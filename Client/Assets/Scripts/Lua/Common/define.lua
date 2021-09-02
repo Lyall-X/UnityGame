@@ -74,7 +74,9 @@ _G.EventNames = Client.Define.EventNames
 _G.CLuaComponent = Client.Component.CLuaComponent
 
 
-_G.NpcSex = { Man = 0, Woman = 1 }
+_G.NpcSex = { Man = 1, Woman = 2 }
+_G.NpcRole = { Human = 1, Fairy = 2, Devil = 3}
+
 _G.MapType = { Scene = 0, Battle = 1 }
 _G.UILayer = 
 {

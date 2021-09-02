@@ -3,7 +3,7 @@ local uiNames = {
   UILogin = {
 	  StartGame = 'StartGame',
     Login = 'Login',
-    -- Notice = 'Notice'
+    Notice = 'Notice'
   },
 	Main = 'Main',
 	Loader = 'Loader',
@@ -14,6 +14,5 @@ local uiNames = {
 	Tips = 'Tips',
 	ItemTips = 'ItemTips',
 	Bag = 'Bag',
-	ChooseActor = 'ChooseActor',
 };
 return uiNames;

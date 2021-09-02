@@ -25,7 +25,7 @@ function LoginAdapter:StartLogin()
 	if levelMgr ~= nil then
 		levelMgr:LoadLevel(LevelType.Main)
 	end
-	Main.CloseUI(UiNames.UILogin.StartGame)
+	Main.CloseUI(UiNames.UILogin.Login)
 end
 
 function LoginAdapter:OnConnectOK(disReason)

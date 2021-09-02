@@ -8,7 +8,6 @@ local panelMgr = nil
 function UIMainRoleCtrl:Awake()
 	local moduleMgr = MgrCenter:GetManager(ManagerNames.Module)
 	mainRoleModule = moduleMgr:GetModule(ModuleNames.MainRole)
-	mainRoleModule:Initialize()
 
 	panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
 	panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
