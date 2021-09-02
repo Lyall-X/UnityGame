@@ -34,7 +34,7 @@ function UIChooseActorCtrl:OnCreateClick(gameObj)
 	local ctrlMgr = MgrCenter:GetManager(ManagerNames.Ctrl)
 	local loginCtrl = ctrlMgr:GetCtrl(UiNames.UILogin.Login)
 	if loginCtrl ~= nil then
-		loginCtrl:OnShow()
+		loginCtrl:OnShowUI()
 	end
 	self:Close()
 end

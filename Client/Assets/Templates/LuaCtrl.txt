@@ -14,12 +14,17 @@ end
 --启动事件--
 function UI[NAME]Ctrl:OnCreateOK()
 	self:SetUiLayout()
+  self:OnShow()
 	logWarn("OnCreateOK--->>"..self.gameObject.name)
 end
 
 --单击事件--
 function UI[NAME]Ctrl:OnClick(go)
 	self:Close()
+end
+
+--单击事件--
+function UI[NAME]Ctrl:OnShow()
 end
 
 --关闭事件--

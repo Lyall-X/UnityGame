@@ -9,10 +9,9 @@ end
 
 function PanelManager:OnUiShow(uiCtrlName)
 	local ctrl = self.mCtrls[uiCtrlName]
-	if ctrl ~= nil and ctrl.OnShow ~= nil then
-		ctrl:OnShow()
+	if ctrl ~= nil and ctrl.OnShowUI ~= nil then
+		ctrl:OnShowUI()
 	end
-	-- logWarn("OnUiShow::>>"..uiCtrlName)
 end
 
 function PanelManager:CreatePanel(ctrl, layer, createOK)

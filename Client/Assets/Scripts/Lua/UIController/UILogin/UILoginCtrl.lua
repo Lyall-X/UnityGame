@@ -78,7 +78,7 @@ function UILoginCtrl:OnCreateClick(go)
 	self.gameObject:SetActive(false)
 end
 
-function UILoginCtrl:OnShow()
+function UILoginCtrl:OnShowUI()
 	self:CheckExistCharacter()
 	self.gameObject:SetActive(true)
 end
