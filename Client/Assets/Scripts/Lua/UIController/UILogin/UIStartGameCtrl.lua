@@ -1,13 +1,16 @@
 local UIBaseCtrl = require "UIController/UIBaseCtrl"
 local UIStartGameCtrl = class("UIStartGameCtrl", UIBaseCtrl)
 
+function UIStartGameCtrl:Initialize()
+  self.panelMgr = nil
+  self.userModule = nil
+end
+
 function UIStartGameCtrl:Awake()
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
-  self.loginCtrl = MgrCenter:GetManager(ManagerNames.Adapter):GetAdapter(LevelType.Login)
 	self.userModule = MgrCenter:GetManager(ManagerNames.Module):GetModule(ModuleNames.User)
-  
+
 	self.panelMgr:CreatePanel(self, UILayer.Common, self.OnCreateOK)
-	logWarn("UIStartGameCtrl.Awake--->>")
 end
 
 --启动事件--

@@ -1,7 +1,9 @@
 local UIBaseCtrl = require "UIController/UIBaseCtrl"
 local UI[NAME]Ctrl = class("UI[NAME]Ctrl", UIBaseCtrl)
 
-local panelMgr = nil
+function UI[NAME]Ctrl:Initialize()
+  self.panelMgr = nil
+end
 
 function UI[NAME]Ctrl:Awake()
 	self.panelMgr = MgrCenter:GetManager(ManagerNames.Panel)
