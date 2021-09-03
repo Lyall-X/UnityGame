@@ -1,0 +1,139 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+import "ProtoCommon.proto";
+
+enum ESkillSlotType
+{
+  ESKILLSLOTTYPE_MIN = 0;
+  ESKILLSLOTTYPE_NORMALATTACK = 1;  //普攻位置
+  ESKILLSLOTTYPE_SKILL1 = 2;        //技能1位置
+  ESKILLSLOTTYPE_SKILL2 = 3;        //技能2位置
+  ESKILLSLOTTYPE_SKILL3 = 4;        //技能3位置
+  ESKILLSLOTTYPE_SKILLZXC = 5;      //大招技能位置
+  ESKILLSLOTTYPE_DODGE = 6;         //闪避技能位置
+
+  //黑化槽位
+  ESKILLSLOTTYPE_BLACKSAN = 101;    //黑化技能位置
+  
+  //交互技能槽位
+  ESKILLSLOTTYPE_INTER1 = 201;      //交互技能位置1
+  ESKILLSLOTTYPE_INTER2 = 202;      //交互技能位置2
+  ESKILLSLOTTYPE_INTER3 = 203;      //交互技能位置3
+  ESKILLSLOTTYPE_INTER4 = 204;      //交互技能位置4
+  ESKILLSLOTTYPE_INTER5 = 205;      //交互技能位置5
+
+  ESKILLSLOTTYPE_MAX = 206;
+}
+
+// 技能信息
+message SkillInfo
+{
+  uint32 id = 1;          // 当前技能id,表Skill.xlsx列id
+  bool normalattack = 2;  // 是否为普攻
+  uint32 replaceid = 3;   // 替换技能id
+  uint32 skilllevel = 4;  // 技能等级
+  uint32 position = 5;    // 技能槽位（0表示未装备） ESkillSlotType
+  bool islocked = 6;      // 是否锁定 (譬如大招初始就会在技能槽位上，但有可能未开放解锁)
+}
+
+// 伙伴信息,S->C
+message FighterInfo
+{
+  uint32 profession = 1;    // unused
+  uint32 cfgid = 2;         // 配置表id,表Partner.xlsx列id
+  uint32 level = 3;         // 等级,表UserLevel列id
+  uint64 exp = 4;           // 经验
+  bool lock = 5;            // 是否已解锁
+  uint32 star = 6;          // 星级
+  uint32 skillpoint = 12;   // 技能点
+
+  repeated UserAttr attrs = 7;    // 属性数据
+  repeated SkillInfo skills = 8;  // 技能信息
+  
+  uint32 Abandonstarlevel = 9;     // 星阶
+  uint64 totalexp = 10;   // 总经验
+}
+
+// 伙伴列表,S->C
+message PartnerListCmd
+{
+  repeated FighterInfo fighters = 3;    // 伙伴信息
+}
+
+// 添加伙伴,S->C
+message AddFighterCmd
+{
+  FighterInfo fighter = 3;    // 伙伴信息
+}
+
+message DelFighterCmd
+{
+  uint32 fighterid = 1;       // fighterid from Table_Partner.txt
+}
+
+// 伙伴升星
+message StarUpgradePartnerCmd
+{
+  uint32 fighterid = 1;       // 伙伴id,表Partner.xlsx列id
+  uint32 star = 2;
+  uint32 Abandonstarlevel = 3;
+}
+
+// 替换伙伴技能
+message SkillReplacePartnerCmd
+{
+  uint64 guid = 3;                // 伙伴唯一id
+  repeated SkillInfo infos = 4;   // 技能信息
+}
+
+// 伙伴升级
+message FighterLevelCmd
+{
+  uint32 fighterid = 1;   // 伙伴id,表Partner.xlsx列id
+  uint32 level = 2;       // 等级
+}
+
+message FighterExpCmd
+{
+  uint32 fighterid = 1;   // 伙伴id,表Partner.xlsx列id
+  uint64 exp = 2;         // 经验
+  uint64 totalexp = 3;  // 总经验
+}
+
+message FighterAttrCmd
+{
+  uint32 fighterid = 1;   // 伙伴id,表Partner.xlsx列id
+  repeated UserAttr attrs = 2;// 属性
+}
+
+// 技能升级回复 S -> C
+// 技能替换 S -> C
+// 技能增删 S -> C
+message FighterSkillCmd
+{
+  uint32 fighterid = 1;   // 伙伴id,表Partner.xlsx列id
+  repeated SkillInfo skills = 2;//技能
+  repeated uint32 dels = 3; //去除的技能,表Skill.xlsx列id 
+  uint64 guid = 4; //出战的伙伴场景对象ID
+}
+
+//技能升级 C -> S 
+message FighterSkillLevelUpCmd
+{
+   uint32 fighterid = 1;  // 伙伴id,表Partner.xlsx列id
+   uint32 skillid = 2;    // 技能id，表Skill.xlsx列id 
+}
+
+message FighterSkillPositionSetCmd 
+{
+  uint32 fighterid = 1;   // 伙伴id,表Partner.xlsx列id
+  repeated SkillInfo skills = 2;//技能
+}
+
+//同步技能点 S -> C
+message FighterSkillPointSyncInfoCmd
+{
+    uint32 fighterid = 1;   // 伙伴id，表Partner.xlsx列id
+    uint32 skillpoint = 2;  // 剩余的技能点全量
+}

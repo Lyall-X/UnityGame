@@ -1,0 +1,340 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+import "ProtoCommon.proto";
+import "ProtoItemCommon.proto";
+
+// 任务rpc调用,S->C
+message ClientEventCmd
+{
+  string func = 3;                  // 调用函数名
+  repeated TemplateValue args = 4;  // 函数参数
+}
+
+// 任务rpc回调,C->S
+message ClientEventCallbackCmd
+{
+  string func = 3;                  // 回调函数名
+  repeated TemplateValue args = 4;  // 函数参数
+}
+
+// 任务变量
+message QuestVar
+{
+  string name = 1;          // 变量名字
+  int32 valueint = 2;       // 变量值
+  string valuestring = 3;   // 变量值
+}
+
+// 任务跟踪信息,S->C
+message QuestTraceInfo
+{
+  string trace = 1;       // 显示文本
+  uint32 mapid = 2;       // 地图id,表Map.xlsx列ID
+  ScenePos pos = 3;       // 任务目的地坐标
+  uint32 npcid = 4;       // 任务推进npc,表Npc.xlsx列ID
+  string tracename = 5;   // 多条跟踪对应的变量名（表示该条追踪是否完成）
+  uint32 npcgroupid = 6;  // 任务推进npc组id,表MonsterGroup.xlsx列ID
+  string alias = 7;       // 别名
+  bool showquestmenu = 8; // 显示任务栏
+  bool showheadui = 9;    // 显示头顶图标
+  bool shownavbar = 10;   // 显示导航条
+  string spawnerid = 11;  // Spawner唯一ID
+}
+
+//标记信息
+message Abandon_SignData
+{
+  uint32 npcid = 1;
+  uint32 npcgroupid = 2;
+  ScenePos pos = 3;   
+  uint32 mapid = 4;
+}
+
+// 任务信息,S->C
+message QuestInfo
+{
+  uint32 id = 1;                         // 任务id,表Quest.xlsx列ID
+  repeated QuestVar var = 2;             // 任务变量
+  repeated QuestTraceInfo trace = 3;     // 跟踪信息
+  uint32 createtime = 4;                 // 创建时间
+  GroupQuestInfo groupquestinfo = 7;     // 任务组信息(v1.4废弃不用)
+  repeated Abandon_SignData Abandon_signdata = 9;                 //标记信息
+  uint32 tracecount = 10;                // 追踪计数,显示优化
+  repeated string preloadcg = 11;        // 预先加载cg
+}
+
+// 任务列表,S->C
+message QuestListCmd
+{
+  repeated QuestInfo questinfo = 3;     // 任务信息
+}
+
+// 添加任务,S->C
+message AddQuestCmd
+{   
+  bool show = 1;                        // 是否显示新增任务
+  QuestInfo info = 2;                   // 任务信息
+}
+
+// 删除任务,S->C
+message DelQuestCmd
+{
+  uint32 questid = 3;           // 任务id,表Quest.xlsx列ID
+}
+
+// 更新任务信息,S->C
+message UpdateQuestCmd
+{
+  QuestInfo info = 3;           // 任务信息
+}
+
+// npc个人数据同步方式
+enum SyncDataType
+{
+  SYNC_DATA_TYPE_ALL     = 0;   // 全量更新
+  SYNC_DATA_TYPE_ADD     = 1;   // 增量更新
+  SYNC_DATA_TYPE_REMOVE  = 2;   // 删除单条
+}
+
+message QuestNodeInfo
+{
+  string nodeid = 1;
+  repeated QuestNodeInfo childnode = 2;
+}
+
+message QuestProgress
+{
+  uint32 questid = 1;                 // 任务id
+  repeated QuestNodeInfo nodes = 2;   // 当前正在执行的节点id
+}
+
+// 同步任务进度,S->C
+message SyncQuestProgressCmd
+{
+  SyncDataType synctype = 1;              // 同步类型
+  repeated QuestProgress quests = 2;
+}
+
+// 更新任务数据S->C
+message UpdateVarQuestCmd
+{
+  uint32 questid = 3;           // 任务id,表Quest.xlsx列ID
+  repeated QuestVar var = 4;    // 任务变量
+}
+
+// npc头上有标识的任务,S->C
+// message AcceptableQuestsCmd
+// {
+//   message NpcQuest
+//   {
+//     uint32 npccfgid = 1;              // 配置表npcid,表Npc.xlsx列ID
+//     uint32 questid = 2;               // 任务id,表Quest.xlsx列ID
+//     EQuestFlag flag = 3;              // 0灰色叹号，1黄色叹号，2修复任务图标
+//   }
+//   repeated NpcQuest npcquests = 3;    // 任务信息
+// }
+
+// 任务奖励预览,S->C
+message ShowRewardOnDialog
+{   
+  repeated ItemInfo items = 3;    // 奖励物品信息
+  repeated string words = 4;      // 奖励文本信息（解锁等）
+  bool showatonce = 5;            // 是否立即弹窗,unused
+}
+
+// 任务组信息,S->C
+message GroupQuestInfo
+{   
+  uint32 finishedcount = 3;       // 已完成数量
+  uint32 allcount = 4;            // 任务组总数
+  string name = 5;                // 任务组名字,表QuestGroup.xlsx列GroupName
+  string icon = 6;                // 任务组图标,表QuestGroup.xlsx列QuestGroupICON
+}
+
+// 接取与完成任务显示,S->C
+message ShowQuestCmd
+{
+  GroupQuestInfo groupquestinfo = 1;    // 任务组信息
+  uint32 questid = 2;                   // 任务id,表Quest.xlsx列ID
+  bool add = 3;                         // 新增标志，falsle为完成任务
+}
+
+// 获得任务奖励,C->S
+message GetRewardQuestCmd
+{ 
+  uint32 questid = 3;   // 任务id,表Quest.xlsx列ID
+}
+
+enum QuestTitleFlag
+{
+  QUEST_TITLE_FLAG_NORMAL = 0;        // 普通任务
+  QUEST_TITLE_FLAG_ACCEPTABLE = 1;    // 可接取任务
+  QUEST_TITLE_FLAG_SUBMIT = 2;        // 可交付任务
+  QUEST_TITLE_FLAG_REPAIR = 3;        // 修复任务
+}
+
+// 任务显示列表,S->C
+message QuestListDialogCmd
+{
+  message Quest
+  {
+    uint32 id = 1;              // 任务id,表Quest.xlsx列ID
+    string name = 2;            // 任务名字,表Quest.xlsx列QuestName
+    uint32 flag = 3;            // QuestTitleFlag
+    string groupname = 4;       // 任务组名字,表QuestGroup.xlsx列GroupName
+  }
+  message Event
+  {
+    uint32 id = 1;              // npc交互选项ID
+    string name = 2;            // npc交互选项名称
+    uint64 dlgtextkey = 3;      // npc交互选项名称id
+  }
+  repeated Quest quests = 1;    // 任务信息
+  string npcname = 2;           // npc名字,表Npc.xlsx列NameZh
+  string text = 3;              // 替换默认对话
+  repeated Event events = 4;    // npc对话选项
+}
+
+// 选择任务,C->S
+message RetQuestListDialogCmd
+{
+  uint32 questid = 1;           // 任务id,表Quest.xlsx列ID
+  uint32 eventid = 2;           // npc对话选项ID
+}
+
+message QuestPositionTrace     //任务位置追踪信息
+{
+  uint32 questid    = 1;    //任务id
+  uint32 npcid      = 2;    //跟npc相关的任务
+  uint32 npcgroupid = 3;    //npc组id
+  ScenePos location = 4;    //任务目标点
+  uint32 mapid      = 5;    //任务所在地图id
+  EQuestFlag flag   = 6;    //任务图标类型
+}
+
+message QuestPositionTraceListCmd       //任务位置追踪信息列表
+{
+  repeated QuestPositionTrace questtraceinfo = 1;
+}
+
+//设置任务滤镜状态 S->C
+message SetQuestFilterCmd       //设置滤镜的开关
+{
+  bool openfilter = 1;            // 是否开启滤镜
+  string filtername = 2;          // 滤镜名称
+}
+
+// 添加关卡,S->C
+message AddStageCmd
+{
+  QuestInfo info = 1;           // 关卡信息
+}
+
+// 删除关卡,S->C
+message DelStageCmd
+{
+  uint32 questid = 1;           // 关卡id,表Quest.xlsx列ID
+}
+
+// 更新关卡信息,S->C
+message UpdateStageCmd
+{
+  QuestInfo info = 1;           // 关卡信息
+}
+
+// 更新关卡数据S->C
+message UpdateVarStageCmd
+{
+  uint32 questid = 1;           // 关卡id,表Quest.xlsx列ID
+  repeated QuestVar var = 2;    // 关卡变量
+}
+
+//定时器状态类型
+enum TimeEventStatusType
+{
+  TIMEEVENT_STATUS_MIN = 0; 
+  TIMEEVENT_STATUS_START = 1;
+  TIMEEVENT_STATUS_PAUSE = 2;
+  TIMEEVENT_STATUS_END = 3;
+  TIMEEVENT_STATUS_MAX = 4;
+}
+
+// 关卡倒计时消息
+message StageCountDownCmd
+{
+  string    id         = 1;                   // 倒计时编号
+  int32     lefttime   = 2;                   // 倒计时剩余时间
+  uint32    status     = 3;                   // 类型
+}
+
+// 关闭星星引导,S->C
+message CloseStarGuideCmd
+{
+  repeated uint32 questids = 1;     // 任务ID
+}
+
+//发送节点数据,S->C
+message SendQuestNodesData
+{
+  string str_questid = 1;  //npc交互当前执行任务id
+  uint32 int_questid = 2;  //当前执行任务id
+  repeated string nodedatas = 3; //下发前端所有节点
+}
+
+//客户端返回节点执行结果,C->S
+message ClientNodeCallbackCmd
+{
+  string str_questid = 1; //npc交互执行的任务的id
+  uint32 int_questid = 2; // 当前执行任务id
+  string nodeid = 3;  //任务流执行到的节点id
+  uint32 result = 4;  //执行的结果
+}
+
+//客户端返回剧情节点选择结果,C->S
+message ClientStoryChooseCmd
+{
+  uint32 questid = 1; //执行的任务的id
+  string nodeid = 2;  //任务流执行到的节点id
+  string selectednodeid = 3;   // 选中的nodeid (如选中的好感度节点)
+}
+
+message QuestFinishData
+{
+  message QuestFinished
+  {
+    uint32 questid = 1; //完成的任务的id
+    uint32 finishtime = 2;  //任务完成的时间
+  }
+  repeated QuestFinished questfinished = 1;
+}
+
+message SetUserCanMoveCmd
+{
+  uint32 lasttime = 1; //持续事件
+  bool canmove = 2; //设置是否可以移动
+}
+
+message ChangeWXKJAuraCmd
+{
+  
+}
+
+// 更新任务数据 C->S
+message UpdateQuestVarCmd
+{
+  string nodeid = 1;           // .DT文件的节点唯一ID
+  repeated QuestVar var = 2;
+}
+
+enum QuestNpcSrouceType
+{
+  QUEST_SROUCE_TYPE = 0;               // 默认任务
+  DAILYACTIVITY_SROUCE_TYPE = 1;       // 日常活动
+  CLUBCHALLENGE_SROUCE_TYPE = 2;       // 天团挑战
+  DYNCIMACSTAGE_SROUCE_TYPE = 3;       // 动态关卡
+  ACTIVEDATINGTRANS_SROUCE_TYPE = 4;   // 主动约会传送
+  ACTIVEDATING_SROUCE_TYPE = 5;        // 主动约会
+  WXKJ_SROUCE_TYPE = 6;                // 妄想空间
+  CLUBCHALLENGE_COPY_SROUCE_TYPE = 7;  // 天团挑战原地副本
+}

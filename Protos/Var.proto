@@ -1,0 +1,48 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+enum EVarType
+{
+  EVARTYPE_MIN = 0;
+  EVARTYPE_ACCID = 1;         //账号id 
+  EVARTYPE_CHARID = 2;        //角色id
+  EVARTYPE_NAME = 3;          //角色名
+
+  EVARTYPE_MATCHSTATUS = 4;   //匹配状态
+  EVARTYPE_MATCHSERVERID = 5; //匹配服id
+  EVARTYPE_SCENESERVERID = 6; //场景服id
+  EVARTYPE_SCENEMAPID = 7;    //所在场景id(从room返回场景用)
+  EVARTYPE_ROOMKEY = 8;       //房间key
+  EVARTYPE_ROOMMAPID = 9;     //所在RoomMapid
+  EVARTYPE_SCENEMAPTYPE = 10; //所在场景类型
+
+  EVARTYPE_KILLER_NAME = 30;  //击杀者名字
+
+  EVARTYPE_MAX = 53;
+}
+
+enum EVarTimeType
+{
+  EVARTIMETYPE_MIN = 0;
+  EVARTIMETYPE_DAY = 1;
+  EVARTIMETYPE_WEEK = 2;
+  EVARTIMETYPE_MONTH = 3;
+  EVARTIMETYPE_ALWAYS = 4;
+  EVARTIMETYPE_MAX = 5;
+}
+
+message Var
+{
+  EVarType type = 1;
+  uint32 value = 2;
+  string value_str = 3;
+  uint32 time = 4;
+}
+
+message StatVar
+{ 
+  string key = 1;
+  uint32 value = 2;
+  uint32 time = 3;
+}
+

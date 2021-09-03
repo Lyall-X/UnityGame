@@ -1,0 +1,629 @@
+syntax = "proto3";
+package Cmd; 
+option go_package = ".;Cmd";
+enum CommandList 
+{
+  // LOGIN_USER_PROTOCMD
+  // 0~199
+  CMD_LOGIN_USER_START = 0; // 不要使用，作为标志用 
+  CMD_ReqLoginUserCmd = 1;
+  CMD_CreateCharUserCmd = 2;
+  CMD_SnapShotUserCmd = 3;
+  CMD_SelectRoleUserCmd = 5;
+  CMD_LoginResultUserCmd = 6;
+  CMD_DeleteCharUserCmd = 7;
+  CMD_HeartBeatUserCmd = 8;
+  CMD_ServerTimeUserCmd = 9;
+
+  CMD_KickParamUserCmd = 13;     // ServerOnly
+  CMD_CancelDeleteCharUserCmd = 14; // 暂时未用
+  CMD_ClientFrameUserCmd = 15; // 暂时未用
+  
+  CMD_LOGIN_USER_END = 199; // 不要使用，作为标志用
+  
+  // ERROR_USER_PROTOCMD
+  // 200~399
+  CMD_ERROR_USER_START = 200; // 不要使用，作为标志用
+  CMD_RegErrUserCmd = 201;
+  
+  CMD_ERROR_USER_END = 399; // 不要使用，作为标志用
+  
+  // SCENE_USER_PROTOCMD
+  // 400~599
+  CMD_SCENE_USER_START = 400; // 不要使用，作为标志用
+  CMD_SetUserDataCmd = 401;
+  CMD_SetNineDataCmd = 402;
+
+  CMD_UserGMCommand = 403;
+  CMD_BlackSanCmd = 404;
+  CMD_BuffEffectUserCmd = 405;
+
+  CMD_UserFaceCmd = 406; // 暂时未用
+  CMD_AttrsChangeSyncCmd = 408;
+  CMD_UserAttrChangeShowCmd = 409;
+  CMD_SummonEffectUserCmd = 410;
+  CMD_BattleObjectEffectUserCmd = 411;
+  CMD_RedDotCmd = 412;
+  CMD_RedDotConfirmCmd = 413;
+
+  CMD_ChangeSceneUserCmd = 415;
+
+  CMD_MissileEffectUserCmd = 416;
+  CMD_SkillBroadcastUserCmd = 417;
+  CMD_MoveEffectUserCmd = 418;
+  CMD_DamageEffectUserCmd = 419;
+  CMD_UpdateSkillRandSeedCmd = 420;
+  CMD_SkillResultUserCmd = 421;
+  CMD_CDTimeUserCmd = 423;
+  CMD_ReliveUserCmd = 424;
+  CMD_GoToUserCmd = 425;
+  CMD_BreakSkillUserCmd = 426;
+
+  CMD_GoToExitPosUserCmd = 427; // 暂时未用 
+  CMD_SpecialEffectUserCmd = 428;
+  CMD_AnimMoveSyncPosCmd = 429;
+  CMD_DynamicMoveEffectEndCmd = 430;            // 通知Dynamic Move Effect结束
+  CMD_CVisitNpcUserCmd = 431;
+  CMD_CStopVisitNpcUserCmd = 432;
+  CMD_SShowDialogUserCmd = 433;
+  CMD_ChoosePartnerUserCmd = 434;
+  CMD_TeamDataCmd = 435;
+  CMD_SetTeamUserCmd = 436;
+  CMD_UserBuffNineSyncCmd = 437;
+  CMD_UserActionNineSyncCmd = 438;
+  CMD_NotifyHideCloseUserCmd = 439;
+  CMD_UnlockingMenuCmd = 440;
+  CMD_UnlockedMenuDataCmd = 441;
+  CMD_ReqMapLinkUserCmd = 442;
+  CMD_BroadCastMapLinkUserCmd = 443;
+  CMD_SkillReplacePartnerCmd = 444;
+  CMD_GoMapUserCmd = 445;
+  CMD_UserEffectNineSyncCmd = 446;
+  CMD_UserExpressionNineSyncCmd = 447;
+  CMD_UserSoundNineSyncCmd = 448;
+  CMD_PlayCGCmd = 449;
+  CMD_UserShowBubbleCmd = 450;
+  CMD_RetVisitNpcUserCmd = 451;
+  CMD_RetStopVisitNpcUserCmd = 454;
+  CMD_SkillActorEffectUserCmd = 455;                  // 召唤静态物
+  CMD_UserSpecialActionCmd = 457; 
+  CMD_AsideUserCmd = 458;
+  CMD_SendPartnerSourceCmd = 459; 
+
+  CMD_UserCollegeGiftReceiveCmd = 467;      // 领取学院赠礼
+  CMD_UserCollegeGiftInfoCmd = 468;         // 下发学院赠礼状态
+  CMD_UserUseUniqueSkillCmd = 480; // 释放非自己控制伙伴的大招
+  CMD_UserMouthNineSyncCmd = 485; // 播放人物嘴型
+  CMD_WeatherChange = 488; // 天气相关下发
+  CMD_WXKJAsideUserCmd = 489; // 妄想空间旁白
+  CMD_GoToCommonTraceCmd = 490; // 通用追踪传送(包含修复物)
+  CMD_UpdateQuestVarCmd = 491; // 通知任务保存数据
+ 
+
+  /*副本模块*/
+  CMD_RaidWinCmd		= 492; // 副本挑战成功
+  CMD_RaidBackCmd		= 493; // 退出副本
+  CMD_LotteryCmd		= 494; // 抽卡
+  CMD_SendLotteryResultCmd = 495; // 抽卡结果
+  CMD_MiniMapsInfoCmd   = 496; //小地图显示信息
+  CMD_SendGMLotteryResultCmd = 497; // GM抽卡结果
+  CMD_SyncNpcInteractionModeCmd = 498; //交互模式
+  CMD_SceneRaidResultCmd = 499;
+
+  CMD_C2SBuffSyncCmd = 500;       // 前端同步给后端 buff信息修改
+  CMD_SyncActionListCmd = 501;    // 同步npc休闲表演列表
+  CMD_NpcBubblePerceptionCmd = 502; // 前端感知到玩家进入Npc气泡感知范围
+  CMD_SyncUserDeadCmd = 503;                // 展示死亡UI
+
+  CMD_SyncObjectStatusCmd = 511;
+
+  CMD_RootMotionSwitchCmd = 595;    //root motion使用开关同步
+  CMD_SetRobotCmd = 596;
+  CMD_WeakSyncSwitchCmd = 597;    //增加弱同步开关同步
+  CMD_StressTestResponseCmd = 598; //增加压测接口返回协议
+  CMD_SCENE_USER_END = 599; // 不要使用，作为标志用
+  // SCENE_USER2_PROTOCMD
+  // 600~799
+  CMD_SCENE_USER2_START = 600; // 不要使用，作为标志用
+
+  CMD_SysMsg = 602;
+  CMD_CExitPosUserCmd = 604;
+  CMD_CWorldJumpUserCmd = 605;
+  CMD_CAskUnlockedMenuListCmd = 606;
+
+  CMD_SUserDataCmd = 608;
+  CMD_CatHugCmd = 609; // 抱猫或者放下猫
+
+  CMD_EffectUserCmd = 611; // 暂时未用
+  CMD_QueryShopGotItem = 623; // 暂时未用
+  CMD_UpdateShopGotItem = 624; // 暂时未用
+  CMD_OpenUI = 625; // 暂时未用
+
+  CMD_FollowTransferCmd = 627; // 暂时未用
+  CMD_CallNpcFuncCmd = 628; // 暂时未用
+  CMD_ModelShow = 629; // 暂时未用
+  CMD_SoundEffectCmd = 630; // 暂时未用
+
+  CMD_ChangeBgmCmd = 632; // 暂时未用
+  CMD_GameTimeCmd = 633;
+  CMD_ShakeScreen = 636; // 暂时未用
+  CMD_NpcChangeAngle = 639;
+
+  CMD_GoToGearUserCmd = 642; // 暂时未用
+
+  CMD_FollowerUser = 644; // 暂时未用
+  CMD_BeFollowUserCmd = 645; // 暂时未用
+
+  CMD_GotoLaboratoryUserCmd = 647; // 暂时未用
+  CMD_SceneryUserCmd = 648; // 暂时未用
+
+  CMD_UserAutoHitCmd = 651; // 暂时未用
+  CMD_UploadSceneryPhotoUserCmd = 652; // 暂时未用
+  CMD_DownloadSceneryPhotoUserCmd = 653; // 暂时未用
+  CMD_BuffForeverCmd = 656; // 暂时未用
+  CMD_InviteJoinHandsUserCmd = 657; // 暂时未用
+  CMD_BreakUpHandsUserCmd = 658; // 暂时未用
+  CMD_HandStatusUserCmd = 659; // 暂时未用
+  CMD_JoinHandsUserCmd = 665; // 暂时未用
+
+  CMD_ShakeTreeUserCmd = 674; // 暂时未用
+  CMD_TreeListUserCmd = 675; // 暂时未用
+
+  CMD_ItemImageUserNtfUserCmd = 679; // 暂时未用
+  CMD_ChangeNameUserCmd = 681; // 暂时未用
+
+  CMD_NtfVisibleNpcUserCmd = 691; // 暂时未用
+  CMD_UpyunAuthorizationCmd = 692; // 暂时未用
+  CMD_UserRenameCmd = 693; // 暂时未用
+  CMD_EnterCapraActivityCmd = 694; // 暂时未用
+  CMD_BuyZenyCmd = 695; // 暂时未用
+  CMD_CallTeamerUserCmd = 696; // 暂时未用
+  CMD_CallTeamerReplyUserCmd = 697; // 暂时未用
+
+  CMD_ShowServantUserCmd = 704; // 暂时未用
+  CMD_ReplaceServantUserCmd = 705; // 暂时未用
+  CMD_ServantService = 706; // 暂时未用
+  CMD_RecommendServantUserCmd = 707; // 暂时未用
+  CMD_ReceiveServantUserCmd = 708; // 暂时未用
+  CMD_ServantRewardStatusUserCmd = 709; // 暂时未用
+  CMD_TwinsActionUserCmd = 711; // 暂时未用
+  CMD_BoothReqUserCmd = 726; // 暂时未用
+  CMD_BoothInfoSyncUserCmd = 727; // 暂时未用
+  CMD_ChangeUserPosInRapairCmd = 728; //S <- C在播放cg途中进行主角坐标切换
+  CMD_SendLotteryPoolInfoCmd = 730; // C <-> S  获取抽卡池信息
+
+  /* 交互模块 */
+  CMD_InteractionWithEntryCmd = 731;
+  CMD_InteractionCmd = 732; //交互
+  CMD_PickUpCmd = 733;    // 拾取
+  CMD_PutDownCmd = 734;   // 放下
+  CMD_ThrowCmd = 735;     // 扔
+  CMD_CatapultCmd = 736;  // 弹射
+  CMD_PickUpResultCmd = 737;    // 拾取结果
+  CMD_PutDownResultCmd = 738;   // 放下结果
+  CMD_ThrowResultCmd = 739;     // 扔结果
+  CMD_CatapultResultCmd = 740;  // 弹射结果
+  CMD_InteractionResultCmd = 741;  // 交互结果
+  CMD_WXKJStagesInfoCmd = 742;  // 妄想空间关卡状态
+  CMD_OnVehicleCmd = 744;       // 上载具
+  CMD_OnVehicleResultCmd = 745; // 上载具返回
+  CMD_OffVehicleCmd = 746;      // 下载具
+  CMD_OffVehicleResultCmd = 747;// 下载具返回
+  CMD_InteractionEventCmd = 748;// 通知交互事件
+  CMD_WXKJChallengeCmd = 749;// 妄想空间伙伴挑战 C -> S
+  CMD_EliteRepairCmd = 750;  // 精英修复
+  CMD_WXKJSwitchMaterialCmd = 751;  // 妄想空间材质切换 C <-> S
+
+  /* 日常玩法 */
+  CMD_DailyActivityCmd = 752;                     // 请求日常活动列表
+  CMD_DailyActivityAwardCmd = 753;                // 请求日常活动奖励
+  CMD_DailyActivityCompleteAwardCmd = 754;        // 请求日常活动全完成奖励
+  
+  /* 好感度玩法 */
+  CMD_FavorabilityCmd = 755;             // 好感度消息
+  CMD_SendReloginServerReqCmd = 756;     // S -> C  发送服务器最后一次收到的协议编号
+
+  /* 天团挑战 */
+  CMD_ClubChallengeCGCmd = 760;          // 天团挑战CG播放
+  
+  CMD_SCENE_USER2_END = 799; // 不要使用，作为标志用
+  
+
+  // SCENE_USER_SKILL_PROTOCMD
+  // 800~999
+  CMD_SCENE_USER_SKILL_START            = 800;  // 不要使用，作为标志用
+  CMD_SCENE_USER_SKILL_END              = 999;  // 不要使用，作为标志用
+
+
+  // SCENE_USER_QUEST_PROTOCMD
+  // 1000~1199
+  CMD_SCENE_USER_QUEST_START = 1000; // 不要使用，作为标志用
+
+  CMD_ClientEventCmd = 1022;
+  CMD_ClientEventCallbackCmd = 1023;
+  CMD_QuestListCmd = 1024;
+  CMD_AddQuestCmd = 1025;
+  CMD_DelQuestCmd = 1026;
+  CMD_UpdateQuestCmd = 1027;
+  CMD_UpdateVarQuestCmd = 1028;
+  CMD_AcceptableQuestsCmd = 1029;
+  CMD_ShowRewardOnDialog = 1030;
+  CMD_RewardCommonCmd = 1031;
+  CMD_GetRewardQuestCmd = 1032;
+  CMD_QuestListDialogCmd = 1033;
+  CMD_RetQuestListDialogCmd = 1034;
+  CMD_QuestPositionTraceListCmd = 1035;
+  CMD_SetQuestFilterCmd = 1036;
+  CMD_CloseStarGuideCmd = 1037;
+  CMD_ShowQuestCmd = 1038;
+  CMD_SendShowStarInfoCmd = 1039;
+  CMD_SendQuestNodesData = 1040;
+  CMD_ClientNodeCallbackCmd = 1041;
+  CMD_QuestFinishData = 1042;
+  CMD_SetUserCanMoveCmd  = 1043;
+  CMD_ChangeWXKJAuraCmd = 1045;
+  CMD_ClientStoryChooseCmd = 1046;
+  CMD_SyncQuestProgressCmd = 1047;
+
+  CMD_SCENE_USER_QUEST_END = 1199; // 不要使用，作为标志用
+
+
+
+  // SCENE_USER_MAP_PROTOCMD
+  // 1200~1399
+  CMD_SCENE_USER_MAP_START = 1200; // 不要使用，作为标志用
+  CMD_AddMapItem = 1201;
+  CMD_PickupItem = 1202;
+  CMD_AddMapEntry = 1204;
+  CMD_AddMapMissile = 1205; // 暂时未用
+  CMD_AddMapTrap = 1206; // 暂时未用
+  CMD_ExitPointState = 1207; // 暂时未用
+  CMD_MapCmdEnd = 1208; // 暂时未用
+  CMD_NpcSearchRangeCmd = 1209; // 暂时未用
+  CMD_NpcFeaturesUpdateCmd = 1210; // NPC特性更新,S->C
+  CMD_NpcNineSyncCmd = 1211;  //Npc九屏属性刷新
+  CMD_ItemNineSyncCmd = 1212; //Item九屏属性刷新
+
+
+
+  CMD_GoCityGateMapCmd = 1214; // 暂时未用
+  CMD_DeleteEntryUserCmd = 1215;
+  CMD_TestParabolaPosCmd = 1216;
+  CMD_LockTargetCmd = 1217;
+  CMD_UnlockTargetCmd = 1218;
+  CMD_SyncDirectionCmd = 1219;
+  CMD_SyncNpcWatchCmd = 1220;
+  CMD_SyncNpcVisibleStatusCmd = 1221;
+  CMD_BlockSceneMapCmd = 1222;
+  CMD_SyncNpcPrivateDataCmd = 1224;
+  CMD_NpcPlayDialog = 1225;
+  CMD_ShakeScreenCmd = 1226;
+  CMD_MoveStateCmd = 1228;
+  CMD_LeaveCopyCmd = 1229;
+  CMD_UpdateRepairObjState = 1231;
+  CMD_AcceptRepairTask = 1232;
+  CMD_SendEffectClosedType = 1233;
+  CMD_BoxChoiceFunction = 1234;
+  CMD_ServerPosTestCmd = 1235;
+  CMD_EnterRaidSceneByStage = 1237; // C<->S
+  CMD_SendBoxInfoList = 1238; // S->C
+  CMD_SendBossEnterMap = 1239; //S->C
+  CMD_AddPartnerExpFromExpPoolCmd = 1240; //C<->S
+  CMD_PlayItemAnimation = 1241; //C<-S
+  CMD_WXKJLeaveMapCmd = 1242; //C<-S
+  CMD_ServerSectorPosTestCmd = 1243;
+  CMD_SetCollisionCmd = 1244;
+  CMD_TriggerPerceptionCmd = 1245;  // 触发感知区域
+  CMD_SyncStageObjectBehaviorCmd = 1246;  // 客户端之间的行为表现同步，服务器仅负责转发,C->S->C
+  CMD_ServerSweepTestCmd = 1247;
+  CMD_SyncBlueprintPerformanceCmd = 1248;  // 客户端之间的蓝图表现同步，服务器仅负责转发,C->S->C
+  CMD_ServerBoxPosTestCmd = 1249;
+  CMD_ServerCapsulePosTestCmd = 1250;
+  CMD_ServerArrowPosTestCmd = 1251;
+  CMD_ServerSpherePosTestCmd = 1252;
+  
+  CMD_SyncTime = 1398;
+  CMD_SCENE_USER_MAP_END = 1399; // 不要使用，作为标志用
+
+
+  // SCENE_USER_PARTNER_PROTOCMD
+  // 1400~1599
+  CMD_SCENE_USER_PARTNER_START = 1400; // 不要使用，作为标志用
+  CMD_PartnerListCmd = 1401;
+  CMD_AddFighterCmd = 1402;
+  CMD_DelFighterCmd = 1403;
+  CMD_StarUpgradePartnerCmd = 1404;
+  CMD_FighterLevelCmd = 1405;
+  CMD_FighterExpCmd = 1406;
+  CMD_FighterAttrCmd = 1407;
+  CMD_FighterSkillCmd = 1408;
+  CMD_FighterSkillLevelUpCmd = 1409; // 伙伴技能升级
+  CMD_FighterSkillPositionSetCmd = 1410; // 伙伴技能槽位设置
+  CMD_FighterSkillPointSyncInfoCmd = 1411; // 同步技能点
+  CMD_SCENE_USER_PARTNER_END = 1599; // 不要使用，作为标志用
+
+
+ 
+  // SCENE_USER_ITEM_PROTOCMD
+  // 2400~2599
+  CMD_SCENE_USER_ITEM_START = 2400; // 不要使用，作为标志用
+  CMD_SendPackageListCmd = 2401;
+  CMD_PackageUpdate = 2402;
+  CMD_BrowsePackage = 2403; // 暂时未用
+  CMD_EquipPackageOperCmd = 2405;
+  CMD_ItemUse = 2406;
+  CMD_ItemShowCmd = 2407;
+  CMD_RetEquipPackageOperCmd = 2408;
+  CMD_MoneyCmd = 2409;
+  CMD_MoneyUpdateCmd = 2410;
+  CMD_EquipStrengthCmd = 2411;
+  CMD_EquipUpgradeStarCmd = 2412;
+  
+  CMD_SCENE_USER_ITEM_END = 2599; // 不要使用，作为标志用
+  // SCENE_USER_MANA_PROTOCMD
+  // 2600~2799
+  //CMD_ManaListCmd = 2600; //上线同步Mana
+  //CMD_UpdateManaInfoCmd = 2601; //更新Mana信息
+  
+  
+  // SCENE_USER_STAGE_PROTOCMD
+  // 2800~2899
+  CMD_SCENE_USER_STAGE_START = 2800; // 不要使用，作为标志用
+  CMD_AddStageCmd = 2801;
+  CMD_DelStageCmd = 2802;
+  CMD_UpdateStageCmd = 2803;
+  CMD_StageCountDownCmd = 2804;           // 关卡倒计时信息
+  CMD_UpdateVarStageCmd = 2805;
+  CMD_SCENE_USER_STAGE_END = 2899; // 不要使用，作为标志用
+
+  // 2900~2999
+  CMD_SCENE_USER_CHAT_START = 2900; // 不要使用，作为标志用
+  CMD_ChatMsgClientToGateCmd = 2901; // 接收Client的聊天消息
+  CMD_ChatMsgGateToClientCmd = 2902; // Gate转发来自ChatServer的消息到客户端
+  CMD_SCENE_USER_CHAT_END = 2999; // 不要使用，作为标志用
+
+
+  // Server Only(40000以后)
+  // RECORD_DATA_PROTOCMD
+  // 40000~40199
+  CMD_RECORD_DATA_START = 40000;  // 不要使用，作为标志用
+
+  CMD_NotifyLoginRecordCmd = 40001; // ServerOnly
+  CMD_UserDataRecordCmd = 40002; // ServerOnly
+  CMD_ErrUserCharBaseRecordCmd = 40003; // ServerOnly
+  CMD_MusicUpdateCmd = 40004; // ServerOnly
+  CMD_LoadLuaSceneRecordCmd = 40005; // ServerOnly
+  CMD_PutStoreRecordCmd = 40006; // ServerOnly
+  CMD_OffStoreRecordCmd = 40007; // ServerOnly
+  CMD_ItemModifyRecordCmd = 40008; // ServerOnly
+  CMD_ChangeAuthorizeRecordCmd = 40009; // ServerOnly
+  CMD_GuildMusicQueryRecordCmd = 40010; // ServerOnly
+  CMD_GuildMusicUpdateCmd = 40011; // ServerOnly
+  CMD_GuildMusicDeleteRecordCmd = 40012; // ServerOnly
+  CMD_DelPatchCharRecordCmd = 40013; // ServerOnly
+  CMD_ChatSaveRecordCmd = 40014; // ServerOnly
+  CMD_QueryChatRecordCmd = 40015; // ServerOnly
+  CMD_UserRenameQueryRecordCmd = 40016; // ServerOnly
+  CMD_UserRenameResultRecordCmd = 40017; // ServerOnly
+  CMD_ProfessionSaveRecordCmd = 40020; // ServerOnly
+  CMD_ProfessionQueryRecordCmd = 40021; // ServerOnly
+  CMD_SetPubDataRecordCmd = 40022; // ServerOnly
+  CMD_GetPubDataRecordCmd = 40023; // ServerOnly
+  CMD_RetSetPubDataRecordCmd = 40024; // ServerOnly
+  CMD_RetGetPubDataRecordCmd = 40025; // ServerOnly
+  CMD_RetSaveDataRecordCmd = 40026; 
+  CMD_RECORD_DATA_END = 40199;  // 不要使用，作为标志用
+
+
+
+
+  // SESSION_PROTOCMD
+  // 40400~40599
+  CMD_SESSION_START = 40400; // 不要使用，作为标志用
+  CMD_LoadLuaSessionCmd = 40410;
+  CMD_ExecGMCmdSessionCmd = 40411;
+  CMD_Event = 40418;
+  CMD_ChatMsgSession = 40419;
+  CMD_SetGlobalDaily = 40420;
+  CMD_RefreshQuest = 40421;
+  CMD_NotifyLoginSessionCmd = 40427;
+  CMD_ChangeSceneSingleSessionCmd = 40429;
+  CMD_ForwardUserSessionCmd = 40432;
+  CMD_ForwardUserSceneSvrSessionCmd = 40435;
+  CMD_SyncDojoSessionCmd = 40437;
+  CMD_ChargeSessionCmd = 40438;
+  CMD_GagSessionCmd = 40439;
+  CMD_LockSessionCmd = 40440;
+  CMD_ActivityStatusSessionCmd = 40445;
+  CMD_ForwardRegionSessionCmd = 40447;
+  CMD_WantedInfoSyncSessionCmd = 40450;
+  CMD_QueryZoneStatusSessionCmd = 40451;
+  CMD_GetTradeLogSessionCmd = 40453;
+  CMD_AuthorizeInfoSessionCmd = 40455;
+  CMD_DeletePwdSessionCmd = 40457;
+  CMD_AddOfflineItemSessionCmd = 40461;
+  CMD_GlobalActivityStartSessionCmd = 40469;
+  CMD_GlobalActivityStopSessionCmd = 40470;
+  CMD_NotifyActivitySessionCmd = 40473;
+  CMD_SyncWorldLevelSessionCmd = 40476;
+  CMD_SendLuaErrorInfoSessionCmd = 40479;
+  CMD_RPCScriptCallCmd = 40480;
+  CMD_SceneServerConfigReloadCmd = 40482; // SceneServer配置热更新
+  CMD_UserReconnectSessionCmd = 40483;
+  CMD_SetNewCharMapSessionCmd = 40484; // set new char map id
+  CMD_ForwardSceneServerCmd = 40485;
+  CMD_SESSION_END = 40599;  // 不要使用，作为标志用
+
+
+
+  // GMTOOLS_PROTOCMD
+  // 40600~40799
+  CMD_GMTOOLS_START = 40600; // 不要使用，作为标志用
+  CMD_ExecGMCmd = 40601;
+  CMD_RetExecGMCmd = 40602;
+  CMD_SessionGMCmd = 40603;
+  CMD_GMTOOLS_END = 40799;  // 不要使用，作为标志用
+
+
+
+  // LOG_PROTOCMD
+  // 40800~40999
+  CMD_LOG_START = 40800; // 不要使用，作为标志用
+  CMD_LoginLogCmd = 40801;
+  CMD_AccountLogCmd = 40802;
+  CMD_CreateLogCmd = 40803;
+  CMD_ChangeFlagLogCmd = 40804;
+  CMD_ChargeLogCmd = 40805;
+  CMD_EventLogCmd = 40806;
+  CMD_IncomeLogCmd = 40807;
+  CMD_ConsumeLogCmd = 40808;
+  CMD_ItemLogCmd = 40809;
+  CMD_PropsLogCmd = 40810;
+  CMD_TransactionLogCmd = 40811;
+  CMD_ChatLogCmd = 40812;
+  CMD_LevelLogCmd = 40813;
+  CMD_OnlineLogCmd = 40814;
+  CMD_CheckpointLogCmd = 40815;
+  CMD_RankLogCmd = 40816;
+  CMD_ChangeLogCmd = 40818;
+  CMD_EquipLogCmd = 40819;
+  CMD_CardLogCmd = 40820;
+  CMD_EquipUpLogCmd = 40821;
+  CMD_SocailLogCmd = 40822;
+  CMD_QuestLogCmd = 40823;
+  CMD_ManualLogCmd = 40824;
+  CMD_CompleteLogCmd = 40825;
+  CMD_ItemOperLogCmd = 40827;
+  CMD_KillLogCmd = 40828;
+  CMD_RewardLogCmd = 40829;
+  CMD_MailLogCmd = 40830;
+  CMD_DojoLogCmd = 40831;
+  CMD_EnchantLogCmd = 40832;
+  CMD_GuildPrayLogCmd = 40833;
+  CMD_UseSkillLogCmd = 40834;
+  CMD_ActiveLogCmd = 40835;
+  CMD_TradeLogCmd = 40836;
+  CMD_DeleteCharLogCmd = 40837;
+  CMD_ComposeLogCmd = 40838;
+  CMD_JumpzoneLogCmd = 40839;
+  CMD_TeamLogCmd = 40840;
+  CMD_TradeAdjustPriceLogCmd = 40841;
+  CMD_TradePriceLogCmd = 40842;
+  CMD_TradeUntakeLogCmd = 40845;
+  CMD_InactiveUserLogCmd = 40846;
+  CMD_CreditLogCmd = 40847;
+  CMD_TradeGiveLogCmd = 40848;
+  CMD_LOG_END = 40999; // 不要使用，作为标志用
+
+
+
+  // GATE_SUPER_PROTOCMD
+  // 41000~41199
+  CMD_GATE_SUPER_START = 41000; // 不要使用，作为标志用
+  CMD_GateToSuperUserNum = 41001;
+  CMD_PushMsgGateSuperCmd = 41002;
+  CMD_AlterMsgGateSuperCmd = 41003;
+  CMD_PushTyrantDbGateSuperCmd = 41004;
+  CMD_GATE_SUPER_END = 41199;  // 不要使用，作为标志用
+
+
+
+  // STAT_PROTOCMD
+  // 41400~41599
+  CMD_STAT_START = 41400; // 不要使用，作为标志用
+  CMD_TestStatCmd = 41401;
+  CMD_StatCmd = 41402;
+  CMD_TradeToStatLogCmd = 41403;
+  CMD_KillMonsterNumStatCmd = 41404;
+  CMD_DayGetZenyCountCmd = 41405;
+  CMD_StatCurLevel = 41406;
+  CMD_ReqWorldLevelCmd = 41407;
+  CMD_STAT_END = 41599;  // 不要使用，作为标志用
+
+
+
+  // MATCHS_PROTOCMD
+  // 42400~42599
+  CMD_MATCHS_START = 42400;                 // 不要使用，作为标志用
+  CMD_MatchPlayJoinCmd = 42401;             // 玩家报名
+  CMD_MatchPlayLeaveCmd = 42402;            // 玩家离开
+
+  CMD_RetMatchPlayJoinCmd = 42403;          // 回复报名结果
+  CMD_RetMatchPlayLeaveCmd = 42404;         // 回复退出结果
+  CMD_MatchSuccessCmd = 42405;              // 通知场景服匹配成功
+
+  CMD_MATCHS_END = 42599;                   // 不要使用，作为标志用
+
+
+
+  // GATEWAY_CMD
+  // 43200~43399
+  CMD_GATEWAY_START = 43200;
+  CMD_UserDataGatewayCmd = 43201;
+  CMD_ForwardUserCmdGatewayCmd = 43202;
+  CMD_ForwardToUserGatewayCmd = 43203;
+  CMD_ForwardToLoginUserGatewayCmd = 43204;
+  CMD_BroadcastOneLevelIndexGatewayCmd = 43206;
+  CMD_AddOneLevelIndexGatewayCmd = 43207;
+  CMD_DelOneLevelIndexGatewayCmd = 43208;
+  CMD_CmdFilterGatewayCmd = 43209;
+  CMD_LoginGateCmd = 43210;
+  CMD_LogoutGateCmd = 43211;
+  CMD_LogoutRegGateCmd = 43212;
+  CMD_CreateCharGateCmd = 43213;
+  CMD_RetCreateCharGateCmd = 43214;
+  CMD_DelCharGateCmd = 43216;
+  CMD_RetDelCharGateCmd = 43217;
+  CMD_UserRenameGateCmd = 43218;
+  CMD_GateUserOnlineGatewayCmd = 43219;
+  CMD_RefreshSnapshotClientUserCmd = 43220;
+  CMD_DisconnectClientUserCmd = 43222;
+  CMD_ReqSnapshotGateCmd = 43223;
+  CMD_RetSnapshotGateCmd = 43224;
+  CMD_ReloginDisconnectGateCmd = 43225;
+  CMD_ReloginKickUserGateCmd = 43226;
+  CMD_LoginErrorGateCmd = 43227;
+  CMD_SceneUserCountCmd = 43228;            // Scene服->Gate服 更新该Scene服计数
+  CMD_ChangeSceneServerCmd = 43229;
+  CMD_ConnectionCloseGateCmd = 43230;
+  
+  CMD_GATEWAY_END = 43399;  // 不要使用，作为标志用
+
+  // SYSTEM_PROTOCMD
+  // 43600~43799
+  CMD_SYSTEM_START = 43600; // 不要使用，作为标志用
+  CMD_VerifyConnSystemCmd = 43602;
+  CMD_ServerTimeSystemCmd = 43605;
+  CMD_CommonReloadSystemCmd = 43607;
+  CMD_ReloadLogConfigCmd = 43608;
+  
+  CMD_SYSTEM_END = 43799;  // 不要使用，作为标志用
+
+  CMD_GATEWAY_CHAT_START = 43800; // 不要使用，作为标志用
+  CMD_GateToChatServerCmd = 43801; // Gate转发聊天到ChatServer
+  CMD_ChatServerToGateCmd = 43802; // Gate接收ChatServer的消息
+
+  CMD_ChatServerErrorCmd = 43805; // 接收ChatServer的错误信息
+  CMD_GATEWAY_CHAT_END = 43999; // 不要使用，作为标志用
+
+  // MAX
+  CMD_MAX = 65535;
+}
+
+
+message Nonce
+{
+  uint32 timestamp = 1;
+  uint32 index = 2;
+  string sign = 3;
+}
+
+message WrapPacket
+{
+  CommandList cmd   = 1; // 协议编号
+  bytes   content   = 2; // 协议二进制
+  uint64  timestamp = 3; // 时间戳(只会增大)
+  uint32  seq       = 4; // 序列号(只会增大)
+  uint32  code      = 5; // 错误码
+  uint32  reconnectreq = 6; //重连序列号
+}

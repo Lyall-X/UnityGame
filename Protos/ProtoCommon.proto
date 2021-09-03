@@ -1,0 +1,962 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+import "ProtoAttr.proto";
+// 用户数据类型
+enum EUserDataType
+{
+  EUSERDATATYPE_MIN           = 0;
+  EUSERDATATYPE_MAPID         = 1;    // 地图id,表Map.xlsx列ID
+  EUSERDATATYPE_ROLELEVEL     = 6;    // 等级,表UserLevel.xlsx列Level
+  EUSERDATATYPE_ROLEEXP       = 8;    // 经验
+  EUSERDATATYPE_ONLINETIME    = 15;   // 上线时间
+  EUSERDATATYPE_OFFLINETIME   = 16;   // 下线时间
+  EUSERDATATYPE_ADDICT        = 17;   // 防沉迷时间
+  EUSERDATATYPE_AUTOCOMBAT    = 18;   // 自动战斗状态（0:手动，1:半自动，2:自动）
+
+  EUSERDATATYPE_STATUS        = 42;   // 状态
+  EUSERDATATYPE_PORTRAIT      = 45;   // 头像
+  EUSERDATATYPE_FRAME         = 46;   // 帧率,unused
+
+  EUSERDATATYPE_RAIDID        = 48;   // 副本id
+
+  EUSERDATATYPE_CREATETIME    = 51;   // 创建时间
+
+  EUSERDATATYPE_FOLLOWID      = 53;   // 跟随角色id
+
+  EUSERDATATYPE_HANDID        = 54;   // unused
+  EUSERDATATYPE_FRIENDSHIP    = 56;   // unused
+  EUSERDATATYPE_MUSIC_CURID   = 57;   // unused
+  EUSERDATATYPE_MUSIC_START   = 58;   // unused
+  EUSERDATATYPE_MUSIC_DEMAND  = 59;   // unused
+  EUSERDATATYPE_MUSIC_DEMAND1  = 60;   // unused
+
+  EUSERDATATYPE_GAGTIME       = 61;   // 禁言时间
+  EUSERDATATYPE_NOLOGINTIME   = 62;   // 封号时间
+  EUSERDATATYPE_NAME          = 64;   // 玩家昵称
+  EUSERDATATYPE_CUR_TITLE     = 68;   // unused
+  EUSERDATATYPE_ADDICTTIPSTIME= 73;   // 防沉迷时间
+  EUSERDATATYPE_NPC_INTERACTION = 80;  // npc交互数据
+  EUSERDATATYPE_EQUIPED_WEAPON = 125; //装备的武器id
+  EUSERDATATYPE_FIGHTSTATUS   = 129;  //战斗状态
+  EUSERDATATYPE_CUR_LOCKID    = 130;  //当前战斗锁定ID
+  EUSERDATATYPE_EQUIP_IDS     = 131;  //装备ID列表-仅仅npc或者怪物用到
+  EUSERDATATYPE_CAMP_ID       = 132;  //阵营ID
+  EUSERDATATYPE_COMBAT_ID     = 133;  //战斗ID
+  EUSERDATATYPE_TODAY_ACTIVE_DATING_COUNT = 137; //今日约会次数
+  EUSERDATATYPE_ACTIVE_DATING_CHOOSE_PARTNER = 138; // 约会选中同伴
+  EUSERDATATYPE_MAX           = 256;
+}
+
+// 性别
+enum EGender
+{
+  EGENDER_MIN                 = 0;
+  EGENDER_MALE                = 1;    // 男性
+  EGENDER_FEMALE              = 2;    // 女性
+  EGENDER_MAX                 = 3;
+}
+
+// 货币类型，仅包含部分特殊货币类型的定义
+enum EMoneyType
+{
+  EMONEYTYPE_MIN              = 0;
+  EMONEYTYPE_GOLD             = 40000001;  // 金币
+  EMONEYTYPE_DIAMOND          = 40000002;  // 钻石
+  EMONEYTYPE_COPY_MONEY       = 40000003;  // 副本学分
+  EMONEYTYPE_EQUIP_EXP        = 40000105;  // 装备经验池
+  EMONEYTYPE_FIGHTER_EXP_POOL = 40000106;  //玩家经验池
+  EMONEYTYPE_MAX_SEND         = 41000000;  // 高于此id的货币不同步给前端,仅后端使用   
+  EMONEYTYPE_CHARGE           = 41000001;  // 充值人民币额
+  EMONEYTYPE_DAILYACTIVITY    = 40100001;  // 活跃度
+}
+
+// NPC状态
+enum ECreatureStatus
+{
+  ECREATURESTATUS_MIN         = 0;
+  ECREATURESTATUS_LIVE        = 1;  //活着
+  ECREATURESTATUS_DEAD        = 3;  //死亡
+  //ECREATURESTATUS_REMOVE    = 4;  //abandoned
+  ECREATURESTATUS_CLEAR       = 6;  //移除
+  ECREATURESTATUS_RELIVE      = 7;  //复活
+  //ECREATURESTATUS_LEAVE     = 8;  //abandoned
+  ECREATURESTATUS_INRELIVE    = 9;  //出生
+  ECREATURESTATUS_MAX         = 10;
+}
+
+// 特性状态
+enum EFeaturesStatusType
+{
+  EFEATURESSTATUS_MIN = 0;
+  EFEATURESSTATUS_NOSELECT = 1; // 不可选中 0:可选中，1:不可选中
+  EFEATURESSTATUS_SELECTLIGHT = 7; // 选中时高亮 0:选中默认效果，1:选中高亮
+  EFEATURESSTATUS_UNSHOWNAME = 8; // 被选中和受到攻击时，不显示名称 0:显示，1:不显示
+  EFEATURESSTATUS_UNSHOWHP = 9; // 被选中和受到攻击时，不显示血条 0:显示，1:不显示
+  EFEATURESSTATUS_UNSHOWLEVEL = 10; // 被选中和受到攻击时，不显示等级 0:显示，1:不显示
+  EFEATURESSTATUS_UNSHOWMSG = 11; // 被选中和受到攻击时，不播放伤害飘字 0:显示，1:不显示
+  EFEATURESSTATUS_UNSHOWAVATAR = 14; // 被选中时不显示头像 0:显示，1:不显示
+  EFEATURESSTATUS_CLOSETODISPLAYNPC = 17; // 靠近显示NPC
+  EFEATURESSTATUS_BLOCKMISSILE = 18; // 是否挡弹道 0:不挡弹道，1:挡弹道
+  EFEATURESSTATUS_NPCNOTTURN = 19; // 访问时不转向 0:转向，1:不转向
+  EFEATURESSTATUS_NPCNOTWAVE = 20; // 访问时不播放保底招手动作 0:播放，1:不播放
+  EFEATURESSTATUS_NPCNOTTALK = 21; // 任务对话中不播放默认说话动作 0:播放，1:不播放
+  EFEATURESSTATUS_NPCNOTTURNHEAD = 22; // NPC不转头 0:转头，1:不转头
+  EFEATURESSTATUS_NPCNOTPLAYBUBBLES = 23; // NPC不播放头顶气泡文字 0:播放，1:不播放
+  EFEATURESSTATUS_CLOSETOSPECIALACTION = 25; // 靠近后触发特殊行为
+  EFEATURESSTATUS_VISIT = 30; //可访问特性  0：不可访问，1：可访问
+  EFEATURESSTATUS_ONCONTROL = 31; //只受大招的控制动作0：no，1：yes
+  EFEATURESSTATUS_NORUN = 32; //不可跑步特性  0：可跑步，1：不可跑步
+}
+
+// 移动方式
+enum EMoveStateType
+{
+  EMOVESTATE_MIN    = 0;
+  EMOVESTATE_WALK   = 1; //走
+  EMOVESTATE_RUN    = 2; //跑
+  EMOVESTATE_SPRINT = 3; //冲刺
+  EMOVESTATE_BURROWS  = 4; //钻地
+  EMOVESTATE_JUMP   = 5; //跳
+  EMOVESTATE_MOVEEFFECT  = 6; //技能位移
+  EMOVESTATE_FLY    = 7;  //飞行
+  EMOVESTATE_MOVING_SKILL = 8;  //移动施法
+  EMOVESTATE_LINK_JUMP = 9;  //offmesh link跳转点
+  EMOVESTATE_CLIMB = 10;  // 攀爬
+  EMOVESTATE_MAX    = 11;
+}
+
+enum EPlayerVehicleStateType
+{
+  EPLAYER_VEHICLE_ENTER = 0;       //玩家进入载具
+  EPLAYER_VEHICLE_LEAVE = 1;       //玩家了离开载具
+  EPLAYER_VEHICLE_STAY = 2;        //玩家保持在载具上
+}
+
+// 移动方式子类型
+enum EMoveSubStateType
+{
+  EMOVESUBSTATE_NORMAL    = 0;
+  EMOVESUBSTATE_BACKWARD  = 1;  // 倒退 
+  EMOVESUBSTATE_LOCKTARGET = 2;  // 朝向锁定目标移动
+  EMOVESUBSTATE_CURVEEND = 3;   //动画曲线移动停止位置修改
+  EMOVESUBSTATE_MAX       = 4;
+}
+
+//场景对象的配置类型 关联NpcType表
+enum ESceneEntryCfgType
+{
+  ESCENE_ENTRYTYPE_MIN                      = 0;
+  ESCENE_ENTRYTYPE_PARTNER                  = 1;    // NPC_伙伴
+  ESCENE_ENTRYTYPE_NPC                      = 10;   // NPC_普通
+  ESCENE_ENTRYTYPE_REPAIR_ITEM              = 20;   // STATUE_修复物
+  ESCENE_ENTRYTYPE_NORMAL_ITEM              = 30;   // STATUE_场景物件
+  ESCENE_ENTRYTYPE_COLLECT_ITEM             = 40;   // STATUE_采集物
+  ESCENE_ENTRYTYPE_BOX_ITEM                 = 50;   // STATUE_宝箱
+  ESCENE_ENTRYTYPE_NORMAL_MONSTER           = 60;   // NPC_普通魔物
+  ESCENE_ENTRYTYPE_PARTNER_MONSTER          = 61;   // NPC_伙伴魔物
+  ESCENE_ENTRYTYPE_ELITES_MONSTER           = 70;   // NPC_魔物精英
+  ESCENE_ENTRYTYPE_BOSS_MONSTER             = 80;   // NPC_魔物boss
+  ESCENE_ENTRYTYPE_BOSS_ANCIENT             = 81;   // NPC_古神boss
+  ESCENE_ENTRYTYPE_FURNITURE_ITEM           = 90;   // STATUE_家具
+  ESCENE_ENTRYTYPE_BATTLE_ITEM              = 100;  // STATUE_战斗道具
+  ESCENE_ENTRYTYPE_TOY_ITEM                 = 110;  // STATUE_玩具
+  ESCENE_ENTRYTYPE_MAX                      = 200;  // 以下都是服务器自定义的类型
+  ESCENE_ENTRYTYPE_VEHICLE                  = 1120; // 载具
+  ESCENE_ENTRYTYPE_MAPACTOR                 = 1130; // 地图烘焙对象
+  ESCENE_ENTRYTYPE_DROPITEM                 = 1140; // 掉落道具
+  ESCENE_ENTRYTYPE_INTERACTION              = 1150; // 交互道具
+}
+
+
+//宝箱类型,对应表Box.xlsx的BoxType字段
+enum BoxNpcType
+{
+  BOXNPC_UNLOCK = 0;
+  BOXNPC_LOCK_1 = 1;
+  BOXNPC_LOCK_2 = 2;
+}
+
+// 战斗状态
+enum EFightStatusType
+{
+  EFIGHTSTATUS_MIN        = 0;
+  EFIGHTSTATUS_FIGHT      = 1;  //战斗状态
+  EFIGHTSTATUS_FREE       = 2;  //非战斗状态
+  EFIGHTSTATUS_FIGHTACT   = 3;  //拔刀状态 已废弃
+  EFIGHTSTATUS_MAX        = 4;
+}
+
+//拔刀状态
+enum EFightSwordType
+{
+  EFIGHTSWORD_MIN         = 0;
+  EFIGHTSWORD_OFF         = 1;  //收刀状态
+  EFIGHTSWORD_ON          = 2;  //拔刀状态
+  EFIGHTSWORD_MAX         = 3;
+}
+
+// 自动战斗状态
+enum EAutoCombatStatusType
+{
+  EAUTOCOMBATSTATUS_MIN = 0; // 手动
+  EAUTOCOMBATSTATUS_SEMI_AUTO = 1; // 半自动
+  EAUTOCOMBATSTATUS_AUTO = 2; // 自动
+}
+
+// 非战斗状态的子状态
+enum EIdleSubStatusType
+{
+  EIDLESUBSTATUS_MIN  = 0;
+  EIDLESUBSTATUS_IDLE = 1; // Idle状态
+  EIDLESUBSTATUS_SIT  = 2; // 坐下状态
+  EIDLESUBSTATUS_LAY  = 3; // 躺下状态
+  EIDLESUBSTATUS_WEAPON_EQUIPED = 4; // 持武器状态
+}
+
+// 怒气状态
+enum EAngerStatusType
+{
+  EANGERSTATUS_MIN = 0;
+  EANGERSTATUS_NORMAL = 1; //普通状态
+  EANGERSTATUS_FURY = 2; //狂暴状态
+  EANGERSTATUS_WEAK = 3; //虚弱状态
+  EANGERSTATUS_MAX = 4;
+}
+
+//武器交互状态
+enum EWeaponInteractType
+{
+  EWEAPONINTERACT_MIN = 0;
+  EWEAPONINTERACT_PICK = 1; //抱起
+  EWEAPONINTERACT_USE = 2; //使用(例如使用盾)
+  EWEAPONINTERACT_BEPICK = 101; //被抱起
+  EWEAPONINTERACT_BEUSE = 102; //被使用(例如盾被使用)
+  EWEAPONINTERACT_MAX = 200;
+}
+
+//护盾状态
+enum EBarrierStatusType
+{
+  EBARRIERSTATUS_MIN = 0;
+  EBARRIERSTATUS_ON = 1;    //有盾状态
+  EBARRIERSTATUS_OFF = 2;   //无盾状态
+  EBARRIERSTATUS_MAX = 3;
+}
+
+// 场景坐标
+message ScenePos
+{
+  int32 x = 1;
+  int32 y = 2;
+  int32 z = 3;
+}
+
+// 缩放
+message SceneScale
+{
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+// 快照信息,S->C
+message SnapShotDataPB
+{
+  uint64 id = 1;                // 角色id
+  uint32 baselv = 2;            // 角色等级
+  uint32 partnerid = 20;        // 伙伴id
+  uint32 portrait = 21;         // 头像
+
+  string name = 15;             // 角色名称
+  //uint32 sequence = 16;         // 索引id
+  uint32 isopen = 17;           // 
+  uint32 deletetime = 18;       // 删除时间
+
+  PersonalityData pd = 19;      // 捏人数据
+}
+
+// lua参数协议,C->S
+message Param
+{
+  string key = 1;
+  string value = 2;
+
+  repeated Param items = 3;
+}
+
+message PinchPeople
+{
+  // 旧版捏人数据 弃用 兼容老账号暂不删除
+  uint32 bodyweight = 1;       //身材,表BodyWeight.xlsx列ID
+  uint32 bodyheight = 2;       //身高,表BodyHeight.xlsx列ID
+  uint32 bodybreast = 3;       //胸部大小,表BodyBreast.xlsx列ID
+  uint32 bodycolor = 4;        //身体颜色,表Color.xlsx列ID
+  uint32 eyebrow = 5;          //眉毛,表EyeBrow.xlsx列ID
+  uint32 browcolor = 6;        //眉毛颜色,表Color.xlsx列ID
+  uint32 eyepupil = 7;         //瞳孔,表EyePupil.xlsx列ID
+  uint32 pupilcolorleft = 8;   //左瞳孔颜色,表Color.xlsx列ID
+  uint32 pupilcolorright = 9;  //右瞳孔颜色,表Color.xlsx列ID
+  uint32 eyeshadow = 10;       //眼影,表EyePupil.xlsx列ID
+  uint32 eyeshadowcolor = 11;  //眼影颜色,表Color.xlsx列ID
+  uint32 eyeshape = 12;        //眼型,表EyeShape.xlsx列ID
+  uint32 faceshape = 13;       //脸型,表FaceShape.xlsx列ID
+  uint32 ear = 14;             //unused耳朵,表Ear.xlsx列ID
+  uint32 facetattoo = 15;      //脸纹,表FaceTattoo.xlsx列ID
+  uint32 facetattoocolor = 16; //unused脸纹颜色,表Color.xlsx列ID
+  uint32 hairmain = 17;        //发型,表HairMain.xlsx列ID
+  uint32 hairside = 18;        //侧发,表HairSide.xlsx列ID
+  uint32 ahoge = 19;           //呆毛,表HairAhoge.xlsx列ID
+  uint32 haircolor = 20;       //头发颜色,表Color.xlsx列ID
+  string cloth = 21;           //衣服
+//  uint32 eyelash = 22;         //睫毛,表EyeLash.xlsx列ID
+  uint32 pupilla = 23;         //眼眶,表Eyelid.xlsx列ID
+  uint32 blusher = 24;         //腮红,表Blush.xlsx列ID
+  uint32 blushercolor = 25;    //腮红颜色,表Color.xlsx列ID
+  string defaultfashion = 26;  //默认时装,表Color.xlsx列ID
+  uint32 avatarpreset = 27;    //捏人数据组id(为CJ版本使用)
+  // 以上是旧版捏人数据
+
+  // 新版捏人数据
+  uint32 vhair = 101;                     //发型,表CharacterPreset
+  uint32 vhairmajorcolor = 102;           //主发色,表CharacterPreset
+  uint32 vhairsecondcolor = 103;          //第二发色,表CharacterPreset
+  uint32 vahoge = 104;                    //呆毛,表CharacterPreset
+  uint32 vfaceshape = 105;                //脸型,表CharacterPreset
+  uint32 veyebrow = 106;                  //眉,表CharacterPreset
+  uint32 veyeshape = 107;                 //眼型,表CharacterPreset
+  uint32 veyepupil = 108;                 //瞳孔,表CharacterPreset
+  uint32 vblush = 109;                    //腮红,表CharacterPreset
+  uint32 vbodyweight = 110;               //身材,表CharacterPreset
+  uint32 vbodybust = 111;                 //胸围,表CharacterPreset
+  uint32 vskincolor = 112;                //肤色,表CharacterPreset
+  uint32 vpupilsize = 113;                //眼瞳尺寸,表CharacterPreset
+  uint32 vtatto = 114;                    //面纹,表CharacterPreset
+  uint32 vdyeingcolor = 115;              //染色,表CharacterPreset
+  // 新版捏人数据结束
+}
+
+message AvatarOrnament
+{
+  uint32 type = 1;          // 枚举类型
+  uint32 id = 2;            // id
+}
+
+// 个性数据
+message PersonalityData
+{
+  PinchPeople pinch = 1;                          // 捏人数据
+  uint32 characteristics = 2;                     // 性格
+  repeated AvatarOrnament avatarornaments = 3;    // 装扮集合
+}
+
+// lua类型模板,S->S
+message TemplateValue
+{
+  int32 valueInt = 1;
+  string valueString = 2;
+  bool valueBool = 3;
+  repeated TemplateValue valueTable = 4;
+}
+
+// 传送类型
+enum GoMapType
+{
+  GOMAP_NULL = 0;
+  GOMAP_EXITPOINT = 2;            // 场景传送点
+  GOMAP_KICKUSER = 3;             // 踢除传送
+  GOMAP_QUEST = 5;                // 任务传送
+  GOMAP_GOCITY = 7;               // 切换地图
+  GOMAP_RELIVE = 8;               // 复活传送
+  GOMAP_GM = 10;                  // GM指令传送
+  GOMAP_WORLD = 16;               // 世界地图传送
+  GOMAP_MAPLIST = 17;             // 地图列表传送
+  GOMAP_LOGIN = 18;               // 登录
+  GOMAP_REPAIR = 19;              // 修复物传送
+  GOMAP_DAILYACTIVITY = 20;       // 日常传送
+  GOMAP_ACTIVEDATING = 21;        // 主动约会
+  GOMAP_INTERACTION = 22;         // 交互物传送
+  GOMAP_WXKJ = 23;                // 妄想空间
+  GOMAP_COPYSCENE = 24;           // 原地副本
+  GOMAP_FIGHTMOVETOMASTER = 25;   // 战斗中跟随
+  GOMAP_NPCFOLLOW = 26;           // 非战斗npc跟随
+  GOMAP_EDITTEAM = 27;            // 编队调整
+  GOMAP_MATCH = 28;               // 匹配传送
+};
+
+// 地图块类型
+enum MapBlockType
+{
+  MAP_BLOCK_TYPE_MIN = 0;
+  MAP_BLOCK_TYPE_QUEST = 1;   // 任务地图块
+  MAP_BLOCK_TYPE_STAGE = 2;   // 关卡地图块
+}
+
+// 地图块形状
+enum MapBlockShape
+{
+  MAP_BLOCK_SHAPE_ROUND = 0;     // 矩形
+  MAP_BLOCK_SHAPE_SQUARE = 1;    // 圆形
+  MAP_BLOCK_SHAPE_POLYGON = 2;   // 多边形
+  MAP_BLOCK_SHAPE_AREA = 3;   // navgition区域
+  MAP_BLOCK_SHAPE_MAX = 4;
+}
+
+// 地图块,S->C
+message MapBlock
+{
+  uint64 id = 1;            // id
+  MapBlockType type = 2;    // 类型
+  MapBlockShape shape = 3;  // 形状
+
+  ScenePos pos = 4;         // 中心坐标
+  uint32 range = 5;         // 半径
+  uint32 width = 6;         // 宽度
+  uint32 length = 7;        // 长度
+}
+
+// npc个人数据类型
+enum NpcPrivateDataType
+{
+  NPC_PRIVATE_DATA_TYPE_MIN = 0;
+  NPC_PRIVATE_DATA_TYPE_IDLEACTION = 1;       // 待机动作
+  NPC_PRIVATE_DATA_TYPE_IDLEEXPRESSION = 2;   // 待机表情
+  NPC_PRIVATE_DATA_TYPE_TALKACTION = 3;       // 任务中默认谈话动作
+  NPC_PRIVATE_DATA_TYPE_TALKEXPRESSION = 4;   // 任务中默认谈话表情
+  NPC_PRIVATE_DATA_TYPE_DEFAULTTALKTEXT = 5;  // 默认对话文字
+  NPC_PRIVATE_DATA_TYPE_HEADBUBBLETEXT = 6;   // 默认头顶气泡文字
+  NPC_PRIVATE_DATA_TYPE_NPCNAME = 7;          // Npc名称
+  NPC_PRIVATE_DATA_TYPE_REPAIRSTAR = 8;       // 修复物星星数量
+  NPC_PRIVATE_DATA_TYPE_MAX = 9;
+}
+
+// unused
+enum EFollowType
+{
+  EFOLLOWTYPE_MIN = 0;
+  EFOLLOWTYPE_HAND = 1;
+  EFOLLOWTYPE_BREAK = 5;
+  EFOLLOWTYPE_TWINSACTION = 6;
+  EFOLLOWTYPE_MAX = 7;
+}
+
+// unused
+enum EZoneStatus
+{
+  EZONESTATUS_MIN = 0;
+  EZONESTATUS_FREE = 1;
+  EZONESTATUS_BUSY = 2;
+  EZONESTATUS_VERYBUSY = 3;
+  EZONESTATUS_MAX = 4;
+}
+
+// unused
+enum EZoneState
+{
+  EZONESTATE_MIN = 0;
+  EZONESTATE_FULL = 1;
+  EZONESTATE_NOFULL = 2;
+  EZONESTATE_MAX = 3;
+}
+
+// unused
+message ZoneInfo
+{
+  uint32 zoneid = 1;
+  uint32 maxbaselv = 2;
+  EZoneStatus status = 3;
+  EZoneState state = 4;
+}
+
+// 用户数据,S->C
+message UserData
+{
+  EUserDataType type = 1;   // 数据类型
+  uint64 value = 2;         // 值
+  string data = 3;          // 值
+}
+
+// NPC单位的九屏数据,S->C
+message EntryData
+{
+  ENineDataType type = 1;   // 数据类型
+  uint64 value = 2;         // 值
+}
+// ITEM单位的九屏数据,S->C
+message ItemEntryData
+{
+  EItemNineDataType type = 1; //数据类型
+  int64 value = 2;           // 值
+}
+
+// 角色属性,S->C
+message UserAttr
+{
+  uint32 type = 1;    // 属性类型 枚举EAttrType
+  int32 value = 2;    // 属性值
+}
+
+
+
+// 工房家具
+message WorkShopFurniture
+{
+  uint32 furnitureid = 1;                        // 家具id,表Item_Furniture.xlsx列ID
+  ScenePos pos = 2;                              // 家具位置
+  float dir = 3;                                 // 方向
+  repeated SubFurniture subfurniturelist = 4;    // 家具上的所有摆放物
+  repeated uint32 roomids = 5;                   // 家具占据的房间
+  uint64 guid = 6;                               // 家具的唯一id,删除场景中家具需要  
+}
+
+// 家具上的摆放物
+message SubFurniture
+{
+  uint64 furnitureid = 1;                         // 家具id,表Item_Furnture.xlsx列id
+  ScenePos pos = 2;                               // 摆放物相对于家具网格上的位置位置
+  float dir = 3;                                  // 摆放物朝向
+  uint64 parentguid = 4;                          // 唯一id(在场景内直接创建子家具时需要确定父家具的唯一)
+}
+
+enum EWorkShopOrnamentType
+{
+  EWORKSHOP_ORNAMENT_TYPE_MIN = 0;
+  EWORKSHOP_ORNAMENT_TYPE_WALL = 1;   // 墙纸
+  EWORKSHOP_ORNAMENT_TYPE_FLOOR = 2;  // 地砖
+  EWORKSHOP_ORNAMENT_TYPE_CEILING = 3;// 天花板
+}
+
+// 工房装饰物（地砖，墙纸等）
+message WorkShopOrnament
+{
+  EWorkShopOrnamentType type = 1; // 装饰物类型
+  uint32 ornamentid = 2;          // 装饰编号
+}
+
+// 一个房间的装饰
+message WorkShopRoomOrnament
+{
+  uint32 roomid = 1;                                    // 房间id
+  repeated WorkShopOrnament roomornament = 2;           // 装饰物
+  repeated WorkShopFurniture furniturelist = 3;         // 家具
+  uint32 blueprintid = 4;                               // 正在使用的蓝图id
+  bool hasinitblueprint = 5;                            // 蓝图应用时间
+}
+//---------------------------------------workshop-------------------
+
+// 一个房间的基础类型(增量更新房间属性)
+message WorkShopRoomBaseInfo
+{
+  uint32 roomid = 1;                            // 房间id
+  uint32 blueprintid = 2;                       // 正在使用的蓝图id
+  bool hasinitblueprint = 3;                    // 蓝图是否被初始化过
+  repeated WorkShopOrnament roomornament = 4;   // 装饰物
+}
+
+// 工房预设方案,S->C
+message WorkShopProtoType
+{
+  uint32 id = 1; // 方案ID,程序生成的唯一索引
+  repeated WorkShopRoomOrnament ornamentlist = 2; // 房间装潢
+  string name = 3; // 预设方案名字
+}
+
+// 工房当前解锁的房间和等级
+message WorkShopRoomData
+{
+  uint32 roomid = 1; // 房间id
+  uint32 roomlv = 2; // 房间等级
+  ScenePos referencepos = 3; // 房间参照坐标点
+}
+
+// 工房墙体中心点编辑,c -> s
+message WorkShopWallEdit
+{
+  repeated WorkShopRoomWallData wallList = 1; // 墙
+}
+
+// 工房高度编辑, c -> s
+message WorkShopRoomHeightEdit
+{ 
+  repeated  WorkShopRoomHeightData roomheightlist = 1;
+}
+
+// 工房高度编辑, c -> s
+message WorkShopRoomHeightData
+{
+  uint32 roomid = 1;  // 房间id
+  int32 height = 2;   // 高度
+}
+
+message WorkShopRoomWallData
+{
+  ScenePos wallPos = 2;           // 墙面中心点坐标
+  EWallStateType state = 3;       // 墙状态
+  repeated uint32 roomidlist = 4; // 该中心跨越的房间id
+}
+
+// 蓝图数据
+message WorkShopBlueprintData
+{
+  EBlueprintType type = 1; // 蓝图类型
+  uint32 blueprintid = 2;  // 蓝图id
+}
+
+// 工房挂机收益记录
+message WorkShopProfitPartnerData
+{
+  uint32 profitid = 1;                                  // 收益id(对应WorkshopProfitPartner的id)
+  repeated WorkShopProfitState profitstatelist = 2;     // 收益状态
+}
+
+message WorkShopProfitRepairData
+{
+  uint32 profitid = 1;                                  // 收益id(对应WorkshopProfitRepair的id)
+  uint32 lastcalctime = 2;                              // 最后一次收益领取时间
+}
+
+message WorkShopProfitState
+{
+  bool isreceive = 1;                         // 是否已经被领取
+  uint32 calctime = 2;                        // 收益产生时间
+  uint32 process = 3;                         // 进度参数(例如妄想空间的层数)
+}
+
+message MoveStateData
+{
+  uint32 actionid = 1;          //移动动作id
+  int32 actionspeed = 2;        //移动动作基准速度
+  int32 speed = 3;              //最终移动速度
+  EMoveStateType state = 4;     //移动状态
+}
+
+// 工坊墙状态
+enum EWallStateType
+{
+  EWALLSTATE_NORMAL = 0;  // 普通
+  EWALLSTATE_DESTROY = 1; // 拆除
+}
+
+enum EBlueprintType
+{
+  EBLUEPRINTTYPE_SYSTEM = 0; // 系统蓝图
+  EBLUEPRINTTYPE_USER   = 1; // 用户蓝图
+}
+
+// 工房奖励领取
+enum EProfitReceiveType
+{
+  EPROFIT_RECEIVE_ALL = 0;  // 全部领取
+  EPROFIT_RECEIVE_ID = 1;   // 领取某个id的全部
+  EPROFIT_RECEIVE_TIME = 2;   // 领取某个id的某个时间点
+}
+
+
+
+//---------------------------------------workshop-------------------
+//场景类型
+enum SceneType
+{
+  SCENE_TYPE_MIN = 0;
+  SCENE_TYPE_PUBLIC = 1;          //公共场景
+  SCENE_TYPE_DSCENE = 2;          //副本
+  SCENE_TYPE_LOBBYRAID = 5;       // 休息室
+  SCENE_TYPE_WXKJRAID = 6;        // 妄想空间 
+  SCENE_TYPE_MAX = 10;          
+
+  SCENE_TYPE_COPY     = 100000;   //原地副本
+  SCENE_TYPE_MISSION 	= 100001;   // 主线任务场景, 只能进一个人, 出场景即销毁
+}
+
+message VehicleData
+{
+  uint64 guid = 1;         //载具id
+  EPlayerVehicleStateType state = 2; //玩家在载具的状态
+  ScenePos curpos = 3;     //玩家相对于载具的坐标
+  int32 rotate = 4;        //玩家相对朝向
+}
+
+message JumpData
+{
+  float zSpeed = 1;           //向上速度，小于等于0表示下落了。
+  int32 index = 2;        //第几段跳跃,0表示同步跳跃目标点
+  int32 segment = 3;      //仅前端转发，跳跃状态， 0是无速度直接掉落的时间段，1是起跳后z速度>0的时间段， 2是z速度为0在空中滑行的时间段，3是2阶段之后的时间段
+  int32 timepassed = 4;   //仅前 端转发，毫秒，当前segment经过的时间点 
+}
+message FallData
+{
+  ScenePos targetpos = 1; //目标点
+  int32 rotate = 2;       //方向
+  int32 flag = 3;         //0开始，1结束,3 进行中
+}
+
+// 移动坐标点,S->C
+message MoveTarget
+{
+  uint64 charid = 1;      // 唯一id
+  ScenePos movepos = 2;   // 位移目标点
+  int32 dir = 3;          // 位移开始到结束的朝向
+  uint32 moveid = 4;      // 前端用于同步结束时位置的id标记
+}
+
+// 位移数据,S<->C
+message MoveData
+{
+  uint32 effectid = 1;                  // 配置表id,表MoveEffect.xlsx列ID
+  uint32 time_axis = 2;                 // 时间轴(毫秒)
+  repeated MoveTarget movetargets = 3;  // 产生位移的目标列表
+  uint32 hitindex = 4;                  // 前端的索引
+}
+
+// 分担伤害目标,S->C
+message ShareDamageTarget
+{
+  uint64 charid = 1;      // 目标唯一id
+  uint32 value = 2;       // 伤害数值
+  int32 type = 3;         // 伤害类型 对应DamageType
+}
+
+// 伤害目标,S<->C
+message DamageTarget
+{
+  uint64 charid = 1;        // 目标唯一id
+  uint32 value = 2;         // 伤害数值
+  int32 type = 3;           // 伤害类型 对应DamageType
+  repeated ShareDamageTarget sharetargets = 4;   // 分担伤害目标列表
+  ScenePos movepos = 5;     // 击退目标点,为空表示没有击退
+  int32 dir = 6;           // 击退开始到结束的朝向
+  uint32 hittype = 7;       // 受击类型 对应配置里的受击类型ID GameConfig.HitPowerType
+  int32 forcepower = 8;     // 击退力度 可以为负
+  uint32 damagedir = 9;     // 伤害来源方位 [1-前 2-后 3-左 4-右 5-上 6-下] 的二进制位
+  bool elementweak = 10;    // 是否元素弱点伤害
+  bool iscrit = 11;         // 是否暴击伤害
+  uint32 breaklevel = 12;   // 打断等级
+  uint32 moveid = 13;       // 前端用于同步结束时位置的id标记
+  uint32 imbalance = 14;    // 前端同步给后端时，是否触发失衡，[0-不触发，1-普通失衡，2-counter失衡]
+}
+
+// 伤害数据,S<->C
+message DamageData
+{
+  uint32 effectid = 1;      // 配置表id,表DamageEffect.xlsx列ID
+  uint32 time_axis = 2;     // 时间轴(毫秒)
+  repeated DamageTarget damagetargets = 3;    // 伤害目标列表
+  uint32 hitindex = 4;      // 前端索引
+}
+
+message MoveEffectData
+{
+  ScenePos targetpos = 1; //目标点
+  int32 rotate = 2;       //目标方向
+  uint32 skillid = 3;     //触发技能id
+  uint32 mainskillid = 4; //主技能id
+  MoveData movedata = 5;  //位移数据
+  DamageData damagedata = 6;
+  int32 flag = 7;         //0 move effect,1 hit back
+}
+
+// 修复物状态
+enum ERepairObjState
+{
+  STATE_DISAPPEAR            = 0; // 未出现
+  STATE_APPEARED_NO_RESEARCH = 1; //已出现未调查
+  STATE_ITEM_ENOUGH          = 2; //修复道具满足条件
+  STATE_REPAIRED             = 3; //已修复
+  STATE_DONE                 = 4; //完成
+}
+//任务头顶状态
+enum EQuestFlag
+{
+  QUEST_FLAG_MIN         = 0;
+  QUEST_FLAG_GRAY        = 1; //灰色任务
+  QUEST_FLAG_YELLOW      = 2; //黄色任务
+  QUEST_FLAG_ENERGY      = 3; //能量任务
+  QUEST_FLAG_NORMAL_STAR = 4; //普通星星
+  QUEST_FLAG_SHINE_STAR  = 5; //发光星星
+  QUEST_FLAG_MAX         = 6; 
+}
+
+//行为优先级
+enum ActionPriority
+{
+  ACTION_PRIORITY_1 = 0; //move
+  ACTION_PRIORITY_2 = 1; //skill
+  ACTION_PRIORITY_3 = 2; //move effect
+}
+
+//公开课副本进度
+enum ERaidCopySchedule
+{
+  ECOPY_SCHEDULE_MIN      = 0;
+  ECOPY_SCHEDULE_QUEST    = 1;  //做副本任务
+  ECOPY_SCHEDULE_BOSS     = 2;  //副本任务结束 打boss
+  ECOPY_SCHEDULE_COMPLETE = 3;  //打完boss 准备传送
+  ECOPY_SCHEDULE_MAXN     = 4;  
+}
+
+enum EBoxType
+{
+  EBOXTYPE_MIN = 0;
+  EBoxType_NORMAL = 1;
+  EBOXTYPE_BUFF = 2;
+  EBOXTYPE_MONSTER = 3;
+}
+
+// CD类型
+enum CD_TYPE
+{
+  CD_TYPE_SKILL = 0;        // 技能cd
+  CD_TYPE_ITEM = 1;         // 物品cd
+  CD_TYPE_SKILLDELAY = 2;   // 技能延时cd
+  //CD_TYPE_MANA = 3;         // 玛娜cd
+  CD_TYPE_DODGESKILL = 4;   // 闪避技能cd
+}
+
+// CD数据,S->C
+message CDTimeItem
+{
+  uint32 id = 1;      // 道具id或者技能id,表Item.xlsx或表Skill.xlsx列ID
+  uint64 time = 2;    // 结束时间戳(毫秒)
+  CD_TYPE type = 3;   // CD类型
+  uint32 recharge = 4; // 剩余充能次数
+}
+
+// 可见性状态
+enum ENpcVisibleStatus
+{
+  NPC_VISIBLE_STATUS_MIN = 0;
+  NPC_VISIBLE_STATUS_PUBLIC = 1;    // 公共可见
+  NPC_VISIBLE_STATUS_TEAM = 2;      // unused
+  NPC_VISIBLE_STATUS_PRIVATE = 3;   // 私人可见
+  
+  NPC_VISIBLE_STATUS_MAX = 4;
+}
+
+
+// 可见性状态数据
+message MapNpcVisibleStatusData
+{
+  uint32 npcid = 1;                         // 配置表id
+  uint32 npcstatus = 2;                     // npc纯表现状态
+  uint32 npclogicstatus = 3;                // npc逻辑状态
+  ENpcVisibleStatus npcvisiblestatus = 4;   // 可见性状态
+  string alias = 5;                         // 别名
+  repeated uint64 guids = 6;                    // 对象列表
+}
+
+// npc个人数据
+message NpcPrivateData
+{
+  uint32 data = 1;              // 值
+  string data_str = 2;          // 值
+  NpcPrivateDataType type = 3;  // 数据类型
+  string talkcontent = 4;       
+}
+
+
+// npc私人数据
+message MapNpcPrivateData
+{
+  uint32 npcid = 1;                  // npc表id
+  repeated NpcPrivateData data = 2;  // npc数据
+  string alias = 3;                  // 别名
+  repeated uint64 guids = 4;         // 对象列表
+}
+
+// 妄想空间关卡进度
+enum EWXKJStageSchedule
+{
+  EWXKJSTAGESCHEDULE_INIT     = 0;  // 关卡默认状态
+  EWXKJSTAGESCHEDULE_OPEN     = 1;  // 妄想空间可以进入
+  EWXKJSTAGESCHEDULE_COMPLETE = 3;  // 任务已完成，开放 
+  EWXKJSTAGESCHEDULE_END      = 4;
+}
+
+// 用户计数器类型
+enum EUserCounterType
+{
+  EUSERCOUNTERTYPE_LOTTERY_NOSSR  = 0;      // 没抽到SSR的次数
+  EUSERCOUNTERTYPE_LOTTERY_ALL    = 1;      // 总抽卡次数
+  EUSERCOUNTERTYPE_EQUIP_POS_MIN  = 10000;   // 装备部件min
+  EUSERCOUNTERTYPE_EQUIP_POS_MAX  = 19999;   // 装备部件max
+  EUSERCOUNTERTYPE_SKILL_LEVEL    = 20000;   // 技能升级
+}
+
+//************************学院*************************//
+
+// 学院赠礼
+message CollegeGiftData
+{
+  uint32 giftid                     = 1;    // 礼物id
+  repeated CollegeGift collegegifts = 2; 
+}
+
+message CollegeGift
+{
+  uint64 gaintime = 1;  // 获得时间
+  bool isreceived = 2;  // 是否已经领取
+  bool isactive   = 3;  // 是否活跃 (进阶高等级礼包时需要将低阶礼包修改为非活跃状态停止收益计算但是需要保持已生成的礼包继续有效)
+}
+
+//************************学院*************************//
+
+// 配置枚举
+enum EConfigType
+{
+  CONFIGTYPE_NONE = 0;                    //
+  CONFIGTYPE_AILEAF = 1;                  // AILeaf
+  CONFIGTYPE_ROLEDATA = 2;                // 角色属性
+  CONFIGTYPE_OBJECTATTR = 3;              // 角色属性
+  CONFIGTYPE_FIGHTATTRCFG = 4;            // 战斗数值
+  CONFIGTYPE_BATTLECFG = 5;               // 战斗表
+  CONFIGTYPE_MISC = 6;                    // 常用配置
+  CONFIGTYPE_ITEM = 7;                    // 道具配置
+  CONFIGTYPE_SKILL = 8;                   // 技能配置
+  CONFIGTYPE_BUFFER = 9;                  // BUFF配置
+  CONFIGTYPE_NPC = 10;                    // NPC
+  CONFIGTYPE_PARTNER = 11;                // 同伴
+  CONFIGTYPE_USERLEVEL = 12;              // 玩家等级
+  CONFIGTYPE_SCENE = 13;                  // 场景
+  CONFIGTYPE_QUEST = 14;                  // 任务
+  CONFIGTYPE_REWARD = 15;                 // 奖励
+  CONFIGTYPE_ANIMATION = 16;              // 动作配置
+  CONFIGTYPE_MENU = 17;                   // 解锁配置
+  CONFIGTYPE_SKILLLEVEL = 19;             // 技能升级
+  CONFIGTYPE_MOVEACTION = 21;             // 移动
+  CONFIGTYPE_LOTTERY = 23;                // 抽卡
+  CONFIGTYPE_SCENEITEM = 24;              // 场景物件
+  CONFIGTYPE_ITEMEQUIOUPGRADE = 25;       // 装备升级升星
+  CONFIGTYPE_WXKJSCENECONFIG = 26;        // 妄想空间
+  CONFIGTYPE_COLLEGE = 27;                // 学院
+  CONFIGTYPE_DAILYACTIVITY = 28;          // 日常活动
+  CONFIGTYPE_CLUBCHALLENGE = 29;          // 天团挑战
+  CONFIGTYPE_ENTRYEVENT = 30;             // EntryEvent
+  CONFIGTYPE_SYSMSG = 31;                 // 系统消息
+  CONFIGTYPE_FAVORILITY = 32;             // 好感度favorility
+  CONFIGTYPE_ACCESSITEM = 33;             // 获取途径
+  CONFIGTYPE_ACTIVEDATING = 34;           // 主动约会
+  CONFIGTYPE_ENTRYPERFORMANCE = 35;       // 场景对象演出
+  CONFIGTYPE_SCENECONFIG = 36;            // 场景配置
+  CONFIGTYPE_OBJECTDATA = 37;             // 对象属性
+  CONFIGTYPE_NAVMESH = 38;                // navmesh
+  CONFIGTYPE_MAX = 1024;                  //
+}
+
+// ObjectType
+enum EObjectDefineType
+{
+  EOBJECTDEFINE_TYPE_UNKNOWN        = 0;      // 未知
+  EOBJECTDEFINE_TYPE_OBJECT         = 1;      // object基类
+  EOBJECTDEFINE_TYPE_NPC            = 2;      // npc
+  EOBJECTDEFINE_TYPE_STATIC         = 3;      // 静态物件
+  EOBJECTDEFINE_TYPE_USER           = 4;      // user
+}
+
+enum EModelType
+{
+  EMODELTYPE_MIN                    = 0;
+  EMODELTYPE_CAPSULE                = 1;   // 胶囊体
+  EMODELTYPE_BOX                    = 2;   // 立方体
+  EMODELTYPE_MAX                    = 3;
+};
+

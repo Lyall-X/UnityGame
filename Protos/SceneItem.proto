@@ -1,0 +1,181 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+
+import "ProtoItemCommon.proto";
+// 包裹数据
+message PackageItem
+{
+  EPackType type = 1;         // 类型 枚举EPackType
+  uint32 fighterid = 2;       // 伙伴ID 当EPackType是装备栏时该字段有效，表:Partner.xlsx列id
+  uint32 maxslot = 3;         // 最大栏数,可容纳物品数量
+  repeated ItemData data = 4; // 道具数据
+}
+
+// 正在使用的
+// 包裹数据,S<->C
+message SendPackageListCmd
+{
+  repeated PackageItem packs = 1;
+}
+
+// 正在使用的
+// 更新装备栏,S->C
+message PackageUpdate
+{
+  EPackType type = 1;                 // 类型 枚举EPackType
+  uint32 fighterid = 2;               // 伙伴id 当EPackType是装备栏时该字段有效，表:Partner.xlsx列id
+  repeated ItemData updateItems = 3;  // 更新道具/装备数据
+  repeated string delItems = 4;       // 删除道具/装备装备
+}
+
+// 正在使用的
+// 使用道具协议,C->S
+message ItemUse
+{
+  string itemguid = 3;          // 道具guid,唯一iD
+  repeated uint64 targets = 4;  // 使用目标
+  uint32 count = 5;             // 使用数量
+}
+
+// 装备操作
+enum EEquipOper
+{
+  EEQUIPOPER_MIN        = 0;
+  EEQUIPOPER_ON         = 1;    // 穿起装备
+  EEQUIPOPER_OFF        = 2;    // 脱下装备
+  // EEQUIPOPER_OFFPOS     = 3;    // 脱下对应部位装备
+  EEQUIPOPER_MAX        = 3;
+}
+
+//现在正在使用的
+// 装备操作,C->S
+message EquipPackageOperCmd
+{
+  uint32 fighterid = 3;   // 伙伴id
+  EEquipOper oper = 4;    // 装备操作
+  EEquipPos pos = 5;      // 装备部位
+  string equip_guid = 6;  // 要穿的装备 guid
+  uint32 src_fighter = 7; // 要穿的装备 所在的流派身上
+}
+
+//现在正在使用的
+//装备穿戴结果,S->C
+message RetEquipPackageOperCmd
+{
+  uint32 fighterid = 1;   // 伙伴id 表:Partner.xlsx列id
+  EEquipOper oper = 2;    // 装备操作
+  EEquipPos pos = 3;      // 装备部位
+  string equipguid = 4;   // 要穿的装备 guid
+  uint32 srcfighter = 5;  // 要穿的装备 所在的流派身上
+  bool result = 6;        // 穿戴结果
+}
+
+//unused
+// client -> scene : sell item
+message SItem
+{
+  string guid = 1;   // unused
+  uint32 count = 2;   // unused
+}
+
+// unused
+// C<->S : browse package
+message BrowsePackage
+{
+  EPackType type = 3;   // unused
+}
+
+// 现在正在使用的
+// S->C : item show
+message ItemShowCmd
+{
+  repeated ItemInfo items = 1; //获得
+  repeated ItemInfo reduce_items = 2; //消耗
+  repeated ItemInfo reward_items = 3; //奖励
+}
+
+// unused
+enum ETradeType
+{
+  ETRADETYPE_TRADE = 0;
+  ETRADETYPE_BOOTH = 1;
+}
+
+// unused
+message TradeItemBaseInfo
+{
+  uint32 itemid = 1;
+  uint32 price = 2;
+  uint32 count = 3;  
+  string guid = 4;       //出售的时候需要
+  uint64 order_id = 5; 
+  uint32 refine_lv = 6;  //精炼等级
+  bool overlap = 8;      //是否可堆叠
+  bool is_expired = 9;   //是否过期
+  ItemData item_data = 10;
+  uint32 publicity_id = 11;    //公示期id
+  uint32 end_time = 12;        //公示期结束时间
+  string key = 13 ;                        //公示期的key
+  uint64 charid = 14;    // 摆摊玩家id
+  string name = 15;      // 摆摊玩家名称
+  ETradeType type =16; //交易类型
+  uint32 up_rate = 17;   // 上调价格
+  uint32 down_rate = 18; // 下调价格
+}
+
+message MoneyData
+{
+  uint32 id = 1;      // 道具id，对应道具表
+  uint64 count = 2;   // 道具数量
+}
+
+// S -> C, 上线或进入场景时初始化货币数据
+message MoneyCmd
+{
+  repeated MoneyData moneydatas = 1;
+}
+
+// S -> C, 更新货币数据
+message MoneyUpdateCmd
+{
+  MoneyData moneydata = 1;
+}
+
+enum EEquipStrengthResult
+{
+  ESTRENGTHRESULT_MIN = 0;
+  ESTRENGTHRESULT_SUCCESS = 1;  //成功
+  ESTRENGTHRESULT_NOMATERIAL = 2; //材料不足
+  ESTRENGTHRESULT_MAXLV = 3; //已经到达最大等级
+}
+
+// S<->C 装备强化
+message EquipStrengthCmd
+{
+  string equip_guid = 1;  // 要强化的装备 guid
+  uint32 fighterid = 2;   // 装备所在的伙伴id  如果没有被伙伴穿戴，该字段填0
+  //uint32 inject_exp = 3;  // 注入的强化经验
+
+  //以下是返回数据
+  uint32 newlv = 4; //强化后等级
+  EEquipStrengthResult ret = 5; //强化结果
+}
+
+// S<->C 装备升星
+message EquipUpgradeStarCmd
+{
+  string equip_guid = 1;  // 要升星的装备 guid
+  uint32 fighterid = 2;   // 装备所在的伙伴id  如果没有被伙伴穿戴，该字段填0
+  repeated string material_equip = 3; // 消耗的equip guid
+
+  //以下是返回数据
+  uint32 newlv = 4; //升星后的星级
+  EEquipStrengthResult ret = 5; //升星结果
+}
+
+// 获得奖励通用显示,S->C
+message RewardCommonCmd
+{
+  repeated ItemData items = 3;          // 物品信息
+}

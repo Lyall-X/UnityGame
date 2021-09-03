@@ -1,0 +1,155 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd"; 
+
+enum ESceneObjectInteractionMode
+{
+	None		=	0;			//无法访问
+	Visit		=	1;			//访问（对象带阻挡）
+	Attack		=	2;			//仅允许被攻击
+	Overlap		=	3;			//访问（对象不带阻挡）
+	VisitAndAttack		=	4;			//允许访问并且允许被攻击（禁止使用）
+}
+
+enum ESOBCEventResponseHandling
+{
+	Default		=	0;			//默认处理规则，当前为OneByOne
+	OneByOne		=	1;			//一个接一个的排队响应处理
+	ClearPrevious		=	2;			//清除前面正在执行和待执行的事件，并响应新的事件
+	AbandonNext		=	3;			//如果前面正在响应处理，则抛弃新的事件
+	AbandonSameEventNext		=	4;			//如果前面正在响应处理或已缓存相同的事件，则抛弃新的事件
+}
+
+enum EStageObjectType
+{
+	ESOTPlayer		=	0;			//玩家
+	ESOTNetPlayer		=	1;			//网络上其他玩家
+	ESOTPartner		=	2;			//伙伴
+	ESOTNpc		=	3;			//NPC
+	ESOTNormalMonster		=	4;			//普通魔物
+	ESOTPartnerMonster		=	5;			//伙伴魔物
+	ESOTElitesMonster		=	6;			//精英魔物
+	ESOTBossMonster		=	7;			//Boss魔物
+	ESOTBossAncient		=	8;			//Boss古神
+	ESOTNormalItem		=	9;			//场景物件
+	ESOTRepairItem		=	10;			//修复物
+	ESOTCollectItem		=	11;			//采集物
+	ESOTBoxItem		=	12;			//宝箱
+	ESOTBattleItem		=	13;			//战斗道具
+	ESOTToyItem		=	14;			//玩具
+	ESOTVehicle		=	15;			//载具
+	ESOTDropItem		=	16;			//掉落道具
+	ESOTMapActor		=	17;			//地图烘培对象
+}
+
+enum ECharacteristicTag
+{
+	ECT_Cute		=	0;			//可爱
+	ECT_Sexy		=	1;			//性感
+	ECT_Cool		=	2;			//帅气
+	ECT_Shy		=	3;			//害羞
+	ECT_Elegant		=	4;			//优雅
+	ECT_Innocent		=	5;			//天然
+	ECT_Dynamic		=	6;			//元气
+}
+
+enum EAvatarSocket
+{
+	EASBody		=	0;			//
+	EASLeftHand		=	1;			//
+	EASRightHand		=	2;			//
+}
+
+enum EActiveDatingForm
+{
+	HotSpring		=	0;			//泡温泉
+	Reading		=	1;			//看书自习
+	Swing		=	2;			//荡秋千
+	Walking		=	3;			//散步
+	Camping		=	4;			//野餐
+	Research		=	5;			//调查研究
+	PetCat		=	6;			//撸猫
+	LookingStar		=	7;			//看星星
+}
+
+enum EActiveDatingTopic
+{
+	Cat		=	0;			//猫
+	Food		=	1;			//美食
+	Study		=	2;			//学习
+	Societies		=	3;			//社团
+	Interest		=	4;			//兴趣
+	Relationship		=	5;			//关系
+	Past		=	6;			//过去
+	Home		=	7;			//故乡
+	Dream		=	8;			//梦想
+	Medicine		=	9;			//药物
+	Life		=	10;			//生死
+	Figure		=	11;			//身材
+	Habit		=	12;			//习惯
+	Faith		=	13;			//信念
+	Job		=	14;			//工作
+	Skill		=	15;			//技能
+	Likes		=	16;			//喜好
+	Hobby		=	17;			//癖好
+	Strengths		=	18;			//特长
+}
+
+enum EAnimBehavior
+{
+	AnimBehavior_None		=	0;			//
+	AnimBehavior_EnterCombat		=	1;			//
+}
+
+enum EDestroyType
+{
+	Normal		=	0;			//
+	Fadeout		=	1;			//
+	DirectDestroy		=	2;			//
+	EditTeam		=	3;			//
+}
+
+enum EFilterType
+{
+	FilterTypeNone		=	0;			//
+	Corrupt		=	1;			//
+	Memory		=	2;			//
+	Death		=	3;			//
+	Search		=	4;			//
+}
+
+enum ENetPerformanceType
+{
+	PlayAnimation		=	0;			//播放动画
+}
+
+enum EBattleItemSubType
+{
+	Drop		=	0;			//战斗道具掉落
+	Trap		=	1;			//战斗陷阱
+	Trigger		=	2;			//Overlap触发器
+}
+
+enum ESOBehaviorTarget
+{
+	Object		=	0;			//被交互的对象，如场景物件
+	Operator		=	1;			//交互的发起者，如玩家
+	ObjectOwner		=	2;			//被交互的对象的所有者，如场景物件的拥有者
+}
+
+enum ESOBehaviorControlType
+{
+	SOBCTNone		=	0;			//
+	Start		=	1;			//开始
+	Stop		=	2;			//结束
+	Pause		=	3;			//暂停
+	Resume		=	4;			//继续
+}
+
+enum ESOBehaviorInterruptHandling
+{
+	SOBIHNone		=	0;			//
+	GoOn		=	1;			//继续
+	Break		=	2;			//打断、中止
+}
+

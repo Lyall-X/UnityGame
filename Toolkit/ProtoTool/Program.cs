@@ -116,9 +116,6 @@ namespace ProtoTool
                                 protoCfg.protocs.Add((currDir + path.Trim()).Replace('\\', '/'));
                             }
                         break;
-                        case "file":
-                            protoCfg.protofiles.Add(strs[1].Trim());
-                        break;
                     }
                 }
                 return true;
@@ -152,9 +149,7 @@ namespace ProtoTool
             var protofiles = protoCfg.protofiles;
             for(int i = 0; i < files.Length; i++)
             {
-                var filename = Path.GetFileName(files[i]);
-                var index = protoCfg.protofiles.IndexOf(filename);
-                protoCfg.protofiles[index] = files[i].Replace('\\', '/');
+                protoCfg.protofiles.Add(files[i].Replace('\\', '/'));
             }
         }
     }

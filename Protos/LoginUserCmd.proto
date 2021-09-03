@@ -1,0 +1,117 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+
+import "ProtoCommon.proto";
+//创建角色,C->S
+message CreateCharUserCmd
+{
+   string name = 1;         //角色名称
+   uint32 role_sex = 2;     //性别,abandoned
+   uint32 profession = 3;   //职业,abandoned
+   uint64 accid = 4;        //账号id
+   //uint32 sequence = 5;     //abandoned
+   string version = 6;      //版本号,unused
+   PersonalityData pd = 7;  //捏脸数据
+}
+
+//角色列表,S->C
+message SnapShotUserCmd 
+{
+  repeated SnapShotDataPB data = 3;   //角色列表
+  uint64 lastselect = 4;              //最后一次登录角色的charid
+  bool deletechar = 5;                //已删除角色
+  uint32 deletecdtime = 6;            //删角功能解锁时间
+}
+
+message ExtraData
+{
+   string phone = 1;      //绑定的手机号码
+   bool safedevice = 2;   //安全设备
+}
+
+//选择角色,C->S
+message SelectRoleUserCmd
+{
+   uint64 id = 3;           //角色charid
+   uint32 zoneID = 4;       //大区id
+   uint64 accid = 5;        //账号id
+   string deviceid = 6;     //设备id
+   string name = 7;         //角色名
+   string version = 8;      //版本号,unused
+   ExtraData extraData = 9; //设备相关数据
+   bool ignorepwd = 10;     //true 需要密码 false 不需要
+   string password = 11;    //密码
+   uint32 resettime = 12;   //重置时间
+   uint32 language = 13;    //语言
+   bool realauthorized = 14;//安全密码
+   uint32 mapid = 16;       //登录地图id
+   uint32 sceneid = 17;     //登录地图guid
+}
+
+//登录结果,S->C
+message LoginResultUserCmd
+{
+   uint32 ret = 3;    //enum RegErrRet
+}
+
+//删除角色,C->S,unused
+message DeleteCharUserCmd
+{
+   uint64 id = 3;         //角色id
+   uint64 accid = 4;      //账号id
+   string version = 5;    //版本号
+}
+
+//心跳协议,C<->S
+message HeartBeatUserCmd
+{
+   uint64 time = 3;     //时间戳,单位:ms
+}
+
+//服务器时间,S->C
+message ServerTimeUserCmd
+{
+   uint64 time = 3;   //单位:ms
+}
+
+//GM删除账号,S->S
+message GMDeleteCharUserCmd
+{
+   uint64 accid = 3;
+   uint32 zoneid = 4;
+}
+
+//请求连接服务器,C->S
+message ReqLoginUserCmd
+{
+   uint64 accid = 3;      //账号id
+   string sha1 = 4;       //sha1验证码,unused
+   uint32 zoneid = 5;     //大区id
+   uint32 timestamp = 6;  //时间戳
+   string version = 7;    //版本号
+   string domain = 8;     //域名
+   string ip = 9;         //ip
+   string device = 10;    //设备
+   string phone = 11 ;    //手机号
+   string safe_device = 12;//安全设备
+   uint32 language = 13;  //语言
+   uint32 site = 14;      //unused
+   string authorize = 15; //安全密码
+   bool relogin = 16;     //短线重连
+   uint32 reloginack = 17;//断线重连确认序号 
+}
+
+//取消删除角色,C->S
+message CancelDeleteCharUserCmd
+{
+   uint64 id = 3;     //角色id
+   uint64 accid = 4;  //账号id
+}
+
+//客户端帧率,C->S
+message ClientFrameUserCmd
+{
+   uint32 frame = 3;
+}
+

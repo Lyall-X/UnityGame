@@ -1,0 +1,4 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+

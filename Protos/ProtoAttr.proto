@@ -1,0 +1,425 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+
+//需要九屏同步的数据类型
+enum ENineDataType
+{
+  ENINEDATATYPE_MIN           = 0;
+  ENINEDATATYPE_WEAPON        = 1; //装备的武器id
+  ENINEDATATYPE_HEAD          = 2; //装备的头饰id
+  ENINEDATATYPE_EARRINGS      = 3; //装备的耳饰id
+  ENINEDATATYPE_FACE          = 4; //装备的面饰id
+  ENINEDATATYPE_MOUTH         = 5; //装备的嘴饰id
+  ENINEDATATYPE_BACK          = 6; //装备的背饰id
+  ENINEDATATYPE_TAIL          = 7; //装备的尾饰id
+  ENINEDATATYPE_FASHION       = 8; //装备的时装id
+
+  ENINEDATATYPE_STATUS        = 15;   // 状态
+  ENINEDATATYPE_KILLERNAME    = 16;   // 击杀者名字
+  ENINEDATATYPE_NPC_INTERACTION = 17;  // npc交互数据
+  ENINEDATATYPE_FIGHTSTATUS   = 20;  //战斗状态
+  ENINEDATATYPE_CUR_LOCKID    = 21;  //当前战斗锁定ID
+  ENINEDATATYPE_EQUIP_IDS     = 22;  //装备ID列表-仅仅npc或者怪物用到
+  ENINEDATATYPE_CAMP_ID       = 23;  //阵营ID
+  ENINEDATATYPE_ROLELEVEL     = 24;  //等级
+  ENINEDATATYPE_ROLEEXP       = 25;  //伙伴经验
+  ENINEDATATYPE_KILLERID      = 26;  //击杀者ID 不会存档 只做死亡事件触发时的逻辑用
+
+  ENINEDATATYPE_SWORDSTATE    = 27;  //拔刀状态
+  ENINEDATATYPE_PERSONALITYDATA = 28;//捏人数据
+  ENINEDATATYPE_ANGERSTATE    = 29;  //怒气状态
+  ENINEDATATYPE_IDLE_SUBSTATUS  = 30; // 非战斗状态的子状态（猫的坐下状态等）
+  ENINEDATATYPE_CATGUID       = 31; // 抱着猫的guid变化
+  ENINEDATATYPE_PASSENGERS    = 32; // 自身作为载具时的乘客ID
+  ENINEDATATYPE_VEHICLE       = 33; // 自身作为乘客时的载具ID
+  ENINEDATATYPE_WEAPONINTERACT= 34; // 与武器的交互状态
+  ENINEDATATYPE_BARRIERSTATUS = 35; // 护盾状态 EBarrierStatusType
+  ENINEDATATYPE_BOSSSTAGE     = 36; // Boss当前的阶段
+  ENINEDATATYPE_COMBAT_ID     = 37; // 战斗ID
+
+  ENINEDATATYPE_MAX           = 38;
+}
+
+enum EItemNineDataType
+{
+  EITEM_NINEDATATYPE_MIN            = 0;
+  EITEM_NINEDATATYPE_DIR            = 1;  // 朝向
+  EITEM_NINEDATATYPE_INTERACTION    = 2;  // 交互状态
+  EITEM_NINEDATATYPE_PASSENGERS     = 3;  // 自身作为载具时的乘客ID
+  EITEM_NINEDATATYPE_VEHICLE        = 4;  // 自身作为乘客时的载具ID
+  EITEM_NINEDATATYPE_MODEL_HEIGHT   = 6;  // 模型高度
+  EITEM_NINEDATATYPE_MODEL_WIDTH    = 7;  // 模型宽度
+  EITEM_NINEDATATYPE_MODEL_LENGTH   = 8;  // 模型长度
+  EITEM_NINEDATATYPE_MAX            = 9;
+}
+
+enum EAttrType
+{
+  EATTRTYPE_MIN                             = 0;
+  EATTRTYPE_EXP                             = 1;    //角色经验
+  EATTRTYPE_LV                              = 2;    //角色等级
+  EATTRTYPE_STATUS1                         = 10;   //属性状态1
+  EATTRTYPE_STATUS2                         = 11;   //属性状态2
+  EATTRTYPE_STATUS3                         = 12;   //属性状态3
+  EATTRTYPE_STATUS4                         = 13;   //属性状态4
+  EATTRTYPE_STATUS5                         = 14;   //属性状态5
+  EATTRTYPE_STATUS_MAX                      = 15;   //属性状态数据字段 MAX  范围检测使用
+  EATTRTYPE_HP                              = 100;  //当前生命
+  EATTRTYPE_HPPER                           = 101;  //当前生命%
+  EATTRTYPE_MAXHP                           = 102;  //生命上限
+  EATTRTYPE_MAXHPPER                        = 103;  //生命上限%
+  EATTRTYPE_ATK                             = 104;  //攻击力
+  EATTRTYPE_ATKPER                          = 105;  //攻击力%
+  EATTRTYPE_DEF                             = 110;  //物理防御
+  EATTRTYPE_DEFPER                          = 111;  //物理防御%
+  EATTRTYPE_MDEF                            = 120;  //魔法防御
+  EATTRTYPE_MDEFPER                         = 121;  //魔法防御%
+  EATTRTYPE_CRITRATE                        = 200;  //暴击率%
+  EATTRTYPE_CRITDEFRATE                     = 201;  //暴击减免率%
+  EATTRTYPE_CRITDAMGEPER                    = 210;  //暴击伤害%
+  EATTRTYPE_CRITDAMGEDEFPER                 = 211;  //暴击伤害减免%
+  EATTRTYPE_BREAKRATIO                      = 220;  //最终破甲率%
+  EATTRTYPE_BREAKATKRATIO                   = 221;  //破甲率%
+  EATTRTYPE_BREAKDEFRATIO                   = 222;  //破甲减免率%
+  EATTRTYPE_PENETRATIONRATE                 = 230;  //最终物理穿透%
+  EATTRTYPE_PENETRATIONATKRATE              = 231;  //物理穿透率%
+  EATTRTYPE_PENETRATIONDEFRATE              = 232;  //物理穿透减免率%
+  EATTRTYPE_BREAKMRATIO                     = 240;  //最终破魔率%
+  EATTRTYPE_BREAKMATKRATIO                  = 241;  //破魔率%
+  EATTRTYPE_BREAKMDEFRATIO                  = 242;  //破魔减免率%
+  EATTRTYPE_PENETRATIONMRATE                = 250;  //最终魔法穿透%
+  EATTRTYPE_PENETRATIONMATKRATE             = 251;  //魔法穿透率%
+  EATTRTYPE_PENETRATIONMDEFRATE             = 252;  //魔法穿透减免率%
+  EATTRTYPE_ETHER                           = 300;  //当前以太
+  EATTRTYPE_ETHERPER                        = 301;  //当前以太%
+  EATTRTYPE_MAXETHER                        = 302;  //以太上限
+  EATTRTYPE_MAXETHERPER                     = 303;  //以太上限%
+  EATTRTYPE_ETHERRECOVER                    = 304;  //以太恢复速度
+  EATTRTYPE_ETHERRECOVERPER                 = 305;  //以太恢复速度%
+  EATTRTYPE_ETHERRECOVERCD                  = 306;  //以太恢复间隔
+  EATTRTYPE_ETHERRECOVERCDPER               = 307;  //以太恢复间隔%
+  EATTRTYPE_ETHERCOST                       = 308;  //以太消耗修正
+  EATTRTYPE_ETHERCOSTPER                    = 309;  //以太消耗修正%
+  EATTRTYPE_ENERGY                          = 310;  //当前能量
+  EATTRTYPE_ENERGYPER                       = 311;  //当前能量%
+  EATTRTYPE_MAXENERGY                       = 312;  //能量上限
+  EATTRTYPE_MAXENERGYPER                    = 313;  //能量上限%
+  EATTRTYPE_ENERGYRECOVER                   = 314;  //能量恢复速度
+  EATTRTYPE_ENERGYRECOVERPER                = 315;  //能量恢复速度%
+  EATTRTYPE_ENERGYRECOVERCD                 = 316;  //能量恢复间隔
+  EATTRTYPE_ENERGYRECOVERCDPER              = 317;  //能量恢复间隔%
+  EATTRTYPE_ENERGYCHANGE                    = 318;  //能量消耗修正
+  EATTRTYPE_ENERGYCHANGEPER                 = 319;  //能量消耗修正%
+  EATTRTYPE_SHIELDDEF                       = 320;  //护盾
+  EATTRTYPE_SHIELDDEFPER                    = 321;  //护盾%
+  EATTRTYPE_SHIELDBYMAXHPPER                = 322;  //生命百分比的护盾
+  EATTRTYPE_SHIELDBYATKPER                  = 323;  //攻击力百分比的护盾
+  EATTRTYPE_SHIELDBYDEFPER                  = 324;  //物防百分比的护盾
+  EATTRTYPE_SHIELDBYMDEFPER                 = 325;  //魔防百分比的护盾
+  EATTRTYPE_MOVESPD                         = 330;  //移动速度
+  EATTRTYPE_MOVESPDPER                      = 331;  //移动速度倍率%
+  EATTRTYPE_BASEMOVESPEED                   = 332;  //默认移动速度
+  EATTRTYPE_BASEMOVESPEEDPER                = 333;  //默认移动速率
+  EATTRTYPE_MAXHPSECTION                    = 340;  //血条数量上限
+  EATTRTYPE_HPSECTION                       = 341;  //当前血条数量
+  EATTRTYPE_ROTATESPEED                     = 342;  //转身速率
+  EATTRTYPE_STUNRESISTPER                   = 343;  //强控抗性
+  EATTRTYPE_DISTURBRESISTPER                = 344;  //仇恨关系抗性
+  EATTRTYPE_SILENTRESISTPER                 = 345;  //沉默抗性
+  EATTRTYPE_TWINERESISTPER                  = 346;  //禁锢抗性
+  EATTRTYPE_DAMGEREBOUND                    = 347;  //伤害反弹%
+  EATTRTYPE_DAMGEVAMPIRIC                   = 348;  //伤害吸血比例
+  EATTRTYPE_REALDAMGEATK                    = 349;  //真实伤害攻击力
+  EATTRTYPE_REALDAMGEATKPER                 = 350;  //真实伤害攻击力%
+  EATTRTYPE_RANGEDAMGE                      = 351;  //范围伤害%
+  EATTRTYPE_SPATTERDAMGE                    = 352;  //溅射伤害%
+  EATTRTYPE_CATAPULTDAMGE                   = 353;  //弹射伤害%
+  EATTRTYPE_CDCHANGE                        = 354;  //冷却时间修正
+  EATTRTYPE_CDCHANGEPER                     = 355;  //冷却时间修正%
+  EATTRTYPE_HITRESIST                       = 356;  //打击力度抵抗
+  EATTRTYPE_THROUGHCOUNT                    = 357;  //弹道穿透数量
+  EATTRTYPE_HEALENCPER                      = 358;  //治疗效果加成%
+  EATTRTYPE_BEHEALENCPER                    = 359;  //受到治疗效果加成%
+  EATTRTYPE_HATECIRCLE                      = 360;  //吸引仇恨范围
+  EATTRTYPE_HATEUPPERBOUND                  = 361;  //仇恨上限
+  EATTRTYPE_BREAKWEAKTIME                   = 362;  //Break虚弱时间
+  EATTRTYPE_BREAKRESETTIME                  = 363;  //Break保护时间
+  EATTRTYPE_BALANCERESETTIME                = 364;  //失衡重置时间
+  EATTRTYPE_DAMGEINCREASE                   = 400;  //伤害加成%
+  EATTRTYPE_ELEMENTINCREASE                 = 401;  //元素伤害加成%
+  EATTRTYPE_FIREINCREASE                    = 402;  //火元素伤害加成%
+  EATTRTYPE_ICEINCREASE                     = 403;  //冰元素伤害加成%
+  EATTRTYPE_THUNDERINCREASE                 = 404;  //电元素伤害加成%
+  EATTRTYPE_EARTHINCREASE                   = 405;  //土元素伤害加成%
+  EATTRTYPE_PHYINCREASE                     = 406;  //物理伤害加成%
+  EATTRTYPE_CUTINCREASE                     = 407;  //斩属性伤害加成%
+  EATTRTYPE_STRIKEINCREASE                  = 408;  //打属性伤害加成%
+  EATTRTYPE_SPIKEINCREASE                   = 409;  //突属性伤害加成%
+  EATTRTYPE_DAMGEREDUCE                     = 410;  //伤害减免%
+  EATTRTYPE_ELEMENTREDUCE                   = 411;  //元素伤害减免%
+  EATTRTYPE_FIREREDUCE                      = 412;  //火元素伤害减免%
+  EATTRTYPE_ICEREDUCE                       = 413;  //冰元素伤害减免%
+  EATTRTYPE_THUNDERREDUCE                   = 414;  //电元素伤害减免%
+  EATTRTYPE_EARTHREDUCE                     = 415;  //土元素伤害减免%
+  EATTRTYPE_PHYREDUCE                       = 416;  //物理伤害减免%
+  EATTRTYPE_CUTREDUCE                       = 417;  //斩属性伤害减免%
+  EATTRTYPE_STRIKEREDUCE                    = 418;  //打属性伤害减免%
+  EATTRTYPE_SPIKEREDUCE                     = 419;  //突属性伤害减免%
+  EATTRTYPE_MAXBREAK                        = 500;  //Break值耐性上限
+  EATTRTYPE_MAXBREAKPER                     = 501;  //Break值耐性上限%
+  EATTRTYPE_MAXCUT                          = 502;  //斩异常耐性上限
+  EATTRTYPE_MAXCUTPER                       = 503;  //斩异常耐性上限%
+  EATTRTYPE_MAXSTRIKE                       = 504;  //打异常耐性上限
+  EATTRTYPE_MAXSTRIKEPER                    = 505;  //打异常耐性上限%
+  EATTRTYPE_MAXSPIKE                        = 506;  //突异常耐性上限
+  EATTRTYPE_MAXSPIKEPER                     = 507;  //突异常耐性上限%
+  EATTRTYPE_MAXFIRE                         = 508;  //火异常耐性上限
+  EATTRTYPE_MAXFIREPER                      = 509;  //火异常耐性上限%
+  EATTRTYPE_MAXICE                          = 510;  //冰异常耐性上限
+  EATTRTYPE_MAXICEPER                       = 511;  //冰异常耐性上限%
+  EATTRTYPE_MAXTHUNDER                      = 512;  //雷异常耐性上限
+  EATTRTYPE_MAXTHUNDERPER                   = 513;  //雷异常耐性上限%
+  EATTRTYPE_MAXEARTH                        = 514;  //土异常耐性上限
+  EATTRTYPE_MAXEARTHPER                     = 515;  //土异常耐性上限%
+  EATTRTYPE_MAXBALANCE                      = 516;  //失衡耐性值上限 
+  EATTRTYPE_MAXBALANCEPER                   = 517;  //失衡耐性值上限%
+  EATTRTYPE_NOWBREAK                        = 520;  //当前Break值耐性
+  EATTRTYPE_NOWBREAKPER                     = 521;  //当前Break值耐性%
+  EATTRTYPE_NOWCUT                          = 522;  //当前斩异常耐性
+  EATTRTYPE_NOWCUTPER                       = 523;  //当前斩异常耐性%
+  EATTRTYPE_NOWSTRIKE                       = 524;  //当前打异常耐性
+  EATTRTYPE_NOWSTRIKEPER                    = 525;  //当前打异常耐性%
+  EATTRTYPE_NOWSPIKE                        = 526;  //当前突异常耐性
+  EATTRTYPE_NOWSPIKEPER                     = 527;  //当前突异常耐性%
+  EATTRTYPE_NOWFIRE                         = 528;  //当前火异常耐性
+  EATTRTYPE_NOWFIREPER                      = 529;  //当前火异常耐性%
+  EATTRTYPE_NOWICE                          = 530;  //当前冰异常耐性
+  EATTRTYPE_NOWICEPER                       = 531;  //当前冰异常耐性%
+  EATTRTYPE_NOWTHUNDER                      = 532;  //当前雷异常耐性
+  EATTRTYPE_NOWTHUNDERPER                   = 533;  //当前雷异常耐性%
+  EATTRTYPE_NOWEARTH                        = 534;  //当前土异常耐性
+  EATTRTYPE_NOWEARTHPER                     = 535;  //当前土异常耐性%
+  EATTRTYPE_NOWBALANCE                      = 536;  //当前失衡耐性值
+  EATTRTYPE_NOWBALANCEPER                   = 537;  //当前失衡耐性值%
+  EATTRTYPE_BREAKADDPER                     = 540;  //Break异常增加比例%
+  EATTRTYPE_CUTADDPER                       = 541;  //斩异常增加比例%
+  EATTRTYPE_STRIKEADDPER                    = 542;  //打异常增加比例%
+  EATTRTYPE_SPIKEADDPER                     = 543;  //突异常增加比例%
+  EATTRTYPE_FIREADDPER                      = 544;  //火异常增加比例%
+  EATTRTYPE_ICEADDPER                       = 545;  //冰异常增加比例%
+  EATTRTYPE_THUNDERADDPER                   = 546;  //雷异常增加比例%
+  EATTRTYPE_EARTHADDPER                     = 547;  //土异常增加比例%
+  EATTRTYPE_BALANCEADDPER                   = 548;  //失衡耐性上限增加比例%
+  EATTRTYPE_BREAKTIMES                      = 550;  //进入Break异常次数
+  EATTRTYPE_CUTTIMES                        = 551;  //进入斩异常次数
+  EATTRTYPE_STRIKETIMES                     = 552;  //进入打异常次数
+  EATTRTYPE_SPIKETIMES                      = 553;  //进入突异常次数
+  EATTRTYPE_FIRETIMES                       = 554;  //进入火异常次数
+  EATTRTYPE_ICETIMES                        = 555;  //进入冰异常次数
+  EATTRTYPE_THUNDERTIMES                    = 556;  //进入雷异常次数
+  EATTRTYPE_EARTHTIMES                      = 557;  //进入土异常次数
+  EATTRTYPE_BALANCETIMES                    = 558;  //进入失衡次数
+  EATTRTYPE_BREAKDPINCREASE                 = 560;  //Break值伤害加成%
+  EATTRTYPE_CUTDPINCREASE                   = 561;  //斩异常伤害加成%
+  EATTRTYPE_STRIKEDPINCREASE                = 562;  //打异常伤害加成%
+  EATTRTYPE_SPIKEDPINCREASE                 = 563;  //突异常伤害加成%
+  EATTRTYPE_FIREDPINCREASE                  = 564;  //火异常伤害加成%
+  EATTRTYPE_ICEDPINCREASE                   = 565;  //冰异常伤害加成%
+  EATTRTYPE_THUNDERDPINCREASE               = 566;  //雷异常伤害加成%
+  EATTRTYPE_EARTHDPINCREASE                 = 567;  //土异常伤害加成%
+  EATTRTYPE_BALANCEDPINCREASE               = 568;  //失衡伤害加成%
+  EATTRTYPE_BREAKDPREDUCE                   = 570;  //Break值伤害减免%
+  EATTRTYPE_CUTDPREDUCE                     = 571;  //斩异常伤害减免%
+  EATTRTYPE_STRIKEDPREDUCE                  = 572;  //打异常伤害减免%
+  EATTRTYPE_SPIKEDPREDUCE                   = 573;  //突异常伤害减免%
+  EATTRTYPE_FIREDPREDUCE                    = 574;  //火异常伤害减免%
+  EATTRTYPE_ICEDPREDUCE                     = 575;  //冰异常伤害减免%
+  EATTRTYPE_THUNDERDPREDUCE                 = 576;  //雷异常伤害减免%
+  EATTRTYPE_EARTHDPREDUCE                   = 577;  //土异常伤害减免%
+  EATTRTYPE_BALANCEDPREDUCE                 = 578;  //失衡伤害减免%
+
+/*
+  EATTRTYPE_EXP               = 1;
+  EATTRTYPE_LEVEL             = 2;
+  EATTRTYPE_STATUS1           = 10; //属性状态数据字段1
+  EATTRTYPE_STATUS2           = 11; //属性状态数据字段2
+  EATTRTYPE_STATUS3           = 12; //属性状态数据字段3
+  EATTRTYPE_STATUS4           = 13; //属性状态数据字段4
+  EATTRTYPE_STATUS5           = 14; //属性状态数据字段5
+  EATTRTYPE_STATUS_MAX        = 15; //属性状态数据字段 MAX  范围检测使用
+  EATTRTYPE_HP                = 100; //当前生命
+  EATTRTYPE_HPPER             = 101; //当前生命%
+  EATTRTYPE_MAXHP             = 102; //生命上限
+  EATTRTYPE_MAXHPPER          = 103; //生命上限%
+  EATTRTYPE_ATK               = 104; //物理攻击
+  EATTRTYPE_ATKPER            = 105; //物理攻击%
+  EATTRTYPE_DEF               = 106; //物理防御
+  EATTRTYPE_DEFPER            = 107; //物理防御%
+  EATTRTYPE_MDEF              = 110; //魔法防御
+  EATTRTYPE_MDEFPER           = 111; //魔法防御%
+  EATTRTYPE_MAXHPSECTION      = 112; //血条数量上限
+  EATTRTYPE_HPSECTION         = 113; //当前血条数量
+  EATTRTYPE_ETHER             = 204; //当前以太
+  EATTRTYPE_ETHERPER          = 205; //当前以太%
+  EATTRTYPE_MAXETHER          = 206; //以太上限
+  EATTRTYPE_MAXETHERPER       = 207; //以太上限%
+  EATTRTYPE_SHIELDDEF         = 208; //护盾
+  EATTRTYPE_SHIELDDEFPER      = 209; //护盾%
+  EATTRTYPE_ETHERRECOVER      = 214; //以太恢复速度
+  EATTRTYPE_ETHERRECOVERPER   = 215; //以太恢复速度%
+  EATTRTYPE_MOVESPD           = 216; //移动速度
+  EATTRTYPE_MOVESPDPER        = 218; //移动速度倍率%
+  EATTRTYPE_CRITRATE          = 223; //暴击率%
+  EATTRTYPE_CRITDEFRATE       = 226; //暴击防护率%
+  EATTRTYPE_CRITDAMGEPER      = 229; //暴击伤害%
+  EATTRTYPE_CRITDAMGEDEFPER   = 230; //暴击伤害防护%
+  EATTRTYPE_BREAKRATIO        = 231; //忽视物理防御比例%
+  EATTRTYPE_BREAKATKRATIO     = 232; //忽视物理防御伤害比例%
+  EATTRTYPE_BREAKDEFRATIO     = 235; //忽视物理防御抵抗比例%
+  EATTRTYPE_PENETRATIONRATE   = 238; //物理穿透率%
+  EATTRTYPE_PENETRATIONATKRATE= 239; //物理穿透伤害率%
+  EATTRTYPE_PENETRATIONDEFRATE= 242; //物理穿透抵抗率%
+  EATTRTYPE_BREAKMRATIO       = 245; //忽视魔法防御比例%
+  EATTRTYPE_BREAKMATKRATIO    = 246; //忽视魔法防御伤害比例%
+  EATTRTYPE_BREAKMDEFRATIO    = 249; //忽视魔法防御抵抗比例%
+  EATTRTYPE_PENETRATIONMRATE  = 252; //魔法穿透率%
+  EATTRTYPE_PENETRATIONMATKRATE = 253; //魔法穿透伤害率%
+  EATTRTYPE_PENETRATIONMDEFRATE = 256; //魔法穿透抵抗率%
+  EATTRTYPE_ROTATESPEED       = 259;  //转速
+  EATTRTYPE_ETHERRECOVERCD    = 263;  //以太恢复间隔
+  EATTRTYPE_ETHERRECOVERCDPER = 266;  //以太恢复间隔%
+  EATTRTYPE_BASEMOVESPEED     = 270;  //基础移动速度
+  EATTRTYPE_BASEMOVESPEEDPER  = 271;  //基础移动速度%
+  EATTRTYPE_STUNRESISTPER     = 274;  //强控抗性
+  EATTRTYPE_DISTURBRESISTPER  = 275;  //仇恨关系抗性
+  EATTRTYPE_SILENTRESISTPER   = 276;  //沉默抗性
+  EATTRTYPE_TWINERESISTPER    = 277;  //禁锢抗性
+  EATTRTYPE_DAMAGEINCREASE    = 280;  //伤害加成
+  EATTRTYPE_DAMGEREDUCE       = 281;  //受伤害减免
+  EATTRTYPE_DAMGEREBOUND      = 282;  //伤害反弹
+  EATTRTYPE_DAMAGE_VAMPIRIC   = 283;  // 伤害吸血比例
+  EATTRTYPE_REALDAMGEATK      = 290;  //真实伤害攻击力
+  EATTRTYPE_REALDAMGEATKPER   = 291;  //真实伤害攻击力%
+
+  EATTRTYPE_RANGEDAMAGE       = 300; //范围伤害%
+  EATTRTYPE_SPATTERDAMAGE     = 301; //溅射伤害%
+  EATTRTYPE_CATAPULTDAMAGE    = 302; //弹射伤害%
+  EATTRTYPE_CDCHANGE          = 334; //冷却时间修正
+  EATTRTYPE_CDCHANGEPER       = 335; //冷却时间修正%
+  EATTRTYPE_FORCERESIST         = 337; //击退力度抵抗
+  EATTRTYPE_THROUGHCOUNT      = 339; //弹道穿透数量
+  EATTRTYPE_HEALENCPER        = 344; //治疗效果加成%
+  EATTRTYPE_BEHEALENCPER      = 345; //受到治疗效果加成%
+  EATTRTYPE_HATECIRCLE        = 354; //仇恨圈大小 单位厘米
+  EATTRTYPE_HATEUPPERBOUND    = 355; //仇恨上限
+  EATTRTYPE_SHIELD_BYMAXHPPER = 356; //生命百分比的护盾
+  EATTRTYPE_SHIELD_BYATKPER   = 357; //攻击力百分比的护盾
+  EATTRTYPE_SHIELD_BYDEFPER   = 358; //物防百分比的护盾
+  EATTRTYPE_SHIELD_BYMDEFPER  = 359; //魔防百分比的护盾
+  EATTRTYPE_SANWEAKTIME       = 365; //黑化虚弱时长
+  EATTRTYPE_SANDP          = 420;
+  EATTRTYPE_SANDPPER          = 421;
+  EATTRTYPE_MAXSANDP          = 460;
+  EATTRTYPE_MAXSANDPPER          = 461;
+
+  EATTRTYPE_ELEMENTINCREASE   = 700; //元素伤害加成%
+  EATTRTYPE_FIREINCREASE      = 701; //火元素伤害加成%
+  EATTRTYPE_ICEINCREASE       = 702; //冰元素伤害加成%
+  EATTRTYPE_THUNDERINCREASE   = 703; //电元素伤害加成%
+
+  EATTRTYPE_ELEMENTREDUCE     = 720; //受元素伤害减免%
+  EATTRTYPE_FIREREDUCE        = 721; //受火元素伤害减免%
+  EATTRTYPE_ICEREDUCE         = 722; //受冰元素伤害减免%
+  EATTRTYPE_THUNDERREDUCE     = 723; //受电元素伤害减免%
+
+  EATTRTYPE_ENERGY            = 800; // 能量
+  EATTRTYPE_ENERGYPER         = 801; // 能量%
+  EATTRTYPE_MAXENERGY         = 802; // 能量上限
+  EATTRTYPE_MAXENERGYPER      = 803; // 能量上限%
+  EATTRTYPE_ENERGYRECOVER     = 804; // 能量恢复速度
+  EATTRTYPE_ENERGYRECOVERPER  = 805; // 能量恢复速度%
+  EATTRTYPE_ENERGYRECOVERCD   = 806; // 能量恢复间隔
+  EATTRTYPE_ENERGYRECOVERCDPER= 807; // 能量恢复间隔%
+*/
+
+  EATTRTYPE_MAX               = 1024;
+}
+
+// 属性状态
+enum EAttrStatusType
+{
+  //异常状态
+  EATTRSTATUS_MIN             = 0;
+  EATTRSTATUS_FLY             = 1; //吹飞
+  EATTRSTATUS_POISON          = 2; //中毒
+  EATTRSTATUS_DOWN            = 3; //击倒
+  EATTRSTATUS_STUN            = 4; //眩晕
+  EATTRSTATUS_FREEZE          = 5; //冰冻
+  EATTRSTATUS_BURN            = 6; //灼烧
+  EATTRSTATUS_CHAOS           = 7; //恐惧状态
+  EATTRSTATUS_STONE           = 8; //石化状态
+  EATTRSTATUS_PARALYSIS       = 9; //麻痹状态
+  EATTRSTATUS_BLACKSAN        = 10; //黑化状态
+  EATTRSTATUS_BLOOD           = 11; //流血状态
+  EATTRSTATUS_PARALYSIS_NEW   = 12; //麻痹状态 新
+  EATTRSTATUS_BREAK           = 13; //break状态
+  EATTRSTATUS_INVINCIBLE2     = 14; // 无敌，但可以受到buff伤害 
+
+  //通用状态
+  EATTRSTATUS_SUPERARMOR      = 32;  //霸体状态1 抵抗异常状态-击飞、击倒、眩晕、冰冻、石化、缠绕
+  EATTRSTATUS_SUPERARMOR_NOHIT= 33; //霸体状态2 抵抗受击、击退
+  EATTRSTATUS_SUPERARMOR_NOHELP= 34; //霸体状态3 抵抗友方help位移
+  EATTRSTATUS_HIDE            = 35; //隐身状态
+  EATTRSTATUS_LEADSKILL       = 36; //技能的持续引导状态
+  EATTRSTATUS_NOMOVE          = 37; //不可移动状态  只是不能走路
+  EATTRSTATUS_NOCHECKCOST     = 38; //所有技能没有消耗的状态
+  EATTRSTATUS_INVINCIBLE      = 39;  //无敌状态
+  EATTRSTATUS_NOHEALED        = 40;  //免疫治疗状态
+  EATTRSTATUS_SHIELD          = 41;  //护盾状态
+  EATTRSTATUS_PROTECT         = 42;  //防御状态
+  EATTRSTATUS_NATURE          = 43;  //根性状态
+  EATTRSTATUS_BLINK           = 44;  //位移、blink状态
+  EATTRSTATUS_NOSKILLED       = 45;  //无法成为技能目标
+  EATTRSTATUS_HURTEQUALSONEW  = 46; //受伤为1点
+  EATTRSTATUS_TWINE           = 47; //缠绕状态
+  EATTRSTATUS_SILENCE         = 48; //沉默状态
+  EATTRSTATUS_TAUNT           = 49; //嘲讽状态
+  EATTRSTATUS_SHAREDAMAGE     = 50; //被分担伤害
+  EATTRSTATUS_NOCHECKCD       = 51; //所有技能没有CD的状态
+  EATTRSTATUS_BARRIER_INVALID = 52; //生命护盾失效状态
+  EATTRSTATUS_IMMUNE_FATAL_DAMAGE = 53;   // 免疫致命伤害状态
+  EATTRSTATUS_BEHITED         = 54; //可以被击中 与EATTRSTATUS_NOSKILLED组合使用
+  EATTRSTATUS_STEALTH         = 55; //隐身 仅表现
+  EATTRSTATUS_SUPERARMOR_NODOWN = 56;     // 不可被击倒
+  EATTRSTATUS_SUPERARMOR_NOFLY  = 57;     // 不可被击飞
+  EATTRSTATUS_DAMAGE_CRITSHOW = 58;  //被攻击时伤害表现为暴击
+  EATTRSTATUS_MAGIC_ICE       = 59;  //冰附魔状态
+  EATTRSTATUS_MAGIC_FIRE      = 60;  //火附魔状态
+  EATTRSTATUS_MAGIC_EARTH     = 61;  //土附魔状态
+  EATTRSTATUS_MAGIC_THUNDER   = 62;  //雷附魔状态
+  EATTRSTATUS_IMBALANCE1      = 70;       // 失衡1
+  EATTRSTATUS_IMBALANCE2      = 71;       // 失衡2
+
+
+  //特定技能用到的状态
+  EATTRSTATUS_SHAREMISSILE    = 96; //Missile受击转移-坦克保护罩
+  EATTRSTATUS_AUTORELIVE      = 97; //可以自动重生状态
+  EATTRSTATUS_INALCHEMY       = 98; //处在炼金阵内
+
+  EATTRSTATUS_MAX             = 160;
+}
+
+// 元素类型
+enum EElementType
+{
+  EELEMENT_INVALID            = 0;  // 无效
+  EELEMENT_FIRE               = 1;  // 火元素
+  EELEMENT_ICE                = 2;  // 冰元素
+  EELEMENT_THUNDER            = 3;  // 雷元素
+  EELEMENT_EARTH              = 4;  // 土元素
+  EELEMENT_CUT                = 5;  // 斩元素
+  EELEMENT_STRIKE             = 6;  // 打元素
+  EELEMENT_SPIKE              = 7;  // 突元素
+  EELEMENT_MAX                = 8;  // 
+}

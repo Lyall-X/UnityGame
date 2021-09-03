@@ -1,5 +1,3 @@
 protodir=Protos
 protopb=Client/Assets/res/Datas/LuaPB
-protocs=Client/Assets/Scripts/Network/ProtoCS|GameServer/SceneServer/ProtoCS
-file=common.proto
-file=pbuser.proto
+protocs=Client/Assets/Scripts/Network/ProtoCS

@@ -1,0 +1,470 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+
+import "ProtoAttr.proto";
+// 道具组类型
+enum EItemGroupType
+{
+  EITEMGROUPTYPE_MIN            = 0;
+  EITEMGROUPTYPE_FORMULA        = 1; //配方,abandoned
+  EITEMGROUPTYPE_EQUIP          = 2; //装备
+  EITEMGROUPTYPE_FURNITURE      = 3; //家具,abandoned
+  EITEMGROUPTYPE_MONEY          = 4; //货币,abandoned
+  //EITEMGROUPTYPE_CONVERT        = 5; //兑换券,abandoned
+  EITEMGROUPTYPE_FOOD           = 6; //料理,abandoned
+  EITEMGROUPTYPE_MATERIAL       = 7; //素材 材料
+  EITEMGROUPTYPE_GIFT           = 8; //礼包
+  //EITEMGROUPTYPE_REWARD         = 9; //礼包
+  EITEMGROUPTYPE_CONSUMABLES    = 9; //消耗品
+  EITEMGROUPTYPE_QUESTITEM      = 10; //任务道具
+  //EITEMGROUPTYPE_ENERGY	        = 11; //修复能量
+  EITEMGROUPTYPE_MAX            = 13; 
+}
+
+// 道具类型
+enum EItemType
+{
+  EITEMTYPE_MIN                 = 0;
+  
+  EITEMTYPE_WEAPON_FORMULA      = 10; //武器配方
+  EITEMTYPE_NECKLACE_FORMULA    = 11; //项链配方
+  EITEMTYPE_RING_FORMULA        = 12; //戒指配方
+  EITEMTYPE_EARRINGS_FORMULA    = 13; //耳环配方
+  EITEMTYPE_WRISTBANDS_FORMULA  = 14; //手环配方
+  EITEMTYPE_HEADWEAR_FORMULA    = 15; //头饰配方
+  EITEMTYPE_FACE_FORMULA        = 16; //脸部配方
+  EITEMTYPE_MOUTH_FORMULA       = 17; //嘴部配方
+  EITEMTYPE_BACK_FORMULA        = 18; //背部配方
+  EITEMTYPE_TAIL_FORMULA        = 19; //尾部配方
+  //EITEMTYPE_PLAYERSKIN_FORMULA  = 20; //角色皮肤配方
+  //EITEMTYPE_WEAPONSKIN_FORMULA  = 21; //武器皮肤配方
+  EITEMTYPE_FOOD_FORMULA        = 23; //料理配方
+  EITEMTYPE_NORMAL_MONSTERCARD_FORMULA = 24; //普通魔物卡片配方
+  EITEMTYPE_ELITES_MONSTERCARD_FORMULA = 25; //精英魔物卡片配方
+  EITEMTYPE_BOSS_MONSTERCARD_FORMULA = 26; //Boss魔物卡片配方
+  EITEMTYPE_PARTNERCARD_FORMULA = 27; //伙伴卡片配方
+  EITEMTYPE_NPCCARD_FORMULA     = 28; //Npc卡片配方
+  EITEMTYPE_WALLPAPER_FORMULA   = 29; //墙纸配方
+  EITEMTYPE_DOOR_FORMULA        = 30; //门配方
+  EITEMTYPE_WINDOW_FORMULA      = 31; //窗配方
+  EITEMTYPE_BED_FORMULA         = 32; //床配方
+  EITEMTYPE_TABLE_FORMULA       = 33; //桌配方
+  EITEMTYPE_CABINET_FORMULA     = 34; //柜配方
+  EITEMTYPE_ORNAMENT_FORMULA    = 35; //装饰品配方
+  EITEMTYPE_FLOOR_FORMULA       = 36; //地板配方
+  EITEMTYPE_CHAIR_FORMULA       = 37; //椅子配方
+  EITEMTYPE_GIFT_FORMULA        = 38; //礼物配方
+
+  EITEMTYPE_WEAPON1             = 70; //武器-双手剑
+  EITEMTYPE_WEAPON2             = 71; //武器-单手剑
+  EITEMTYPE_WEAPON3             = 72; //武器-剑盾
+  EITEMTYPE_WEAPON4             = 73; //武器-长矛
+  EITEMTYPE_WEAPON5             = 74; //武器-匕首
+  EITEMTYPE_WEAPON6             = 75; //武器-拳刃
+  EITEMTYPE_WEAPON7             = 76; //武器-弓
+  EITEMTYPE_WEAPON8             = 77; //武器-弩
+  EITEMTYPE_WEAPON9             = 78; //武器-水晶球
+  EITEMTYPE_WEAPON10            = 79; //武器-魔导书
+  EITEMTYPE_WEAPON11            = 80; //武器-双手杖
+  EITEMTYPE_WEAPON12            = 81; //武器-单手杖
+  EITEMTYPE_WEAPON13            = 82; //武器-预留
+  EITEMTYPE_WEAPON14            = 83; //武器-预留
+  EITEMTYPE_WEAPON15            = 84; //武器-预留
+  EITEMTYPE_WEAPON16            = 85; //武器-预留
+  EITEMTYPE_WEAPON17            = 86; //武器-预留
+  EITEMTYPE_WEAPON18            = 87; //武器-预留
+  EITEMTYPE_WEAPON19            = 88; //武器-预留
+  EITEMTYPE_WEAPON20            = 89; //武器-预留
+  EITEMTYPE_WEAPON21            = 90; //武器-预留
+  EITEMTYPE_WEAPON22            = 91; //武器-预留
+  EITEMTYPE_WEAPON23            = 92; //武器-预留
+  EITEMTYPE_WEAPON24            = 93; //武器-预留
+  EITEMTYPE_WEAPON25            = 94; //武器-预留
+  EITEMTYPE_WEAPON26            = 95; //武器-预留
+  EITEMTYPE_WEAPON27            = 96; //武器-预留
+  EITEMTYPE_WEAPON28            = 97; //武器-预留
+  EITEMTYPE_WEAPON29            = 98; //武器-预留
+  EITEMTYPE_WEAPON30            = 99; //武器-预留
+  EITEMTYPE_WEAPON31            = 100; //武器-预留
+  EITEMTYPE_WEAPON32            = 101; //武器-预留
+  EITEMTYPE_WEAPON33            = 102; //武器-预留
+  EITEMTYPE_WEAPON34            = 103; //武器-预留
+  EITEMTYPE_WEAPON35            = 104; //武器-预留
+  EITEMTYPE_WEAPON36            = 105; //武器-预留
+  EITEMTYPE_WEAPON37            = 106; //武器-预留
+  EITEMTYPE_WEAPON38            = 107; //武器-预留
+  EITEMTYPE_WEAPON39            = 108; //武器-预留
+  EITEMTYPE_WEAPON40            = 109; //武器-预留
+  EITEMTYPE_NECKLACE            = 110; //项链
+  EITEMTYPE_RING                = 120; //戒指
+  EITEMTYPE_BRACELET            = 130; //手镯
+  EITEMTYPE_BROOCH              = 140; //胸针
+  EITEMTYPE_HEADWEAR            = 150; //头饰
+  EITEMTYPE_EARWEAR             = 151; //耳饰
+  EITEMTYPE_FACE                = 160; //脸部
+  EITEMTYPE_MOUTH               = 170; //嘴部
+  EITEMTYPE_BACK                = 180; //背部
+  EITEMTYPE_TAIL                = 190; //尾部
+  EITEMTYPE_PLAYER_SKIN         = 200; //角色皮肤
+  
+  EITEMTYPE_BED                 = 290; //床
+  EITEMTYPE_TABLE               = 300; //桌
+  EITEMTYPE_CHAIR               = 310; //椅子
+  EITEMTYPE_CABINET             = 320; //柜
+  EITEMTYPE_LIGHT               = 330; //灯
+  EITEMTYPE_CARPET              = 331; //地毯
+  EITEMTYPE_GROUND_ABOVE        = 332; //地面+家具顶面装饰
+  EITEMTYPE_WALLPIC             = 340; //挂墙的东西
+  EITEMTYPE_WALL_SIDE           = 341; //墙面+家具侧面装饰
+  ETTEMTYPE_CEILING             = 342; //天花板装饰
+  EITEMTYPE_WALLPAPER           = 350; //墙纸
+  EITEMTYPE_ORNAMENT            = 360; //装饰品(地板)
+  EITEMTYPE_DOOR                = 370; //门
+  EITEMTYPE_WINDOW              = 380; //窗
+
+  EITEMTYPE_MONEY               = 400; //金币
+  EITEMTYPE_EXP                 = 402; //经验类道具，获得直接使用
+  EITEMTYPE_MINERAL_MATERIAL    = 420; //采集素材 矿石
+  EITEMTYPE_GRASS_MATERIAL      = 421; //采集素材 草
+  EITEMTYPE_NORMALMONSTER_MATERIAL = 430; //普通魔物素材
+  EITEMTYPE_ELITESMONSTER_MATERIAL = 440; //精英魔物素材
+  EITEMTYPE_BOSSMONSTER_MATERIAL   = 450; //Boss魔物素材
+  EITEMTYPE_RARE_MATERIAL       = 460; //稀有素材
+  EITEMTYPE_PARTNER_MATERIAL    = 470; //伙伴素材
+  EITEMTYPE_MANA_MATERIAL       = 471; //玛娜素材
+  EITEMTYPE_MANA_COUPON         = 472; //玛娜抵扣券
+  EITEMTYPE_REWARD              = 480; //礼包
+  EITEMTYPE_CONSUMABLES         = 490; //消耗品
+  EITEMTYPE_AUTOCONSUMABLES     = 491; //自动使用消耗品
+  EITEMTYPE_QUESTITEM           = 500; //任务道具
+  EITEMTYPE_REPAIRENERGY        = 510; //修复能量
+  EITEMTYPE_FIGHTER_EXP_POOL    = 511; //经验药水进经验池
+  EITEMTYPE_DAILY_ACTIVITY      = 512; //日常活跃度
+
+  EITEMTYPE_MAX             = 4201;
+}
+
+// unused
+enum EEquipType
+{
+  EEQUIPTYPE_MIN            = 0;
+  EEQUIPTYPE_WEAPON         = 1;
+  EEQUIPTYPE_SHIELD         = 3;
+  EEQUIPTYPE_ARMOUR         = 2;
+  EEQUIPTYPE_ROBE           = 4;
+  EEQUIPTYPE_SHOES          = 5;
+  EEQUIPTYPE_ACCESSORY      = 6;
+  EEQUIPTYPE_HEAD           = 8;
+  EEQUIPTYPE_BACK           = 9;
+  EEQUIPTYPE_FACE           = 10;
+  EEQUIPTYPE_TAIL           = 11;
+  EEQUIPTYPE_MOUNT          = 12;
+  EEQUIPTYPE_MOUTH          = 13;
+  EEQUIPTYPE_BARROW         = 14;
+  EEQUIPTYPE_PEARL          = 16;
+  EEQUIPTYPE_EIKON          = 17;
+  EEQUIPTYPE_BRACELET       = 18;
+  EEQUIPTYPE_HANDBRACELET   = 19;
+  EEQUIPTYPE_TROLLEY        = 20;
+  EEQUIPTYPE_ARTIFACT       = 21;
+  EEQUIPTYPE_ARTIFACT_HEAD  = 22;
+  EEQUIPTYPE_ARTIFACT_BACK  = 23;
+  EEQUIPTYPE_MAX            = 24;
+}
+
+enum EQualityType
+{
+  EQUALITYTYPE_MIN            = 0;
+  EQUALITYTYPE_ONESTAR        = 1;
+  EQUALITYTYPE_TWOSTAR        = 2;
+  EQUALITYTYPE_THREESTAR      = 3;
+  EQUALITYTYPE_SR             = 4;
+  EQUALITYTYPE_SSR            = 5;
+  EQUALITYTYPE_MAX            = 6;
+}
+
+// 道具获取来源
+enum ESource
+{
+  ESOURCE_MIN                 = 0;
+  ESOURCE_NORMAL              = 1;    //一般获取
+  ESOURCE_PACKAGE             = 2;    //背包间转移
+  ESOURCE_QUEST               = 3;    //任务获取
+  ESOURCE_REWARD              = 4;    //奖励获取
+  ESOURCE_MONSTERKILL         = 5;    //魔物击杀
+  ESOURCE_GM                  = 6;    //GM命令获取
+  ESOURCE_PICKUP              = 7;    //unused
+  ESOURCE_LVUP                = 8;    //unused
+  ESOURCE_RELIVE              = 9;    //unused
+  ESOURCE_JUMPZONE            = 10;   //unused
+  ESOURCE_USEITEM             = 11;   //主动使用useitem
+  ESOURCE_MAIL                = 12;   //邮件获得,unused
+  ESOURCE_USER_RENAME         = 13;   //改名获得,abandoned
+  ESOURCE_FIGTHTER_STAR       = 14;   //流派升星
+  ESOURCE_FIGTHTER_UNLOCK     = 15;   //自动解锁流派
+  ESOURCE_STATUS_CHANGE       = 16;   //采集物状态改变
+  ESOURCE_RECONCILE           = 17;   //调和获得
+  ESOURCE_ACTSKILL            = 19;   //激活使用技能消耗
+  ESOURCE_MANASKILL           = 20;   //使用玛娜技能消耗
+  ESOURCE_MANA_UNLOCK         = 21;   //自动解锁玛娜
+  ESOURCE_UNLOCK_BOX          = 22;   //解锁宝箱
+  ESOURCE_SKILL_LEVELUP       = 23;
+  ESOURCE_INTERACTION         = 24;   //交互扣除道具
+  ESOURCE_LOTTERY             = 26;   //抽卡扣除道具
+  ESOURCE_TRANSPORT_REWARD    = 27;   //搬运奖励
+  ESOURCE_SKILLLVUP           = 28;   //技能升级消耗
+  ESOURCE_EXIT_COPY           = 29;   //退出原地副本返还
+  ESOURCE_RAIDSCENE           = 31;   //关卡副本通关奖励
+  ESOURCE_EQUIP_STRENGTH      = 32;   //装备强化
+  ESOURCE_EQUIP_UPSTAR        = 33;   //装备升星
+  ESOURCE_FIGHTER_EXP_POOL    = 35;   //伙伴经验池
+  ESOURCE_WXKJ_ITEM_SUBMIT    = 37;   //妄想空间材料提交
+  ESOURCE_WXKJ_ENTER          = 38;   //妄想空间进入门票扣除
+  ESOURCE_COLLEGE_GIFT        = 39;   //学院赠礼
+  ESOURCE_DAILYACTIVITY       = 40;   //日常活动
+  ESOURCE_DAILYACTIVITY_UP    = 41;   //日常活动UP奖励
+  ESOURCE_CLUBCHALLENGE       = 42;   //天团挑战奖励
+  ESOURCE_ACTIVEDATING        = 43;   //主动约会
+  ESOURCE_EQUIP_STRENGTH_BACK = 44;   //装备强化返还
+  ESOURCE_MAX                 = 512;
+}
+
+// unused
+enum EEnchantType
+{
+  EENCHANTTYPE_MIN = 0;
+  EENCHANTTYPE_PRIMARY = 1;
+  EENCHANTTYPE_MEDIUM = 2;
+  EENCHANTTYPE_SENIOR = 3;
+  EENCHANTTYPE_MAX = 4;
+}
+
+// unused
+message EnchantAttr
+{
+  EAttrType type = 1;
+  uint32 value = 2;
+}
+
+// unused
+message EnchantExtra
+{
+  uint32 configid = 1;
+  uint32 buffid = 2;
+}
+
+
+// 道具信息
+message ItemInfo
+{
+  string guid = 1;                // 道具guid
+
+  uint32 id = 2;                  // 道具id,表Item.xlsx以及表Item_Furniture.xlsx列ID
+  uint32 count = 3;               // 道具数量
+  uint32 index = 4;               // 程序生成的唯一索引(从1开始)
+  uint32 createtime = 5;          // 创建时间(秒)
+  uint64 cd = 6;                  // unused
+
+  EItemGroupType group_type = 22; // 道具组类型
+  //EItemType type = 7;             // 道具类型
+  uint32 type = 7;                // 道具类型
+  uint32 quality = 10;            // 道具质量
+  EEquipType equipType = 11;      // 装备类型,unused
+  ESource source = 12;            // 道具来源
+
+  bool isnew = 13;                // unused
+
+  uint32 source_npc = 17;         // 来源npcid
+  uint32 refinelv = 18;           // unused
+
+  uint32 chargemoney = 19;        // 充多少钱获得的，在邮件里赋值。单位元，注意多个道具时，只需要一个道具赋值。  unused
+  uint32 overtime = 20;           // unused
+  uint64 quota = 21;              // 充值获得的额度  在邮件里赋值。注意多个道具时，只需要一个道具赋值。 unused
+
+  uint32 usepartnerid = 23;       // 使用同伴id
+  uint32 useskillid = 24;         // 使用技能id
+}
+
+// 道具数据
+message ItemData
+{
+  ItemInfo base = 1;              // 道具基本信息
+
+  EquipData equip = 2;            // 装备信息
+  EggData egg = 9;                // unused
+}
+
+message EquipData
+{
+  uint32 strengthexp = 1; //强化经验
+  uint32 strengthlv = 2; //强化等级
+  uint32 starlv = 3;  //装备星级
+}
+
+// unused
+message EggData
+{
+  uint64 exp = 1;
+  uint64 friendexp = 2;
+  uint64 rewardexp = 3;
+
+  uint32 id = 4;
+  uint32 lv = 5;
+  uint32 friendlv = 6;
+  uint32 body = 7;
+  uint32 relivetime = 8;
+  uint32 hp = 9;
+  uint32 restoretime = 10;
+  uint32 time_happly = 11;
+  uint32 time_excite = 12;
+  uint32 time_happiness = 13;
+
+  uint32 time_happly_gift = 14;
+  uint32 time_excite_gift = 15;
+  uint32 time_happiness_gift = 16;
+
+  uint32 touch_tick = 22;
+  uint32 feed_tick = 23;
+
+  string name = 17;
+  bytes var = 18;
+
+  repeated uint32 skillids = 19;
+  repeated EggEquip equips = 20;
+  bytes buff = 21;
+
+  repeated uint32 unlock_equip = 24;
+  repeated uint32 unlock_body = 25;
+  uint32 version = 26;
+
+  bool skilloff = 27;
+  uint32 exchange_count = 28;
+  string guid = 29;
+}
+
+// unused
+message RefineCompose
+{
+  uint32 id = 1;
+  uint32 num = 2;
+}
+
+//unused
+message EggEquip
+{
+  ItemInfo base = 1;
+  EquipData data = 2;
+}
+
+// unused
+enum EShopLimitType
+{
+  ESHOPLIMITTYPE_MIN = 0;
+  ESHOPLIMITTYPE_USER = 1;
+  ESHOPLIMITTYPE_ONE_ONLY = 2;
+  ESHOPLIMITTYPE_ACC_USER = 4;            //账号共享次数 每天
+  ESHOPLIMITTYPE_ACC_USER_ALWAYS = 8;     //账号永久共享次数
+  ESHOPLIMITTYPE_USER_WEEK = 16;          //角色周限购
+  ESHOPLIMITTYPE_USER_MONTH = 32;         //角色月限购
+  ESHOPLIMITTYPE_ACC_WEEK = 64;           //账号周限购
+  ESHOPLIMITTYPE_ACC_MONTH = 128;         //账号月限购
+  ESHOPLIMITTYPE_MAX = 256;
+}
+
+//unused
+enum EShopLockType
+{
+  ESHOPLOCKTYPE_MIN = 0;
+  ESHOPLOCKTYPE_QUEST = 1;
+  ESHOPLOCKTYPE_GUILDBUILDING = 2;
+  ESHOPLOCKTYPE_MAX = 3;
+}
+
+// unused
+enum EShopSource
+{
+  ESHOPSOURCE_USER = 0;
+  ESHOPSOURCE_GUILD = 1;
+}
+
+// unused
+message ShopItem
+{
+  uint32 id = 1;
+  uint32 lv = 2;
+  uint32 moneyid = 3;
+  uint32 moneycount = 4;
+  uint32 moneyid2 = 5;
+  uint32 moneycount2 = 6;
+  uint32 starttime = 7;
+  uint32 endtime = 8;
+  uint32 discount = 9;
+  uint32 maxcount = 10;
+  uint32 shopid = 11;
+  uint32 screen = 12;
+  uint32 itemid = 13;
+  uint32 skillid = 14;
+  uint32 haircolorid= 16;
+  uint32 num = 17;
+  uint32 menuid = 18;
+  uint32 shoptype = 19;
+
+  EShopLimitType limittype = 21;
+
+  string des = 22;
+  string levdes = 23;
+  uint32 business = 24;
+  uint32 precost = 25;
+
+  uint32 display = 26;
+  uint32 shoporder = 27;
+  uint32 ifmsg = 28;
+  uint32 adddate = 29;
+  uint32 removedate = 30;
+  EShopSource source = 37;
+
+  // 客户端用动态数据, 表示当前商品是否解锁和原因
+  EShopLockType locktype = 31;
+  string lockarg = 32;
+  uint32 discountmax = 33; // 折扣活动商品最大打折次数
+  uint32 actdiscount = 34; // 折扣活动商品折扣
+  uint32 producenum = 35;  //全服产出数量
+
+  //lzq 随购买次数价格递增功能
+  uint32 nextgoodsid = 36; //达到限购次数后，要触发的下一个商品ID。
+  uint32 clothcolorid = 38;
+  repeated uint32 clothcolorids = 39;
+}
+
+
+// 装备部位
+enum EEquipPos
+{
+  EEQUIPPOS_MIN = 0;
+  EEQUIPPOS_WEAPON = 1; //武器
+  EEQUIPPOS_ARMOR = 2; //防具
+  EEQUIPPOS_ACCESSORIES = 3; //饰品
+  EEQUIPPOS_BRACELET = 4; //手镯
+  EEQUIPPOS_BROOCH = 5; //胸针
+
+  EEQUIPPOS_HEAD = 6; //头饰
+  EEQUIPPOS_EARRINGS = 7; //耳饰
+  EEQUIPPOS_FACE = 8; //面饰
+  EEQUIPPOS_MOUTH = 9; //嘴饰
+  EEQUIPPOS_BACK = 10; //背饰
+  EEQUIPPOS_TAIL = 11; //尾饰
+
+  EEQUIPPOS_FASHION = 12; //时装
+  EEQUIPPOS_MAX = 13;
+}
+
+// 只有使用到的加了中文
+// 包裹类型
+enum EPackType
+{
+  EPACKTYPE_MIN             = 0;
+  EPACKTYPE_EQUIP           = 1;    // 装备
+  EPACKTYPE_MAIN            = 2;    // 背包
+  EPACKTYPE_MAX             = 3;
+}

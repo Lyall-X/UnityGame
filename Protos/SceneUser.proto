@@ -1,0 +1,1317 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+
+import "ProtoCommon.proto";
+// 角色属性保存,S->C
+message UserAttrSvr
+{
+  uint32 type = 1;      // 属性类型,EAttrType枚举
+  float value = 2;      // 属性值
+}
+
+// 设置用户数据,S<->C
+message SetUserDataCmd
+{
+  repeated UserData datas = 3;    // 用户数据
+}
+
+// 设置九屏数据,C->S
+message SetNineDataCmd
+{
+  repeated EntryData entrydatas = 1;   //单位的九屏枚举数据
+}
+
+// GM指令,C->S
+message UserGMCommand
+{
+  string command = 3;     // 指令字符串
+}
+
+// 升级信息,S->C
+message UserLevelUpSyncCmd
+{
+  uint64 guid = 3;              // 唯一id
+  uint32 newlv = 4;             // 升级后等级,表UserLevel.xlsx列Level
+  repeated UserAttr attrs = 5;  // 角色属性
+}
+
+// 属性变化信息,S->C
+message AttrsChangeSyncCmd
+{
+  uint32 npcid = 1;               // 唯一id
+  uint32 source = 2;             // 来源 (先留着，目前不太好判断来源)
+  repeated UserAttr attrs = 3;   // 角色属性
+}
+
+// 属性改变方式
+enum EAttrChangeType
+{
+  EATTRCHANGETYPE_MIN     = 0;
+  EATTRCHANGETYPE_EQUIP   = 1;            //装备穿戴
+  EATTRCHANGETYPE_EQUIP_STRENGTH = 2;     //装备强化
+  EATTRCHANGETYPE_EQUIP_UPSTAR = 3;       //装备升星
+  EATTRCHANGETYPE_MAX     = 4;
+}
+
+// 角色属性改变展示,S->C
+message UserAttrChangeShowCmd
+{
+  uint64 guid = 3;                  // 唯一id
+    EAttrChangeType changetype = 4;   // 改变类型
+  repeated UserAttr attrs = 5;      // 角色属性
+}
+
+// 场景传送点,S->C
+message CmdExitPoint
+{
+  uint32 id = 1;          // 地编中配置的传送点id
+  ScenePos pos = 2;       // 坐标
+  ScenePos range = 3;     // 尺寸
+  ScenePos rotation = 4;  // 朝向
+  uint32 tomapid = 5;     // 目标地图id,表Map.xlsx列ID
+}
+
+// 小地图npc图标,S->C
+message NpcIcon
+{
+  uint32 npcid = 1;     // 配置表id,表Npc.xlsx列ID
+  ScenePos pos = 2;     // 坐标
+  uint32 dir = 3;       // 朝向
+}
+
+// 原地副本类型
+enum ELocalDungeonType
+{
+  ELOCALDUNGEON_TYPE_NORMAL             = 0;       // 默认类型
+  ELOCALDUNGEON_TYPE_CLUBCHALLENGE      = 1;       // 天团挑战类型
+  ELOCALDUNGEON_TYPE_REPAIR             = 2;       // 修复战类型
+}
+
+// 切换场景,S<->C
+message ChangeSceneUserCmd
+{
+  uint32 mapID = 3;                     // 前往地图id,表Npc.xlsx列ID
+  string mapName = 4;                   // 前往地图名字,表Npc.xlsx列NameZh
+  ScenePos pos = 5;                     // 出生坐标
+  uint32 dmapID = 6;                    // 当前地图id,表Npc.xlsx列ID
+  uint32 preview = 7;                   // unused
+  string resource = 10;                 // 场景资源,表Npc.xlsx列SceneResource
+  string minimap = 11;                  // 小地图,表Map.xlsx列MiniMap
+  repeated CmdExitPoint eps = 12;       // 地编中配置的传送点
+  repeated NpcIcon monstericons = 14;   // unused
+  uint32 dir = 15;                      // 朝向
+  GoMapType gomaptype = 16;             // 切换场景方式
+  uint32 scenetype = 18;                // 场景类型
+  ScenePos localDungeonPos = 20;        //原地副本中心点
+  uint32 localDungeonRadius = 21;       //原地副本半径
+  uint32 localDungeonID	= 22;           //原地副本ID
+  string localDungeonName = 23;         //原地副本名称
+  uint32 localDungeonType = 24;         //原地副本类型
+  string artresource = 25;              // 场景美术资源(sublevel使用)
+  string logicresource = 26;            // 场景npc资源(sublevel使用)
+  bool clientloaderror = 27;            // 前端加载结果错误 
+  bool relogin = 28;                    // 断线重连标记
+  bool isnewmap = 29;                   // 是否是第一次进入地图
+}
+
+message RaidBackCmd
+{
+}
+
+message RaidWinCmd
+{
+	uint32 nextraidid		= 1;		// 下一个副本场景
+	ScenePos pos			= 2;		// Boss死亡坐标
+}
+
+// unused
+message ShareDamTarget
+{
+  uint64 charid = 1;
+  int32 damage = 2;
+  int32 type = 3;
+}
+
+// 技能阶段
+enum ESkillPhaseType
+{
+  ESKILLPHASE_TYPE_MIN      = 0;
+  ESKILLPHASE_TYPE_CHANT    = 1;   // 技能吟唱
+  ESKILLPHASE_TYPE_RUN      = 2;   // 技能运行
+  ESKILLPHASE_TYPE_ACCUMULATE_END = 3;  // 通知蓄力结束
+  ESKILLPHASE_TYPE_CORRECT  = 4;   // 技能释放前位移补正
+  ESKILLPHASE_TYPE_END      = 5;   // 技能结束 一般持续引导技能,玩家或者AI可以随时控制技能引导结束的时候用到。
+}
+
+// 技能阶段数据,S->C
+message PhaseData
+{
+  int32 number = 1;                         // ESkillPhaseType
+  ScenePos pos = 2;                         // 施法目标点
+  repeated uint64 hitedTargets = 3;         // 击中目标
+  ScenePos movepos = 4;                     // 释放前位移补正目标点
+  int32 dir = 5;                            // 当前朝向 技能释放期间到释放结束 朝向一直为改字段的值
+  int32 skilldir = 6;                       // 技能释放方向 技能里效果的方向，比如位移的方向. 该字段不改变玩家的朝向
+  bool blacksanend = 7;                     // 是否黑化结束
+  uint64 pickitem = 8;                      // 拾取技能 道具ID
+  uint32 accumulate_end_time = 9;           // AI 设置蓄力结束时间
+  ScenePos curpos = 10;                     // 当前坐标
+}
+
+// 技能广播,S->C
+message SkillBroadcastUserCmd
+{
+  uint64 charid = 3;                    // 施法者唯一id
+  uint32 skillID = 4;                   // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 2;                   // 技能等级
+  uint32 reinforce = 5;                 // 强化类型 0|1
+  PhaseData data = 6;                   // 技能阶段数据
+  uint64 randseed = 7;                  // 程序生成的伤害随机种子
+  uint32 chanttime = 8;                 // 吟唱时间(毫秒)
+  repeated DamageData damagedata = 9;   // 伤害数据
+  repeated MoveData movedata = 10;      // 位移数据
+  uint32 mainskillid = 11;              // 主技能id,表Skill.xlsx列ID
+  bool passivetrigger = 12;             // 是否为被动触发
+  uint64 timestamp = 13;                // 客户端的时间戳
+  uint64 uniqueid = 14;                 // 技能释放的唯一ID,和技能Effect协议里保持一致, 0表示不依赖技能的效果
+}
+
+enum ESkillBreakType
+{
+  ESKILLBREAK_TYPE_MIN        = 0;
+  ESKILLBREAK_TYPE_CORRECT    = 1; // 位移补正阶段打断
+  ESKILLBREAK_TYPE_CHANT      = 2; // 读条阶段打断
+  ESKILLBREAK_TYPE_RUN        = 3; // 运行阶段打断
+  ESKILLBREAK_TYPE_LEADSKILL  = 4; // 持续引导阶段打断
+  ESKILLBREAK_TYPE_MAX        = 5;
+}
+
+// 技能打断, S<->C
+message BreakSkillUserCmd
+{
+  uint64 charid = 1;                    // 施法者唯一id
+  uint32 skillid = 2;                   // 技能id,表Skill.xlsx列ID
+  ESkillBreakType type = 3;             // 打断类型
+  uint32 damage = 4;                    // 被攻击打断额外伤害
+  uint32 actionid = 5;                  // 被攻击打断硬直动作ID
+  uint32 time_axis = 6;                 // 被打断时的时间轴时间
+  uint64 breakerid = 7;                 // 打断者id
+  uint32 breakstrength = 8;             // 打断强度
+  ScenePos pos = 9;                     // 打断时的坐标
+}
+
+// 位移效果,S<->C
+message MoveEffectUserCmd
+{
+  uint64 charid = 3;        // 目标唯一id
+  uint32 skillid = 4;       // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 2;       // 技能等级
+  MoveData movedata = 5;    // 位移数据
+  uint32 mainskillid = 6;   // 主技能id,表Skill.xlsx列ID
+}
+
+// 战斗道具数据
+message BattleObjectData
+{
+  uint32 effectid = 1;      // 配置表id
+  uint32 time_axis = 2;     // 时间轴(毫秒)
+  uint32 eConditionType = 3;  //触发条件枚举
+  uint32 eResultType = 4;   //触发效果枚举
+}
+
+// 战斗道具效果,S<->C
+message BattleObjectEffectUserCmd
+{
+  uint64 charid = 3;        // 目标唯一id
+  uint32 skillid = 4;       // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 2;       // 技能等级
+  BattleObjectData battleObjectdata = 5;    // 战斗道具数据
+}
+
+// 伤害类型
+enum DamageType
+{
+  DAMAGE_TYPE_NONE = 0;
+  DAMAGE_TYPE_NORMAL = 1;       // 普通伤害
+  DAMAGE_TYPE_MISS = 3;         // miss
+  DAMAGE_TYPE_HEAL = 4;         // 治疗
+  DAMAGE_TYPE_IMMUNE = 5;       // 免疫
+  DAMAGE_TYPE_MULTIHIT = 6;     // 连击伤害
+  DAMAGE_TYPE_SHIELD = 7;       // 护盾
+  DAMAGE_TYPE_HEAL_ETHER = 8;   // 恢复以太
+  DAMAGE_TYPE_REDUCE_ETHER = 9; // 以太减少
+  DAMAGE_TYPE_REBOUND = 10;     // 反弹伤害
+  DAMAGE_TYPE_FIRE = 11;        // 火元素伤害
+  DAMAGE_TYPE_ICE = 12;         // 冰元素伤害
+  DAMAGE_TYPE_THUNDER = 13;     // 雷元素伤害
+  DAMAGE_TYPE_EARTH = 14;       // 土
+  DAMAGE_TYPE_CUT = 15;         // 斩
+  DAMAGE_TYPE_STRIKE = 16;      // 打
+  DAMAGE_TYPE_SPIKE = 17;       // 突
+  DAMAGE_TYPE_INVINCIBLE = 18;  // 无敌状态下受到的伤害
+
+  DAMAGE_TYPE_MAX = 19;
+}
+
+// 技能伤害&击退,S<->C
+message DamageEffectUserCmd
+{
+  uint64 charid = 3;          // 攻击者唯一id
+  uint32 skillid = 4;         // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 2;         // 技能等级,表Skill.xlsx列ID
+  uint64 timestamp = 1;       // 时间戳 客户端的服务器时间戳
+  DamageData damagedata = 5;  // 伤害数据
+  uint32 mainskillid = 6;     // 主技能id,表Skill.xlsx列ID
+  uint64 uniqueid = 7;        // 技能释放的唯一ID,和技能协议保持一致, 0表示不依赖技能的效果
+}
+
+// 弹道目标,S->C
+message MissileTarget
+{
+  uint64 charid = 1;        // 目标唯一id
+  ScenePos targetpos = 2;   // 坐标
+}
+
+// 弹道数据,S->C
+message MissileData
+{
+  uint32 effectid = 1;      // 配置表id,表MissileEffect.xlsx列ID
+  uint32 time_axis = 2;     // 时间轴(毫秒)
+  repeated MissileTarget missiletargets = 3;    // 目标列表
+}
+
+// 角色弹道消息,S->C
+message MissileEffectUserCmd
+{
+  uint64 charid = 3;            // 施法者唯一id
+  uint32 skillid = 4;           // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 2;           // 技能等级
+  MissileData missiledata = 5;  // 弹道数据
+}
+
+message SpecialRandActorPosData
+{
+  repeated ScenePos targetpos = 1; //随机的目标点
+  repeated int32 rotate = 2;       //随机的朝向
+}
+
+message SpecialSelectByAttrData
+{
+  repeated uint64 targets = 1; //筛选的目标id
+}
+
+message SpecialThunderData
+{
+  message ThunderTarget
+  {
+    uint64 thunderid = 1;  //雷球ID
+    uint64 targetid = 2;  //目标ID
+  }
+  repeated ThunderTarget thunders = 1; //闪电信息
+}
+
+// SpecialEffect数据
+message SpecialData
+{
+  uint32 effectid = 1;      // 配置表id,表SpecialEffect.xlsx列ID
+  uint32 time_axis = 2;     // 时间轴(毫秒)
+  bytes datas = 3;          // 对应不同类型的Special数据 
+  SpecialRandActorPosData randdata = 4; //记者黑化随机目标点
+  SpecialSelectByAttrData selectdata = 5; //筛选到的目标, 选取最低属性的单位
+  repeated uint64 targetids = 6;          // 目标
+  SpecialThunderData thunderdata = 7;     // 梅尔维尔闪电数据
+}
+
+// 角色SpecialEffect消息,S->C
+message SpecialEffectUserCmd
+{
+  uint64 charid = 3;            // 施法者唯一id
+  uint32 skillid = 4;           // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 2;           // 技能等级
+  SpecialData specialdata = 5;  // special数据
+}
+
+// BuffEffect数据
+message BuffData
+{
+  uint32 effectid = 1;      // 配置表id,表BuffEffect.xlsx列ID
+  uint32 time_axis = 2;     // 时间轴(毫秒)
+  repeated uint64 targets = 3; //筛选的目标id
+  repeated ScenePos targetpos = 4; //目标点
+  uint32 buff_effect_layers = 5;   // BuffEffect添加buff时要加的层数 
+};
+
+// 角色触发的BuffEffect消息, C->S
+message BuffEffectUserCmd
+{
+  uint64 charid = 1;            // 施法者唯一id
+  uint32 skillid = 2;           // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 3;           // 技能等级
+  BuffData buffdata = 4;        // buff数据
+}
+
+// 同步技能伤害 随机数种子,S->C
+message UpdateSkillRandSeedCmd
+{
+  uint64 randseed = 3;
+}
+
+// 客户端技能结果消息result S->C
+message SkillResultUserCmd
+{
+  uint64 charid = 3;          // 唯一id
+  DamageData damagedata = 4;  // 伤害数据
+}
+
+// Anim位移时同步位置 C<->S
+message AnimMoveSyncPosData
+{
+  uint64 charid = 1;          // 唯一id
+  ScenePos pos = 2;           // 坐标
+  int32 dir = 3;              // 朝向
+  uint32 moveid = 4;          // 前端用于同步结束时位置的id标记
+  EAnimMoveState state = 5;   // 位移状态 
+  string action_name = 6;     // 动画名
+  uint32 action_time = 7;     // 动画开始了多久 毫秒
+  int32 motion_scale = 8;     // motion的缩放比例offset 0表示不缩放，万分比，5000表示1.5倍放大
+}
+
+enum EAnimMoveState
+{
+  EANIMMOVESTATE_MIN = 0;
+  EANIMMOVESTATE_START = 1; //位移开始
+  EANIMMOVESTATE_MOVING = 2; //位移中
+  EANIMMOVESTATE_END = 3; //位移结束
+  EANIMMOVESTATE_MAX = 4;
+}
+
+message AnimMoveSyncPosCmd
+{
+  repeated AnimMoveSyncPosData infos = 1; // 位移结束时的位置信息
+}
+
+//角色CD数据,S->C
+message CDTimeUserCmd
+{
+  uint64 guid = 3;                // 角色唯一id
+  repeated CDTimeItem list = 4;   // CD数据
+}
+
+// 复活类型
+enum EReliveType
+{
+  ERELIVETYPE_MIN = 0;
+  ERELIVETYPE_RETURN = 1;   // 返回复活点
+  ERELIVETYPE_GM = 2;       // gm指令复活
+  ERELIVETYPE_SKILL = 4;    // 技能复活
+  ERELIVETYPE_AUTO = 5;     // 自动复活
+  ERELIVETYPE_QUEST = 6;     // 任务复活
+  ERELIVETYPE_LEAVECOPY = 7; // 离开原地副本
+  ERELIVETYPE_LOGOUT = 8;    // 登出
+  ERELIVETYPE_MAX = 9;
+}
+
+// 角色复活,C->S
+message ReliveUserCmd
+{
+  EReliveType type = 3; //复活类型,unused
+}
+
+// 角色场景内瞬移,S->C
+message GoToUserCmd
+{
+  ScenePos pos = 3;     // 目标点
+  uint64 charid = 4;    // 唯一id
+  bool isgomap = 5;     // unused
+  uint32 rotate = 6;    // 移动后朝向
+  GoMapType type = 7;      // 移动类型
+}
+
+// unused
+message GoToExitPosUserCmd
+{
+  uint32 mapid = 3;
+}
+
+// 访问npc,C->S
+message CVisitNpcUserCmd
+{ 
+  uint64 guid = 3;        // npc唯一id
+}
+
+// 访问npc成功,S->C
+message RetVisitNpcUserCmd
+{ 
+  uint64 guid = 3;        // npc唯一id
+  bool shiplocaltalk = 4; // 删除默认镜头
+}
+
+// 停止访问npc,C->S
+message CStopVisitNpcUserCmd
+{
+  uint64 guid = 3;        // npc唯一id
+}
+
+// 停止访问npc成功,S->C
+message RetStopVisitNpcUserCmd
+{
+  uint64 guid = 3;        // npc唯一id
+}
+
+// unused
+message SShowDialogUserCmd
+{
+  uint64 guid = 3;
+  uint32 dialogid = 4;
+  uint32 type = 5;
+  string text = 6;
+  uint32 emoji = 7;
+  string action = 8;
+  string voice = 9;
+}
+
+// 用户切换主控伙伴,C->S
+message ChoosePartnerUserCmd
+{
+  uint32 index = 3;     // 出战位置(1-4)
+}
+
+// 队伍成员信息,S->C
+message TeamMemberData
+{
+  uint32 index = 1;     // 出战位置(1-4)
+  uint32 cfgid = 2;     // 配置表id,表Partner.xlsx列ID
+  uint32 guid = 3;      // 场景内生成的唯一ID
+}
+
+// 队伍数据,S->C
+message TeamDataCmd
+{
+  uint64 charid = 1;                    // 角色id
+  repeated TeamMemberData member = 3;   // 队伍成员数据
+  uint32 leaderindex = 4;               // 主控位置(1-4)
+}
+
+// 设置出战伙伴,C->S
+message SetTeamUserCmd
+{
+  message Member
+  {
+    uint32 index = 1;           // 出战位置(1-4)
+    uint32 fighter = 2;         // 配置表id,表Partner.xlsx列ID
+  }
+  repeated Member member = 3;   // 成员
+}
+
+// buff层数据,S->C
+message LayerData
+{
+  uint32 id = 1;      // 唯一索引
+  uint64 time = 2;    // 毫秒时间戳
+  ScenePos pos = 3;   // 指定坐标
+  uint64 targetid = 4;// 作用目标
+}
+
+// buff数据,S->C
+message BufferData
+{
+  uint32 id = 1;                        // 配置表id,表Buff.xlsx列ID
+  uint32 layer = 2;                     // buff层数
+  uint64 time = 3;                      // 结束时间(毫秒)
+  bool active = 4;                      // 当前是否生效
+  string fromname = 5;                  // 来源名字
+  uint64 fromid = 6;                    // 来源唯一id
+  uint32 level = 7;                     // 等级
+  repeated LayerData layerdata = 8;     // 层数据
+  uint32 fromskillid = 9;               // 来源技能id 添加时有效
+  uint32 fromeffecttime = 10;           // 来源技能时间轴时间 添加时有效
+  uint32 shielddefvalue = 11;           // 该buff的护盾值
+  bool hide = 12;                       // 是否隐藏状态
+}
+
+// 九屏buff数据同步,S->C
+message UserBuffNineSyncCmd
+{
+  uint64 guid = 3;                    // 唯一id
+  repeated BufferData updates = 4;    // buff数据
+  repeated uint32 dels = 5;           // 删除的buffid,表Buff.xlsx列ID
+}
+
+// 动作表情类型
+enum EActionType
+{
+  EACTIONTYPE_MIN = 0;
+  EACTIONTYPE_NORMAL = 1;           // 普通播放
+  EACTIONTYPE_SUSTAIN = 2;          // 播放保持在最后一帧
+  EACTIONTYPE_LOOP = 3;             // 无限循环播放
+  EACTIONTYPE_MAX = 4;
+}
+
+// 动作同步,S->C
+message UserActionNineSyncCmd
+{
+  uint64 guid = 3;            // npc的唯一id
+  uint32 actionid = 4;        // 动作id,表ActionAnime.xlsx列ID
+  uint32 looptime = 5;        // 播放次数
+  EActionType actiontype = 6; // 播放类型
+  bool force = 7;             // 是否强制播放
+  bool isprivate = 8;         // 是否为私人动作
+  bool islookat = 9;          // 是否要盯着目标看
+  bool isbase = 10;           // 是否基础动作(客户端二级基础动作)
+  bool isstop = 11;           //用于任务节点回退
+  string actionname = 12;     // 动作name
+}
+
+// 表情同步,S->C
+message UserExpressionNineSyncCmd
+{
+  uint64 guid = 3;            // npc的唯一id
+  string expressionname = 4;  // 表情名字,为前端资源名
+  uint32 looptime = 5;        // 循环次数
+  EActionType type = 8;       // 播放类型
+  bool force = 6;             // 是否强制播放
+  bool isprivate = 7;         // 是否私人表情
+  bool isstop = 9;            //用于任务节点回退
+}
+message UserMouthNineSyncCmd
+{
+  uint64 guid         = 1;// npc的唯一id
+  uint32 idleid       = 2;// 待机动画
+  string mouthaction  = 3;// 表情名字,为前端资源名
+  bool mouthactionend = 4;//用于任务节点回退
+  uint32 looptime     = 5;// 循环次数
+  EActionType type    = 6;// 播放类型
+  bool force          = 7;// 是否强制播放
+}
+
+// 显示表情气泡,S->C
+message UserShowBubbleCmd
+{
+  uint64 guid = 1;            // npc的唯一id
+  string name = 2;            // 气泡资源名,为前端资源名
+  uint32 lasttime = 3;        // 持续时间(毫秒)
+  bool force = 4;             // 是否强制播放
+}
+
+// 特效同步,S->C
+message UserEffectNineSyncCmd
+{
+  ScenePos pos = 3;           // 位置
+  uint64 guid = 4;            // npc的唯一id
+  string name = 5;            // 特效名,为前端资源名
+  string attachname = 8;      // 特效绑定挂点名，为前端挂点名
+  uint32 looptime = 6;        // 循环次数
+  bool isstop = 7;            // 是否为停止播放
+  int32 dir = 9;       // 特效方向
+}
+
+// 声音同步,S->C
+message UserSoundNineSyncCmd
+{
+  ScenePos pos = 3;           // 位置
+  uint64 guid = 4;            // npc的唯一id
+  string name = 5;            // 资源名,为前端资源名
+  uint32 looptime = 6;        // 循环次数
+  bool isstop = 7;				 // 是否为停止播放
+}
+
+// 通知隐身单位靠近警示,S->C
+message NotifyHideCloseUserCmd
+{
+  uint64 guid = 3;                  // 隐身者唯一id
+  repeated uint64 closeguids = 4;   // 靠近者唯一id
+}
+
+// 解锁弹窗,S->C
+message UnlockingMenuCmd
+{
+  uint32 menuID = 3;    // 配置表id,表Menu.xlsx列ID
+}
+
+// 解锁类型
+enum EMenuEvent
+{
+  EMENUEVENT_MIN = 0;
+  EMENUEVENT_UNLOCKFUNCTION = 1;            // 基础功能
+  EMENUEVENT_UNLOCKSKILL = 2;               // 技能
+  EMENUEVENT_UNLOCKMAP = 3;                 // 地图
+  EMENUEVENT_UNLOCKAREA = 4;                // 大区
+  EMENUEVENT_UNLOCKNPCSTATUS = 5;           // npc状态
+  EMENUEVENT_SHOWNPC = 6;                   // npc是否可见
+  EMENUEVENT_MONSTER_UNLOCK = 9;            // 是否可以在妄想空间中随机怪物随机到
+  EMENUEVENT_WXKJ = 10;                     // 妄想空间玩法解锁
+  EMENUEVENT_BORNPOINT = 11;                // 出生点解锁
+  EMENUEVENT_UNLOCK_CLOSEAUTOUP = 12;       // 关闭自动上阵
+  EMENUEVENT_COLLEGE_GIFT = 13;             // 解锁学院赠礼
+  EMENUEVENT_SKILL_LEVEL_LIMIT = 14;        // 技能等级限制
+  EMENUEVENT_EQUIP_LEVEL_LIMIT = 15;        // 装备等级限制
+  EMENUEVENT_ELITE_REPAIR   = 16;           // 精英修复
+  EMENUEVENT_DAILYACTIVITY   = 17;          // 日常活动
+  EMENUEVENT_MAX = 9999;
+}
+
+// 已解锁数据,S->C
+message UnlockedMenuDataCmd
+{
+  EMenuEvent type = 3;              // 解锁类型
+  repeated uint64 unlockedIDs = 4;  // 解锁的具体id（比如地图id，技能id）,对应不同的表
+  repeated string unlockedstrs = 5;  // 解锁的具体string（比如地图重生点）,地编文件中
+}
+
+// 点和点的互动,C->S
+message ReqMapLinkUserCmd
+{
+  uint32 maplinkid = 3;   // 索引id,对应MapData文件夹里面的obj文件
+}
+// 点和点的互动,S->C
+message BroadCastMapLinkUserCmd
+{
+  uint32 maplinkid = 3;  // 索引id,对应MapData文件夹里面的obj文件
+  uint64 guid = 4;       // 角色唯一id
+  ScenePos pos = 5;      // 互动后坐标
+}
+
+// 任务地图跳转,C->S
+message GoMapUserCmd
+{
+  uint32 mapid = 3;     // 地图id,表Map.xlsx列ID
+}
+
+// CG动画类型
+enum ECgType
+{
+  ECGTYPE_MIN = 0;
+  ECGTYPE_NORMAL = 1;     //普通CG
+  ECGTYPE_REPAIR = 2;  //修复物CG
+  ECGTYPE_MAX = 4;
+}
+
+enum ECgCameraMode
+{
+  ECGCAMERAMODE_MIN = 0;
+  ECGCAMERAMODE_BLANK_SCREEN = 1; //黑屏
+  ECGCAMERAMODE_TRANSITION = 2; //过渡
+  ECGCAMERAMODE_DOWNSHEAR = 3; //顺切
+  ECGCAMERAMODE_MAX = 4;
+}
+
+// 播放CG, S->C
+message PlayCGCmd
+{
+  string cgname = 1;    // cg名,为前端资源名
+  ECgType cgtype = 2;      // cg动画类型
+  /*CG偏移信息，3选1 
+   location，地点偏移
+   rotation, 旋转 {x, y, z}
+   guid，根据guid偏移
+   npcid，根据npcid偏移（不推荐）
+   */
+  string params = 3;      // 客户端解析的参数列表 table格式
+  ECgCameraMode cameramode = 4; //相机过渡模式,目前有黑屏，过渡2种
+  string fashionnpclist = 5; //装扮npc列表 {[1]=10001,[2]=10002}
+  uint64 adaptiveguid = 6; //自适应聚焦角色高度
+}
+
+/****************************************College****************************************/
+
+// S->C 下发学院赠礼数据 
+message UserCollegeGiftInfoCmd
+{
+  repeated CollegeGiftData  gifts = 1;
+}
+
+// C->S 请求领取学院赠礼收益
+message UserCollegeGiftReceiveCmd
+{
+  repeated uint32 giftids = 1;                 // 礼物id
+}
+
+/****************************************College****************************************/
+
+// 释放非自己操控伙伴的大招
+message UserUseUniqueSkillCmd
+{
+  uint32 index = 1;     // 出战位置(1-4)
+}
+
+// 天气变化,S->C
+message WeatherChange
+{
+  uint32 id = 1;              // 天气表id,表Weather.xlsx列ID
+  uint32 direction = 2;       // 天气方向
+  uint32 strengthcurveid = 3; // 天气强度曲线id,前端文件名
+  bool inquest = 4;
+}
+
+// boss登场表演完毕,C->S
+message CBossShowUpFinishCmd
+{
+  uint64 guid = 1;          // npc唯一id
+}
+
+// 播放震屏,S->C
+message ShakeScreenCmd
+{
+  string curvename = 1;   // 强度曲线名
+  float scale = 2;        // 震动倍数
+  uint32 lasttime = 3;    // 持续时间（毫秒）
+  bool isstop = 4;        //停止播放震屏
+}
+
+// NPC显示头顶文字气泡,S->C
+message NpcPlayDialog
+{
+  uint64 guid = 1;      	// npc唯一id
+  repeated uint32 id = 2;        	// 文字id,表NpcTalk.xlsx中列id
+  uint32 lasttime = 3;  	// 持续时间（毫秒）
+  bool openrandom = 4;  	// 开启随机气泡
+  uint32 intervaltime = 5;	// 间隔时间（毫秒）
+  string talkContent = 6;   // 对话文本
+  
+}
+
+enum EInteractiveOperType
+{
+  EINTERACTIVEOPER_MIN = 0;
+  EINTERACTIVEOPER_PICK = 1;          // 捡起
+  EINTERACTIVEOPER_THROW = 2;         // 抛出去
+  EINTERACTIVEOPER_ACTIVE = 3;        // 激活
+  EINTERACTIVEOPER_VALID = 4;         // 生效
+  EINTERACTIVEOPER_TICK = 5;          // tick eot
+  EINTERACTIVEOPER_GIVEUP = 6;        // 丢弃
+  EINTERACTIVEOPER_USE = 7;           // 使用
+  EINTERACTIVEOPER_CANCEL_USE = 8;    // 取消使用
+  EINTERACTIVEOPER_ON_VEHICLE = 9;    // 上载具
+  EINTERACTIVEOPER_OFF_VEHICLE = 10;  // 下载具
+  EINTERACTIVEOPER_LOCALDUNGEON = 11; // 原地副本
+  EINTERACTIVEOPER_RECEIVE = 12;      // 接收
+  EINTERACTIVEOPER_TASKTRIGGER = 13;  // 任务推进
+  EINTERACTIVEOPER_OPEN = 14;         // 开
+  EINTERACTIVEOPER_CLOSE = 15;        // 关
+  EINTERACTIVEOPER_GETNPC = 16;       // 获取npc
+  EINTERACTIVEOPER_REPAIR = 17;       // 修复
+  EINTERACTIVEOPER_COLLECT = 18;      // 采集
+  EINTERACTIVEOPER_DELAYGET = 19;     // 延迟获得
+  EINTERACTIVEOPER_SUBMIT = 20;       // 提交材料
+  EINTERACTIVEOPER_SEAT_EAT = 21;     // 坐下吃东西
+  EINTERACTIVEOPER_INFO = 22;         // 获取信息
+  EINTERACTIVEOPER_COLLECT_WEAPON =23;// 获取武器
+  EINTERACTIVEOPER_MAX = 24;
+}
+
+//与场景单位的交互操作类型
+message InteractionWithEntryCmd
+{
+  uint64 guid = 1; //交互者id
+  uint64 beguid = 2; //被交互者id
+  uint32 entrytype = 3; //被交互者类型 1-npc 2-interactive entry
+  EInteractiveOperType opertype = 4; //交互类型
+  uint64 tgtid = 5; //需要施法的目标ID
+  ScenePos tgtpos = 6; //需要施法的目标点
+}
+
+//new 与场景单位的交互操作类型
+message InteractionCmd
+{
+  uint64 guid = 1; //交互者id
+  uint64 beguid = 2; //被交互者id
+  uint32 socketid = 3; //被交互者位置
+  string opertype = 4; //交互类型
+  uint64 tgtid = 5; //需要施法的目标ID
+  ScenePos tgtpos = 6; //需要施法的目标点
+}
+// 交互S->C
+message InteractionResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+}
+
+// 拾取C->S
+message PickUpCmd
+{
+  uint64 guid = 1;  // 操作对象
+}
+
+// 拾取S->C
+message PickUpResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+}
+
+// 放下C->S
+message PutDownCmd
+{
+  ScenePos pos = 1;
+}
+
+// 放下S->C
+message PutDownResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+  ScenePos pos = 4;
+}
+
+// 扔C->S
+// Client Send a calculated ScenePos to Server, 
+// so, Server only need to verify the ScenePos
+message ThrowCmd  
+{
+  ScenePos pos = 1;
+}
+
+// 扔S->C
+message ThrowResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+  ScenePos pos = 4;
+}
+
+// 弹射C->S
+message CatapultCmd  
+{
+  ScenePos pos = 1;
+}
+
+// 弹射S->C
+message CatapultResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+}
+
+// 上载具C->S
+message OnVehicleCmd  
+{
+  uint64 beguid = 1;
+}
+
+// 上载具S->C
+message OnVehicleResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+}
+
+// 下载具C->S
+message OffVehicleCmd  
+{
+  ScenePos pos = 1;
+}
+
+// 下载具S->C
+message OffVehicleResultCmd
+{
+  uint64 guid = 1;
+  uint64 beguid = 2;
+  bool result = 3;
+  ScenePos pos = 4;
+}
+
+// 交互类型枚举
+enum EInteractionType
+{
+  EINTERACTION_TYPE_MIN         = 0;
+  EINTERACTION_TYPE_PICKUP      = 1;    // 拾取
+  EINTERACTION_TYPE_PUTDOWN     = 2;    // 放下
+  EINTERACTION_TYPE_THROW       = 3;    // 扔
+  EINTERACTION_TYPE_ONVEHICLE   = 4;    // 上载具
+  EINTERACTION_TYPE_OFFVEHICLE  = 5;    // 下载具
+  EINTERACTION_TYPE_MEND        = 6;    // 修理
+  EINTERACTION_TYPE_SCANOBJECT  = 7;    // 扫描
+  EINTERACTION_TYPE_TRACE       = 8;    // 追踪
+  EINTERACTION_TYPE_CONNECTION  = 9;    // 链接
+}
+
+// 交互主动触发任务事件
+message InteractionEventCmd
+{
+  uint64 beguid = 1;
+  EInteractionType type = 2;
+}
+
+// Client -> Gateway
+message ChatMsgClientToGateCmd
+{
+  bytes content = 1;
+}
+
+// Gateway -> Client
+message ChatMsgGateToClientCmd 
+{
+  bytes content = 1;
+}
+
+// 小地图信息,S->C
+message MiniMapsInfoCmd
+{
+  message OneMiniMapInfo
+  {
+    uint32 mapid = 1;                  // 地图id,表Npc.xlsx列ID
+    repeated NpcIcon npcicons = 2;     // 地编中配置的小地图图标
+  }
+  repeated OneMiniMapInfo minimapinfo = 1;
+}
+
+enum LotteryType
+{
+  ELOTTERYTYPE_MIN = 0;
+  ELOTTERYTYPE_PARTNER = 1;		// 伙伴抽奖
+  ELOTTERYTYPE_EQUIP = 2;		// 装备抽奖
+  ELOTTERYTYPE_MIX	= 3;		// 混合抽奖
+  ELOTTERYTYPE_GM	= 90;
+  ELOTTERYTYPE_GM_PARTNER	= 91; //GM伙伴抽奖
+  ELOTTERYTYPE_GM_EQUIP = 92; //GM装备抽奖
+  ELLOTERYTYPE_MAX = 100;
+}
+
+//抽卡,C->S
+message LotteryCmd
+{
+  uint32 type = 1;		// 抽卡类型  LotteryType
+  uint32 times = 2;		// 抽卡次数
+  uint32 batchid = 3;		// 批次
+}
+
+//发送抽卡结果, S->C
+message SendLotteryResultCmd
+{
+  message LotteryResult
+  {
+    uint32 itemid = 1;		// 道具ID或者角色ID   Lottery表
+    uint32 itemcount = 2;	// 道具数量
+    uint32 type = 3;		  // 道具类型	   1:道具  2:伙伴
+    uint32 brandnew = 4;	// 新卡展示    0:新卡  非0:碎片
+  }
+  repeated LotteryResult lotteryresults = 1; 
+}
+
+//发送GM抽卡结果, S->C
+message SendGMLotteryResultCmd
+{
+  message LotteryResult
+  {
+    uint32 itemid = 1;		// 道具ID或者角色ID   Lottery表
+    uint32 times = 2;	    // 转换次数
+    uint32 convertnum = 3;// 单次转换的碎片数量
+    uint32 type = 4;		  // 道具类型	   1:道具  2:伙伴
+    uint32 brandnew = 5;	// 新卡展示    0:新卡  非0:碎片
+  }
+  repeated LotteryResult lotteryresults = 1; 
+}
+
+//玩家对Npc的特殊行为, C->S
+message UserSpecialActionCmd
+{
+  uint32 beguid = 1;  //npc
+  uint32 action = 2;  //行为
+}
+// 旁白位于屏幕方位
+enum EAsideOrientation
+{
+  EASIDEORIENTATION_MIN    = 0;
+  EASIDEORIENTATION_UP     = 1;
+  EASIDEORIENTATION_MIDDLE = 2;
+  EASIDEORIENTATION_DOWN   = 3;
+  EASIDEORIENTATION_MAX    = 4;
+}
+
+message AsideUserCmd
+{
+  uint32 npcid = 1;   // 旁白头像npcid
+  uint32 textid = 2;  // 旁白文本id
+  uint32 showtime = 3;  // 显示时间
+  EAsideOrientation orientation = 4;
+  //string uniqueid = 5;       // uniqueid
+}
+
+enum EPartnerSourceType
+{
+  EPARTNERSOURCETYPE_MIN      = 0;
+  EPARTNERSOURCETYPE_LOTTERY  = 1;  //抽卡获得
+  EPARTNERSOURCETYPE_ITEM     = 2;  //道具获得
+  EPARTNERSOURCETYPE_NONE     = 3;  //默认获得
+  EPARTNERSOURCETYPE_GM       = 4;  //GM获得
+  EPARTNERSOURCETYPE_MISSION  = 5;  //任务获得
+  EPARTNERSOURCETYPE_MAX      = 99;
+}
+// S->C
+message SendPartnerSourceCmd
+{
+  uint32 partnerid = 1; //伙伴id
+  EPartnerSourceType sourcetype = 2;
+}
+
+//S->C
+message SceneRaidResultCmd
+{
+  uint32 rank = 1; //结算界面分数评级
+  bool result = 2; //副本挑战结果
+}
+
+// C->S, 前端同步给后端 buff信息修改
+message C2SBuffSyncCmd
+{
+  uint64 charid = 1;                          // 角色guid
+  uint32 buffid = 2;
+  bool active = 3;                            // 当前是否生效，设为false后端将把该buff失效
+  uint32 shielddefvalue = 4;                  // 同步该buff的剩余护盾值
+}
+
+message AcceptRepairTask
+{
+  uint32 cfgid = 1;   // 修复物
+}
+
+enum EAddPartnerExpResult
+{
+  EADDPARTNEREXPRESULT_MIN               = 0;
+  EADDPARTNEREXPRESULT_INVALID_FIGHTERID = 1;            //无效伙伴id
+  EADDPARTNEREXPRESULT_ADD_FAILURE       = 2;            //经验达到上限等添加失败原因
+  EADDPARTNEREXPRESULT_NOT_ENOUGH        = 3;            //经验不足
+  EADDPARTNEREXPRESULT_IS_MAIN_FIGHTER   = 4;            //不能给主角加
+  EADDPARTNEREXPRESULT_SUCCESS           = 5;            //添加成功
+  EADDPARTNEREXPRESULT_MAX               = 6;
+}
+
+
+message AddPartnerExpFromExpPoolCmd
+{
+  uint32 fighterid = 1;
+  uint64 expvalue = 2;
+  EAddPartnerExpResult result = 3;
+}
+
+message PlayItemAnimation
+{
+  uint32 itemid = 1;
+}
+
+message WXKJAsideUserCmd
+{
+  uint32 npcid = 1;   // 旁白头像npcid abandoned
+  repeated uint32 textid = 2;  // 旁白文本id
+  uint32 showtime = 3;  // 显示时间 abandoned
+  EAsideOrientation orientation = 4; // abandoned
+}
+
+//黑化协议 S->C
+message BlackSanCmd
+{
+  uint64 guid = 1;    //黑化的单位id
+  bool start = 2;     //是否开始
+  ScenePos hitpos = 3; //击退位置
+  uint32 skillid = 4; //黑化技能id
+}
+
+enum GotoType 
+{
+  GOTO_TRUEQUEST = 0;                //真·任务（非任务类型里的"真·任务"是不是很反直觉）
+  GOTO_COMMONREPAIR = 1;             //普通修复
+  GOTO_ELITEREPAIR = 2;              //精英修复
+  GOTO_DAILYQUEST = 3;               //日常任务
+  GOTO_SOCIALQUEST = 4;              //社团任务
+  GOTO_WXKJQUEST   = 5;              //妄想空间任务
+  GOTO_ACCESSOBJECT   = 6;           //获取途径
+  GOTO_ACTIVEDATING   = 7;           //主动约会
+  GOTO_CLUBCHALLENGE   = 8;          //天团挑战
+  GOTO_MAPLIST   = 9;                //地图传送
+  GOTO_DATINGROOM   = 10;            //约会房间
+  GOTO_DATINGSCENE   = 11;           //约会目标点
+  GOTO_NPCALIAS   = 12;              //npc别名传送
+}
+
+//追踪传送协议(包含修复物) S->C && C->S
+message GoToCommonTraceCmd
+{
+  uint32 id = 1;              // 标识id
+  bool clientrequest = 2;     // 客户端请求确认
+  uint32 serveranswer = 3;    // 服务器返回确认(mapid或0)
+  ScenePos pos = 4;           // 相机朝向的位置
+  uint32 type = 5;            // 传送类型
+  string strkey = 6;          // 标识字符串(GOTO_NPCALIAS 使用)
+}
+
+///召唤协议 S->C
+message SummonEffectUserCmd
+{
+  uint64 charid = 1;            // 施法者唯一id
+  uint32 skillid = 2;           // 技能id,表Skill.xlsx列ID
+  uint32 skilllv = 3;           // 技能等级
+  uint32 effectid = 4;          // 配置表id,表SpecialEffect.xlsx列ID
+  uint32 time_axis = 5;         // 时间轴(毫秒)
+  ScenePos pos = 6;             // 位置
+  repeated uint64 index = 7;    // 召唤物guid
+}
+
+// 日常活动状态(全部完成状态也使用)
+enum DailyActivityState
+{
+  DAILYACTIVITY_INIT = 0;       // 活动初始化
+  DAILYACTIVITY_OPEN = 1;       // 活动开启
+  DAILYACTIVITY_COMPLETE = 2;   // 活动完成(完成可以领奖)
+  DAILYACTIVITY_END = 3;        // 活动结束(完成已领奖)
+}
+
+enum DailyActivityRewardType
+{
+  DAILYACTIVITY_TYPE_NONE = 0;        // NONE
+  DAILYACTIVITY_TYPE_PROP = 1;        // 属性  
+  DAILYACTIVITY_TYPE_LEVEL = 2;       // 等级  (守护遗迹)
+  DAILYACTIVITY_TYPE_SKILL = 3;       // 技能  (黑潮)
+  DAILYACTIVITY_TYPE_BIGSKILL = 4;    // 大招
+  //DAILYACTIVITY_TYPE_DIAMOND = 5;     // 钻石
+  DAILYACTIVITY_TYPE_ELITE = 6;       // 普通&精英
+  DAILYACTIVITY_TYPE_GOLD = 7;        // 金币
+  DAILYACTIVITY_TYPE_DATING = 5;      // 好感度 (约会)
+}
+
+enum DailyActivityPropRewardType
+{
+  DAILYACTIVITY_PROP_MAXHP = 0;       // 血量
+  DAILYACTIVITY_PROP_ATK = 1;         // 攻击力
+  DAILYACTIVITY_PROP_DEF = 2;         // 物理防御
+  DAILYACTIVITY_PROP_MDEF = 3;        // 魔法
+  DAILYACTIVITY_PROP_HPRECOVER = 4;   // 生命值恢复
+}
+
+// 社团类型
+enum DailyActivityType
+{
+  DAILYACTIVITY_TYPE = 0;
+  LEAGUEACTIVITY_TYPE_CHALLENGE_LEFT = 1;      // 天团挑战(左)
+  LEAGUEACTIVITY_TYPE_CHALLENGE_RIGHT = 2;      // 天团挑战(右)
+  LEAGUEACTIVITY_TYPE_WXKJ = 3;           // 妄想空间
+}
+
+// 日常活动错误类型
+enum DailyActivityErrorType
+{
+  DAILYACTIVITY_ERROR_NONE = 0;                // 正常
+  DAILYACTIVITY_ERROR_NOT_EXIST = 1;           // 活动不存在
+  DAILYACTIVITY_ERROR_NOT_OPEN = 2;            // 未开启
+  DAILYACTIVITY_ERROR_NOT_COMPLETE = 3;        // 未完成
+}
+
+message ClubChallengeInfo
+{
+  uint32 level = 1;             // 活动等级(开启层级)
+  repeated uint32 npcid = 2;    // 挑战的npcid
+}
+
+// 日常活动
+message DailyActivityInfo
+{
+  uint32 id = 1;                          // 日常活动id
+  uint32 characterid = 2;                 // 同伴id
+  uint64 endtime = 3;                     // 结束时间
+  uint32 status = 4;                      // 活动状态
+  uint64 uid = 8;                         // 唯一id
+}
+
+// 社团活动
+message LeagueActivity
+{
+  uint32 id = 1;                              // 社团活动id
+  uint64 endtime = 2;                         // 结束时间
+  uint32 status = 3;                          // 活动状态
+  uint64 refreshfield = 4;                    // 野外刷新点   repairid << 3 + index
+  uint32 level = 5;                           // 活动等级(开启层级)
+  ClubChallengeInfo clubInfo = 6;             // 天团挑战信息
+  uint64 uid = 7;                             // 唯一id
+  string alias = 8;                           // 访问npc别名
+}
+
+// 主动约会信息
+message ActiveDatingInfo
+{
+  uint32 id = 1;                          // 约会类型
+  uint32 characterid = 2;                 // 同伴id
+  uint64 endtime = 3;                     // 结束时间
+  uint32 status = 4;                      // 活动状态
+  uint64 refreshfield = 5;                // 野外刷新点   repairid << 4 + index
+  uint64 uid = 6;                         // 唯一id
+  uint32 fvalue =7;                       // 增加好感度
+  uint32 type = 8;                        // 约会类型
+  string alias = 9;                       // 访问npc别名
+}
+
+// 日常任务协议 S->C
+message DailyActivityCmd
+{
+  repeated DailyActivityInfo dailyactivity = 1;   // 活动信息
+  repeated LeagueActivity leagueactivity = 2;     // 社团信息
+  uint64 nextQuestRefreshTime = 3;                // 下次任务刷新时间
+  repeated ActiveDatingInfo activedating = 4;     // 主动约会
+  uint32 allcompletestatus = 5;                   // 全部完成状态
+}
+
+// 日常任务领取奖励协议 S->C
+message DailyActivityAwardCmd
+{
+  uint32 uid = 1;                // id
+}
+
+// 天团挑战CG播放
+message ClubChallengeCGCmd
+{
+  string cg = 1;                 // cg
+  uint32 showid1 = 2;               // 表演位1(avatarID)
+  uint32 showid2 = 3;               // 表演位2(avatarID)
+  uint32 showid3 = 4;               // 表演位3(avatarID)
+}
+
+// 日常任务全完成领取奖励协议 C->S
+message DailyActivityCompleteAwardCmd
+{
+}
+
+// 增加弱同步开关同步
+message WeakSyncSwitchCmd
+{
+  bool weaksync_switch = 1;        //开关 true-开  false-关
+}
+
+// root motion使用开关同步
+message RootMotionSwitchCmd
+{
+  bool rootmotion_switch = 1;      //开关 true-开  false-关
+}
+
+// 增加压测接口返回协议
+message StressTestResponseCmd
+{
+  uint32 ret = 1;           //返回标记
+  uint64 timestamp = 2;     //返回客户端的时间戳
+}
+
+// 设置是否测试robot
+message SetRobotCmd
+{
+  bool set = 1;   
+  bool isplayerwalk = 2;
+}
+
+// 循环动作列表同步, S->C
+message SyncActionListCmd
+{
+  uint32 guid = 1;                  // npc guid
+  repeated uint32 actionlist = 2;   // actionlist
+  bool needloop = 3;                // 动作列表是否需要循环
+}
+
+// 前端感知到玩家进入Npc气泡感知范围, C->S
+message NpcBubblePerceptionCmd
+{
+  uint32 guid = 1;                  // npc guid
+}

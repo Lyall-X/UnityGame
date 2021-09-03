@@ -1,0 +1,30 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+enum ESysMsgID
+{
+  ESYSTEMMSG_ID_MIN = 0;
+
+  ESYSTEMMSG_ID_PACK_NOSTOREAGE_WITHCARD = 37;  //卡片不可放入仓库
+  ESYSTEMMSG_ID_MAIL_ACCOUNT_ATTACH = 46;       //邮件已被领取
+
+  ESYSTEMMSG_ID_CHAT_OFFLINE = 422;             //聊天对象已离线
+
+  //ESYSTEMMSG_ID_STORE_OFF_FULL = 818;
+  //ESYSTEMMSG_ID_STORE_PUT_FULL = 819;
+
+  ESYSTEMMSG_ID_NAMEEMPTY = 1006;               //名字空
+
+  ESYSTEMMSG_ID_GUILD_NAMELEN = 1007;           //工会名字长度
+  ESYSTEMMSG_ID_GUILD_NAMEEMPTY = 2603;         //工会名字空
+  ESYSTEMMSG_ID_GUILD_NAMEINVALID = 2604;       //工会名字不合法
+
+  ESYSTEMMSG_ID_QUERY_CLOSE = 855;
+  ESYSTEMMSG_ID_QUERY_NO_FRIEND = 857;
+
+  ESYSTEMMSG_ID_PACK_FULL = 3101;               //背包满
+
+  ESYSTEMMSG_ID_DEBT_LOGIN = 21000;
+  ESYSTEMMSG_ID_DEBT_START = 21001;
+}
+

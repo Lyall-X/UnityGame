@@ -1,0 +1,602 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+import "ProtoCommon.proto";
+import "SceneUser.proto";
+import "UEnumTable.proto";
+
+//九屏同步数据，包含除了战斗属性以外的部分
+message NineData
+{
+  uint32 level = 1;                           // 等级,表UserLevel.xlsx列Level
+  PersonalityData pd = 2;                     // 捏人数据
+  uint32 normalskill = 3;                     // 普攻技能id,表Skill.xlsx列ID
+  uint32 state = 4;                           // 当前状态,枚举ECreatureStatus
+  //uint32 dir = 5;                           // 当前朝向,unused,使用单独的方向协议同步
+  uint32 equipweapon = 6;                     // 当前装备,表Item_Equip.xlsx列ID
+  uint32 fightstate = 7;                      // 战斗状态,枚举EFightStatusType
+  string killername = 8;                      // 击杀者名字
+  repeated uint32 equipids = 9;               // unused,表Item_Equip.xlsx列ID
+  uint64 campid = 10;                         // 阵营id
+  uint32 iscreatedstove = 12;                 // 是否召唤出工房炉子 1:没有 2：有
+  uint32 reconcileactionid = 13;              // 工房调和正在进行的动作 unused
+  uint64 featureflag = 14;                    // npc特性状态标志
+  repeated EntryData entrydata = 15;          // 单位的九屏枚举数据,支持增量更新
+};
+
+// 场景添加物品
+message MapItem
+{
+  uint64 guid = 1;                             // 道具guid
+  uint32 id = 2;                               // 道具id,表Item.xlsx列id
+  EStageObjectType type = 3;                   // 类型,表NpcType.xlsx列id
+  uint64 sourceid = 4;                         // 来源npc的guid
+  ScenePos pos = 5;                            // 位置
+  repeated uint64 owners = 6;                  // 属于者charid
+  uint64 disappear = 7;                        // 消失时间,为0表示不定时消失
+  float dir = 8;                               // 朝向
+  repeated uint64 subguid = 9;                 // 道具上挂载的其它道具列表 用于家具上的摆放物业务
+  uint64 parentguid = 11;                      // 父家具guid
+  bool isprivate = 13;                         // 是否私人对象
+  uint64 fromid = 14;                          // 任务,创建源NPC的guid
+  repeated uint32 roomids = 15;                // 家具所跨越的房间列表
+  string state = 16;                           // 状态
+  repeated uint32 interactivefeature = 17;     // 交互特性id
+  repeated ItemEntryData itementrydata = 18;   // 枚举数据
+  MapBoxData boxdata = 19;                     // 宝箱数据
+  bool iscollected = 20;                       // 是否被采集
+  uint32 energy = 21;                          // 能量
+  string alias = 22;                           // alias 标识npc(别名)
+  uint64 questOwnerID = 23;                    // 可见性归属者id,归属者是玩家charid
+  bool ismapstatic = 24;                       // 是否地图静态对象(生命周期跟随场景)
+  repeated uint64 pickgroupids = 25;           // 拾取组IDs
+  bool isreinforce = 26;                       // 是否强化后的道具
+  bool isbirth = 27;                           // 是否播放出生动画
+  uint64 borndelaytime = 28;                   // 出生创建后延迟一段时间再播出生动画
+  uint32 overlapradius = 29;                   // 碰撞半径(前端用)
+  string spawnerid = 30;                       // Spawner唯一ID
+  uint32 questid = 31;                         // 所属任务ID
+  ESceneObjectInteractionMode interactivemode = 32;     // 交互模式
+  SceneScale scale = 34;                       // 缩放比例
+}
+
+// 场景添加物品,S->C
+message AddMapItem
+{
+  repeated MapItem items = 3;
+}
+
+// 拾取物品,S<->C
+message PickupItem
+{
+  uint64 playerguid = 3;    // 角色guid
+  uint64 itemguid = 4;      // 物品guid
+  bool success = 5;         // 是否成功
+}
+
+// unused
+enum EGiveType
+{
+  EGiveType_FIRST = 0;
+}
+
+// npc数据,S->C
+message MapNpcData
+{
+  uint64 charid = 1;                // 归属者charid
+  //uint64 controlcharid = 2;       // unused
+  string alias = 3;              // alias 标识npc(别名)
+
+  NineData data = 4;                // 九屏属性
+  repeated UserAttr attrs = 5;      // 角色属性
+
+  repeated BufferData buffs = 6;    // buff数据
+  bool isbirth = 7;                 // 出生时播放出生动画
+  MoveStateData movedata = 8;
+
+  uint64 featureflag = 9;          // npc特性状态标志
+  repeated uint32 feature = 10;     // 特性id,表FeaturesType.xlsx中列id
+  uint64 borndelaytime = 11;        // 出生创建后延迟一段时间再播出生动画
+  uint32 interactiveradius = 12;    // npc交互半径(前端用)
+  uint32 perceptionradius = 13;     // npc感知半径(前端用)
+  string spawnerid = 14;            // Unique Spawner ID
+  uint32 questid = 15;              // 所属任务ID
+  uint32 bubbleperceptionradius = 16; // npc气泡感知半径(前端用)
+}
+
+//宝箱数据
+message MapBoxData
+{
+  bool unlock = 1;                        // 宝箱是否已解锁,true:已解锁,false:未解锁
+  message UnlockItem
+  {
+    uint32 id = 1;
+    uint32 num = 2;
+  };
+  repeated UnlockItem unlockneeditems = 2;//解锁需要的道具
+}
+
+// npc地图数据,S->C
+message MapEntry
+{
+  uint64 guid = 1;                  // 唯一id
+  string name = 2;                  // 名字
+  uint32 cfgid = 3;                 // 配置表id,表Npc.xlsx列id
+  EStageObjectType type = 4;      // 类型,表NpcType.xlsx列id
+
+  ScenePos pos = 5;                 // 坐标
+  int32 dir = 6;                    // 朝向
+
+  MapNpcData npcdata = 7;           // npc数据
+  MapBoxData boxdata = 8;           // 宝箱数据 invalid by 石海江
+  uint64 questOwnerID = 9;          // 可见性归属者id,归属者是玩家charid
+  bool isprivate = 10;              // 是否私人NPC
+  uint64 fromid = 11;               // 任务,创建源NPC的guid
+  bool curfighter = 12;             // 是否主控
+  string interactivestate = 13;     // 交互状态
+  string defaultaction = 14;        // 默认待机动作
+}
+
+// 地图数据,S->C
+message AddMapEntry
+{
+  repeated MapEntry entry = 3;
+}
+
+// 弹道,S->C
+message MapMissile
+{
+  uint64 id = 1;            // 唯一id
+  uint32 skillID = 2;       // 技能id,表Skill.xlsx列id
+  ScenePos pos = 3;         // 坐标
+  ScenePos velspeed = 4;    // 初始速度
+  ScenePos gravity = 5;     // 重力加速度
+  uint64 masterid = 6;      // 施法者guid
+}
+
+// unused
+message AddMapMissile
+{
+  repeated MapMissile missiles = 3;
+}
+
+message MapCmdEnd
+{
+  uint32 player_count = 1;
+}
+
+// 删除单位,S->C
+message DeleteEntryUserCmd
+{
+  repeated uint64 list = 3;   // 唯一id
+  uint32 fadeout = 4;         // 非零开启 淡出 单位毫秒
+  string deltype = 5;         // 删除类型
+}
+
+// 抛物线位置,S->C
+message TestParabolaPosCmd
+{
+  ScenePos pos = 3;
+}
+
+// 锁敌,S->C
+message LockTargetCmd
+{
+  uint64 entryid = 4;     // 唯一id
+  uint64 targetid = 5;    // 目标唯一id
+  bool auto_fight = 6;    // 锁定后自动进入战斗状态
+}
+
+// 停止锁敌,S->C
+message UnlockTargetCmd
+{
+  uint64 entryid = 3;   // guid
+}
+
+// 同步方向,S->C
+message SyncDirectionCmd
+{
+  uint64 guid = 3;          // 唯一id
+  int32 dir = 4;            // 目标方向
+  bool instantrotate = 5;   // 是否计入动作cd
+  bool playaction = 6;      // 是否播放转向动作
+  int32 curdir = 7;         // 当前方向
+}
+
+// npc注视对象
+message SyncNpcWatchCmd
+{
+  uint64 npcid = 3;         // npc唯一id,表Npc.xlsx列id
+  uint64 guid  = 4;         // 注视对象唯一id
+}
+
+// npc个人数据同步方式
+enum SyncNpcDataType
+{
+  SYNC_NPC_DATA_TYPE_MAP     = 0; // 进入地图
+  SYNC_NPC_DATA_TYPE_ADD     = 1; // 当前新增
+  SYNC_NPC_DATA_TYPE_REMOVE  = 2; // 移除
+}
+// 可见性同步,S->C
+message SyncNpcVisibleStatusCmd
+{
+  repeated MapNpcVisibleStatusData npcs = 3;  // 可见性数据
+  SyncNpcDataType type = 4;          // 同步方式
+}
+
+// 物件私人状态
+message MapObjectStatus
+{
+  uint32 cfgid = 1;                         // 配置表id
+  string status = 2;                        // 状态
+  string alias = 3;                         // alias 标识npc(别名)
+  repeated uint64 guids = 4;                //对象列表
+  string spawnerid = 5;                     // SpawnerID
+
+}
+
+// 物件私人状态同步,S->C
+// message SyncObjectStatusCmd
+// {
+//   repeated ItemNineSyncCmd objects = 1;  // 状态数据
+// }
+
+// 同步npc的私人数据,S->C
+message SyncNpcPrivateDataCmd
+{
+  repeated MapNpcPrivateData npcs = 1;        // npc数据
+  SyncNpcDataType type = 2;                   // 同步方式
+}
+
+// 到达地图块,C->S
+message BlockSceneMapCmd
+{
+  MapBlockType type = 1;    // 地图块类型
+  uint32 blockid = 2;       // id
+}
+
+// NPC特性更新,S->C
+message NpcFeaturesUpdateCmd
+{
+  uint64 guid = 1;             // npc唯一id    
+  uint64 featureflag = 2;      // npc特性状态标志
+  repeated uint32 feature = 3; // 特性id,表FeaturesType.xlsx中列id
+}
+
+// 九屏同步,S->C
+message NpcNineSyncCmd
+{
+  uint64 guid = 3;                  // 唯一id
+  repeated UserAttr attrs = 4;      // 属性
+  NineData data = 5;                // 九屏数据
+}
+
+// Item九屏同步,S->C
+message ItemNineSyncCmd
+{
+  uint64 guid = 1;                            // 唯一id
+  ScenePos pos = 2;                           // 位置
+  repeated ItemEntryData itementrydata = 3;   // 枚举数据
+  string state = 4;                           // 物件状态
+  bool iscollected = 5;                       // 是否被采集
+  uint32 energy = 6;                          // 能量
+}
+
+// 离开原地副本,C->S
+message LeaveCopyCmd
+{
+}
+
+message MoveStateCmd
+{
+
+  uint64 guid = 1;          //移动对象guid
+  EMoveStateType state = 2; //移动方式
+  EMoveSubStateType substate = 3; //移动子方式
+  ScenePos curpos = 4;   // 当前坐标
+  ScenePos targetpos = 5; //目標位置，这个值只有在ai控制移动中有效
+  int32 rotate = 6;      // 移动方向
+  float movespeed = 7;   // 移动速度
+  uint32 clientDt = 8;   //客户端时机的移动时间(ms)
+
+  JumpData jumpdata = 9;
+  VehicleData vehicledata = 10;
+  bool stopaction = 11;
+}
+
+//修复物对象状态信息, S->C
+message SingleRepairObjData
+{
+  string spawnerid   = 1; 
+  bool boeliterepair = 2;
+  bool showeliteitem = 3;
+}
+//地图上修复物对象信息列表，S->C
+message UpdateRepairObjState
+{
+  uint32 mapid = 1;
+  repeated SingleRepairObjData repairdatas = 2;
+  uint32 reteliterepair = 3;
+}
+
+//修复结束后的关闭修复状态 S->C
+message SendEffectClosedType
+{
+  //uint32 type = 1;
+}
+
+message BoxChoiceFunction
+{
+  uint32 guid         = 1;      //宝箱guid
+  uint32 choiceid     = 2;      //选择的功能性id
+  EBoxType type       = 3;      //宝箱类型
+}
+
+message ServerPosTestCmd
+{
+  uint64 guid = 1;
+  ScenePos pos = 2;
+}
+
+// AI视觉感知扇形区域调试协议
+message ServerSectorPosTestCmd
+{
+  ScenePos pos = 1;                 // 原点位置
+  uint32 rotate = 2;                // 朝向
+  uint32 angle = 3;                 // 角度
+  uint32 radius = 4;                // 半径
+  uint32 drawtime = 5;              // 持续时间
+  repeated float coloralpha = 6;    // 颜色以及透明度 RGBA
+}
+
+// 射线检测调试协议
+message ServerSweepTestCmd 
+{
+  uint64 guid = 1;
+  ScenePos from = 2;                // 起点
+  ScenePos to = 3;                  // 终点
+  ScenePos hit = 4;                 // hit位置(如果有值且不等于from或to 则说明sweep时命中)
+  uint32 drawtime = 5;              // 持续时间
+  repeated float coloralpha = 6;    // 颜色以及透明度 RGBA
+}
+
+// 绘制Box
+message ServerBoxPosTestCmd
+{
+  ScenePos pos = 1;                 // 中心位置
+  ScenePos rotator = 2;             // 旋转
+  ScenePos extent = 3;              // Extend
+  uint32 drawtime = 4;              // 持续时间
+  repeated float coloralpha = 5;    // 颜色以及透明度 RGBA
+}
+
+// 绘制Capsule
+message ServerCapsulePosTestCmd
+{
+  ScenePos pos = 1;                 // 中心位置
+  ScenePos rotator = 2;             // 旋转
+  uint32 halfheight = 3;            // 半高
+  uint32 radius = 4;                // 半径
+  uint32 drawtime = 5;              // 持续时间
+  repeated float coloralpha = 6;    // 颜色以及透明度 RGBA
+}
+
+// 绘制Arrow
+message ServerArrowPosTestCmd
+{
+  ScenePos from = 1;              // 起点
+  ScenePos to = 2;                // 终点
+  uint32 size = 3;                // 大小
+  uint32 drawtime = 4;            // 持续时间
+  repeated float coloralpha = 5;  // 颜色以及透明度 RGBA
+}
+
+// 绘制Sphere
+message ServerSpherePosTestCmd
+{
+  ScenePos pos = 1;                 // 中心位置
+  uint32 radius = 2;                // 半径
+  uint32 drawtime = 3;              // 持续时间
+  repeated float coloralpha = 4;    // 颜色以及透明度 RGBA
+}
+
+message EnterRaidSceneByStage
+{
+  uint32 character = 1; // 角色id
+  uint32 stage     = 2; // 关卡id
+  uint32 copyid    = 3; // 原地副本id
+}
+
+message SendBoxInfoList
+{
+  uint32 guid = 1;
+  EBoxType type = 2; //宝箱类型 
+  repeated uint32 id = 3;
+}
+
+message SendBossEnterMap
+{
+  uint32 guid = 1;
+}
+
+message WXKJLeaveMapCmd
+{
+}
+
+message MapObject
+{
+  MapEntry entry = 1;
+  MapItem item = 2;
+}
+
+// 地图数据,S->C (下发npc和item)
+// npc和item合并下发，保证在一个消息里，用于玩家上线下发同场景的对象。
+// 比如解决有npc与item互相关联的情况。
+message AddMapObject
+{
+  repeated MapObject mapobjectarray = 1;
+}
+
+message InteractionMode
+{
+  uint32 cfgid      = 1;
+  string spawnerid  = 2;          //地编spawner唯一id
+  ESceneObjectInteractionMode mode       = 3;
+  repeated uint64 guids = 4;      //对象列表
+  
+}
+
+/// 交互模式同步,S->C
+message SyncNpcInteractionModeCmd
+{
+  repeated InteractionMode data = 1;  // 交互模式数据
+  SyncNpcDataType type = 2;   // 同步方式
+}
+
+// 全局事件消息
+enum GlobalEventBindType
+{
+  // 用于全局事件
+  G_EVENT_BIND_TYPE_BEGIN                           = 0;             // Begin
+  G_EVENT_BIND_TYPE_CREATESCENE                     = 1;             // 场景创建
+  G_EVENT_BIND_TYPE_DELETESCENE                     = 2;             // 场景销毁
+  G_EVENT_BIND_TYPE_LOGIN                           = 3;             // 登录
+  G_EVENT_BIND_TYPE_LOGINOUT                        = 4;             // 登出
+  G_EVENT_BIND_TYPE_KILLMONSTER                     = 5;             // 玩家击杀npc
+  G_EVENT_BIND_TYPE_ENTERSCENE                      = 6;             // 进入场景
+  G_EVENT_BIND_TYPE_LEAVESCENE                      = 7;             // 离开场景
+  G_EVENT_BIND_TYPE_ADDFIGHTER                      = 8;             // 获取同伴
+  G_EVENT_BIND_TYPE_FINISHQUEST                     = 9;             // 完成任务
+  G_EVENT_BIND_TYPE_FINISHREPAIR                    = 10;            // 完成修复物
+  G_EVENT_BIND_TYPE_UNLOCKED                        = 11;            // 解锁
+  G_EVENT_BIND_TYPE_REDDOT                          = 12;            // 红点推送
+  G_EVENT_BIND_TYPE_DAILYACTIVITY_REFRESH           = 13;            // 日常刷新
+  G_EVENT_BIND_TYPE_QUEST_STORY_VALUE               = 14;            // 剧情VALUE
+  G_EVENT_BIND_TYPE_COPYSCENE_FINISH                = 15;            // 原地副本结束
+  G_EVENT_BIND_TYPE_STAGE_FINISH                    = 16;            // 场景关卡结束
+  G_EVENT_BIND_TYPE_END                             = 17;            // End
+}
+
+// 场景范围事件消息
+enum SceneEventBindType
+{
+  // 用于场景对象事件(回调限制本场景内)
+  SCENE_EVENT_BIND_TYPE_BEGIN                         = 0;       // Begin
+  SCENE_EVENT_BIND_TYPE_MONSTERDEAD                   = 1;       // monster死亡
+  SCENE_EVENT_BIND_TYPE_QUESTMONSTER_LEAVESCENE       = 2;       // 任务魔物离开场景
+  SCENE_EVENT_BIND_TYPE_QUESTKILL                     = 3;       // 任务击杀节点完成
+  SCENE_ENTRY_BIND_TYPE_PHYSIC_MOVE_TOUCH             = 4;       // 移动时被触碰(产生触碰的Entry)
+  SCENE_ENTRY_BIND_TYPE_PHYSIC_MOVE_BLOCk             = 5;       // 移动时发生阻挡(产生阻挡的Entry)
+  SCENE_ENTRY_BIND_TYPE_PHYSIC_MOVE_CCT               = 6;       // 移动时两个CCT的交互事件(只会存在于两个Dynamic对象交互时产生,暂时不考虑阻挡和触碰分类)
+  SCENE_ENTRY_BIND_TYPE_BREAK_SKILL                   = 7;       // 打断技能
+  SCENE_ENTRY_BIND_TYPE_JUMP_START                    = 8;       // 起跳
+  SCENE_ENTRY_BIND_TYPE_JUMP_FLOOR                    = 9;       // 跳跃落地
+  SCENE_ENTRY_BIND_TYPE_BUBBLE_PERCEPTION_ENTER       = 10;       // 气泡感知区域有Entry进入
+  SCENE_ENTRY_BIND_TYPE_BUBBLE_PERCEPTION_LEAVE       = 11;       // 气泡感知区域有Entry离开
+  SCENE_ENTRY_BIND_TYPE_BUBBLE_PERCEPTION_NEXT_ACTION = 12;       // 休闲气泡AI切换下一个动作
+  SCENE_ENTRY_BIND_TYPE_WALKPOSE_RESET                = 13;       // 移动姿态计时重置
+  SCENE_ENTRY_BIND_TYPE_WALKPOSE_CHANGE               = 14;       // 移动姿态改变
+  
+  SCENE_EVENT_BIND_TYPE_END = 19;                                 // End
+}
+
+// 关卡来源类型
+// 1.任务，2.原地副本，3.污染区域 4.妄想空间 5.副本
+enum StageSourceType
+{
+  STAGE_SOURCE_NULL = 0;                                 // 未知
+  STAGE_SOURCE_QUEST = 1;                                // 任务
+  STAGE_SOURCE_COPY = 2;                                 // 原地副本
+  STAGE_SOURCE_POLLUTION_AREA = 3;                       // 污染区域
+  STAGE_SOURCE_WXKJ = 4;                                 // 妄想空间
+  STAGE_SOURCE_DSCENE = 5;                               // 副本
+}
+
+// 负责客户端之间的行为表现同步，服务器仅负责转发,C->S->C
+message SyncStageObjectBehaviorCmd
+{
+  uint64 stageObject = 1; // 被触发行为对象的GUID
+  uint64 operator = 2;  // 操作者的GUID
+  string controllerName = 3; // 行为控制器的名称
+  uint32 controllerVersion = 4; // 行为控制器的版本
+  uint32 controllerNodeID = 5; // 行为控制器的节点ID
+}
+
+message VarList
+{
+  string name = 1;
+  TemplateValue value = 2;
+}
+
+// 负责客户端之间的表现同步，服务器仅负责转发,C->S->C
+message SyncBlueprintPerformanceCmd
+{
+  uint64 target = 1; // 需要表演对象的guid
+  ENetPerformanceType type = 2; // 表演的类型
+  repeated VarList list = 3; // 参数列表
+}
+
+message SyncTime
+{
+  uint64 client_time = 1;
+  uint64 server_time = 2;
+}
+
+message SetCollisionCmd
+{
+  uint64 guid = 1;
+  bool open = 2;
+  string preset = 3;
+}
+
+// 触发感知区域
+message TriggerPerceptionCmd
+{
+  NpcPerceptionType perceptionType  = 1;  // 感知类型
+  NpcPerceptionTriggerType trigger  = 2;  // 感知触发方式
+  uint64 npcid                      = 3;  // 被触发感知单位的guid
+  uint64 guid                       = 4;  // 触发者id(理论上也是上报的单位自身)
+}
+
+// NPC感知方式
+enum NpcPerceptionType
+{
+  NPC_PERCEPTION_BEGIN  = 0;
+  NPC_PERCEPTION_VISIT  = 1; // 视觉
+  NPC_PERCEPTION_HEAR   = 2; // 听觉
+  NPC_PERCEPTION_END    = 10;
+}
+
+// 感知触发方式
+enum NpcPerceptionTriggerType 
+{
+  NPC_PERCEPTION_TRIGGRT_BEGIN  = 0;
+  NPC_PERCEPTION_TRIGGRT_ENTER  = 1;  // 进入感知区域
+  NPC_PERCEPTION_TRIGGRT_LEAVE  = 2;  // 离开感知区域
+  NPC_PERCEPTION_TRIGGRT_END    = 10;
+}
+
+// 召唤静态物 
+message SkillActorEffectUserCmd 
+{
+  uint64 charid = 1;            // 施法者唯一id
+  uint32 skillid = 2;           // 技能id,表Skill.xlsx列ID
+  uint32 effectid = 3;          // 配置表id,表SpecialEffect.xlsx列ID
+  uint32 time_axis = 4;         // 时间轴(毫秒)
+  ScenePos pos = 5;             // 位置
+  AddMapItem addmapitem = 6;    // 召唤物数据
+}
+
+enum UserDeadType
+{
+  USER_DEAD_TYPE_MIN  = 0;
+  USER_DEAD_TYPE_NORMAL_TEAM = 1;     // 全队死亡
+  USER_DEAD_TYPE_LDBE_TEAM = 2;       // 新手引导的全队死亡
+  USER_DEAD_TYPE_MAX  = 3;
+}
+
+message SyncUserDeadCmd 
+{
+  uint64 guid = 1;              // 主控死亡才有guid
+  UserDeadType type = 2;
+}

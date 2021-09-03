@@ -1,0 +1,390 @@
+syntax = "proto3";
+package Cmd;
+option go_package = ".;Cmd";
+import "SceneUser.proto";
+import "ProtoCommon.proto";
+import "Var.proto";
+
+
+// 消息类型
+enum EMessageType
+{
+  EMESSAGETYPE_MIN = 0;
+  EMESSAGETYPE_FRAME = 1;     // 系统提示
+  EMESSAGETYPE_GETITEM = 2;   // 获得道具
+  EMESSAGETYPE_TOP  = 4;      // 头顶滚屏
+  EMESSAGETYPE_REWARD  = 8;   // 获得奖励
+  EMESSAGETYPE_3D  = 16;      // 3D展示
+  EMESSAGETYPE_CONFIRM = 32;  // 确认框
+  EMESSAGETYPE_ADDPARTNER = 63;  // 添加伙伴弹框
+  EMESSAGETYPE_WARN = 64;     // 警告
+  EMESSAGETYPE_DEBUG = 128;   // 内网提示
+  EMESSAGETYPE_FINISH = 256;  // 完成成功提示
+  EMESSAGETYPE_MAX = 257;
+}
+
+// unused
+enum EMessageActOpt
+{
+  EMESSAGEACT_FIRST = 0;
+  EMESSAGEACT_ADD = 1;
+  EMESSAGEACT_DEL = 2;
+}
+
+// 消息参数,S->C
+message MsgParam
+{
+  string param = 1;               // 主参数
+}
+
+// 提示消息,S->C
+message SysMsg
+{
+  uint32 id = 3;                  // 配置表id,表DT_SystemMessage列ID
+  string param = 5;               // 消息参数
+}
+
+// 传送点传送,C->S
+message CExitPosUserCmd
+{
+  uint32 exitid = 3;      // 地编中配置的传送点id
+}
+
+// 世界地图跳转,C->S
+message CWorldJumpUserCmd
+{
+  uint32 mapid = 3;       // 地图id,Map.xlsx列ID
+}
+
+// 查询解锁内容,C->S
+message CAskUnlockedMenuListCmd
+{
+  EMenuEvent type = 3;    // 解锁事件枚举
+}
+
+// 数据同步,S->C
+message SUserDataCmd 
+{
+  repeated Var data = 3;  // 数据
+}
+
+enum ECatInteraction
+{
+  ECATINTER_PICKUP = 0;  // 抱起猫 C->S
+  ECATINTER_PUTDOWN = 1; // 放下猫 C->S
+  ECATINTER_PUTDOWN_END = 2; // 放下猫结束 C->S
+
+  ECATINTER_PICKUP_BROADCAST = 3; // 广播抱起猫 S->C
+  ECATINTER_PUTDOWN_BROADCAST = 4; // 广播放下猫 S->C
+}
+
+// 抱猫消息,C->S
+message CatHugCmd
+{
+  ECatInteraction oper = 1;  // 操作
+  uint64 catguid = 2; // 猫的guid
+  uint64 partnerguid = 3; // 主控角色的guid
+}
+
+// unused
+message TalkInfo
+{
+  uint64 guid = 3;
+  uint32 talkid = 4;
+  string talkmessage = 5;
+  repeated MsgParam params = 6;
+}
+
+// unused
+enum EEffectOpt
+{
+  EEFFECTOPT_FIRST = 0;
+  EEFFECTOPT_PLAY = 1;
+  EEFFECTOPT_STOP = 2;
+  EEFFECTOPT_DELETE = 3;
+}
+
+// unused
+enum EEffectType
+{
+  EEFFECTTYPE_FIRST = 0;
+  EEFFECTTYPE_NORMAL = 1;
+  EEFFECTTYPE_ACCEPTQUEST = 2;
+  EEFFECTTYPE_FINISHQUEST = 3;
+  EEFFECTTYPE_MVPSHOW = 4;
+  EEFFECTTYPE_SCENEEFFECT = 5;  
+}
+
+// unused
+message EffectUserCmd
+{
+  EEffectType effecttype = 3;
+
+  uint64 charid = 4;
+  uint32 effectpos = 5;
+  ScenePos pos = 6;
+  string effect = 7;
+  uint32 msec = 8;
+  uint32 times = 9;
+  uint32 index = 10;
+
+  EEffectOpt opt = 11;
+  bool posbind = 12;
+  bool epbind = 13;
+
+  uint32 delay = 14;
+  uint64 id = 15;   
+  uint32 dir = 16;
+}
+
+// unused
+message SoundEffectCmd
+{
+  string se = 3;
+  ScenePos pos = 4;
+
+  uint32 msec = 5;
+  uint32 times = 6;
+
+  uint32 delay = 7;
+}
+
+//unused
+message ChangeBgmCmd
+{
+  string bgm = 3;
+  bool play = 4;
+  uint32 times = 5;
+}
+
+//unused
+enum GameTimeOpt
+{
+  EGAMETIMEOPT_FIRST = 0;
+  EGAMETIMEOPT_SYNC = 1;
+  EGAMETIMEOPT_ADJUST = 2;
+}
+
+// 同步游戏时间,S->C
+message GameTimeCmd
+{
+  GameTimeOpt opt = 3 ;   // unused
+  uint32 sec = 4;         // 游戏中的时间（秒）
+  uint32 speed = 5;       // unused
+}
+
+// unused
+message ShakeScreen
+{
+  uint32 maxamplitude = 3;
+  uint32 msec = 4;
+  uint32 shaketype = 5;
+}
+
+// unused
+message FollowerUser
+{
+  uint64 userid = 3;
+  EFollowType eType = 4;
+}
+
+// unused
+message BeFollowUserCmd
+{
+  uint64 userid = 3;
+  EFollowType eType = 4;
+}
+
+// unused
+enum EAlbumType
+{
+  EALBUMTYPE_MIN = 0;
+  EALBUMTYPE_PHOTO = 2;
+  EALBUMTYPE_MAX = 5;
+}
+
+// unused
+message UpyunUrl
+{
+  EAlbumType type = 1;
+  string char_url = 2;
+  string acc_url = 3;
+}
+
+// unused
+message DownloadSceneryPhotoUserCmd
+{
+  repeated UpyunUrl urls = 3;
+}
+
+// unused
+message BuffForeverCmd
+{
+  repeated BufferData buff = 3;
+}
+
+// unused
+message MusicItem
+{
+  uint64 charid = 1;
+  uint32 demandtime = 2;
+  uint32 mapid = 3;
+  uint32 npcid = 4;
+  uint32 musicid = 5;
+  uint32 starttime = 6;
+  uint32 endtime = 7;
+  uint32 status = 8;
+  string name = 9;
+}
+
+// unused
+enum EQueryType
+{
+  EQUERYTYPE_MIN = 0;
+  EQUERYTYPE_ALL = 1;
+  EQUERYTYPE_FRIEND = 2;
+  EQUERYTYPE_CLOSE = 3;
+  EQUERYTYPE_MAX = 7;
+}
+
+// unused
+message ItemImageUserNtfUserCmd
+{
+  uint64 userid = 3;
+}
+
+// unused
+message ChangeNameUserCmd
+{
+  string name = 3;
+}
+
+// unused
+message UpyunAuthorizationCmd
+{
+  string authvalue = 3;
+}
+
+// unused
+enum ERenameErrCode
+{
+  ERENAME_SUCCESS = 0; // 成功
+  ERENAME_CD = 1; // 未冷却
+  ERENAME_CONFLICT = 2; // 名字冲突
+}
+
+// unused
+message UserRenameCmd
+{
+  string name = 3;
+  ERenameErrCode code = 4;
+}
+
+//S <- C
+message ChangeUserPosInRapairCmd
+{
+  uint32 repairguid = 1;
+}
+
+message SendLotteryPoolInfoCmd 
+{
+  message PoolInfo
+  {
+    uint32 index = 1;
+    uint32 begintime = 2;
+    uint32 endtime = 3;
+    string MMD = 4;
+  }
+  repeated PoolInfo poolinfo = 1;
+}
+
+message WXKJStagesInfoCmd
+{
+  message StageInfo
+  {
+    uint32 id = 1;
+    EWXKJStageSchedule state = 2;
+  }
+  repeated StageInfo info = 1;
+  uint32 times = 2;
+  uint32 timesTamp = 3;
+  repeated StageInfo questinfo = 4;
+  repeated uint32 bufflist = 5;
+}
+
+message WXKJChallengeCmd
+{
+  uint32 questid = 1;
+}
+
+//精英修复
+message EliteRepairCmd
+{
+  uint32 npcid = 1;
+  uint32 ret = 2;
+}
+
+// 小红点枚举
+enum RedDotType
+{
+  REDDOTTYPE_NONE = 0;
+  REDDOTTYPE_NEW_PARTNER = 1;       // 新同伴
+  REDDOTTYPE_UNLOCK_MENU = 2;       // 解锁menu
+
+}
+
+//小红点信息
+message RedDotInfo
+{
+  uint32 type = 1;      // 小红点类型
+  uint32 id = 2;        // 子id
+  bool isadd = 3;       // true=新增，false=删除
+}
+
+// 下发小红点数据
+message RedDotCmd
+{
+  repeated RedDotInfo reddots = 1;          // 红点信息
+}
+
+// 前端确认小红点
+message RedDotConfirmCmd
+{
+  repeated RedDotInfo reddots = 1;          // 红点信息
+}
+
+//好感度信息
+message FavorabilityInfo
+{
+  uint32 partnerid = 1;                     // 同伴id
+  uint32 value = 2;                         // 好感度
+  bytes rewardbitmap = 3;                   // 好感度领取奖励
+  uint32 lastmeettime = 4;                  // 上次见面时间
+}
+
+// 下发好感度数据
+message FavorabilityCmd
+{
+  repeated FavorabilityInfo infos = 1;          // 好感度信息
+  uint32 updatetype = 2;                        // 好感度更新类型(1是全量更新 0是增量)
+}
+
+
+message WXKJSwitchMaterialCmd
+{
+  string material = 1;      //妄想空间材质
+}
+
+// 通知Dynamic Move Effect结束，C->S
+message DynamicMoveEffectEndCmd
+{
+  uint64 charid = 1;
+  uint32 skillid = 2;
+  uint32 time_axis = 3;                         // effect结束时间轴(毫秒)
+}
+
+message SendReloginServerReqCmd
+{
+  uint32 reconnectreq = 1;                      //服务器最后一次收到的序号
+}
+
