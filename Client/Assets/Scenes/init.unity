@@ -183,6 +183,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8272956, guid: d0a9132987f842443bf46c212619d1bd, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272956, guid: d0a9132987f842443bf46c212619d1bd, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f4350ebebe0c8a4f83e20a14b5588fb, type: 3}
     - target: {fileID: 11472948, guid: d0a9132987f842443bf46c212619d1bd, type: 3}
       propertyPath: m_ScreenMatchMode
       value: 1
