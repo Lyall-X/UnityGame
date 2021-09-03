@@ -119,7 +119,7 @@ end
 
 --随机姓名--
 function UILoginCtrl:OnRandomClick(go)
-  self.obj_InputField:GetComponent("InputField").text = "111"
+  self.txt_name.text = range(0,1000)
 end
 
 --关闭事件--
