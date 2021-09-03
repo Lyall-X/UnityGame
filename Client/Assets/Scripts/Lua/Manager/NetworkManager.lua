@@ -15,7 +15,7 @@ function NetworkManager:RegProtoPB()
         local addr = io.open(path, "rb")
         local buffer = addr:read "*a"
         addr:close()
-        protobuf.register(buffer)
+        -- protobuf.register(buffer)
         -- log("RegProto:>"..path)
     end
 end
