@@ -19,45 +19,60 @@ function UILoginCtrl:OnCreateOK()
 	self:SetUiLayout()
   self:OnShowUI()
 
-	self.behaviour:AddToggleClick(self.toggle_role_renzu, self, self.OnHumanClienk)
-	self.behaviour:AddToggleClick(self.toggle_role_xainzu, self, self.OnFairyClienk)
-	self.behaviour:AddToggleClick(self.toggle_role_mozu, self, self.OnDevilClienk)
+  for _,toggle in ipairs(self.roleBtns) do
+    self.behaviour:AddToggleClick(toggle, self, self.OnRoleClienk)
+  end
+  for _,toggle in ipairs(self.sexBtns) do
+    self.behaviour:AddToggleClick(toggle, self, self.OnSexClienk)
+  end
   
-	self.behaviour:AddToggleClick(self.toggle_sex_nan, self, self.OnManClienk)
-	self.behaviour:AddToggleClick(self.toggle_sex_nv, self, self.OnWomanClienk)
+	self.behaviour:AddClick(self.btn_select_left, self, self.OnSelectLeft)
+	self.behaviour:AddClick(self.btn_select_right, self, self.OnSelectRight)
   
 	self.behaviour:AddClick(self.btn_startgame, self, self.OnCreateClick)
 	self.behaviour:AddClick(self.btn_random, self, self.OnRandomClick)
 end
 
 --创建角色--
-function UILoginCtrl:OnHumanClienk(check)
-  self.roleIndex = NpcRole.Human
+
+function UILoginCtrl:OnSelectLeft(check)
+  self.roleIndex = self.roleIndex == 1 and #self.roleBtns or self.roleIndex - 1
+  self.roleBtns[self.roleIndex].isOn = true
+end
+
+function UILoginCtrl:OnSelectRight(check)
+  self.roleIndex = self.roleIndex == #self.roleBtns and 1 or self.roleIndex + 1
+  self.roleBtns[self.roleIndex].isOn = true
+end
+
+function UILoginCtrl:OnRoleClienk(click)
+  for index,toggle in ipairs(self.roleBtns) do
+    if toggle.isOn then
+      self.roleIndex = index
+    end
+  end 
   self:OnRefreshLogin()
 end
 
-function UILoginCtrl:OnFairyClienk(check)
-  self.roleIndex = NpcRole.Fairy
+function UILoginCtrl:OnSexClienk(click)
+  for index,toggle in ipairs(self.sexBtns) do
+    if toggle.isOn then
+      self.sexIndex = index
+    end
+  end 
   self:OnRefreshLogin()
 end
-
-function UILoginCtrl:OnDevilClienk(check)
-  self.roleIndex = NpcRole.Devil
-  self:OnRefreshLogin()
-end
-
-function UILoginCtrl:OnManClienk(check)
-  self.sexIndex = NpcSex.Man
-  self:OnRefreshLogin()
-end
-
-function UILoginCtrl:OnWomanClienk(check)
-  self.sexIndex = NpcSex.Woman
-  self:OnRefreshLogin()
-end
-
 
 function UILoginCtrl:OnShowUI()
+  self.roleBtns = {
+    self.toggle_role_renzu,
+    self.toggle_role_xainzu,
+    self.toggle_role_mozu,
+  }
+  self.sexBtns = {
+    self.toggle_sex_nan,
+    self.toggle_sex_nv,
+  }
   self:OnRefreshLogin()
 end
 
@@ -104,7 +119,7 @@ end
 
 --随机姓名--
 function UILoginCtrl:OnRandomClick(go)
-  -- self.obj_InputField:GetComponent("InputField").text = "111"
+  self.obj_InputField:GetComponent("InputField").text = "111"
 end
 
 --关闭事件--

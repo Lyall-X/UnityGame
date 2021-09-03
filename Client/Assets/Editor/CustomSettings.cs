@@ -88,6 +88,7 @@ public static class CustomSettings
         _GT(typeof(Image)).AddExtendType(typeof(ImageExtensions)),
         _GT(typeof(CanvasGroup)),
         _GT(typeof(ContentSizeFitter)),
+        _GT(typeof(Toggle)),
 
         _GT(typeof(Behaviour)),
         _GT(typeof(MonoBehaviour)),        
